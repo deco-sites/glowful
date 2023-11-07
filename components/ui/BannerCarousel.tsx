@@ -21,6 +21,8 @@ export interface Banner {
     href: string;
     /** @description Image text title */
     title: string;
+    /** @description Text highlight */
+    highlight: string;
     /** @description Image text subtitle */
     subTitle: string;
     /** @description Button label */
@@ -87,12 +89,7 @@ const DEFAULT_PROPS = {
 };
 
 function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
-  const {
-    alt,
-    mobile,
-    desktop,
-    action,
-  } = image;
+  const { alt, mobile, desktop, action } = image;
 
   return (
     <a
@@ -123,14 +120,19 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
         />
       </Picture>
       {action && (
-        <div class="absolute h-min top-0 bottom-0 m-auto left-0 right-0 sm:right-auto sm:left-[12%] max-h-min max-w-[235px] flex flex-col gap-4 p-4 rounded glass">
-          <span class="text-6xl font-medium text-base-100">
+        <div class="absolute h-min top-0 bottom-0 m-auto left-0 sm:right-auto sm:left-[12%] max-h-min w-screen max-w-[250px] flex flex-col p-6">
+          <span class="text-[#FFF] text-[32px] font-normal leading-8">
             {action.title}
           </span>
-          <span class="font-medium text-xl text-base-100">
+          <span class="text-[#FFF] font-bold font-fraunces italic text-[32px] leading-8">
+            {action.highlight}
+          </span>
+          <span class="text-[#FFF] text-[20px] leading-6 font-normal mt-[24px] mb-[32px]">
             {action.subTitle}
           </span>
-          <Button class="glass">{action.label}</Button>
+          <Button class="bg-transparent text-[#fff] text-sm font-normal tracking-[1px] border-white-lily hover:bg-white-lily hover:text-cherry-pop hover:border-white-lily hover:font-bold">
+            {action.label}
+          </Button>
         </div>
       )}
     </a>
@@ -214,9 +216,13 @@ function BannerCarousel(props: Props) {
         ))}
       </Slider>
 
-      <Buttons />
+      {images?.length > 1 && (
+        <>
+          <Buttons />
 
-      <Dots images={images} interval={interval} />
+          <Dots images={images} interval={interval} />
+        </>
+      )}
 
       <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
     </div>
