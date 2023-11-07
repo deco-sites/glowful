@@ -12,7 +12,7 @@ interface Props {
 }
 
 function CartButton({ loading, currency, total, items }: Props) {
-  const { displayCart, displayTop } = useUI();
+  const { displayCart } = useUI();
   const totalItems = items.length;
 
   const onClick = () => {
@@ -22,14 +22,6 @@ function CartButton({ loading, currency, total, items }: Props) {
     });
     displayCart.value = true;
   };
-
-  let colorIcon;
-
-  if (displayTop.value) {
-    colorIcon = "text-white-lily";
-  } else {
-    colorIcon = "text-deep-beauty";
-  }
 
   return (
     <div class="indicator">
@@ -52,7 +44,7 @@ function CartButton({ loading, currency, total, items }: Props) {
           id="ShoppingCart"
           size={24}
           strokeWidth={2}
-          class={colorIcon}
+          class="text-[#101820]"
         />
       </Button>
     </div>

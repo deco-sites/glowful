@@ -12,7 +12,6 @@ import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
-import { useUI } from "$store/sdk/useUI.ts";
 
 function Navbar({
   items,
@@ -24,22 +23,13 @@ function Navbar({
   logo?: { src: string; alt: string };
 }) {
   const platform = usePlatform();
-   const { displayTop } = useUI();
-
-   let colorIcon;
-
-   if (displayTop.value) {
-     colorIcon = "text-white-lily";
-   } else {
-     colorIcon = "text-deep-beauty";
-   }
 
   return (
     <>
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 gap-2"
+        class="md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2"
       >
         <MenuButton />
 
@@ -61,7 +51,12 @@ function Navbar({
             href="/login"
             aria-label="Log in"
           >
-            <Icon id="User" size={24} strokeWidth={0.4} class={colorIcon} />
+            <Icon
+              id="User"
+              size={24}
+              strokeWidth={0.4}
+              class="text-[#101820]"
+            />
           </a>
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}
@@ -72,7 +67,7 @@ function Navbar({
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex flex-row justify-between items-center border-b border-base-200 w-full pl-2 pr-6 h-[50px] z-50">
+      <div class="hidden md:flex bg-[#FFF] flex-row justify-between items-center w-full pl-2 pr-6 h-[50px] z-50">
         <div class="flex-none w-44">
           {logo && (
             <a

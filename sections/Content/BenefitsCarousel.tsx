@@ -57,7 +57,7 @@ export default function BenefitsCarousel({
       </div>
 
       {/* Desktop Flex */}
-      <div class="hidden md:flex justify-center carousel carousel-center w-screen bg-[#F4F4F4] gap-[50px] text-center p-[27px]">
+      <div class="hidden md:flex justify-center carousel carousel-center w-full bg-[#F4F4F4] gap-[50px] text-center p-[27px]">
         {benifits.map((benifit, index) => (
           <div
             class="carousel-item flex justify-center items-start gap-[8px] w-fit"

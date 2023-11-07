@@ -2,6 +2,9 @@ import { asset } from "$fresh/runtime.ts";
 import type { JSX } from "preact";
 
 export type AvailableIcons =
+  | "BarCode"
+  | "Wallet"
+  | "Shipping"
   | "ArrowsPointingOut"
   | "Bars3"
   | "ChevronLeft"
