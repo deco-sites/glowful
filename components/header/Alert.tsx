@@ -1,6 +1,8 @@
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
+import { useEffect } from "preact/hooks";
+import { signal } from "@preact/signals";
 
 export interface Props {
   alerts: string[];
@@ -13,13 +15,30 @@ export interface Props {
 
 function Alert({ alerts = [], interval = 5 }: Props) {
   const id = useId();
+  const scrolled = signal(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = self.scrollY;
+      if (offset > 50) {
+        scrolled.value = true;
+      } else {
+        scrolled.value = false;
+      }
+    };
+
+    self.addEventListener("scroll", handleScroll);
+    return () => {
+      self.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <div id={id}>
-      <Slider class="carousel carousel-center w-screen bg-cherry-pop gap-6">
+    <div id={id} class={scrolled ? "" : "hidden"}>
+      <Slider class="carousel carousel-center w-screen bg-deep-beauty gap-6 text-center p-[13px]">
         {alerts.map((alert, index) => (
           <Slider.Item index={index} class="carousel-item">
-            <span class="text-sm text-secondary-content flex justify-center items-center w-screen h-[38px]">
+            <span class="text-sm text-secondary-content flex justify-center items-center w-screen">
               {alert}
             </span>
           </Slider.Item>

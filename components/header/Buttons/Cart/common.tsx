@@ -12,7 +12,7 @@ interface Props {
 }
 
 function CartButton({ loading, currency, total, items }: Props) {
-  const { displayCart } = useUI();
+  const { displayCart, displayTop } = useUI();
   const totalItems = items.length;
 
   const onClick = () => {
@@ -23,10 +23,18 @@ function CartButton({ loading, currency, total, items }: Props) {
     displayCart.value = true;
   };
 
+  let colorIcon;
+
+  if (displayTop.value) {
+    colorIcon = "text-white-lily";
+  } else {
+    colorIcon = "text-deep-beauty";
+  }
+
   return (
     <div class="indicator">
       <span
-        class={`indicator-item badge badge-secondary badge-sm ${
+        class={`indicator-item badge badge-secondary badge-sm bg-cherry-pop h-[1.2rem] border-cherry-pop${
           totalItems === 0 ? "hidden" : ""
         }`}
       >
@@ -40,7 +48,12 @@ function CartButton({ loading, currency, total, items }: Props) {
         loading={loading}
         onClick={onClick}
       >
-        <Icon id="ShoppingCart" size={24} strokeWidth={2} />
+        <Icon
+          id="ShoppingCart"
+          size={24}
+          strokeWidth={2}
+          class={colorIcon}
+        />
       </Button>
     </div>
   );
