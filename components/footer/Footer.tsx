@@ -19,6 +19,7 @@ export type Item = {
 
 export type Section = {
   label: string;
+  dropdown?: boolean;
   items: Item[];
 };
 
@@ -118,42 +119,48 @@ function Footer({
     description: "",
     form: { placeholder: "", buttonText: "", helpText: "" },
   },
-  sections = [{
-    "label": "Sobre",
-    "items": [
-      {
-        "href": "/quem-somos",
-        "label": "Quem somos",
-      },
-      {
-        "href": "/termos-de-uso",
-        "label": "Termos de uso",
-      },
-      {
-        "href": "/trabalhe-conosco",
-        "label": "Trabalhe conosco",
-      },
-    ],
-  }, {
-    "label": "Atendimento",
-    "items": [
-      {
-        "href": "/centraldeatendimento",
-        "label": "Central de atendimento",
-      },
-      {
-        "href": "/whatsapp",
-        "label": "Fale conosco pelo WhatsApp",
-      },
-      {
-        "href": "/trocaedevolucao",
-        "label": "Troca e devolução",
-      },
-    ],
-  }],
+  sections = [
+    {
+      label: "Sobre",
+      items: [
+        {
+          href: "/quem-somos",
+          label: "Quem somos",
+        },
+        {
+          href: "/termos-de-uso",
+          label: "Termos de uso",
+        },
+        {
+          href: "/trabalhe-conosco",
+          label: "Trabalhe conosco",
+        },
+      ],
+    },
+    {
+      label: "Atendimento",
+      items: [
+        {
+          href: "/centraldeatendimento",
+          label: "Central de atendimento",
+        },
+        {
+          href: "/whatsapp",
+          label: "Fale conosco pelo WhatsApp",
+        },
+        {
+          href: "/trocaedevolucao",
+          label: "Troca e devolução",
+        },
+      ],
+    },
+  ],
   social = {
     title: "Redes sociais",
-    items: [{ label: "Instagram", link: "/" }, { label: "Tiktok", link: "/" }],
+    items: [
+      { label: "Instagram", link: "/" },
+      { label: "Tiktok", link: "/" },
+    ],
   },
   payments = {
     title: "Formas de pagamento",
@@ -180,64 +187,76 @@ function Footer({
   },
 }: Props) {
   const _logo = layout?.hide?.logo ? <></> : <Logo logo={logo} />;
-  const _newsletter = layout?.hide?.newsletter ? <></> : (
+  const _newsletter = layout?.hide?.newsletter ? (
+    <></>
+  ) : (
     <Newsletter
       content={newsletter}
       layout={{
-        tiled: layout?.variation == "Variation 4" ||
+        tiled:
+          layout?.variation == "Variation 4" ||
           layout?.variation == "Variation 5",
       }}
     />
   );
-  const _sectionLinks = layout?.hide?.sectionLinks ? <></> : (
+  const _sectionLinks = layout?.hide?.sectionLinks ? (
+    <></>
+  ) : (
     <FooterItems
       sections={sections}
-      justify={layout?.variation == "Variation 2" ||
-        layout?.variation == "Variation 3"}
+      justify={
+        layout?.variation == "Variation 2" || layout?.variation == "Variation 3"
+      }
     />
   );
-  const _social = layout?.hide?.socialLinks
-    ? <></>
-    : <Social content={social} vertical={layout?.variation == "Variation 3"} />;
-  const _payments = layout?.hide?.paymentMethods
-    ? <></>
-    : <PaymentMethods content={payments} />;
-  const _apps = layout?.hide?.mobileApps
-    ? <></>
-    : <MobileApps content={mobileApps} />;
-  const _region = layout?.hide?.regionOptions
-    ? <></>
-    : <RegionSelector content={regionOptions} />;
-  const _links = layout?.hide?.extraLinks
-    ? <></>
-    : <ExtraLinks content={extraLinks} />;
+  const _social = layout?.hide?.socialLinks ? (
+    <></>
+  ) : (
+    <Social content={social} vertical={layout?.variation == "Variation 3"} />
+  );
+  const _payments = layout?.hide?.paymentMethods ? (
+    <></>
+  ) : (
+    <PaymentMethods content={payments} />
+  );
+  const _apps = layout?.hide?.mobileApps ? (
+    <></>
+  ) : (
+    <MobileApps content={mobileApps} />
+  );
+  const _region = layout?.hide?.regionOptions ? (
+    <></>
+  ) : (
+    <RegionSelector content={regionOptions} />
+  );
+  const _links = layout?.hide?.extraLinks ? (
+    <></>
+  ) : (
+    <ExtraLinks content={extraLinks} />
+  );
 
   return (
-    <footer
-      class={`w-full flex flex-col pt-10 pb-2 md:pb-10 gap-10 ${
-        ColorClasses(layout)
-      }`}
-    >
+    <footer class="w-full flex flex-col pt-10 pb-2 md:pb-10 gap-10 bg-[#FFF]">
       <div class="lg:container mx-6 lg:mx-auto">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div class="flex flex-col gap-10">
-            <div class="flex flex-col md:flex-row md:justify-between md:flex-wrap lg:flex-nowrap gap-8 lg:gap-12">
-              {_logo}
-              {_sectionLinks}
-              {_newsletter}
-            </div>
-            <Divider />
-            <div class="flex flex-col md:flex-row gap-10 md:gap-14 md:items-end">
-              {_payments}
-              {_social}
-              <div class="flex flex-col lg:flex-row gap-10 lg:gap-14 lg:items-end">
+            <div class="md:flex md:gap-[50px] md:mb-[100px] md:justify-between">
+              <div class="mb-[54px] md:mb-0 flex flex-col gap-[30px] md:flex-wrap lg:flex-nowrap">
+                {_logo}
+                {_newsletter}
+                {_social}
+              </div>
+              <div class="flex gap-10 md:gap-14 md:items-end">
                 {_apps}
-                {_region}
+                {_payments}
+                <div class="flex flex-col lg:flex-row gap-10 lg:gap-14  lg:items-end">
+                  {_sectionLinks}
+                  {_region}
+                </div>
               </div>
             </div>
             <Divider />
-            <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10">
-              <PoweredByDeco />
+            <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10 mb-[32px]">
               {_links}
             </div>
           </div>
@@ -298,12 +317,8 @@ function Footer({
               {_sectionLinks}
               <div class="flex flex-col md:flex-row lg:flex-col gap-10 lg:gap-10 lg:w-2/5 lg:pl-10">
                 <div class="flex flex-col md:flex-row gap-10 lg:gap-20">
-                  <div class="lg:flex-auto">
-                    {_payments}
-                  </div>
-                  <div class="lg:flex-auto">
-                    {_social}
-                  </div>
+                  <div class="lg:flex-auto">{_payments}</div>
+                  <div class="lg:flex-auto">{_social}</div>
                 </div>
                 <div class="flex flex-col gap-10 lg:gap-10">
                   {_region}
@@ -314,7 +329,6 @@ function Footer({
             <Divider />
             <div class="flex flex-col md:flex-row md:justify-between gap-10 md:items-center">
               {_logo}
-              <PoweredByDeco />
             </div>
           </div>
         )}
@@ -333,7 +347,6 @@ function Footer({
             </div>
             <Divider />
             <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:items-center">
-              <PoweredByDeco />
               <div class="flex flex-col md:flex-row gap-10 md:items-center">
                 {_links}
                 {_region}
@@ -342,9 +355,11 @@ function Footer({
           </div>
         )}
       </div>
-      {layout?.hide?.backToTheTop
-        ? <></>
-        : <BackToTop content={backToTheTop?.text} />}
+      {layout?.hide?.backToTheTop ? (
+        <></>
+      ) : (
+        <BackToTop content={backToTheTop?.text} />
+      )}
     </footer>
   );
 }

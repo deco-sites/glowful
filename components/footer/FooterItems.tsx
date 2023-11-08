@@ -7,32 +7,40 @@ export type Item = {
 
 export type Section = {
   label: string;
+  dropdown?: boolean;
   items: Item[];
 };
 
-export default function FooterItems(
-  { sections, justify = false }: { sections: Section[]; justify: boolean },
-) {
+export default function FooterItems({
+  sections,
+  justify = false,
+}: {
+  sections: Section[];
+  justify: boolean;
+}) {
   return (
     <>
       {sections.length > 0 && (
         <>
           {/* Tablet and Desktop view */}
           <ul
-            class={`hidden md:flex flex-row gap-6 lg:gap-10 ${
+            class={`hidden md:flex flex-row gap-6 lg:gap-[50px] flex-wrap ${
               justify && "lg:justify-between"
             }`}
           >
             {sections.map((section) => (
               <li>
-                <div class="flex flex-col gap-2">
-                  <span class="font-medium text-lg">
+                <div class="flex flex-col gap-2 min-w-[190px]">
+                  <span class="font-bold text-xl text-deep-beauty">
                     {section.label}
                   </span>
-                  <ul class={`flex flex-col gap-2 flex-wrap text-sm`}>
+                  <ul class={`flex flex-col gap-2 flex-wrap `}>
                     {section.items?.map((item) => (
                       <li>
-                        <a href={item.href} class="block py-1 link link-hover">
+                        <a
+                          href={item.href}
+                          class="block py-1 link link-hover text-[18px] text-deep-beauty"
+                        >
                           {item.label}
                         </a>
                       </li>
@@ -44,33 +52,51 @@ export default function FooterItems(
           </ul>
 
           {/* Mobile view */}
-          <ul class="flex flex-col md:hidden gap-4">
-            {sections.map((section) => (
-              <li>
-                <div class="collapse collapse-arrow ">
-                  <input type="checkbox" class="min-h-[0]" />
-                  <div class="collapse-title min-h-[0] !p-0 flex gap-2">
+          <ul class="flex flex-col md:hidden !gap-[30px]">
+            {sections.map((section) =>
+              section.dropdown ? (
+                <li>
+                  <div class="collapse collapse-arrow ">
+                    <input type="checkbox" class="min-h-[0]" />
+                    <div class="collapse-title min-h-[0] w-fit !p-0 !pr-[35px] flex gap-2 font-bold text-lg text-deep-beauty">
+                      <span>{section.label}</span>
+                    </div>
+                    <div class="collapse-content pl-0">
+                      <ul class={`flex flex-col gap-[16px] pt-2`}>
+                        {section.items?.map((item) => (
+                          <li>
+                            <a
+                              href={item.href}
+                              class="block py-1 link link-hover text-lg text-deep-beauty"
+                            >
+                              {item.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              ) : (
+                <li>
+                  <div class="min-h-[0] w-fit !p-0 !pr-[35px] flex gap-2 font-bold text-lg text-deep-beauty">
                     <span>{section.label}</span>
                   </div>
-                  <div class="collapse-content">
-                    <ul
-                      class={`flex flex-col gap-1 pl-5 pt-2`}
-                    >
-                      {section.items?.map((item) => (
-                        <li>
-                          <a
-                            href={item.href}
-                            class="block py-1 link link-hover"
-                          >
-                            {item.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            ))}
+                  <ul class={`flex flex-col gap-[16px] pt-2`}>
+                    {section.items?.map((item) => (
+                      <li>
+                        <a
+                          href={item.href}
+                          class="py-1 link link-hover text-lg text-deep-beauty"
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )
+            )}
           </ul>
         </>
       )}
