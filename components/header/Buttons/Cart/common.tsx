@@ -12,8 +12,16 @@ interface Props {
 }
 
 function CartButton({ loading, currency, total, items }: Props) {
-  const { displayCart } = useUI();
+  const { displayCart, displayTop } = useUI();
   const totalItems = items.length;
+
+  let colorIcon;
+
+  if (displayTop.value) {
+    colorIcon = "text-white-lily";
+  } else {
+    colorIcon = "text-deep-beauty";
+  }
 
   const onClick = () => {
     sendEvent({
@@ -44,7 +52,7 @@ function CartButton({ loading, currency, total, items }: Props) {
           id="ShoppingCart"
           size={24}
           strokeWidth={2}
-          class="text-[#101820]"
+          class={`${colorIcon} group-hover/hover:text-[#101820]`}
         />
       </Button>
     </div>

@@ -3,8 +3,15 @@ import Icon from "$store/components/ui/Icon.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 
 export default function SearchButton() {
-  const { displaySearchDrawer, displaySearchPopup } = useUI();
+  const { displaySearchDrawer, displaySearchPopup, displayTop } = useUI();
 
+  let colorIcon;
+
+  if (displayTop.value) {
+    colorIcon = "text-white-lily";
+  } else {
+    colorIcon = "text-deep-beauty";
+  }
 
   return (
     <>
@@ -19,7 +26,7 @@ export default function SearchButton() {
           id="MagnifyingGlass"
           size={24}
           strokeWidth={0.1}
-          class="text-[#101820]"
+          class={`${colorIcon} group-hover/hover:text-[#101820]`}
         />
       </Button>
       <Button
@@ -33,7 +40,7 @@ export default function SearchButton() {
           id="MagnifyingGlass"
           size={24}
           strokeWidth={0.1}
-          class="text-[#101820]"
+          class={`${colorIcon} group-hover/hover:text-[#101820]`}
         />
       </Button>
     </>

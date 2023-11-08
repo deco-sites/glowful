@@ -7,29 +7,66 @@ import CartButtonVDNA from "$store/islands/Header/Cart/vnda.tsx";
 import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import CartButtonWake from "$store/islands/Header/Cart/wake.tsx";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
-import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
 import { navbarHeight } from "./constants.ts";
+import { useUI } from "$store/sdk/useUI.ts";
+import { useEffect } from "preact/hooks";
 
-function Navbar({
-  items,
-  searchbar,
-  logo,
-}: {
+export interface Props {
   items: SiteNavigationElement[];
   searchbar?: SearchbarProps;
-  logo?: { src: string; alt: string };
-}) {
-  const platform = usePlatform();
+  logoBranco: { src: string; alt: string };
+  logoPreto: { src: string; alt: string };
+  platform: any;
+}
+
+function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
+  const { displayTop, displayHover, scrollDirection } = useUI();
+
+  useEffect(() => {
+    let lastScrollY = 0;
+
+    const updateScrollDirection = () => {
+      const scrollY = window.scrollY;
+      if (scrollY > lastScrollY) {
+        scrollDirection.value = "down";
+      } else if (scrollY < lastScrollY) {
+        scrollDirection.value = "up";
+      }
+      lastScrollY = scrollY;
+    };
+
+    window.addEventListener("scroll", updateScrollDirection);
+    return () => {
+      window.removeEventListener("scroll", updateScrollDirection);
+    };
+  }, [scrollDirection]);
+
+  let logo = logoBranco;
+  let display = "";
+  let colorIcon = "#FFF";
+  let backgroundColor;
+
+  if (displayTop.value) {
+    logo = logoBranco;
+    display = "visible";
+    colorIcon = "#FFF";
+    backgroundColor = "";
+  } else {
+    logo = logoPreto;
+    display = "none";
+    colorIcon = "#101820";
+    backgroundColor = "#FFF";
+  }
 
   return (
     <>
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class="md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2"
+        class={`md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${display} bg-[${backgroundColor}] hover:visible hover:bg-white-lily`}
       >
         <MenuButton />
 
@@ -40,7 +77,20 @@ function Navbar({
             style={{ minHeight: navbarHeight }}
             aria-label="Store logo"
           >
-            <Image src={logo.src} alt={logo.alt} width={126} height={16} />
+            <Image
+              src={logoBranco.src}
+              alt={logoBranco.alt}
+              width={126}
+              height={16}
+              class={displayTop.value === true ? "" : "hidden"}
+            />
+            <Image
+              src={logoPreto.src}
+              alt={logoPreto.alt}
+              width={126}
+              height={16}
+              class={displayTop.value === false ? "" : "hidden"}
+            />
           </a>
         )}
 
@@ -55,7 +105,7 @@ function Navbar({
               id="User"
               size={24}
               strokeWidth={0.4}
-              class="text-[#101820]"
+              class={`text-[${colorIcon}]`}
             />
           </a>
           {platform === "vtex" && <CartButtonVTEX />}
@@ -67,7 +117,11 @@ function Navbar({
       </div>
 
       {/* Desktop Version */}
-      <div class="hidden md:flex bg-[#FFF] flex-row justify-between items-center w-full pl-2 pr-6 h-[50px] z-50">
+      <div
+        class={`hidden md:flex flex-row justify-between items-center w-full pl-2 pr-6 h-[50px] z-[999] md:${display} bg-[${backgroundColor}] hover:bg-white-lily group/hover`}
+        onMouseEnter={() => (displayHover.value = true)}
+        onMouseLeave={() => (displayHover.value = false)}
+      >
         <div class="flex-none w-44">
           {logo && (
             <a
@@ -75,13 +129,34 @@ function Navbar({
               aria-label="Store logoBranco && logoPreto"
               class="block px-4 py-3 w-[160px]"
             >
-              <Image src={logo.src} alt={logo.alt} width={126} height={16} />
+              <Image
+                src={logoBranco.src}
+                alt={logoBranco.alt}
+                width={126}
+                height={16}
+                class={
+                  displayTop.value === true && displayHover.value === false
+                    ? ""
+                    : "hidden"
+                }
+              />
+              <Image
+                src={logoPreto.src}
+                alt={logoPreto.alt}
+                width={126}
+                height={16}
+                class={
+                  displayTop.value === false || displayHover.value === true
+                    ? ""
+                    : "hidden"
+                }
+              />
             </a>
           )}
         </div>
         <div class="flex-auto flex justify-center">
           {items.map((item) => (
-            <NavItem item={item} />
+            <NavItem item={item} colorIcon={colorIcon} />
           ))}
         </div>
         <div class="flex-none w-44 flex items-center justify-end gap-2">
@@ -92,7 +167,12 @@ function Navbar({
             href="/login"
             aria-label="Log in"
           >
-            <Icon id="User" size={24} strokeWidth={0.4} />
+            <Icon
+              id="User"
+              size={24}
+              strokeWidth={0.4}
+              class={`text-[${colorIcon}] group-hover/hover:text-[#101820]`}
+            />
           </a>
           {platform === "vtex" && <CartButtonVTEX />}
           {platform === "vnda" && <CartButtonVDNA />}
