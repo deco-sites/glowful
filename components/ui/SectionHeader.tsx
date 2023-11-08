@@ -9,17 +9,15 @@ interface Props {
 function Header(props: Props) {
   return (
     <>
-      {props.title || props.description
-        ? (
-          <div
-            class={`flex flex-col gap-2 ${
-              props.alignment === "left" ? "text-left" : "text-center"
-            }`}
-          >
-            {props.title &&
-              (
-                <h1
-                  class={`text-2xl leading-8 lg:leading-10
+      {props.title || props.description ? (
+        <div
+          class={`flex flex-col gap-[24px] max-w-[380px] m-auto lg:m-0 ${
+            props.alignment === "left" ? "text-left" : "text-center"
+          }`}
+        >
+          {props.title && (
+            <h1
+              class={`text-[28px] lg:text-[32px] text-white-lily text-center lg:text-start leading-8 lg:leading-10
                   ${
                     props.colorReverse
                       ? "text-primary-content"
@@ -27,27 +25,29 @@ function Header(props: Props) {
                   }
                   ${props.fontSize === "Normal" ? "lg:text-3xl" : "lg:text-4xl"}
                 `}
-                >
-                  {props.title}
-                </h1>
-              )}
-            {props.description &&
-              (
-                <h2
-                  class={`
+            >
+              {props.title}
+            </h1>
+          )}
+          {props.description && (
+            <h2
+              class={` text-[18px] text-white-lily text-center lg:text-start text-
                   leading-6 lg:leading-8
                   ${
                     props.colorReverse ? "text-primary-content" : "text-neutral"
                   }
-                  ${props.fontSize === "Normal" ? "lg:text-xl" : "lg:text-2xl"}
+                  ${
+                    props.fontSize === "Normal"
+                      ? "lg:text-xl"
+                      : "lg:text-[18px]"
+                  }
                 `}
-                >
-                  {props.description}
-                </h2>
-              )}
-          </div>
-        )
-        : null}
+            >
+              {props.description}
+            </h2>
+          )}
+        </div>
+      ) : null}
     </>
   );
 }

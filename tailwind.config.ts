@@ -23,7 +23,11 @@ export default {
       "grape-juice": "#9063CD",
       "sunny-day": "#FFC658",
     },
+
     extend: {
+      backgroundImage: {
+        "newsletter":"linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.55) 100%), lightgray -188.5px -32.072px / 200.833% 108.804% no-repeat, #FFF"
+      },
       boxShadow: { 
         "glowful": "0px 4px 4px 0px rgba(0, 0, 0, 0.15)"
       }
