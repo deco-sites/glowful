@@ -15,8 +15,8 @@ export interface Props {
   layout?: {
     headerAlignment?: "center" | "left";
   };
-  quoteLeft?: ImageWidget;
-  quoteRight?: ImageWidget;
+  quoteLeft: ImageWidget;
+  quoteRight: ImageWidget;
 }
 
 const IMAGES = [

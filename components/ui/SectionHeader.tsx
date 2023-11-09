@@ -4,6 +4,7 @@ interface Props {
   description?: string;
   alignment: "center" | "left";
   colorReverse?: boolean;
+  black?: boolean;
 }
 
 function Header(props: Props) {
@@ -11,19 +12,20 @@ function Header(props: Props) {
     <>
       {props.title || props.description ? (
         <div
-          class={`flex flex-col gap-[24px] max-w-[380px] m-auto lg:m-0 ${
-            props.alignment === "left" ? "text-left" : "text-center"
-          }`}
+          class={`flex flex-col gap-[24px]  m-auto lg:m-0 ${
+            props.black ? "max-w-[650px]" : "max-w-[380px]"
+          } ${props.alignment === "left" ? "text-left" : "text-center"}`}
         >
           {props.title && (
             <h1
-              class={`text-[28px] lg:text-[32px] text-white-lily text-center lg:text-start leading-8 lg:leading-10
+              class={`text-[28px] lg:text-[32px] ${
+                props.black ? "text-center" : "text-white-lily lg:text-start"
+              } text-center leading-8 lg:leading-10
                   ${
                     props.colorReverse
                       ? "text-primary-content"
                       : "text-base-content"
                   }
-                  ${props.fontSize === "Normal" ? "lg:text-3xl" : "lg:text-4xl"}
                 `}
             >
               {props.title}
@@ -31,15 +33,12 @@ function Header(props: Props) {
           )}
           {props.description && (
             <h2
-              class={` text-[18px] text-white-lily text-center lg:text-start text-
+              class={` text-[16px] lg:text-[18px] ${
+                props.black ? "text-center" : "text-white-lily lg:text-start"
+              } text-center  text-
                   leading-6 lg:leading-8
                   ${
                     props.colorReverse ? "text-primary-content" : "text-neutral"
-                  }
-                  ${
-                    props.fontSize === "Normal"
-                      ? "lg:text-xl"
-                      : "lg:text-[18px]"
                   }
                 `}
             >
