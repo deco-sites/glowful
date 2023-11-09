@@ -9,6 +9,9 @@ export interface Image {
 }
 
 export interface Props {
+  /**
+   * @format html
+   */
   title?: string;
   description?: string;
   images?: Image[];
