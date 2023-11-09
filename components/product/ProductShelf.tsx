@@ -14,6 +14,9 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 
 export interface Props {
   products: Product[] | null;
+  /**
+   * @format html
+   */
   title?: string;
   description?: string;
   layout?: {

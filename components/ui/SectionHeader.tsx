@@ -17,8 +17,8 @@ function Header(props: Props) {
           } ${props.alignment === "left" ? "text-left" : "text-center"}`}
         >
           {props.title && (
-            <h1
-              class={`text-[28px] lg:text-[32px] ${
+            <div
+              class={`textHighlight text-[28px] lg:text-[32px] ${
                 props.black ? "text-center" : "text-white-lily lg:text-start"
               } text-center leading-8 lg:leading-10
                   ${
@@ -27,9 +27,8 @@ function Header(props: Props) {
                       : "text-base-content"
                   }
                 `}
-            >
-              {props.title}
-            </h1>
+              dangerouslySetInnerHTML={{ __html: props.title }}
+            />
           )}
           {props.description && (
             <h2

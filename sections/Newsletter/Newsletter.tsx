@@ -9,6 +9,9 @@ export interface Form {
 }
 
 export interface Props {
+  /**
+   * @format html
+   */
   title?: string;
   /** @format textarea */
   description?: string;

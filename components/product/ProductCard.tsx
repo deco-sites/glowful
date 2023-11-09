@@ -8,6 +8,7 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
+import FlatDiscount from "$store/components/product/FlatDiscount.tsx";
 
 export interface Layout {
   basics?: {
@@ -77,8 +78,6 @@ function ProductCard({
   const { listPrice, price, installments } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
-
-  console.log(product);
 
   const l = layout;
   const align =
@@ -167,6 +166,11 @@ function ProductCard({
           aria-label="view product"
           class="grid grid-cols-1 grid-rows-1 w-full"
         >
+          <FlatDiscount
+            listPrice={listPrice ?? 0}
+            price={price ?? 0}
+            absolutePosition
+          />
           <Image
             src={front.url!}
             alt={front.alternateName}
