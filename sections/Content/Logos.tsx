@@ -1,5 +1,5 @@
 import Image from "apps/website/components/Image.tsx";
-import Header from "$store/components/ui/SectionHeader.tsx";
+import HeaderLogo from "$store/components/ui/SectionHeaderLogo.tsx";
 import { useMemo } from "preact/hooks";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
@@ -15,6 +15,8 @@ export interface Props {
   layout?: {
     headerAlignment?: "center" | "left";
   };
+  quoteLeft?: ImageWidget;
+  quoteRight?: ImageWidget;
 }
 
 const IMAGES = [
@@ -31,28 +33,26 @@ const IMAGES = [
 ];
 
 function Logos(props: Props) {
-  const {
-    title,
-    description,
-    images,
-    layout,
-  } = props;
+  const { title, description, images, layout, quoteLeft, quoteRight } = props;
   const list = useMemo(
     () =>
       images && images.length > 0
         ? images
-        : Array(20).fill(null).map((_, i) => IMAGES[i % 2]),
-    [],
+        : Array(20)
+            .fill(null)
+            .map((_, i) => IMAGES[i % 2]),
+    []
   );
 
   return (
-    <div class="w-full container px-4 py-8 flex flex-col gap-8 lg:gap-12 lg:py-10 lg:px-0">
-      <Header
+    <div class="w-full py-8 flex flex-col gap-[75px] lg:gap-[100px] lg:py-[90px] lg:px-0">
+      <HeaderLogo
         title={title}
         description={description}
-        alignment={layout?.headerAlignment || "center"}
+        quoteLeft={quoteLeft}
+        quoteRight={quoteRight}
       />
-      <div class="w-full text-center items-center">
+      <div class="w-full text-center items-center bg-[#F4F4F4] py-[16px] px-4">
         {list.map((element) => (
           <div class="w-36 lg:w-40 h-17 lg:h-20 px-4 lg:px-6 py-6 lg:py-4 inline-block align-middle">
             <div class="flex w-full h-full items-center justify-center">
