@@ -67,18 +67,40 @@ function ProductShelf({
           ))}
         </Slider>
 
-        <>
-          <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-            <Slider.PrevButton class="btn btn-circle btn-outline absolute right-1/2 bg-base-100">
-              <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+        <div class="md:hidden w-full pl-5 pt-[30px] flex gap-3 justify-between items-center col-start-1 col-end-3 row-start-5">
+          <div class="relative sm:block z-10 ">
+            <Slider.PrevButton class="btn btn-circle btn-outline border-0 bg-base-100">
+              <Icon
+                size={24}
+                id="ChevronLeft"
+                strokeWidth={3}
+                class="text-cherry-pop"
+              />
             </Slider.PrevButton>
           </div>
-          <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-            <Slider.NextButton class="btn btn-circle btn-outline absolute left-1/2 bg-base-100">
-              <Icon size={24} id="ChevronRight" strokeWidth={3} />
+
+          <div class="flex justify-center w-full gap-[8px]">
+            {products?.map((_, index) => (
+              <li class="carousel-item">
+                <Slider.Dot index={index}>
+                  <div class="w-[32px] h-[8px] rounded " />
+                </Slider.Dot>
+              </li>
+            ))}
+          </div>
+
+          <div class="relative sm:block z-10 ">
+            <Slider.NextButton class="btn btn-circle btn-outline  border-0 bg-base-100">
+              <Icon
+                size={24}
+                id="ChevronRight"
+                strokeWidth={3}
+                class="text-cherry-pop"
+              />
             </Slider.NextButton>
           </div>
-        </>
+        </div>
+
         <SliderJS rootId={id} />
         <SendEventOnLoad
           event={{
@@ -88,7 +110,7 @@ function ProductShelf({
               items: products.map((product) =>
                 mapProductToAnalyticsItem({
                   product,
-                  ...(useOffer(product.offers)),
+                  ...useOffer(product.offers),
                 })
               ),
             },

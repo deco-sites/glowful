@@ -4,8 +4,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 interface Props {
   title?: string;
   description?: string;
-  quoteLeft?: ImageWidget;
-  quoteRight?: ImageWidget;
+  quoteLeft: ImageWidget;
+  quoteRight: ImageWidget;
 }
 
 function HeaderLogo(props: Props) {

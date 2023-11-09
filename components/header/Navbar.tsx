@@ -66,7 +66,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class={`md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${display} bg-[${backgroundColor}] hover:visible hover:bg-white-lily`}
+        class={`md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${display} bg-[${backgroundColor}] md:hover:visible md:hover:bg-white-lily`}
       >
         <MenuButton />
 

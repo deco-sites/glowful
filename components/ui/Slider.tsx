@@ -1,6 +1,9 @@
 import type { ComponentChildren, JSX } from "preact";
 
-function Dot({ index, children }: {
+function Dot({
+  index,
+  children,
+}: {
   index: number;
   children: ComponentChildren;
 }) {
@@ -8,7 +11,7 @@ function Dot({ index, children }: {
     <button
       data-dot={index}
       aria-label={`go to slider item ${index}`}
-      class="focus:outline-none group"
+      class="focus:outline-none group w-[32px] h-[8px] rounded  bg-[#E4E4E4] disabled:w-[64px] disabled:bg-cherry-pop transition-all"
     >
       {children}
     </button>
