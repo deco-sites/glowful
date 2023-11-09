@@ -10,6 +10,10 @@ export interface Category {
   label: string;
   description?: string;
   href?: string;
+  /**
+   * @format color
+   */
+  textColor?: string;
   image?: ImageWidget;
   buttonText?: string;
 }
@@ -29,14 +33,19 @@ export interface Props {
   };
 }
 
-function CardText(
-  { tag, label, description, alignment }: {
-    tag?: string;
-    label?: string;
-    description?: string;
-    alignment?: "center" | "left";
-  },
-) {
+function CardText({
+  tag,
+  label,
+  description,
+  alignment,
+  textColor,
+}: {
+  tag?: string;
+  label?: string;
+  description?: string;
+  alignment?: "center" | "left";
+  textColor?: string;
+}) {
   return (
     <div
       class={`flex flex-col ${
@@ -44,7 +53,14 @@ function CardText(
       }`}
     >
       {tag && <div class="text-sm text-primary">{tag}</div>}
-      {label && <h3 class="text-lg text-base-content">{label}</h3>}
+      {label && (
+        <h3
+          class="text-[20px] md:text-[28px] text-base-content font-fraunces"
+          style={{ color: textColor }}
+        >
+          {label}
+        </h3>
+      )}
       {description && <div class="text-sm text-neutral">{description}</div>}
     </div>
   );
@@ -66,6 +82,7 @@ function CategoryList(props: Props) {
         image:
           "https://ik.imagekit.io/decocx/tr:w-680,h-680/https:/ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/fdcb3c8f-d629-485e-bf70-8060bd8a9f65",
         buttonText: "Ver produtos",
+        textColor: "#101820",
       },
     ],
     layout = {
@@ -80,41 +97,30 @@ function CategoryList(props: Props) {
   return (
     <div
       id={id}
-      class="container py-8 flex flex-col gap-8 lg:gap-10 text-base-content  lg:py-10"
+      class="container py-8 flex flex-col items-center gap-8 lg:gap-10 text-base-content  lg:py-10"
     >
       <Header
         title={header.title}
         description={header.description || ""}
         alignment={layout.headerAlignment || "center"}
+        black
       />
 
       <Slider class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5">
-        {list.map((
-          { tag, label, description, href, image, buttonText },
-          index,
-        ) => (
-          <Slider.Item
-            index={index}
-            class="flex flex-col gap-4 carousel-item first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
-          >
-            <a
-              href={href}
-              class="flex flex-col gap-4 lg:w-[280px] w-40 lg:h-auto"
+        {list.map(
+          ({ tag, label, description, href, image, buttonText, textColor }, index) => (
+            <Slider.Item
+              index={index}
+              class="flex flex-col gap-4 carousel-item first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
             >
-              {layout.categoryCard?.textPosition === "top" &&
-                (
-                  <CardText
-                    tag={tag}
-                    label={label}
-                    description={description}
-                    alignment={layout?.categoryCard?.textAlignment}
-                  />
-                )}
-              {image &&
-                (
+              <a
+                href={href}
+                class="flex flex-col gap-4 lg:w-[280px] w-40 lg:h-auto"
+              >
+                {image && (
                   <figure>
                     <Image
-                      class="card w-full"
+                      class="card w-full rounded-none"
                       src={image}
                       alt={description || label || tag}
                       width={160}
@@ -123,8 +129,16 @@ function CategoryList(props: Props) {
                     />
                   </figure>
                 )}
-              {layout.categoryCard?.textPosition === "bottom" &&
-                (
+                {layout.categoryCard?.textPosition === "top" && (
+                  <CardText
+                    tag={tag}
+                    label={label}
+                    description={description}
+                    alignment={layout?.categoryCard?.textAlignment}
+                    textColor={textColor}
+                  />
+                )}
+                {layout.categoryCard?.textPosition === "bottom" && (
                   <CardText
                     tag={tag}
                     label={label}
@@ -132,11 +146,15 @@ function CategoryList(props: Props) {
                     alignment={layout?.categoryCard?.textAlignment}
                   />
                 )}
-            </a>
-            {buttonText &&
-              <a href={href} class="btn">{buttonText}</a>}
-          </Slider.Item>
-        ))}
+              </a>
+              {buttonText && (
+                <a href={href} class="btn">
+                  {buttonText}
+                </a>
+              )}
+            </Slider.Item>
+          )
+        )}
       </Slider>
 
       <SliderJS rootId={id} />
