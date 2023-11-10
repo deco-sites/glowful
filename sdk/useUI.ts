@@ -12,6 +12,7 @@ const displaySearchDrawer = signal(false);
 const displayTop = signal(true);
 const displayHover = signal(false);
 const scrollDirection = signal("down");
+const displayPopup = signal(true)
 
 const state = {
   displayCart,
@@ -21,6 +22,7 @@ const state = {
   displayTop,
   displayHover,
   scrollDirection,
+  displayPopup,
 };
 
 // Keyboard event listeners

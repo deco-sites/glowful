@@ -16,6 +16,10 @@
     line-height: 110%;
   }
 
+  .popup strong {
+    font-size: 60px !important;
+  }
+
   /* Allow changing font family via CMS */
   html {
     font-family: var(--font-family);

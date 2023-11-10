@@ -11,12 +11,13 @@ export interface SocialItem {
   link: string;
 }
 
-export default function Social(
-  { content, vertical = false }: {
-    content?: { title?: string; items?: SocialItem[] };
-    vertical?: boolean;
-  },
-) {
+export default function Social({
+  content,
+  vertical = false,
+}: {
+  content?: { title?: string; items?: SocialItem[] };
+  vertical?: boolean;
+}) {
   return (
     <>
       {content && content.items && content.items.length > 0 && (
@@ -37,8 +38,8 @@ export default function Social(
                     aria-label={`${item.label} Logo`}
                     class="flex gap-2 items-center"
                   >
-                    <span class="block p-1 border rounded-full">
-                      <Icon size={24} id={item.label} />
+                    <span class="block p-1 rounded-full">
+                      <Icon size={24} id={item.label} class="text-cherry-pop" />
                     </span>
                     {vertical && (
                       <div class="text-sm hidden lg:block">{item.label}</div>

@@ -27,18 +27,21 @@ import * as $$$$$$19 from "./sections/Links/Shortcuts.tsx";
 import * as $$$$$$20 from "./sections/Miscellaneous/CampaignTimer.tsx";
 import * as $$$$$$21 from "./sections/Miscellaneous/CookieConsent.tsx";
 import * as $$$$$$22 from "./sections/Newsletter/Newsletter.tsx";
-import * as $$$$$$23 from "./sections/Product/ImageGalleryFrontBack.tsx";
-import * as $$$$$$24 from "./sections/Product/ImageGallerySlider.tsx";
-import * as $$$$$$25 from "./sections/Product/NotFound.tsx";
-import * as $$$$$$26 from "./sections/Product/NotFoundChallenge.tsx";
-import * as $$$$$$27 from "./sections/Product/ProductInfo.tsx";
-import * as $$$$$$28 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$29 from "./sections/Product/ProductShelfTabbed.tsx";
-import * as $$$$$$30 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$31 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$32 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$33 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$34 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$23 from "./sections/Plural/IconAndText.tsx";
+import * as $$$$$$24 from "./sections/Plural/ImageAndText.tsx";
+import * as $$$$$$25 from "./sections/Popup/Popup.tsx";
+import * as $$$$$$26 from "./sections/Product/ImageGalleryFrontBack.tsx";
+import * as $$$$$$27 from "./sections/Product/ImageGallerySlider.tsx";
+import * as $$$$$$28 from "./sections/Product/NotFound.tsx";
+import * as $$$$$$29 from "./sections/Product/NotFoundChallenge.tsx";
+import * as $$$$$$30 from "./sections/Product/ProductInfo.tsx";
+import * as $$$$$$31 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$32 from "./sections/Product/ProductShelfTabbed.tsx";
+import * as $$$$$$33 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$34 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$35 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$36 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$37 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
@@ -71,18 +74,21 @@ const manifest = {
     "deco-sites/glowful/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$20,
     "deco-sites/glowful/sections/Miscellaneous/CookieConsent.tsx": $$$$$$21,
     "deco-sites/glowful/sections/Newsletter/Newsletter.tsx": $$$$$$22,
-    "deco-sites/glowful/sections/Product/ImageGalleryFrontBack.tsx": $$$$$$23,
-    "deco-sites/glowful/sections/Product/ImageGallerySlider.tsx": $$$$$$24,
-    "deco-sites/glowful/sections/Product/NotFound.tsx": $$$$$$25,
-    "deco-sites/glowful/sections/Product/NotFoundChallenge.tsx": $$$$$$26,
-    "deco-sites/glowful/sections/Product/ProductInfo.tsx": $$$$$$27,
-    "deco-sites/glowful/sections/Product/ProductShelf.tsx": $$$$$$28,
-    "deco-sites/glowful/sections/Product/ProductShelfTabbed.tsx": $$$$$$29,
-    "deco-sites/glowful/sections/Product/SearchResult.tsx": $$$$$$30,
-    "deco-sites/glowful/sections/Product/Wishlist.tsx": $$$$$$31,
-    "deco-sites/glowful/sections/Social/InstagramPosts.tsx": $$$$$$32,
-    "deco-sites/glowful/sections/Social/WhatsApp.tsx": $$$$$$33,
-    "deco-sites/glowful/sections/Theme/Theme.tsx": $$$$$$34,
+    "deco-sites/glowful/sections/Plural/IconAndText.tsx": $$$$$$23,
+    "deco-sites/glowful/sections/Plural/ImageAndText.tsx": $$$$$$24,
+    "deco-sites/glowful/sections/Popup/Popup.tsx": $$$$$$25,
+    "deco-sites/glowful/sections/Product/ImageGalleryFrontBack.tsx": $$$$$$26,
+    "deco-sites/glowful/sections/Product/ImageGallerySlider.tsx": $$$$$$27,
+    "deco-sites/glowful/sections/Product/NotFound.tsx": $$$$$$28,
+    "deco-sites/glowful/sections/Product/NotFoundChallenge.tsx": $$$$$$29,
+    "deco-sites/glowful/sections/Product/ProductInfo.tsx": $$$$$$30,
+    "deco-sites/glowful/sections/Product/ProductShelf.tsx": $$$$$$31,
+    "deco-sites/glowful/sections/Product/ProductShelfTabbed.tsx": $$$$$$32,
+    "deco-sites/glowful/sections/Product/SearchResult.tsx": $$$$$$33,
+    "deco-sites/glowful/sections/Product/Wishlist.tsx": $$$$$$34,
+    "deco-sites/glowful/sections/Social/InstagramPosts.tsx": $$$$$$35,
+    "deco-sites/glowful/sections/Social/WhatsApp.tsx": $$$$$$36,
+    "deco-sites/glowful/sections/Theme/Theme.tsx": $$$$$$37,
   },
   "apps": {
     "deco-sites/glowful/apps/decohub.ts": $$$$$$$$$$$0,
