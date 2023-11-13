@@ -12,7 +12,7 @@ const displaySearchDrawer = signal(false);
 const displayTop = signal(true);
 const displayHover = signal(false);
 const scrollDirection = signal("down");
-const displayPopup = signal(true)
+const displayPopup = signal(false)
 
 const state = {
   displayCart,
