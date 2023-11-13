@@ -40,7 +40,7 @@ export default function ImageAndText(props: Props) {
 
   return (
     <div class="container">
-      <div class="pb-[32px] md:pb-[70px] card lg:card-side rounded grid grid-cols-1 justify-between lg:grid-cols-[50%_40%]">
+      <div class="pb-[32px] md:pb-[70px] card lg:card-side rounded grid grid-cols-1 justify-between lg:grid-cols-[50%_40%] ">
         <figure class="relative flex items-center justify-center">
           <Picture class="flex items-center justify-center">
             <Source
@@ -66,7 +66,7 @@ export default function ImageAndText(props: Props) {
           </Picture>
         </figure>
 
-        <div class="card-body gap-0">
+        <div class="card-body gap-0 lg:row-start-1 lg:col-start-1">
           <div
             class="card-title textHighlight pb-[32px] lg:pb-[5
             0px] text-center"
