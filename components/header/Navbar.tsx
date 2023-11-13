@@ -25,7 +25,9 @@ export interface Props {
 function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
   const { displayTop, displayHover, scrollDirection } = useUI();
 
+  const pathname = window.location.pathname;
   useEffect(() => {
+
     let lastScrollY = 0;
 
     const updateScrollDirection = () => {
@@ -59,6 +61,10 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
     display = "none";
     colorIcon = "#101820";
     backgroundColor = "#FFF";
+  }
+
+  if (pathname !== "/") {
+    displayTop.value = false
   }
 
   return (
