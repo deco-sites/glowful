@@ -15,6 +15,13 @@
     font-weight: 700;
     line-height: 110%;
   }
+  
+  .textWithStrong strong {
+    font-family: Fraunces;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 110%;
+  }
 
   .popup strong {
     font-size: 60px !important;
