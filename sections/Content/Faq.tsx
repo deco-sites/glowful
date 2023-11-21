@@ -55,11 +55,11 @@ const DEFAULT_PROPS = {
 function Question({ question, answer }: Question) {
   return (
     <details class="collapse collapse-arrow join-item border-t border-base-200">
-      <summary class="collapse-title text-lg font-medium">
+      <summary class="collapse-title pb-[28px] lg:pb-[57px] text-lg font-semibold text-[#101820] uppercase">
         {question}
       </summary>
       <div
-        class="collapse-content"
+        class="collapse-content lg:pb-[30px]"
         dangerouslySetInnerHTML={{ __html: answer }}
       />
     </details>
