@@ -11,17 +11,15 @@ interface Props {
   items: AnalyticsItem[];
 }
 
-function CartButton({ loading, currency, total, items }: Props) {
+function CartButton({ loading, currency, total, items, colorIcon }: {
+  loading: boolean;
+  currency: string;
+  total: number;
+  items: AnalyticsItem[];
+  colorIcon: string;
+}) {
   const { displayCart, displayTop } = useUI();
   const totalItems = items.length;
-
-  let colorIcon;
-
-  if (displayTop.value) {
-    colorIcon = "text-white-lily";
-  } else {
-    colorIcon = "text-deep-beauty";
-  }
 
   const onClick = () => {
     sendEvent({
@@ -37,6 +35,7 @@ function CartButton({ loading, currency, total, items }: Props) {
         class={`indicator-item badge badge-secondary badge-sm bg-cherry-pop h-[1.2rem] border-cherry-pop${
           totalItems === 0 ? "hidden" : ""
         }`}
+        style={{transform: 'translateY(-20%) translateX(60%)'}}
       >
         {totalItems > 9 ? "9+" : totalItems}
       </span>
@@ -52,7 +51,7 @@ function CartButton({ loading, currency, total, items }: Props) {
           id="ShoppingCart"
           size={24}
           strokeWidth={2}
-          class={`${colorIcon} group-hover/hover:text-[#101820]`}
+          class={`text-[${colorIcon}] group-hover/hover:text-[#101820]`}
         />
       </Button>
     </div>

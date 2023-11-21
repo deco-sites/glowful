@@ -4,6 +4,7 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import Image from "apps/website/components/Image.tsx";
 import type { ImageWidget, HTMLWidget } from "apps/admin/widgets.ts";
+import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Category {
   tag?: string;
@@ -19,12 +20,16 @@ export interface Category {
 }
 
 export interface Props {
+  /**
+   * @format color
+   */
+  backgroundColor?: string;
   header?: {
     /**
      * @format html
      */
     title?: HTMLWidget;
-    description?: string;
+    description?: HTMLWidget;
   };
   list?: Category[];
   layout?: {
@@ -100,67 +105,109 @@ function CategoryList(props: Props) {
   return (
     <div
       id={id}
-      class="container py-8 flex flex-col items-center gap-8 lg:gap-10 text-base-content  lg:py-10"
+      class="container py-8 flex flex-col gap-8 lg:gap-10 text-base-content lg:py-10"
+      style={{
+        "background-color": props.backgroundColor,
+      }}
     >
       <Header
         title={header.title}
         description={header.description || ""}
-        alignment={layout.headerAlignment || "center"}
+        alignment={layout.headeçrAlignment || "center"}
         black
       />
 
-      <Slider class="carousel carousel-start gap-4 lg:gap-8 row-start-2 row-end-5">
-        {list.map(
-          ({ tag, label, description, href, image, buttonText, textColor }, index) => (
-            <Slider.Item
-              index={index}
-              class="flex flex-col gap-4 carousel-item first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
-            >
-              <a
-                href={href}
-                class="flex flex-col gap-4 lg:w-[280px] w-40 lg:h-auto"
+      <div
+        id={id}
+        class="container grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
+      >
+        <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+          {list.map(
+            ({ tag, label, description, href, image, buttonText, textColor }, index) => (
+              <Slider.Item
+                index={index}
+                class="flex flex-col gap-4 carousel-item first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
               >
-                {image && (
-                  <figure>
-                    <Image
-                      class="card w-full rounded-none"
-                      src={image}
-                      alt={description || label || tag}
-                      width={160}
-                      height={195}
-                      loading="lazy"
+                <a
+                  href={href}
+                  class="flex flex-col gap-4 lg:w-[280px] w-40 lg:h-auto"
+                >
+                  {image && (
+                    <figure>
+                      <Image
+                        class="card w-full rounded-none"
+                        src={image}
+                        alt={description || label || tag}
+                        width={160}
+                        height={195}
+                        loading="lazy"
+                      />
+                    </figure>
+                  )}
+                  {layout.categoryCard?.textPosition === "top" && (
+                    <CardText
+                      tag={tag}
+                      label={label}
+                      description={description}
+                      alignment={layout?.categoryCard?.textAlignment}
+                      textColor={textColor}
                     />
-                  </figure>
-                )}
-                {layout.categoryCard?.textPosition === "top" && (
-                  <CardText
-                    tag={tag}
-                    label={label}
-                    description={description}
-                    alignment={layout?.categoryCard?.textAlignment}
-                    textColor={textColor}
-                  />
-                )}
-                {layout.categoryCard?.textPosition === "bottom" && (
-                  <CardText
-                    tag={tag}
-                    label={label}
-                    description={description}
-                    alignment={layout?.categoryCard?.textAlignment}
-                  />
-                )}
-              </a>
-              {buttonText && (
-                <a href={href} class="btn">
-                  {buttonText}
+                  )}
+                  {layout.categoryCard?.textPosition === "bottom" && (
+                    <CardText
+                      tag={tag}
+                      label={label}
+                      description={description}
+                      alignment={layout?.categoryCard?.textAlignment}
+                    />
+                  )}
                 </a>
-              )}
-            </Slider.Item>
-          )
-        )}
-      </Slider>
+                {buttonText && (
+                  <a href={href} class="btn">
+                    {buttonText}
+                  </a>
+                )}
+              </Slider.Item>
+            )
+          )}
+        </Slider>
 
-      <SliderJS rootId={id} />
+        <div class="w-full pl-5 pt-[30px] flex gap-3 justify-center items-center col-start-1 col-end-3 row-start-5">
+          <div class="relative sm:block z-10 ">
+            <Slider.PrevButton class="btn btn-circle btn-outline border-0 bg-base-100">
+              <Icon
+                size={24}
+                id="ChevronLeft"
+                strokeWidth={3}
+                class="text-cherry-pop"
+              />
+            </Slider.PrevButton>
+          </div>
+
+          <div class="flex justify-center gap-[8px]">
+            {list?.map((_, index) => (
+              <li class="carousel-item">
+                <Slider.Dot index={index}>
+                  <div class="w-[32px] h-[8px] rounded " />
+                </Slider.Dot>
+              </li>
+            ))}
+          </div>
+
+          <div class="relative sm:block z-10 ">
+            <Slider.NextButton class="btn btn-circle btn-outline  border-0 bg-base-100">
+              <Icon
+                size={24}
+                id="ChevronRight"
+                strokeWidth={3}
+                class="text-cherry-pop"
+              />
+            </Slider.NextButton>
+          </div>
+        </div>
+
+        <SliderJS rootId={id} />
+      </div>
     </div>
   );
 }

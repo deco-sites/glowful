@@ -5,7 +5,13 @@ import { useId } from "$store/sdk/useId.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 
 export interface Props {
-  alerts: string[];
+  alerts?: {
+    alert: string;
+    /** @format color */
+    background?: string;
+    /** @format color */
+    color?: string;
+  }[];
   /**
    * @title Autoplay interval
    * @description time (in seconds) to start the carousel autoplay
@@ -36,15 +42,20 @@ function Alert({ alerts = [], interval = 5 }: Props) {
 
   return (
     <div id={id} class={displayTop.value ? "" : "hidden"}>
-      <Slider class="carousel carousel-center w-full bg-deep-beauty gap-6 text-center p-[13px]">
-        {alerts.map((alert, index) => (
+      {alerts.map((alert, index) => (
+        <Slider
+          class="carousel carousel-center w-full bg-deep-beauty gap-6 text-center p-[13px]"
+          style={{ "background-color": alert.background }}
+        >
           <Slider.Item index={index} class="carousel-item w-full">
-            <span class="text-sm text-secondary-content flex justify-center items-center w-full">
-              {alert}
+            <span
+              class={`text-sm text-[${alert.color}] flex justify-center items-center w-full`}
+            >
+              {alert.alert}
             </span>
           </Slider.Item>
-        ))}
-      </Slider>
+        </Slider>
+      ))}
 
       <SliderJS rootId={id} interval={interval && interval * 1e3} />
     </div>
