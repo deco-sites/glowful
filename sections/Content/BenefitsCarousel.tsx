@@ -16,11 +16,23 @@ export interface Props {
    * @description time (in seconds) to start the carousel autoplay
    */
   interval?: number;
+  /**
+   * @title Cor de fundo
+   * @format color
+   */
+  background?: string;
+  /**
+   * @title Cor dos textos
+   * @format color
+   */
+  color?: string;
 }
 
 export default function BenefitsCarousel({
   benifits = [],
   interval = 5,
+  background = "#F4F4F4",
+  color = "#111",
 }: Props) {
   const id = useId();
 
@@ -28,7 +40,10 @@ export default function BenefitsCarousel({
     <>
       {/* Mobile Carousel */}
       <div id={id}>
-        <Slider class="md:hidden carousel carousel-center w-screen bg-[#F4F4F4] gap-6 text-center p-[20px]">
+        <Slider
+          class={`md:hidden carousel carousel-center w-screen gap-6 text-center p-[20px]`}
+          style={{ "background-color": background }}
+        >
           {benifits.map((benifit, index) => (
             <Slider.Item
               index={index}
@@ -39,13 +54,19 @@ export default function BenefitsCarousel({
                 width={40}
                 height={40}
                 strokeWidth={0.01}
-                fill="currentColor"
+                fill={color}
               />
               <div class="flex flex-col items-start">
-                <strong class="text-deep-beauty text-sm flex justify-center items-center">
+                <strong 
+                  class={`text-sm flex justify-center items-center text-[${color}]`}
+                  style={{ "color": color }}
+                >
                   {benifit?.title}
                 </strong>
-                <span class="text-deep-beauty text-sm flex justify-center items-center">
+                <span 
+                  class={`text-sm flex justify-center items-center text-[${color}]`}
+                  style={{ "color": color }}
+                  >
                   {benifit?.description}
                 </span>
               </div>
@@ -57,11 +78,12 @@ export default function BenefitsCarousel({
       </div>
 
       {/* Desktop Flex */}
-      <div class="hidden md:flex justify-center carousel carousel-center w-full bg-[#F4F4F4] gap-[50px] text-center p-[27px]">
+      <div
+        class={`hidden md:flex justify-center carousel carousel-center w-full gap-[50px] text-center p-[27px]`}
+        style={{ "background-color": background }}
+      >
         {benifits.map((benifit, index) => (
-          <div
-            class="carousel-item flex justify-center items-start gap-[8px] w-fit"
-          >
+          <div class="carousel-item flex justify-center items-start gap-[8px] w-fit">
             <Icon
               id={benifit?.icon}
               width={40}
@@ -70,10 +92,10 @@ export default function BenefitsCarousel({
               fill="currentColor"
             />
             <div class="flex flex-col items-start">
-              <strong class="text-deep-beauty text-sm flex justify-center items-center">
+              <strong class={`text-sm flex justify-center items-center text-[${color}]`}>
                 {benifit?.title}
               </strong>
-              <span class="text-deep-beauty text-sm flex justify-center items-center">
+              <span class={`text-sm flex justify-center items-center text-[${color}]`}>
                 {benifit?.description}
               </span>
             </div>

@@ -67,14 +67,14 @@ export default function Newsletter(props: Props) {
     <form action="/" class="flex flex-col gap-4">
       <div class="flex flex-col lg:flex-row gap-4">
         <input
-          class="input input-bordered lg:w-80 bg-transparent border-2 border-white-lily placeholder:text-white-lily text-[16px] font-redhat"
+          class="input input-bordered lg:w-80 bg-[#FFFFFF40] border-2 border-white-lily placeholder:text-white-lily text-[16px] font-redhat text-[#fff]"
           type="text"
           placeholder={form.placeholder}
         />
         <button
           class={`btn ${
             isReverse ? "btn-accent" : ""
-          } px-[40px] border-0 text-white-lily text-uppercase text-[14px] tracking-[1px] font-medium bg-gradient-to-r from-[#CE0F69] to-[#FF9EBC] lg:border lg:border-white-lily lg:bg-transparent lg:from-transparent lg:to-transparent lg:hover:bg-gradient-to-r lg:hover:from-[#CE0F69] lg:hover:to-[#FF9EBC] transition-colors duration-300 lg:hover:border-transparent`}
+          } px-[40px] border-0 text-white-lily text-uppercase text-[14px] tracking-[1px] font-medium bg-gradient-to-r from-[#CE0F69] to-[#FF9EBC] lg:border lg:border-white-lily lg:bg-[#FFFFFF40] lg:from-transparent lg:to-transparent lg:hover:bg-gradient-to-r lg:hover:from-[#CE0F69] lg:hover:to-[#FF9EBC] transition-colors duration-300 lg:hover:border-transparent`}
           type="submit"
         >
           {form.buttonText}

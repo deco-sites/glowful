@@ -30,7 +30,35 @@ export default {
       },
       boxShadow: { 
         "glowful": "0px 4px 4px 0px rgba(0, 0, 0, 0.15)"
+      },
+      keyframes: {
+        shakeIn: {
+          "0%": {
+            transform: "translateX(150%)"
+          },
+          "20%, 50%, 80%": {
+            transform: "translateX(-5px)"
+          },
+          "40%, 50%": {
+            transform: "translateX(5px)"
+          },
+          "100%": {
+            transform: "translateX(0)"
+          }
+        },
+        shakeOut: {
+          "0%": {
+            transform: "translateX(0)"
+          },
+          "100%": {
+            transform: "translateX(150%)"
+          }
+        }
+      },
+      animation: {
+        "shake-in": "shakeIn 1s ease-in-out 1",
+        "shake-out": "shakeOut 0.6s ease-in-out 1"
       }
-    }
+    },
   },
 };

@@ -8,7 +8,13 @@ import Navbar from "../../islands/Header/Navbar.tsx";
 import { headerHeight } from "./constants.ts";
 
 export interface Props {
-  alerts: string[];
+  alerts?: {
+    alert: string;
+    /** @format color */
+    background?: string;
+    /** @format color */
+    color?: string;
+  }[];
 
   /** @title Search Bar */
   searchbar?: Omit<SearchbarProps, "platform">;
@@ -20,10 +26,10 @@ export interface Props {
   navItems?: SiteNavigationElement[] | null;
 
   /** @title Logo Branco */
-  logoBranco?: { src: ImageWidget; alt: string };
+  logoBranco?: { src: ImageWidget; alt: string; textColor?: string };
 
   /** @title Logo Preto */
-  logoPreto?: { src: ImageWidget; alt: string };
+  logoPreto?: { src: ImageWidget; alt: string; textColor?: string };
 }
 
 function Header({ alerts, searchbar, navItems, logoBranco, logoPreto }: Props) {

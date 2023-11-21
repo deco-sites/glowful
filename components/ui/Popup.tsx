@@ -62,12 +62,14 @@ export function PopupIcon({
 
 export default function Popup({ title, description, form, image }: Props) {
   const { displayPopup } = useUI();
+  const [animationPopup, setAnimationPopup] = useState(false);
 
   useEffect(() => {
     function handleClick(event: any) {
       const from = event.relatedTarget || event.toElement;
       if (!from || from.nodeName == "HTML") {
         displayPopup.value = true;
+        setAnimationPopup(true);
       }
     }
     document.addEventListener("mouseclick", handleClick);
@@ -79,12 +81,14 @@ export default function Popup({ title, description, form, image }: Props) {
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(() => {
       displayPopup.value = true;
+      setAnimationPopup(true);
     }, 20000); // 20 segundos em milissegundos
   };
 
   const handleUserActivity = () => {
     if (!displayPopup.value) {
       displayPopup.value = false;
+      setAnimationPopup(true);
       resetInactivityTimer();
     }
   };
@@ -92,9 +96,17 @@ export default function Popup({ title, description, form, image }: Props) {
   const handleScroll = () => {
     if (!displayPopup.value) {
       displayPopup.value = false;
+      setAnimationPopup(true);
       resetInactivityTimer();
     }
   };
+
+  const closeModal = () => {
+    setAnimationPopup(false);
+    setTimeout(() => {
+      displayPopup.value = false;
+    }, 500);
+  }
 
   useEffect(() => {
     self.addEventListener("mousemove", handleUserActivity);
@@ -125,12 +137,14 @@ export default function Popup({ title, description, form, image }: Props) {
         <div className={"w-full h-full flex justify-center items-center px-4"}>
           <div
             className={
-              "bg-white-lily flex flex-row justify-between items-end w-full max-w-[312px] lg:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-[24px] lg:p-0"
+              `bg-white-lily flex flex-row justify-between items-end w-full max-w-[312px] lg:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-[24px] lg:p-0 ${
+                animationPopup ? "animate-shake-in" : "animate-shake-out"
+              }`
             }
           >
             <div
-              onClick={() => (displayPopup.value = false)}
-              className="rotate-45 w-[30px] h-[30px] rounded-full flex justify-center items-center absolute top-[16px] right-[16px] bg-white"
+              onClick={closeModal}
+              className="rotate-45 w-[30px] h-[30px] rounded-full flex justify-center items-center absolute top-[16px] right-[16px] bg-white z-50"
             >
               <Icon id="Plus" size={32} strokeWidth={1} />
             </div>
@@ -187,7 +201,7 @@ export default function Popup({ title, description, form, image }: Props) {
               )}
             </div>
 
-            <div className={"hidden lg:flex lg:items-end w-2/4 h-full"}>
+            <div className={"hidden lg:flex lg:items-end w-2/5 h-full absolute bottom-[0px] right-[0px]"}>
               <Image
                 className={"object-cover w-full"}
                 src={image.src}
