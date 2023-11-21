@@ -1,6 +1,12 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
+interface Benefits {
+  image?: ImageWidget;
+  title?: string;
+  description?: string;
+}
+
 export interface Props {
   image: {
     mobile: ImageWidget;
@@ -12,23 +18,15 @@ export interface Props {
    * @format html
    */
   title: string;
-  benefits: {
-    image?: ImageWidget;
-    title: string;
-    description: string;
-  }[];
+  benefits?: Array<Benefits>;
 }
 
 const DEFAULT_PROPS: Props = {
-  title: "",
+  title: "Assine e Economize",
   image: {
     mobile:
       "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/cac2dc1c-48ac-4274-ad42-4016b0bbe947",
     altText: "Fashion",
-  },
-  benefits: {
-    title: "",
-    description: "",
   },
 };
 
@@ -74,17 +72,18 @@ export default function ImageAndText(props: Props) {
           />
 
           <div class="grid grid-cols-2 gap-[16px] lg:gap-[24px]">
-            {benefits.map((benefit) => (
-              <div class="flex flex-col gap-[16px] items-center text-center">
-                <img src={benefit.image} width={46} height={46} />
-                <p class="text-[14px] font-semibold text-deep-beauty">
-                  {benefit.title}
-                </p>
-                <span class="text-[14px] text-deep-beauty">
-                  {benefit.description}
-                </span>
-              </div>
-            ))}
+            {benefits &&
+              benefits.map((benefit) => (
+                <div class="flex flex-col gap-[16px] items-center text-center">
+                  <img src={benefit.image} width={46} height={46} />
+                  <p class="text-[14px] font-semibold text-deep-beauty">
+                    {benefit.title}
+                  </p>
+                  <span class="text-[14px] text-deep-beauty">
+                    {benefit.description}
+                  </span>
+                </div>
+              ))}
           </div>
         </div>
       </div>
