@@ -24,7 +24,7 @@ const useAddToCart = ({
   onAddItem,
 }: Props) => {
   const [loading, setLoading] = useState(false);
-  const { displayCart } = useUI();
+  const { displayCart, quantityProduct } = useUI();
 
   const onClick = async (e: MouseEvent) => {
     e.preventDefault();
@@ -38,15 +38,17 @@ const useAddToCart = ({
       sendEvent({
         name: "add_to_cart",
         params: {
-          items: [{
-            quantity: 1,
-            price,
-            item_url: url,
-            item_name: name,
-            discount: discount,
-            item_id: productID,
-            item_variant: name,
-          }],
+          items: [
+            {
+              quantity: quantityProduct.value,
+              price,
+              item_url: url,
+              item_name: name,
+              discount: discount,
+              item_id: productID,
+              item_variant: name,
+            },
+          ],
         },
       });
 
@@ -63,8 +65,12 @@ export default function AddToCartButton(props: Props) {
   const btnProps = useAddToCart(props);
 
   return (
-    <Button {...btnProps} data-deco="add-to-cart" class="btn-primary">
-      Adicionar à Sacola
+    <Button
+      {...btnProps}
+      data-deco="add-to-cart"
+      class={`max-w-[312px] btn px-[40px] border-0 text-white-lily text-uppercase text-[14px] tracking-[1px] font-medium bg-gradient-to-r from-[#FF8A77] to-[#FFBE9F] hover:from-soft-pink hover:to-soft-pink transition-all duration-300`}
+    >
+      Adicionar ao Carrinho
     </Button>
   );
 }

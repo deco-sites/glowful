@@ -80,7 +80,7 @@ export default function ImageAndText(props: Props) {
         <div class="card-body p-0 gap-0 w-full max-w-[430px]">
           <span class="pb-[16px] pt-[30px] md:pt-0">{text}</span>
           <div
-            class="card-title textHighlight pb-[32px]"
+            class="card-title textHighlight text-[24px] lg:text-[32px]  pb-[32px]"
             dangerouslySetInnerHTML={{ __html: title }}
           />
           <p class="pb-[40px] ">{description}</p>

@@ -102,7 +102,7 @@ export default function FAQ(props: Props) {
         <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40">
           <div class="flex flex-col gap-8 lg:gap-10">
             <div
-              class="card-title textHighlight hidden lg:block lg:pb-[10px] text-center"
+              class="card-title textHighlight text-[24px] lg:text-[32px] lg:block lg:pb-[10px] text-center justify-center"
               dangerouslySetInnerHTML={{ __html: title }}
             />
             <div class="join join-vertical w-full">
@@ -120,7 +120,7 @@ export default function FAQ(props: Props) {
         <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-0">
           <div class="flex flex-col gap-8 lg:gap-10">
             <div
-              class="card-title textHighlight hidden lg:block lg:pb-[10px] text-center"
+              class="card-title textHighlight text-[24px] lg:text-[32px]  lg:block lg:pb-[10px] text-center justify-center"
               dangerouslySetInnerHTML={{ __html: title }}
             />
             <div class="join join-vertical w-full">
@@ -138,7 +138,7 @@ export default function FAQ(props: Props) {
         <div class="w-full container px-4 py-8 grid gap-8 grid-flow-row grid-cols-1 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-2 lg:py-10 lg:px-0">
           <div class="order-1 lg:order-1">
             <div
-              class="card-title textHighlight hidden lg:block lg:pb-[10px] text-center"
+              class="card-title textHighlight text-[24px] lg:text-[32px] lg:block lg:pb-[10px] text-center justify-center"
               dangerouslySetInnerHTML={{ __html: title }}
             />
           </div>

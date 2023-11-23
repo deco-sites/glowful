@@ -66,8 +66,7 @@ export default function ImageAndText(props: Props) {
 
         <div class="card-body gap-0 lg:row-start-1 lg:col-start-1">
           <div
-            class="card-title textHighlight pb-[32px] lg:pb-[5
-            0px] text-center"
+            class="card-title textHighlight text-[24px] lg:text-[32px] pb-[32px] lg:pb-[50px] text-center"
             dangerouslySetInnerHTML={{ __html: title }}
           />
 

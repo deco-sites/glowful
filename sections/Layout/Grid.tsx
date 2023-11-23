@@ -74,8 +74,9 @@ function Section({ layout, children }: Props) {
         layout?.placeItems?.mobile &&
           grid.placeItems.mobile[layout.placeItems.mobile],
         layout?.placeItems?.desktop &&
-          grid.placeItems.desktop[layout.placeItems.desktop],
+          grid.placeItems.desktop[layout.placeItems.desktop]
       )}
+      style={{ position: "relative", alignItems: "flex-start" }}
     >
       {children}
     </div>

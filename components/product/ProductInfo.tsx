@@ -13,7 +13,13 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductSelector from "./ProductVariantSelector.tsx";
+import ProductSelector from "$store/islands/ProductVariantSelector.tsx";
+import ChangeQuantityProduct from "$store/islands/ChangeQuantityProduct.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
+import Image from "apps/website/components/Image.tsx";
+import Slider from "$store/components/ui/Slider.tsx";
+import SliderJS from "$store/islands/SliderJS.tsx";
+import { useId } from "$store/sdk/useId.ts";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -29,15 +35,13 @@ interface Props {
 
 function ProductInfo({ page, layout }: Props) {
   const platform = usePlatform();
+    const id = useId();
 
   if (page === null) {
     throw new Error("Missing Product Details Page Info");
   }
 
-  const {
-    breadcrumbList,
-    product,
-  } = page;
+  const { breadcrumbList, product } = page;
   const {
     url,
     productID,
@@ -57,56 +61,123 @@ function ProductInfo({ page, layout }: Props) {
   } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const discount = price && listPrice ? listPrice - price : 0;
+  const descriptionJson = description && JSON.parse(description);
+  const inventoryLevel = offers?.offers[0].inventoryLevel.value;
+  const images = product.isVariantOf?.image;
+
+  // console.log("PRODUTO", product);
+  // console.log("PRODUTO", JSON.parse(product?.description));
 
   return (
-    <div class="flex flex-col">
-      {/* Breadcrumb */}
-      <Breadcrumb
-        itemListElement={breadcrumbList?.itemListElement.slice(0, -1)}
-      />
-      {/* Code and name */}
-      <div class="mt-4 sm:mt-8">
-        <div>
-          {gtin && (
-            <span class="text-sm text-base-300">
-              Cod. {gtin}
-            </span>
-          )}
-        </div>
-        <h1>
-          <span class="font-medium text-xl capitalize">
-            {layout?.name === "concat"
-              ? `${isVariantOf?.name} ${name}`
-              : layout?.name === "productGroup"
-              ? isVariantOf?.name
-              : name}
-          </span>
-        </h1>
+    <div class="relative flex items-start gap-[50px] pt-[40px]">
+      <div class="hidden w-full max-w-[512px] lg:flex flex-wrap gap-[24px]">
+        {images?.map((img, index) => (
+          <div class="max-w-[240px]">
+            <Image
+              class="w-full"
+              sizes="(max-width: 640px) 100vw, 40vw"
+              src={img.url!}
+              alt={img.alternateName}
+              width={300}
+              height={300}
+              // Preload LCP image for better web vitals
+              preload={index === 0}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          </div>
+        ))}
       </div>
-      {/* Prices */}
-      <div class="mt-4">
-        <div class="flex flex-row gap-2 items-center">
-          {(listPrice ?? 0) > price && (
-            <span class="line-through text-base-300 text-xs">
-              {formatPrice(listPrice, offers?.priceCurrency)}
+      <div class="flex flex-col px-[24px] sticky top-[60px]">
+        {/* Code and name */}
+        <div>
+          <h1>
+            <span class="font-semibold text-[#000] text-[24px] uppercase mb-[8px]">
+              {layout?.name === "concat"
+                ? `${isVariantOf?.name} ${name}`
+                : layout?.name === "productGroup"
+                ? isVariantOf?.name
+                : name}
             </span>
-          )}
+          </h1>
+          <p></p>
+        </div>
+
+        {/* Description */}
+        {descriptionJson.description && (
+          <p class="text-[14px] font-fraunces font-light">
+            {descriptionJson.description}
+          </p>
+        )}
+
+        {/* Stars Reviews */}
+        <p class="my-[16px]">Review Stars</p>
+
+        {/* Carousel product - MOBILE */}
+        <div
+          id={id}
+          class="lg:hidden grid grid-flow-row sm:grid-flow-col my-[55px]"
+        >
+          {/* Image Slider */}
+          <div class="relative order-1 sm:order-2">
+            <Slider class="carousel carousel-center gap-0 pr-[40px] w-full sm:w-[40vw]">
+              {images?.map((img, index) => (
+                <Slider.Item index={index} class="carousel-item w-full">
+                  <Image
+                    class="w-full"
+                    sizes="(max-width: 640px) 100vw, 60vw"
+                    src={img.url!}
+                    alt={img.alternateName}
+                    width={300}
+                    height={300}
+                    // Preload LCP image for better web vitals
+                    preload={index === 0}
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </Slider.Item>
+              ))}
+            </Slider>
+          </div>
+
+          <SliderJS rootId={id} />
+        </div>
+
+        {/* Diferentails */}
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-[8px] ">
+          {descriptionJson &&
+            descriptionJson.diferenciais.map((dif: Array<string>) => (
+              <div class="flex gap-[8px]">
+                <Icon
+                  id="CheckPdp"
+                  size={20}
+                  strokeWidth={1}
+                  class="text-[#1C8172]"
+                />
+                <p class="text-[14px] font-fraunces font-light">{dif}</p>
+              </div>
+            ))}
+        </div>
+        {/* Sku Selector */}
+        <div class="mt-[55px] sm:mt-[32px]">
+          <ProductSelector product={product} />
+        </div>
+        {/* Combos and Subscriber */}
+        <p class="text-[16px] font-fraunces font-semibold my-[30px]">Combos:</p>
+
+        {/* Prices */}
+        {/* <div class="mt-4">
+        <div class="flex flex-row gap-2 items-center">
           <span class="font-medium text-xl text-secondary">
             {formatPrice(price, offers?.priceCurrency)}
           </span>
         </div>
-        <span class="text-sm text-base-300">
-          {installments}
-        </span>
-      </div>
-      {/* Sku Selector */}
-      <div class="mt-4 sm:mt-6">
-        <ProductSelector product={product} />
-      </div>
-      {/* Add to Cart and Favorites button */}
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-        {availability === "https://schema.org/InStock"
-          ? (
+      </div> */}
+
+        {/* Quantity Items */}
+        <ChangeQuantityProduct inventoryLevel={inventoryLevel} price={price} />
+
+        {/* Add to Cart and Favorites button */}
+        <div class="mt-4 sm:mt-10 flex flex-col gap-2">
+          {availability === "https://schema.org/InStock" ? (
             <>
               {platform === "vtex" && (
                 <>
@@ -168,51 +239,42 @@ function ProductInfo({ page, layout }: Props) {
                 />
               )}
             </>
-          )
-          : <OutOfStock productID={productID} />}
-      </div>
-      {/* Shipping Simulation */}
-      <div class="mt-8">
-        {platform === "vtex" && (
-          <ShippingSimulation
-            items={[{
-              id: Number(product.sku),
-              quantity: 1,
-              seller: seller,
-            }]}
-          />
-        )}
-      </div>
-      {/* Description card */}
-      <div class="mt-4 sm:mt-6">
-        <span class="text-sm">
-          {description && (
-            <details>
-              <summary class="cursor-pointer">Descrição</summary>
-              <div
-                class="ml-2 mt-2"
-                dangerouslySetInnerHTML={{ __html: description }}
-              />
-            </details>
+          ) : (
+            <OutOfStock productID={productID} />
           )}
-        </span>
+        </div>
+        {/* Shipping Simulation */}
+        <div class="mt-8">
+          {platform === "vtex" && (
+            <ShippingSimulation
+              items={[
+                {
+                  id: Number(product.sku),
+                  quantity: 1,
+                  seller: seller,
+                },
+              ]}
+            />
+          )}
+        </div>
+
+        {/* Analytics Event */}
+        <SendEventOnLoad
+          event={{
+            name: "view_item",
+            params: {
+              items: [
+                mapProductToAnalyticsItem({
+                  product,
+                  breadcrumbList,
+                  price,
+                  listPrice,
+                }),
+              ],
+            },
+          }}
+        />
       </div>
-      {/* Analytics Event */}
-      <SendEventOnLoad
-        event={{
-          name: "view_item",
-          params: {
-            items: [
-              mapProductToAnalyticsItem({
-                product,
-                breadcrumbList,
-                price,
-                listPrice,
-              }),
-            ],
-          },
-        }}
-      />
     </div>
   );
 }
