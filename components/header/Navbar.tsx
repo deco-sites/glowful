@@ -19,17 +19,17 @@ import { useEffect } from "preact/hooks";
 export interface Props {
   items: SiteNavigationElement[];
   searchbar?: SearchbarProps;
-  logoBranco: { 
+  logoBranco: {
     src: string;
     alt: string;
     /** @format color */
-    textColor?: string 
+    textColor?: string;
   };
   logoPreto: {
     src: string;
-    alt: string; 
+    alt: string;
     /** @format color */
-    textColor?: string 
+    textColor?: string;
   };
   platform: any;
 }
@@ -39,7 +39,6 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
   const pathname = window.location.pathname;
   useEffect(() => {
-
     let lastScrollY = 0;
 
     const updateScrollDirection = () => {
@@ -76,7 +75,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
   }
 
   if (pathname !== "/") {
-    displayTop.value = false
+    displayTop.value = false;
   }
 
   return (
@@ -130,13 +129,13 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
           {platform === "vnda" && <CartButtonVDNA />}
           {platform === "wake" && <CartButtonWake />}
           {platform === "linx" && <CartButtonLinx />}
-          {platform === "shopify" && <CartButton colorIcon={colorIcon}/>}
+          {platform === "shopify" && <CartButton colorIcon={colorIcon} />}
         </div>
       </div>
 
       {/* Desktop Version */}
       <div
-        class={`hidden md:flex flex-row justify-between items-center w-full pl-2 pr-6 h-[50px] z-[999] md:${display} bg-[${backgroundColor}] hover:bg-white-lily group/hover py-4`}
+        class={`hidden md:flex flex-row justify-between items-center w-full h-[50px] z-[999] md:${display} bg-[${backgroundColor}] hover:bg-white-lily group/hover py-5 px-24`}
         onMouseEnter={() => (displayHover.value = true)}
         onMouseLeave={() => (displayHover.value = false)}
       >
@@ -190,7 +189,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
           {platform === "vnda" && <CartButtonVDNA />}
           {platform === "wake" && <CartButtonWake />}
           {platform === "linx" && <CartButtonLinx />}
-          {platform === "shopify" && <CartButton colorIcon={colorIcon}/>}
+          {platform === "shopify" && <CartButton colorIcon={colorIcon} />}
         </div>
       </div>
     </>

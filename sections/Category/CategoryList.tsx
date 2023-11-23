@@ -3,7 +3,7 @@ import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import Image from "apps/website/components/Image.tsx";
-import type { ImageWidget, HTMLWidget } from "apps/admin/widgets.ts";
+import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Category {
@@ -121,9 +121,12 @@ function CategoryList(props: Props) {
         id={id}
         class="container grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+        <Slider class="flex justify-between carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
           {list.map(
-            ({ tag, label, description, href, image, buttonText, textColor }, index) => (
+            (
+              { tag, label, description, href, image, buttonText, textColor },
+              index,
+            ) => (
               <Slider.Item
                 index={index}
                 class="flex flex-col gap-4 carousel-item first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
@@ -168,7 +171,7 @@ function CategoryList(props: Props) {
                   </a>
                 )}
               </Slider.Item>
-            )
+            ),
           )}
         </Slider>
 
