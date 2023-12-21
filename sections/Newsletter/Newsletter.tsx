@@ -83,7 +83,7 @@ export default function Newsletter(props: Props) {
     <>
       {/* Desktop */}
       <div
-        class={`hidden lg:block p-0bg-cover bg-no-repeat bg-center`}
+        class={`hidden lg:block p-0 bg-cover bg-no-repeat bg-center`}
         style={{ backgroundImage: `url("${backgroundDesktop}")` }}
       >
         <div
@@ -96,7 +96,7 @@ export default function Newsletter(props: Props) {
 
       {/* Mobile */}
       <div
-        class={`block lg:hidden p-0bg-cover bg-no-repeat bg-center`}
+        class={`block lg:hidden p-0 bg-cover bg-no-repeat bg-center`}
         style={{ backgroundImage: `url("${backgroundMobile}")` }}
       >
         <div
