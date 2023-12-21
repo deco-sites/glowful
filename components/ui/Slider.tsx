@@ -11,7 +11,7 @@ function Dot({
     <button
       data-dot={index}
       aria-label={`go to slider item ${index}`}
-      class="focus:outline-none group w-[32px] h-[8px] rounded  bg-[#E4E4E4] disabled:w-[64px] disabled:bg-cherry-pop transition-all"
+      class="focus:outline-none group w-[42px] h-[8px] rounded  bg-white-lily opacity-60 disabled:w-[84px] disabled:bg-white-lily disabled:opacity-100 transition-all"
     >
       {children}
     </button>

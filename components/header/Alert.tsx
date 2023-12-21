@@ -49,7 +49,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
         >
           <Slider.Item index={index} class="carousel-item w-full">
             <span
-              class={`text-sm text-[${alert.color}] flex justify-center items-center w-full`}
+              class={`text-[12px] text-[${alert.color}] flex justify-center items-center w-full`}
             >
               {alert.alert}
             </span>

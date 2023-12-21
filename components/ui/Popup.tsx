@@ -5,6 +5,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 
 export interface Props {
+  discountButton: string;
   /**
    * @format html
    */
@@ -24,7 +25,6 @@ export interface Props {
       text: string;
     };
   };
-  discountButton: string;
   image: {
     /**
      * @title Image
@@ -45,22 +45,24 @@ export function PopupIcon({
   const { displayPopup } = useUI();
 
   return (
-    <div
-      class={`fixed flex items-center justify-center rounded-full w-[80px] h-[80px] bg-red-500 bg-gradient-to-r from-[#D62C79] to-[#E4A1AE] z-50 ${
+    <button
+      onClick={() => (displayPopup.value = true)}
+      class={`fixed flex items-center justify-center p-[12px] transition-all duration-300 ease-out rounded-[14px] lg:w-[70px] lg:h-[70px] w-[54px] h-[54px] hover:scale-[1.15] text-[16px] lg:text-[20px] font-bold uppercase text-center text-white-lily leading-[120%] tracking-[1px]  bg-red-500 bg-cherry-pop z-50 shadow-md ${
         position ? position : "right-0 bottom-0"
       }`}
     >
-      <button
-        onClick={() => (displayPopup.value = true)}
-        class="h-full w-full text-[14px] font-extrabold uppercase tracking-[1px] text-center text-white-lily"
-      >
-        {discountButton}
-      </button>
-    </div>
+      {discountButton}
+    </button>
   );
 }
 
-export default function Popup({ title, description, form, image }: Props) {
+export default function Popup({
+  title,
+  description,
+  form,
+  image,
+  discountButton,
+}: Props) {
   const { displayPopup } = useUI();
   const [animationPopup, setAnimationPopup] = useState(false);
 
@@ -106,7 +108,7 @@ export default function Popup({ title, description, form, image }: Props) {
     setTimeout(() => {
       displayPopup.value = false;
     }, 500);
-  }
+  };
 
   useEffect(() => {
     self.addEventListener("mousemove", handleUserActivity);
@@ -126,7 +128,7 @@ export default function Popup({ title, description, form, image }: Props) {
   return (
     <>
       <PopupIcon
-        discountButton="15% OFF AQUI"
+        discountButton={discountButton}
         position="right-[16px] bottom-[28px] lg:right-[24px] lg:bottom-[30px]"
       />
       <div
@@ -136,15 +138,13 @@ export default function Popup({ title, description, form, image }: Props) {
       >
         <div className={"w-full h-full flex justify-center items-center px-4"}>
           <div
-            className={
-              `bg-white-lily flex flex-row justify-between items-end w-full max-w-[312px] lg:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-[24px] lg:p-0 ${
-                animationPopup ? "animate-shake-in" : "animate-shake-out"
-              }`
-            }
+            className={`bg-white-lily flex flex-row justify-between w-full max-w-[312px] lg:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-[24px] lg:p-0 ${
+              animationPopup ? "animate-shake-in" : "animate-shake-out"
+            }`}
           >
             <div
               onClick={closeModal}
-              className="rotate-45 w-[30px] h-[30px] rounded-full flex justify-center items-center absolute top-[16px] right-[16px] bg-white z-50"
+              className="rotate-45 w-[30px] h-[30px] rounded-full flex justify-center items-center absolute top-[16px] right-[16px] bg-white z-50 cursor-pointer"
             >
               <Icon id="Plus" size={32} strokeWidth={1} />
             </div>
@@ -201,7 +201,11 @@ export default function Popup({ title, description, form, image }: Props) {
               )}
             </div>
 
-            <div className={"hidden lg:flex lg:items-end w-2/5 h-full absolute bottom-[0px] right-[0px]"}>
+            <div
+              className={
+                "hidden lg:flex lg:items-end w-2/5 h-full absolute bottom-[0px] right-[0px]"
+              }
+            >
               <Image
                 className={"object-cover w-full"}
                 src={image.src}

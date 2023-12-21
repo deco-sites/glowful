@@ -9,17 +9,9 @@ export interface Image {
 }
 
 export interface Props {
-  /**
-   * @format html
-   */
-  title?: string;
-  description?: string;
+  mainImage: ImageWidget;
+  mainImageAltText: string;
   images?: Image[];
-  layout?: {
-    headerAlignment?: "center" | "left";
-  };
-  quoteLeft: ImageWidget;
-  quoteRight: ImageWidget;
 }
 
 const IMAGES = [
@@ -36,7 +28,7 @@ const IMAGES = [
 ];
 
 function Logos(props: Props) {
-  const { title, description, images, layout, quoteLeft, quoteRight } = props;
+  const { images, mainImage, mainImageAltText } = props;
   const list = useMemo(
     () =>
       images && images.length > 0
@@ -48,27 +40,22 @@ function Logos(props: Props) {
   );
 
   return (
-    <div class="w-full py-8 flex flex-col gap-[75px] lg:gap-[100px] lg:py-[90px] lg:px-0">
-      <HeaderLogo
-        title={title}
-        description={description}
-        quoteLeft={quoteLeft}
-        quoteRight={quoteRight}
-      />
-      <div class="w-full text-center items-center bg-[#F4F4F4] py-[16px] px-4">
-        {list.map((element) => (
-          <div class="w-36 lg:w-40 h-17 lg:h-20 px-4 lg:px-6 py-6 lg:py-4 inline-block align-middle">
-            <div class="flex w-full h-full items-center justify-center">
-              <Image
-                width={300}
-                height={300}
-                src={element.image}
-                alt={element.altText || ""}
-                class="max-w-full max-h-full"
-              />
-            </div>
-          </div>
-        ))}
+    <div class="bg-[#f4f4f4]">
+      <div class="container lg:gap-[100px] flex justify-between flex-col items-center gap-[50px] lg:flex-row w-full text-center  py-[50px] lg:py-[40px] px-[32px] ">
+        <img
+          className="object-contain w-full h-full max-w-[258px] m-h-[82px]"
+          src={mainImage}
+          alt={mainImageAltText || ""}
+        />
+        <div class="flex flex-row flex-wrap gap-[30px] lg:gap-[70px] lg:justify-between justify-center items-center">
+          {list.map((element) => (
+            <img
+              className="object-contain max-w-fit max-h-[46px] lg:max-h-[63px]"
+              src={element.image}
+              alt={element.altText || ""}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -9,81 +9,89 @@ interface Benefits {
 
 export interface Props {
   image: {
-    mobile: ImageWidget;
     desktop?: ImageWidget;
-    altText: string;
+    altText?: string;
   };
 
   /**
    * @format html
    */
   title: string;
+
   benefits?: Array<Benefits>;
+
+  buttonText?: string;
+  href?: string;
 }
 
-const DEFAULT_PROPS: Props = {
-  title: "Assine e Economize",
-  image: {
-    mobile:
-      "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/cac2dc1c-48ac-4274-ad42-4016b0bbe947",
-    altText: "Fashion",
-  },
-};
-
 export default function ImageAndText(props: Props) {
-  const { title, image, benefits } = {
-    ...DEFAULT_PROPS,
+  const { title, image, benefits, href, buttonText } = {
     ...props,
   };
 
   return (
-    <div class="container">
-      <div class="pb-[32px] md:pb-[70px] card lg:card-side rounded grid grid-cols-1 justify-between lg:grid-cols-[50%_40%] ">
-        <figure class="relative flex items-center justify-center">
-          <Picture class="flex items-center justify-center">
-            <Source
-              media="(max-width: 767px)"
-              src={image?.mobile}
-              width={150}
-              height={150}
-            />
-            <Source
-              media="(min-width: 768px)"
-              src={image?.desktop ? image?.desktop : image?.mobile}
-              width={384}
-              height={227}
-            />
+    <div class="lg:bg-[#F4F4F4]">
+      <div class="py-[40px] lg:py-0 lg:px-0 lg:ml-[5%] card lg:card-side rounded grid grid-cols-1 justify-between lg:grid-cols-[58%_40%] justify-items-center">
+        <figure class=" relative items-center justify-center">
+          <Picture class="hidden lg:flex items-center justify-center">
             <img
               class="w-full object-cover"
               sizes="(max-width: 640px) 100vw, 30vw"
-              src={image?.mobile}
-              alt={image?.altText}
+              src={image.desktop}
+              alt={image.altText}
               decoding="async"
               loading="lazy"
             />
           </Picture>
         </figure>
 
-        <div class="card-body gap-0 lg:row-start-1 lg:col-start-1">
+        <div class="lg:py-[80px] px-[24px] lg:px-0 flex flex-col items-center gap-[28px] lg:gap-[80px] lg:row-start-1 lg:col-start-1 lg:max-w-[616px]">
           <div
-            class="card-title textHighlight text-[24px] lg:text-[32px] pb-[32px] lg:pb-[50px] text-center"
+            class="card-title textIconHighLight text-[24px] tracking-[1.2px] uppercase font-medium lg:text-[32px] text-center justify-center"
             dangerouslySetInnerHTML={{ __html: title }}
           />
 
-          <div class="grid grid-cols-2 gap-[16px] lg:gap-[24px]">
+          <div class="flex flex-col lg:flex-row lg:flex-wrap gap-[40px] lg:gap-[40px] md:gap-[20px] px-[20px] py-[30px]  lg:p-0  bg-[#F4F4F4] rounded-[15px]">
             {benefits &&
               benefits.map((benefit) => (
-                <div class="flex flex-col gap-[16px] items-center text-center">
-                  <img src={benefit.image} width={46} height={46} />
-                  <p class="text-[14px] font-semibold text-deep-beauty">
-                    {benefit.title}
-                  </p>
-                  <span class="text-[14px] text-deep-beauty">
-                    {benefit.description}
-                  </span>
-                </div>
+                <>
+                  {/* MOBILE */}
+                  <div class="flex lg:hidden flex-col gap-[12px]">
+                    <div class="flex gap-[20px] items-center">
+                      <img src={benefit.image} width={32} height={32} />
+                      <p class="text-[16px] font-semibold tracking-[0.8px] leading-[130%] text-deep-beauty">
+                        {benefit.title}
+                      </p>
+                    </div>
+                    <span class="text-[14px] text-deep-beauty">
+                      {benefit.description}
+                    </span>
+                  </div>
+
+                  {/* DESKTOP */}
+                  <div class="hidden lg:flex items-start  gap-[24px] lg:max-w-[260px]">
+                    <img src={benefit.image} width={32} height={32} />
+                    <div class="flex flex-col gap-[16px]">
+                      <p class="text-[22px] font-semibold tracking-[1.1px] leading-[130%] text-deep-beauty">
+                        {benefit.title}
+                      </p>
+                      <span class="text-[16px] text-deep-beauty leading-[140%]">
+                        {benefit.description}
+                      </span>
+                    </div>
+                  </div>
+                </>
               ))}
           </div>
+
+          {href && buttonText && (
+            <a
+              href={href}
+              class="w-fit bg-cherry-pop rounded-full border-none text-white-lily text-sm uppercase px-[60px] py-[18px] font-bold tracking-[1px] hover:bg-white-lily hover:text-cherry-pop hover:border-none transition-all duration-300"
+            >
+              {buttonText}
+            </a>
+          )}
         </div>
       </div>
     </div>

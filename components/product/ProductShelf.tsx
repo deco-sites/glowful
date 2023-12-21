@@ -41,15 +41,16 @@ function ProductShelf({
   }
 
   return (
-    <div class="w-full container  py-8 flex flex-col items-center gap-12 lg:gap-16 lg:py-10">
-      <Header
-        title={title || ""}
-        description={description || ""}
-        fontSize={layout?.headerfontSize || "Large"}
-        alignment={layout?.headerAlignment || "center"}
-        black
-      />
-
+    <div class="w-full container py-8 lg:py-[70px] px-[24px]  flex flex-col lg:flex-row items-center gap-[24px] lg:gap-[62px] ">
+      <div class="lg:max-w-[280px] self-start">
+        <Header
+          title={title || ""}
+          description={description || ""}
+          fontSize={layout?.headerfontSize || "Large"}
+          alignment={layout?.headerAlignment || "center"}
+          black
+        />
+      </div>
       <div
         id={id}
         class="container grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
@@ -71,7 +72,7 @@ function ProductShelf({
           ))}
         </Slider>
 
-        <div class="md:hidden w-full pl-5 pt-[30px] flex gap-3 justify-between items-center col-start-1 col-end-3 row-start-5">
+        {/* <div class="md:hidden w-full pl-5 pt-[30px] flex gap-3 justify-between items-center col-start-1 col-end-3 row-start-5">
           <div class="relative sm:block z-10 ">
             <Slider.PrevButton class="btn btn-circle btn-outline border-0 bg-base-100">
               <Icon
@@ -103,7 +104,7 @@ function ProductShelf({
               />
             </Slider.NextButton>
           </div>
-        </div>
+        </div> */}
 
         <SliderJS rootId={id} />
         <SendEventOnLoad

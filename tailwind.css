@@ -15,12 +15,36 @@
     font-weight: 700;
     line-height: 110%;
   }
+
+  .textIconHighLight strong {
+    font-family: Fraunces;
+    font-size: 22px;
+    color:#CE0F69;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 130%;
+  }
+
+  @media (min-width: 1024px) {
+    .textIconHighLight strong {
+      font-size: 30px;
+    }
+  }
+  
   
   .textWithStrong strong {
     font-family: Fraunces;
     font-style: italic;
-    font-weight: 700;
-    line-height: 110%;
+    font-weight: 600;
+    line-height: 130%;
+  }
+
+  .textCategoryHighlight strong {
+    font-family: Fraunces;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 130%;
+    font-size: 42px;
   }
 
   .popup strong {

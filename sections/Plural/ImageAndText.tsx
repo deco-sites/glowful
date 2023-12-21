@@ -49,7 +49,7 @@ export default function ImageAndText(props: Props) {
   return (
     <div class="container px-[24px]">
       <div
-        class={`py-[32px] md:py-[70px] card lg:card-side rounded flex justify-between  flex-col gap-[30px] lg:gap-[50px] ${
+        class={`py-8 lg:py-[70px] card lg:card-side rounded flex justify-between  flex-col gap-[30px] lg:gap-[50px] ${
           styles?.invertImage ? "lg:flex-row-reverse" : "lg:flex-row"
         }`}
       >
@@ -87,7 +87,7 @@ export default function ImageAndText(props: Props) {
           <div class="card-actions justify-center lg:justify-start">
             {link && (
               <a
-                class={`btn bg-transparent text-[${
+                class={`btn bg-transparent px-[50px] text-[${
                   link?.color ? link?.color : "#fff"
                 }] border-[${
                   link?.color ? link?.color : "#fff"

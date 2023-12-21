@@ -7,15 +7,10 @@ import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Category {
-  tag?: string;
   label: string;
-  description?: string;
   href?: string;
-  /**
-   * @format color
-   */
-  textColor?: string;
-  image?: ImageWidget;
+  imageDesktop?: ImageWidget;
+  imageMobile?: ImageWidget;
   buttonText?: string;
 }
 
@@ -29,7 +24,7 @@ export interface Props {
      * @format html
      */
     title?: HTMLWidget;
-    description?: HTMLWidget;
+    description?: string;
   };
   list?: Category[];
   layout?: {
@@ -83,14 +78,9 @@ function CategoryList(props: Props) {
     },
     list = [
       {
-        tag: "10% off",
         label: "Feminino",
-        description: "Moda feminina direto de Milão",
         href: "/feminino",
-        image:
-          "https://ik.imagekit.io/decocx/tr:w-680,h-680/https:/ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/fdcb3c8f-d629-485e-bf70-8060bd8a9f65",
-        buttonText: "Ver produtos",
-        textColor: "#101820",
+        buttonText: "Conheça",
       },
     ],
     layout = {
@@ -105,109 +95,94 @@ function CategoryList(props: Props) {
   return (
     <div
       id={id}
-      class="container py-8 flex flex-col gap-8 lg:gap-10 text-base-content lg:py-10"
+      class="py-[40px] lg:py-[120px] lg:ml-[5%] flex items-center flex-col lg:flex-row gap-8 lg:gap-[75px] text-base-content"
       style={{
         "background-color": props.backgroundColor,
       }}
     >
-      <Header
-        title={header.title}
-        description={header.description || ""}
-        alignment={layout.headeçrAlignment || "center"}
-        black
-      />
+      <div class="max-w-[300px] px-[24px]">
+        <Header
+          title={header.title}
+          description={header.description || ""}
+          alignment={layout.headerAlignment || "center"}
+          black
+        />
+      </div>
 
       <div
         id={id}
-        class="container grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
+        class="container grid grid-cols-[48px_1fr_48px] px-[0] pl-[24px] relative"
       >
-        <Slider class="flex justify-between carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+        <Slider.PrevButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]">
+          <Icon
+            size={24}
+            id="ChevronLeft"
+            strokeWidth={3}
+            class="text-white-lily"
+          />
+        </Slider.PrevButton>
+        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-center sm:carousel-end gap-[20px] lg:gap-[24px] col-span-full row-start-2 row-end-5">
           {list.map(
-            (
-              { tag, label, description, href, image, buttonText, textColor },
-              index,
-            ) => (
+            ({ label, href, imageDesktop, imageMobile, buttonText }, index) => (
               <Slider.Item
                 index={index}
-                class="flex flex-col gap-4 carousel-item first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+                class="m-[8px] flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300"
               >
                 <a
                   href={href}
-                  class="flex flex-col gap-4 lg:w-[280px] w-40 lg:h-auto"
+                  class="flex flex-col gap-4 w-[210px] h-[270px] lg:w-[350px] lg:h-auto"
                 >
-                  {image && (
+                  {imageDesktop && imageMobile && (
                     <figure>
                       <Image
-                        class="card w-full rounded-none"
-                        src={image}
-                        alt={description || label || tag}
-                        width={160}
-                        height={195}
+                        class="card w-full h-full lg:block hidden"
+                        src={imageDesktop}
+                        alt={label || ""}
+                        width={350}
+                        height={350}
+                        loading="lazy"
+                      />
+                      <Image
+                        class="card w-full h-full lg:hidden block"
+                        src={imageMobile}
+                        alt={label || ""}
+                        width={210}
+                        height={270}
                         loading="lazy"
                       />
                     </figure>
                   )}
-                  {layout.categoryCard?.textPosition === "top" && (
-                    <CardText
-                      tag={tag}
-                      label={label}
-                      description={description}
-                      alignment={layout?.categoryCard?.textAlignment}
-                      textColor={textColor}
-                    />
-                  )}
-                  {layout.categoryCard?.textPosition === "bottom" && (
-                    <CardText
-                      tag={tag}
-                      label={label}
-                      description={description}
-                      alignment={layout?.categoryCard?.textAlignment}
-                    />
-                  )}
                 </a>
-                {buttonText && (
-                  <a href={href} class="btn">
-                    {buttonText}
-                  </a>
-                )}
+
+                <div class="absolute top-[80%] lg:group-hover:top-[33%] w-full h-fit lg:h-full flex flex-col items-center gap-[32px] transition-all duration-300 z-[2]">
+                  {label && (
+                    <p class="text-[24px] lg:text-[32px] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
+                      {label}
+                    </p>
+                  )}
+                  {buttonText && (
+                    <a
+                      href={href}
+                      class="hidden lg:block w-fit bg-cherry-pop rounded-full border-none text-white-lily text-sm uppercase px-[60px] py-[18px] font-bold tracking-[1px] hover:bg-white-lily hover:text-deep-beauty hover:border-none transition-all duration-300"
+                    >
+                      {buttonText}
+                    </a>
+                  )}
+                </div>
+
+                <div class="absolute w-full h-full transition-all duration-300 rounded-[20px] lg:group-hover:bg-[#00000050] z-[1]" />
               </Slider.Item>
-            ),
+            )
           )}
         </Slider>
-
-        <div class="w-full pl-5 pt-[30px] flex gap-3 justify-center items-center col-start-1 col-end-3 row-start-5">
-          <div class="relative sm:block z-10 ">
-            <Slider.PrevButton class="btn btn-circle btn-outline border-0 bg-base-100">
-              <Icon
-                size={24}
-                id="ChevronLeft"
-                strokeWidth={3}
-                class="text-cherry-pop"
-              />
-            </Slider.PrevButton>
-          </div>
-
-          <div class="flex justify-center gap-[8px]">
-            {list?.map((_, index) => (
-              <li class="carousel-item">
-                <Slider.Dot index={index}>
-                  <div class="w-[32px] h-[8px] rounded " />
-                </Slider.Dot>
-              </li>
-            ))}
-          </div>
-
-          <div class="relative sm:block z-10 ">
-            <Slider.NextButton class="btn btn-circle btn-outline  border-0 bg-base-100">
-              <Icon
-                size={24}
-                id="ChevronRight"
-                strokeWidth={3}
-                class="text-cherry-pop"
-              />
-            </Slider.NextButton>
-          </div>
-        </div>
+        <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1]">
+          <Icon
+            size={24}
+            id="ChevronRight"
+            strokeWidth={3}
+            class="text-white-lily"
+          />
+        </Slider.NextButton>
 
         <SliderJS rootId={id} />
       </div>

@@ -2,12 +2,12 @@ import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
-import { useEffect } from "preact/hooks";
-import { signal } from "@preact/signals";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+import Image from "apps/website/components/Image.tsx";
 
 export interface Props {
   benifits?: {
-    icon: AvailableIcons;
+    icon: ImageWidget;
     title?: string;
     description?: string;
   }[];
@@ -41,32 +41,30 @@ export default function BenefitsCarousel({
       {/* Mobile Carousel */}
       <div id={id}>
         <Slider
-          class={`md:hidden carousel carousel-center w-screen gap-6 text-center p-[20px]`}
+          class={`lg:hidden carousel carousel-center w-screen gap-6 text-center py-[16px] px-[8px]`}
           style={{ "background-color": background }}
         >
           {benifits.map((benifit, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item flex justify-center items-start gap-[8px] w-screen"
+              class="carousel-item flex justify-center items-center gap-[16px] w-screen"
             >
-              <Icon
-                id={benifit?.icon}
-                width={40}
-                height={40}
-                strokeWidth={0.01}
-                fill={color}
+              <img
+                src={benifit.icon}
+                alt={benifit.icon || ""}
+                className="object-cover max-w-[40px] max-h-[40px]"
               />
               <div class="flex flex-col items-start">
-                <strong 
-                  class={`text-sm flex justify-center items-center text-[${color}]`}
-                  style={{ "color": color }}
+                <strong
+                  class={`text-[18px] leading-[120%] tracking-[0.9] flex justify-center items-center text-[${color}]`}
+                  style={{ color: color }}
                 >
                   {benifit?.title}
                 </strong>
-                <span 
-                  class={`text-sm flex justify-center items-center text-[${color}]`}
-                  style={{ "color": color }}
-                  >
+                <span
+                  class={`text-[16px] leading-[120%] tracking-[0.8] uppercase flex justify-center items-center text-[${color}]`}
+                  style={{ color: color }}
+                >
                   {benifit?.description}
                 </span>
               </div>
@@ -79,23 +77,25 @@ export default function BenefitsCarousel({
 
       {/* Desktop Flex */}
       <div
-        class={`hidden md:flex justify-center carousel carousel-center w-full gap-[50px] text-center p-[27px]`}
+        class={`hidden lg:flex justify-evenly gap-[20px] carousel carousel-center w-full text-center px-[20px] py-[32px]`}
         style={{ "background-color": background }}
       >
-        {benifits.map((benifit, index) => (
-          <div class="carousel-item flex justify-center items-start gap-[8px] w-fit">
-            <Icon
-              id={benifit?.icon}
-              width={40}
-              height={40}
-              strokeWidth={0.01}
-              fill="currentColor"
+        {benifits.map((benifit) => (
+          <div class="carousel-item flex justify-center items-center gap-[16px] w-fit">
+            <img
+              src={benifit.icon}
+              alt={benifit.icon || ""}
+              className="object-cover max-w-[40px] max-h-[40px]"
             />
             <div class="flex flex-col items-start">
-              <strong class={`text-sm flex justify-center items-center text-[${color}]`}>
+              <strong
+                class={`text-[18px] leading-[120%] tracking-[0.9] flex justify-center font-bold items-center text-[${color}]`}
+              >
                 {benifit?.title}
               </strong>
-              <span class={`text-sm flex justify-center items-center text-[${color}]`}>
+              <span
+                class={`text-sm leading-[120%] tracking-[0.8] uppercase flex justify-center items-center text-[${color}]`}
+              >
                 {benifit?.description}
               </span>
             </div>

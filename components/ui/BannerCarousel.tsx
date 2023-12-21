@@ -120,17 +120,17 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
         />
       </Picture>
       {action && (
-        <div class="absolute h-min top-0 bottom-0 m-auto left-0 sm:right-auto sm:left-[12%] max-h-min w-screen max-w-[250px] flex flex-col p-6">
-          <span class="text-[#FFF] text-[32px] font-normal leading-8">
+        <div class="absolute h-min top-0 bottom-0 m-auto left-0 sm:right-auto sm:left-[12%] max-h-min w-screen max-w-[284px] flex flex-col p-6">
+          <span class="text-[#FFF] text-[32px] sm:text-[60px] font-normal leading-[100%]">
             {action.title}
           </span>
-          <span class="text-[#FFF] font-bold font-fraunces italic text-[32px] leading-8">
+          <span class="text-[#FFF] font-bold font-fraunces italic text-[32px] sm:text-[60px] leading-[100%]">
             {action.highlight}
           </span>
-          <span class="text-[#FFF] text-[20px] leading-6 font-normal mt-[24px] mb-[32px]">
+          <span class="text-[#FFF] text-[20px] sm:text-[32px] sm:leading-[130%] leading-6 font-normal mt-[30px] mb-[60px]">
             {action.subTitle}
           </span>
-          <Button class="bg-transparent text-[#fff] text-sm font-normal tracking-[1px] border-white-lily hover:bg-white-lily hover:text-cherry-pop hover:border-white-lily hover:font-bold">
+          <Button class="bg-white-lily rounded-full border-none text-deep-beauty text-sm uppercase font-bold tracking-[1px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none">
             {action.label}
           </Button>
         </div>
@@ -157,12 +157,7 @@ function Dots({ images, interval = 0 }: Props) {
         {images?.map((_, index) => (
           <li class="carousel-item">
             <Slider.Dot index={index}>
-              <div class="py-5">
-                <div
-                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-base-100 from-[length:var(--dot-progress)] to-[rgba(255,255,255,0.4)] to-[length:var(--dot-progress)]"
-                  style={{ animationDuration: `${interval}s` }}
-                />
-              </div>
+              <></>
             </Slider.Dot>
           </li>
         ))}
@@ -174,8 +169,8 @@ function Dots({ images, interval = 0 }: Props) {
 function Buttons() {
   return (
     <>
-      <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
-        <Slider.PrevButton class="btn btn-circle glass">
+      <div class="hidden lg:flex items-center justify-center z-10 col-start-1 row-start-2">
+        <Slider.PrevButton class="btn btn-circle bg-transparent border-0">
           <Icon
             class="text-base-100"
             size={24}
@@ -184,8 +179,8 @@ function Buttons() {
           />
         </Slider.PrevButton>
       </div>
-      <div class="flex items-center justify-center z-10 col-start-3 row-start-2">
-        <Slider.NextButton class="btn btn-circle glass">
+      <div class="hidden lg:flex items-center justify-center z-10 col-start-3 row-start-2">
+        <Slider.NextButton class="btn btn-circle bg-transparent border-0">
           <Icon
             class="text-base-100"
             size={24}
