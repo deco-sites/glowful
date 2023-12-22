@@ -1,49 +1,35 @@
-import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
-export interface SocialItem {
-  label:
-    | "Discord"
-    | "Facebook"
-    | "Instagram"
-    | "Linkedin"
-    | "Tiktok"
-    | "Twitter";
-  link: string;
+interface Props {
+  images?: {
+    image?: ImageWidget;
+    alt?: string;
+    link?: string;
+  }[];
 }
 
-export default function Social({
-  content,
-  vertical = false,
-}: {
-  content?: { title?: string; items?: SocialItem[] };
-  vertical?: boolean;
-}) {
+export default function Social({ images }: Props) {
   return (
     <>
-      {content && content.items && content.items.length > 0 && (
+      {images && images.length > 0 && (
         <div class="flex flex-col gap-4">
-          {content.title && <h3 class="text-lg">{content.title}</h3>}
-          <ul
-            class={`flex gap-4 ${
-              vertical ? "lg:flex-col lg:items-start" : "flex-wrap items-center"
-            }`}
-          >
-            {content.items.map((item) => {
+          <ul class={`flex gap-[32px] flex-wrap items-center`}>
+            {images.map((item) => {
               return (
                 <li>
                   <a
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${item.label} Logo`}
+                    aria-label={`${item.alt} Logo`}
                     class="flex gap-2 items-center"
                   >
-                    <span class="block p-1 rounded-full">
-                      <Icon size={24} id={item.label} class="text-cherry-pop" />
-                    </span>
-                    {vertical && (
-                      <div class="text-sm hidden lg:block">{item.label}</div>
-                    )}
+                    <img
+                      loading="lazy"
+                      src={item.image}
+                      alt={item.alt}
+                      class="object-contain w-full h-full max-w-[27px] max-h-[27px]"
+                    />
                   </a>
                 </li>
               );

@@ -100,7 +100,7 @@ export default function Newsletter(props: Props) {
         style={{ backgroundImage: `url("${backgroundMobile}")` }}
       >
         <div
-          class={`container max-w-[1200px] flex flex-col rounded justify-between lg:items-end lg:flex-row px-[24px] py-[60px] gap-[40px] lg:py-[90px] lg:gap-[70px] `}
+          class={`container max-w-[1200px] flex flex-col rounded justify-between lg:items-end lg:flex-row px-[24px] py-[60px] gap-[40px] lg:py-[90px] lg:gap-[70px]`}
         >
           {headerLayout}
           {formLayout}
