@@ -3,15 +3,22 @@ import type { ComponentChildren, JSX } from "preact";
 function Dot({
   index,
   children,
+  bgWhite = true,
 }: {
   index: number;
   children: ComponentChildren;
+  bgWhite?: boolean;
 }) {
   return (
     <button
       data-dot={index}
       aria-label={`go to slider item ${index}`}
-      class="focus:outline-none group w-[42px] h-[8px] rounded  bg-white-lily opacity-60 disabled:w-[84px] disabled:bg-white-lily disabled:opacity-100 transition-all"
+      class={`focus:outline-none group w-[42px] h-[8px] rounded opacity-60 disabled:w-[84px]  disabled:opacity-100 transition-all
+      ${
+        bgWhite
+          ? "bg-[#FFFFFF] disabled:bg-[#FFFFFF]"
+          : "bg-[#E4E4E4] disabled:bg-[#CE0F69]"
+      }`}
     >
       {children}
     </button>

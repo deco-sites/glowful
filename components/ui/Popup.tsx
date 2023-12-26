@@ -1,5 +1,5 @@
 import Icon from "$store/components/ui/Icon.tsx";
-import { useState, useEffect, useRef } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { useUI } from "$store/sdk/useUI.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
@@ -17,12 +17,22 @@ export interface Props {
   form: {
     firstInput: string;
     secondInput: string;
+
     /**
      * @format html
      */
     textHelper: string;
+
     button?: {
       text: string;
+      /**
+       * @format color
+       */
+      backgroundColor: string;
+      /**
+       * @format color
+       */
+      textColor: string;
     };
   };
   image: {
@@ -149,10 +159,10 @@ export default function Popup({
               <Icon id="Plus" size={32} strokeWidth={1} />
             </div>
 
-            <div class="pt-[60px] flex flex-col gap-[16px] lg:max-w-[315px] lg:m-[90px] lg:pt-0">
+            <div class="pt-[30px] flex flex-col gap-[16px] lg:max-w-[315px] lg:m-[90px] lg:pt-0">
               {title && (
                 <div
-                  class="textHighlight popup text-center w-full pl-4"
+                  class="textHighlight popup text-center w-full pr-4"
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
               )}
@@ -168,12 +178,12 @@ export default function Popup({
                 <form action="/" class="flex flex-col gap-4 ">
                   <div class="flex flex-col gap-4">
                     <input
-                      class="input input-bordered lg:w-80 bg-transparent border-1 border-[#101820] placeholder:text-[#101820] text-[16px] font-redhat"
+                      class="input input-bordered lg:w-80 bg-transparent border-1 border-[#101820] placeholder:text-[#878787] text-[16px] font-redhat"
                       type="text"
                       placeholder={form.firstInput}
                     />
                     <input
-                      class="input input-bordered lg:w-80 bg-transparent border-1 border-[#101820] placeholder:text-[#101820] text-[16px] font-redhat"
+                      class="input input-bordered lg:w-80 bg-transparent border-1 border-[#101820] placeholder:text-[#878787] text-[16px] font-redhat"
                       type="text"
                       placeholder={form.secondInput}
                     />
@@ -185,17 +195,28 @@ export default function Popup({
                         />
 
                         <div
-                          class="text-sm text-[#101820] lg:text-[12px] lg:text-[14px]"
+                          class="text-[#101820] text-[12px] lg:text-[14px]"
                           dangerouslySetInnerHTML={{ __html: form.textHelper }}
                         />
                       </div>
                     )}
-                    <button
-                      class={`btn px-[40px] mt-[14px] border-0 text-white-lily text-uppercase text-[14px] lg:text-[16px] tracking-[1px] font-medium bg-[#CE0F69]`}
-                      type="submit"
-                    >
-                      {form?.button?.text}
-                    </button>
+
+                    {form?.button?.text && (
+                      <button
+                        class={`btn px-[40px] mt-[14px] rounded-full border-0 uppercase text-[16px] lg:text-[18px] tracking-[1px] font-bold`}
+                        style={{
+                          background: form?.button?.backgroundColor
+                            ? form?.button?.backgroundColor
+                            : "#101820",
+                          color: form?.button?.textColor
+                            ? form?.button?.textColor
+                            : "#FFFFFF",
+                        }}
+                        type="submit"
+                      >
+                        {form?.button?.text}
+                      </button>
+                    )}
                   </div>
                 </form>
               )}

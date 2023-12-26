@@ -4,6 +4,26 @@
 
 @layer base {
 
+  .textHighlightPopup strong {
+    font-family: Fraunces;
+    font-size: 54px;
+    background: linear-gradient(90deg, #D62C79 0.31%, #E4A1AE 60.5%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 110%;
+    padding-right: 12px;
+  }
+
+  @media (min-width: 1024px) {
+    .textHighlightPopup strong {
+      font-size: 64px;
+    }
+  }
+
   .textHighlight strong {
     font-family: Fraunces;
     font-size: 36px;
