@@ -43,9 +43,10 @@ function TabbedProductShelf({
 }: Props) {
   const id = useId();
   const platform = usePlatform();
-  const ti = typeof tabIndex === "number"
-    ? Math.min(Math.max(tabIndex, 0), tabs.length)
-    : 0;
+  const ti =
+    typeof tabIndex === "number"
+      ? Math.min(Math.max(tabIndex, 0), tabs.length)
+      : 0;
   const { products } = tabs[ti];
 
   if (!products || products.length === 0) {
@@ -82,7 +83,7 @@ function TabbedProductShelf({
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              class="carousel-item w-[296px] lg:w-[360px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -116,7 +117,7 @@ function TabbedProductShelf({
               items: products.map((product) =>
                 mapProductToAnalyticsItem({
                   product,
-                  ...(useOffer(product.offers)),
+                  ...useOffer(product.offers),
                 })
               ),
             },

@@ -9,6 +9,7 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import FlatDiscount from "$store/components/product/FlatDiscount.tsx";
+import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 
 export interface Layout {
   basics?: {
@@ -73,11 +74,13 @@ function ProductCard({
   const id = `product-card-${productID}`;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
-  const description = product.description || isVariantOf?.description;
   const [front, back] = isVariantOf?.image ?? [];
   const { listPrice, price, installments } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
+  const description = JSON.parse(
+    product.description || isVariantOf?.description || "{}"
+  );
 
   const l = layout;
   const align =
@@ -98,7 +101,7 @@ function ProductCard({
     <a
       href={url && relative(url)}
       aria-label="view product"
-      class="btn btn-block"
+      class="w-full block bg-white-lily rounded-full px-[32px] py-[14px] border-none text-deep-beauty text-[16px] uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300"
     >
       {l?.basics?.ctaText || "Ver produto"}
     </a>
@@ -134,6 +137,10 @@ function ProductCard({
           },
         }}
       />
+
+      {/* Image Mobile */}
+
+      {/* Image Desktop */}
       <figure
         class="relative overflow-hidden"
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
@@ -160,23 +167,28 @@ function ProductCard({
             />
           )}
         </div>
+
         {/* Product Images */}
-        <a
-          href={url && relative(url)}
-          aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-full"
-        >
+        <div class="grid grid-cols-1 grid-rows-1 w-full relative">
           <FlatDiscount
             listPrice={listPrice ?? 0}
             price={price ?? 0}
             absolutePosition
           />
+
+          {/* TODO - Get flag Shopify */}
+          <div
+            className={`flex justify-center items-center px-[20px] py-[5px] text-[#101820] bg-white-lily text-center text-[14px] font-semibold leading-[130%] tracking-[1px] absolute top-[20px] left-[20px] z-10 rounded-[8px]`}
+          >
+            NOVO
+          </div>
+
           <Image
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded w-full ${
+            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full ${
               l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
@@ -188,18 +200,40 @@ function ProductCard({
           />
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
-            <Image
-              src={back?.url ?? front.url!}
-              alt={back?.alternateName ?? front.alternateName}
-              width={WIDTH}
-              height={HEIGHT}
-              class="bg-base-100 col-span-full row-span-full transition-opacity rounded w-full opacity-0 lg:group-hover:opacity-100"
-              sizes="(max-width: 640px) 50vw, 20vw"
-              loading="lazy"
-              decoding="async"
-            />
+            <>
+              <Image
+                src={back?.url ?? front.url!}
+                alt={back?.alternateName ?? front.alternateName}
+                width={WIDTH}
+                height={HEIGHT}
+                class="bg-base-100 col-span-full row-span-full transition-opacity rounded-[15px] w-full opacity-0 lg:group-hover:opacity-100"
+                sizes="(max-width: 640px) 50vw, 20vw"
+                loading="lazy"
+                decoding="async"
+              />
+
+              {!l?.hide?.cta ? (
+                <div
+                  class={`lg:block hidden absolute bottom-[32px] px-[32px] w-full h-fit opacity-0 group-hover:opacity-100 transition-all duration-300 ${
+                    l?.onMouseOver?.showCta ? "lg:hidden" : ""
+                  }`}
+                >
+                  <AddToCartButtonShopify
+                    url={url || ""}
+                    name={name}
+                    productID={productID}
+                    productGroupID={productGroupID}
+                    price={price}
+                    variant="cta"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+            </>
           )}
-        </a>
+        </div>
+
         <figcaption
           class={`
           absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
@@ -217,8 +251,9 @@ function ProductCard({
           {l?.onMouseOver?.showCta && cta}
         </figcaption>
       </figure>
+
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col p-2 py-[16px] gap-[24px]">
+      <div class="flex-auto flex flex-col pt-[24px]">
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
@@ -237,56 +272,70 @@ function ProductCard({
           </>
         )}
 
-        {l?.hide?.productName && l?.hide?.productDescription ? (
-          ""
-        ) : (
-          <div class="flex flex-col gap-0">
+        <div class="flex justify-between items-center">
+          <a
+            class="w-full flex flex-col gap-[8px] max-w-[256px] "
+            href={url && relative(url)}
+            aria-label="view product"
+          >
+            {/* Category */}
+            <p class="text-[14px] lg:text-[16px] leading-[13px] font-semibold text-[#101820]">
+              Beleza e nutrição
+            </p>
+
+            {/* Product Name */}
             {l?.hide?.productName ? (
               ""
             ) : (
               <h2
-                class="truncate text-base lg:text-lg text-base-content"
+                class="truncate text-[18px] lg:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
                 dangerouslySetInnerHTML={{ __html: name ?? "" }}
               />
             )}
-            {l?.hide?.productDescription ? (
-              ""
-            ) : (
+          </a>
+
+          {/* Prices */}
+          {l?.hide?.allPrices ? (
+            ""
+          ) : (
+            <div class="flex flex-col gap-2">
               <div
-                class="truncate text-sm lg:text-sm text-neutral"
-                dangerouslySetInnerHTML={{ __html: description ?? "" }}
-              />
-            )}
-          </div>
-        )}
-        {l?.hide?.allPrices ? (
+                class={`flex flex-col gap-2 items-end w-fit ${
+                  l?.basics?.oldPriceSize === "Normal"
+                    ? ""
+                    : "flex-row lg:gap-2"
+                } ${align === "center" ? "justify-center" : "justify-start"}`}
+              >
+                <div
+                  class={`text-[14px] font-normal leading-[13px] uppercase line-through text-[#101820] ${
+                    l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                  }`}
+                >
+                  {formatPrice(listPrice, offers?.priceCurrency)}
+                </div>
+                <div class="lg:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
+                  {formatPrice(price, offers?.priceCurrency)}
+                </div>
+              </div>
+              {l?.hide?.installments ? (
+                ""
+              ) : (
+                <div class="text-[14px] font-normal leading-[13px] uppercase line-through text-[#101820] ">
+                  ou {installments}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Description */}
+        {l?.hide?.productDescription ? (
           ""
         ) : (
-          <div class="flex flex-col gap-2">
-            <div
-              class={`flex gap-2 items-center ${
-                l?.basics?.oldPriceSize === "Normal" ? "" : "flex-row lg:gap-2"
-              } ${align === "center" ? "justify-center" : "justify-start"}`}
-            >
-              <div
-                class={`line-through text-deep-beauty text-[12px] ${
-                  l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                }`}
-              >
-                {formatPrice(listPrice, offers?.priceCurrency)}
-              </div>
-              <div class="text-deep-beauty text-base">
-                {formatPrice(price, offers?.priceCurrency)}
-              </div>
-            </div>
-            {l?.hide?.installments ? (
-              ""
-            ) : (
-              <div class="text-base-300 text-sm lg:text-base truncate">
-                ou {installments}
-              </div>
-            )}
-          </div>
+          <div
+            class="mt-[16px] text-[14px] lg:text-[16px] font-light leading-[150%] text-[#101820]"
+            dangerouslySetInnerHTML={{ __html: description.description ?? "" }}
+          />
         )}
 
         {/* SKU Selector */}
@@ -304,18 +353,6 @@ function ProductCard({
               </ul>
             )}
           </>
-        )}
-
-        {!l?.hide?.cta ? (
-          <div
-            class={`flex-auto flex items-end ${
-              l?.onMouseOver?.showCta ? "lg:hidden" : ""
-            }`}
-          >
-            {cta}
-          </div>
-        ) : (
-          ""
         )}
       </div>
     </div>

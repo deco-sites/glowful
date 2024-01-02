@@ -20,9 +20,9 @@ function FlagDiscount({
 
     return (
       <span
-        className={`flex justify-center items-center h-6 p-2 lg:h-8 lg:p-3 text-center text-[14px] text-deep-beauty font-regular ${
-          absolutePosition ? "absolute top-2 right-2 lg:top-4 lg:right-5" : ""
-        } z-10  rounded`}
+        className={`flex justify-center items-center px-[20px] py-[5px] text-white-lily bg-[#CE0F69] text-center text-[14px] font-semibold leading-[130%] tracking-[1px] ${
+          absolutePosition ? "absolute top-[20px] right-[20px]" : ""
+        } z-10 rounded-[8px]`}
       >
         {descountPercentage}% OFF
       </span>

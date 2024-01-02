@@ -21,7 +21,7 @@ export default function NewProducts({
 }: Props) {
   return (
     <div class="lg:bg-[#F4F4F4]">
-      <div class="lg:mr-[5%] card lg:card-side rounded grid grid-cols-1 justify-between lg:grid-cols-[40%_59%] justify-items-center ">
+      <div class="lg:mr-[5%] card lg:card-side rounded grid justify-between gridBestSellers justify-items-center">
         <figure class="w-full lg:h-full h-[360px] relative lg:flex items-center justify-center">
           <img
             class="lg:block hidden w-full h-full object-cover"

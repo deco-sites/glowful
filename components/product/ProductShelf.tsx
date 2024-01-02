@@ -114,7 +114,7 @@ function ProductShelf({
               <>
                 <Slider.Item
                   index={index}
-                  class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+                  class="carousel-item w-[296px] lg:w-[360px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
                 >
                   <ProductCard
                     product={product}
@@ -165,7 +165,7 @@ function ProductShelf({
             {products?.map((product, index) => (
               <Slider.Item
                 index={index + 1}
-                class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0 "
+                class="carousel-item w-[296px] lg:w-[360px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0 "
               >
                 <ProductCard
                   product={product}
@@ -222,7 +222,7 @@ function ProductShelf({
       ) : null}
       {layout?.directionProductsMobile === "Column"
         ? products?.map((product, index) => (
-            <div class="flex flex-col w-[270px] sm:w-[292px]">
+            <div class="flex flex-col w-[296px] lg:w-[360px]">
               <ProductCard
                 product={product}
                 itemListName={title}

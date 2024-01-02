@@ -12,6 +12,7 @@ export interface Props {
   discount: number;
   url: string;
   onAddItem: () => Promise<void>;
+  variant?: string;
 }
 
 const useAddToCart = ({
@@ -64,7 +65,15 @@ const useAddToCart = ({
 export default function AddToCartButton(props: Props) {
   const btnProps = useAddToCart(props);
 
-  return (
+  return props.variant == "cta" ? (
+    <Button
+      {...btnProps}
+      data-deco="add-to-cart"
+      class={`w-full block bg-white-lily rounded-full px-[32px] py-[14px] border-none text-deep-beauty text-[16px] uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300`}
+    >
+      Adicionar ao Carrinho
+    </Button>
+  ) : (
     <Button
       {...btnProps}
       data-deco="add-to-cart"

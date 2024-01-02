@@ -130,7 +130,7 @@ function CategoryList(props: Props) {
               >
                 <a
                   href={href}
-                  class="flex flex-col gap-4 w-[210px] h-[270px] lg:w-[350px] lg:h-auto"
+                  class="flex flex-col gap-4 w-[296px] lg:w-[360px] lg:h-auto"
                 >
                   {imageDesktop && imageMobile && (
                     <figure>
