@@ -1,10 +1,9 @@
-import Avatar from "$store/components/ui/Avatar.tsx";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
-import { usePartial } from "apps/website/hooks/usePartial.ts";
+// import { usePartialSection } from "deco/hooks/usePartialSection.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 
-interface Props {
+export interface Props {
   product: Product;
 }
 
@@ -23,17 +22,15 @@ function VariantSelector({ product }: Props) {
           </span>
           <ul class="flex flex-row flex-wrap gap-[10px]">
             {Object.entries(possibilities[name]).map(([value, link]) => {
-              const partial = usePartial({ href: link });
-
               return (
                 <li>
-                  <button
+                  <a
+                    href={link}
                     class="px-[19px] flex items-center justify-center border leading-normal hover:bg-cherry-pop hover:text-white-lily hover:border-cherry-pop active:bg-cherry-pop active:text-white-lily focus:bg-cherry-pop focus:text-white-lily focus:border-cherry-pop transition-colors"
                     onClick={() => (quantityProduct.value = 1)}
-                    {...partial}
                   >
                     {value}
-                  </button>
+                  </a>
                 </li>
               );
             })}

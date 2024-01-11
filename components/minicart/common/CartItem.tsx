@@ -31,50 +31,86 @@ export interface Props {
   itemToAnalyticsItem: (index: number) => AnalyticsItem | null | undefined;
 }
 
-function CartItem(
-  {
-    item,
-    index,
-    locale,
-    currency,
-    onUpdateQuantity,
-    itemToAnalyticsItem,
-  }: Props,
-) {
-  const { image, name, price: { sale, list }, quantity } = item;
+function CartItem({
+  item,
+  index,
+  locale,
+  currency,
+  onUpdateQuantity,
+  itemToAnalyticsItem,
+}: Props) {
+  const {
+    image,
+    name,
+    price: { sale, list },
+    quantity,
+  } = item;
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
 
   const withLoading = useCallback(
-    <A,>(cb: (args: A) => Promise<void>) => async (e: A) => {
-      try {
-        setLoading(true);
-        await cb(e);
-      } finally {
-        setLoading(false);
-      }
-    },
-    [],
+    <A,>(cb: (args: A) => Promise<void>) =>
+      async (e: A) => {
+        try {
+          setLoading(true);
+          await cb(e);
+        } finally {
+          setLoading(false);
+        }
+      },
+    []
   );
 
   return (
     <div
-      class="grid grid-rows-1 gap-2"
+      class="grid grid-rows-1 gap-[14px] lg:gap-[32px]"
       style={{
         gridTemplateColumns: "auto 1fr",
       }}
     >
       <Image
         {...image}
-        style={{ aspectRatio: "108 / 150" }}
-        width={108}
+        style={{ aspectRatio: "150 / 150" }}
+        width={150}
         height={150}
         class="h-full object-contain"
       />
 
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-[16px]">
         <div class="flex justify-between items-center">
-          <span>{name}</span>
+          <span class="text-[#101820] uppercase font-semibold leading-[130%]">
+            {name}
+          </span>
+        </div>
+        <div class="flex items-center gap-[8px]">
+          <span class="text-[#101820] text-[16px] uppercase leading-[13px] line-through">
+            {formatPrice(list, currency, locale)}
+          </span>
+          <span class="text-cherry-pop text-[16px] font-bold uppercase leading-[13px]">
+            {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
+          </span>
+        </div>
+
+        <div class="flex items-center gap-[16px] lg:gap-[20px]">
+          <QuantitySelector
+            disabled={loading || isGift}
+            quantity={quantity}
+            onChange={withLoading(async (quantity) => {
+              const analyticsItem = itemToAnalyticsItem(index);
+              const diff = quantity - item.quantity;
+
+              await onUpdateQuantity(quantity, index);
+
+              if (analyticsItem) {
+                analyticsItem.quantity = diff;
+
+                sendEvent({
+                  name: diff < 0 ? "remove_from_cart" : "add_to_cart",
+                  params: { items: [analyticsItem] },
+                });
+              }
+            })}
+          />
           <Button
             disabled={loading || isGift}
             loading={loading}
@@ -84,43 +120,16 @@ function CartItem(
 
               await onUpdateQuantity(0, index);
 
-              analyticsItem && sendEvent({
-                name: "remove_from_cart",
-                params: { items: [analyticsItem] },
-              });
+              analyticsItem &&
+                sendEvent({
+                  name: "remove_from_cart",
+                  params: { items: [analyticsItem] },
+                });
             })}
           >
-            <Icon id="Trash" size={24} />
+            <Icon id="Trash" size={20} class="text-[#878787]" />
           </Button>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="line-through text-base-300 text-sm">
-            {formatPrice(list, currency, locale)}
-          </span>
-          <span class="text-sm text-secondary">
-            {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
-          </span>
-        </div>
-
-        <QuantitySelector
-          disabled={loading || isGift}
-          quantity={quantity}
-          onChange={withLoading(async (quantity) => {
-            const analyticsItem = itemToAnalyticsItem(index);
-            const diff = quantity - item.quantity;
-
-            await onUpdateQuantity(quantity, index);
-
-            if (analyticsItem) {
-              analyticsItem.quantity = diff;
-
-              sendEvent({
-                name: diff < 0 ? "remove_from_cart" : "add_to_cart",
-                params: { items: [analyticsItem] },
-              });
-            }
-          })}
-        />
       </div>
     </div>
   );

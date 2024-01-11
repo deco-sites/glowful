@@ -163,7 +163,7 @@ function CategoryList(props: Props) {
                   {buttonText && (
                     <a
                       href={href}
-                      class="hidden lg:block w-fit bg-cherry-pop rounded-full border-none text-white-lily text-sm uppercase px-[60px] py-[18px] font-bold tracking-[1px] hover:bg-white-lily hover:text-deep-beauty hover:border-none transition-all duration-300"
+                      class="hidden lg:block w-fit bg-[#FFF] rounded-full border-none text-[#000] text-sm uppercase px-[60px] py-[18px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"
                     >
                       {buttonText}
                     </a>

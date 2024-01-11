@@ -15,6 +15,7 @@ export interface Props {
    * @format color
    */
   color: string;
+  layoutCenter?: boolean;
   image: {
     /** @description Image for big screens */
     desktop: ImageWidget;
@@ -25,11 +26,26 @@ export interface Props {
   };
 }
 
-function PluralBanner({ title, description, link, color, image }: Props) {
+function PluralBanner({
+  title,
+  description,
+  link,
+  color,
+  image,
+  layoutCenter,
+}: Props) {
   return title && description ? (
     <div class="relative flex">
-      <div class="container w-full flex justify-center lg:justify-start items-center z-[1] pt-[63px] pb-[240px] lg:py-[70px] ">
-        <div class="w-full lg:max-w-[380px] px-[24px] text-end lg:text-center flex flex-col items-end lg:items-center">
+      <div
+        class={`${
+          layoutCenter ? "lg:justify-center" : "lg:justify-start"
+        } container w-full flex justify-center items-center  z-[1] pt-[63px] pb-[240px] lg:py-[70px]`}
+      >
+        <div
+          class={`${
+            layoutCenter ? "lg:max-w-[600px]" : "lg:max-w-[380px]" 
+          } w-full px-[24px] text-end lg:text-center flex flex-col items-end lg:items-center`}
+        >
           {title && (
             <div
               class="card-title text-[32px] lg:text-[40px] font-semibold leading-[130%] textWithStrong "

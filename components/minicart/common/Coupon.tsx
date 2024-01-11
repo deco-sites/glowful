@@ -11,55 +11,55 @@ function Coupon({ coupon, onAddCoupon }: Props) {
   const [display, setDisplay] = useState(false);
 
   return (
-    <div class="flex justify-between items-center px-4">
-      <span class="text-sm">Cupom de desconto</span>
-      {display
-        ? (
-          <form
-            class="join"
-            onSubmit={async (e) => {
-              e.preventDefault();
-              const { currentTarget: { elements } } = e;
+    <div class="flex justify-between items-center px-[32px]">
+      <span class="text-[14px] lg:text-[16px]">Cupom de desconto</span>
+      {display ? (
+        <form
+          class="join w-[190px] h-[39px]"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const {
+              currentTarget: { elements },
+            } = e;
 
-              const input = elements.namedItem("coupon") as HTMLInputElement;
-              const text = input.value;
+            const input = elements.namedItem("coupon") as HTMLInputElement;
+            const text = input.value;
 
-              if (!text) return;
+            if (!text) return;
 
-              try {
-                setLoading(true);
-                await onAddCoupon(text);
-                setDisplay(false);
-              } finally {
-                setLoading(false);
-              }
-            }}
-          >
-            <input
-              name="coupon"
-              class="input join-item"
-              type="text"
-              value={coupon ?? ""}
-              placeholder={"Cupom"}
-            />
-            <Button
-              class="join-item"
-              type="submit"
-              htmlFor="coupon"
-              loading={loading}
-            >
-              Ok
-            </Button>
-          </form>
-        )
-        : (
+            try {
+              setLoading(true);
+              await onAddCoupon(text);
+              setDisplay(false);
+            } finally {
+              setLoading(false);
+            }
+          }}
+        >
+          <input
+            name="coupon"
+            class="input join-item"
+            type="text"
+            value={coupon ?? ""}
+            placeholder={"Cupom"}
+          />
           <Button
-            class="btn-ghost underline font-normal"
-            onClick={() => setDisplay(true)}
+            class="join-item"
+            type="submit"
+            htmlFor="coupon"
+            loading={loading}
           >
-            {coupon || "Adicionar"}
+            Ok
           </Button>
-        )}
+        </form>
+      ) : (
+        <Button
+          class="btn-ghost underline font-normal"
+          onClick={() => setDisplay(true)}
+        >
+          {coupon || "Adicionar"}
+        </Button>
+      )}
     </div>
   );
 }

@@ -40,15 +40,15 @@ export default function Newsletter(props: Props) {
   };
 
   const headerLayout = (
-    <div class="flex flex-col gap-[24px] w-full">
+    <div class="flex flex-col gap-[24px] lg:gap-[32px] w-full">
       <h3
-        class="text-[26px] font-frances font-normal leading-[120%] text-deep-beauty"
+        class="text-[26px] lg:text-[40px] font-fraunces font-normal leading-[50%] text-deep-beauty"
         style={{ color: color ? color : "#101820" }}
       >
         {title}
       </h3>
       <p
-        class="leading-[150%] text-deep-beauty"
+        class="lg:text-[20px] leading-[150%] text-deep-beauty"
         style={{ color: color ? color : "#101820" }}
       >
         {description}
@@ -59,9 +59,7 @@ export default function Newsletter(props: Props) {
   const formLayout = form && (
     <form action="/" class="flex gap-[8px] w-full">
       <input
-        class={`w-full border-b bg-transparent border-deep-beauty  pl-[8px] placeholder:text-[${
-          color ? color : "#101820"
-        }] text-[16px] text-deep-beauty`}
+        class={`w-full border-b bg-transparent border-deep-beauty pl-[8px] placeholder:text-[#101820] text-[16px] text-deep-beauty`}
         type="text"
         placeholder={form.placeholder}
         style={{

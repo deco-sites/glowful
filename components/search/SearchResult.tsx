@@ -7,6 +7,7 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
+import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 
 export interface Layout {
   /**
@@ -43,23 +44,26 @@ function Result({
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
+  console.log(page);
+
   return (
     <>
       <div class="container px-4 sm:py-10">
-        <SearchControls
-          sortOptions={sortOptions}
-          filters={filters}
-          breadcrumb={breadcrumb}
-          displayFilter={layout?.variant === "drawer"}
-        />
-
-        <div class="flex flex-row">
+        <div class="flex flex-col sm:flex-row gap-[50px]">
           {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[250px]">
+            <aside class="hidden sm:block w-min min-w-[270px]">
+              <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
+
               <Filters filters={filters} />
             </aside>
           )}
-          <div class="flex-grow">
+          <div class="flex flex-col flex-grow">
+            <SearchControls
+              sortOptions={sortOptions}
+              filters={filters}
+              displayFilter={layout?.variant === "drawer"}
+            />
+
             <ProductGallery
               products={products}
               offset={offset}
@@ -101,7 +105,7 @@ function Result({
             item_list_id: "",
             items: page.products?.map((product, index) =>
               mapProductToAnalyticsItem({
-                ...(useOffer(product.offers)),
+                ...useOffer(product.offers),
                 index: offset + index,
                 product,
                 breadcrumbList: page.breadcrumb,

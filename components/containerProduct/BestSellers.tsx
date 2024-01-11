@@ -24,7 +24,7 @@ export default function BestSellers({
           </h3>
           <a
             href={subTitle.url}
-            class="text-[#878787] text-[16px] lg:text-[22px] font-semibold lg:text-center"
+            class="text-[#878787] text-[16px] lg:text-[22px] font-semibold lg:text-center hover:underline underline-offset-2 transition-all duration-300"
           >
             {subTitle.text}
           </a>

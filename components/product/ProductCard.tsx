@@ -101,16 +101,18 @@ function ProductCard({
     <a
       href={url && relative(url)}
       aria-label="view product"
-      class="w-full block bg-white-lily rounded-full px-[32px] py-[14px] border-none text-deep-beauty text-[16px] uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300"
+      class="w-full block bg-white-lily rounded-full px-[32px] py-[14px] border-none text-deep-beauty text-[16px] uppercase text-center font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300"
     >
       {l?.basics?.ctaText || "Ver produto"}
     </a>
   );
 
+  console.log(description);
+
   return (
     <div
       id={id}
-      class={`card card-compact group w-full ${
+      class={`card card-compact group w-full max-w-[360px] min-w-[290px] ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -236,7 +238,7 @@ function ProductCard({
 
         <figcaption
           class={`
-          absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
+          absolute bottom-1 left-0 justify-end w-full flex flex-col gap-3 p-2 ${
             l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
               ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
               : "lg:hidden"
@@ -280,7 +282,7 @@ function ProductCard({
           >
             {/* Category */}
             <p class="text-[14px] lg:text-[16px] leading-[13px] font-semibold text-[#101820]">
-              Beleza e nutrição
+              {description.category}
             </p>
 
             {/* Product Name */}
