@@ -40,9 +40,6 @@ function FiltersMobile({ filters }: Props) {
         filtersSelecteds.filter((selectedUrl) => selectedUrl !== url)
       );
     }
-
-    console.log("FILTERS", filtersSelecteds);
-    console.log("URL", url);
   };
 
   const handleApplyFilters = () => {
@@ -113,8 +110,6 @@ function FiltersMobile({ filters }: Props) {
                     });
 
                     handleClick(item.url);
-
-                    console.log(item);
                   }}
                   href={item.url}
                   class="flex items-center gap-2"
