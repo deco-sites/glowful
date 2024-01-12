@@ -40,6 +40,9 @@ function FiltersMobile({ filters }: Props) {
         filtersSelecteds.filter((selectedUrl) => selectedUrl !== url)
       );
     }
+
+    console.log("FILTERS", filtersSelecteds);
+    console.log("URL", url);
   };
 
   const handleApplyFilters = () => {
@@ -61,8 +64,6 @@ function FiltersMobile({ filters }: Props) {
       <li class="flex flex-col gap-[24px]">
         <div class="flex p-[8px] justify-between border-b border-b-[#CCC]">
           <span class="text-[18px  ] text-[#1a1a1a] font-bold">FILTROS</span>
-
-          <ClearFilter />
         </div>
         <div class="flex gap-[16px] flex-wrap ">
           <PriceFilter />
@@ -106,17 +107,20 @@ function FiltersMobile({ filters }: Props) {
               {filter.values.map((item, index) => (
                 <button
                   onClick={() => {
-                    handleClick(item.url);
-                    filter.values.map((selected, indexSelected) => {
+                    filter.values.map((_, indexSelected) => {
                       index === indexSelected &&
                         (item.selected = !item.selected);
                     });
+
+                    handleClick(item.url);
+
+                    console.log(item);
                   }}
                   href={item.url}
                   class="flex items-center gap-2"
                 >
                   <div
-                    aria-checked={filtersSelecteds.includes(item.url)}
+                    aria-checked={item.selected ? true : false}
                     class="checkbox !rounded-full h-[20px] w-[20px]"
                   />
                   <span class="text-[18px] text-[#666]">{item.label}</span>
@@ -134,7 +138,12 @@ function FiltersMobile({ filters }: Props) {
 
       {filtersSelecteds.length > 0 && (
         <li className="flex flex-col gap-[24px]">
-          <button onClick={handleApplyFilters}>Aplicar</button>
+          <button
+            onClick={handleApplyFilters}
+            class="mx-auto mt-[20px] w-fit px-[40px] py-[16px] bg-deep-beauty rounded-full border-none text-white-lily text-[16px] uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop hover:text-white-lily hover:border-none"
+          >
+            Aplicar
+          </button>
         </li>
       )}
     </ul>
