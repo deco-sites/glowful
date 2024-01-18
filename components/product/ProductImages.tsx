@@ -1,6 +1,7 @@
 import { useState } from "preact/hooks";
 import Image from "apps/website/components/Image.tsx";
 import type { ImageObject } from "apps/commerce/types.ts";
+import ButtonMore from "../ui/ButtonMore.tsx";
 
 export interface Props {
   images: ImageObject[] | undefined;
@@ -21,7 +22,7 @@ function ProductImages({ images }: Props) {
   //console.log("PRODUTO", JSON.parse(product?.description));
 
   return (
-    <div class="relative flex items-start gap-[50px] pt-[40px]">
+    <div class="relative flex flex-col items-center justify-end pt-[40px]">
       <div class="hidden w-full max-w-[512px] lg:flex flex-wrap gap-[24px]">
         {displayedImages?.map((img, index) => (
           <div class="max-w-[240px]">
@@ -38,10 +39,12 @@ function ProductImages({ images }: Props) {
             />
           </div>
         ))}
-        {displayedImages?.length < (images?.length ?? 0)
-          ? <button onClick={loadMoreImages}>Carregar mais</button>
-          : null}
       </div>
+      {displayedImages?.length < (images?.length ?? 0) && (
+        <div class="translate-y-[-10px]">
+          <ButtonMore onClick={loadMoreImages} textHover="Carregar mais"/>
+        </div>
+      )}
     </div>
   );
 }
