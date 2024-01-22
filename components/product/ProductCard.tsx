@@ -145,7 +145,7 @@ function ProductCard({
 
       {/* Image Mobile */}
       <figure
-        class="relative overflow-hidden"
+        class="!flex lg:!hidden relative overflow-hidden"
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Product Images */}
@@ -164,7 +164,7 @@ function ProductCard({
           </div>
 
           <div id={idContainer} class="relative">
-            <Slider class="carousel carousel-center w-full">
+            <Slider class="carousel carousel-center w-full gap-[10px]">
               <Slider.Item index={0} class="carousel-item w-full">
                 <Image
                   src={front.url!}
