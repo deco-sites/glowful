@@ -10,6 +10,9 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import Image from "apps/website/components/Image.tsx";
 import FlatDiscount from "$store/components/product/FlatDiscount.tsx";
 import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
+import Slider from "$store/components/ui/Slider.tsx";
+import SliderJS from "$store/islands/SliderJS.tsx";
+import { useId } from "$store/sdk/useId.ts";
 
 export interface Layout {
   basics?: {
@@ -71,6 +74,7 @@ function ProductCard({
   index,
 }: Props) {
   const { url, productID, name, image: images, offers, isVariantOf } = product;
+  const idContainer = useId();
   const id = `product-card-${productID}`;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
@@ -97,6 +101,7 @@ function ProductCard({
       </a>
     </li>
   ));
+
   const cta = (
     <a
       href={url && relative(url)}
@@ -106,8 +111,6 @@ function ProductCard({
       {l?.basics?.ctaText || "Ver produto"}
     </a>
   );
-
-  console.log(description);
 
   return (
     <div
@@ -141,10 +144,96 @@ function ProductCard({
       />
 
       {/* Image Mobile */}
+      <figure
+        class="relative overflow-hidden"
+        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
+      >
+        {/* Product Images */}
+        <div class="grid grid-cols-1 grid-rows-1 w-full relative">
+          <FlatDiscount
+            listPrice={listPrice ?? 0}
+            price={price ?? 0}
+            absolutePosition
+          />
+
+          {/* TODO - Get flag Shopify */}
+          <div
+            className={`flex justify-center items-center px-[20px] py-[5px] text-[#101820] bg-white-lily text-center text-[14px] font-semibold leading-[130%] tracking-[1px] absolute top-[20px] left-[20px] z-10 rounded-[8px]`}
+          >
+            NOVO
+          </div>
+
+          <div id={idContainer} class="relative">
+            <Slider class="carousel carousel-center w-full">
+              <Slider.Item index={0} class="carousel-item w-full">
+                <Image
+                  src={front.url!}
+                  alt={front.alternateName}
+                  width={WIDTH}
+                  height={HEIGHT}
+                  class={`w-full bg-base-100 col-span-full row-span-full rounded-[15px]`}
+                  sizes="(max-width: 640px) 50vw, 20vw"
+                  preload={preload}
+                  loading={preload ? "eager" : "lazy"}
+                  decoding="async"
+                />
+              </Slider.Item>
+              <Slider.Item index={1} class="carousel-item w-full">
+                <Image
+                  src={back?.url ?? front.url!}
+                  alt={back?.alternateName ?? front.alternateName}
+                  width={WIDTH}
+                  height={HEIGHT}
+                  class="w-full bg-base-100 col-span-full row-span-full rounded-[15px]"
+                  sizes="(max-width: 640px) 50vw, 20vw"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </Slider.Item>
+            </Slider>
+
+            {back.url && front.url && (
+              <div class="flex gap-[8px] absolute right-[16px] bottom-[16px]">
+                <Slider.Dot
+                  index={0}
+                  classes="!w-[14px] !h-[14px] !rounded-full !border disabled:!bg-cherry-pop disabled:!border-cherry-pop !bg-transparent !border-[#878787]"
+                >
+                  <></>
+                </Slider.Dot>
+                <Slider.Dot
+                  index={1}
+                  classes="!w-[14px] !h-[14px] !rounded-full !border disabled:!bg-cherry-pop disabled:!border-cherry-pop !bg-transparent !border-[#878787]"
+                >
+                  <></>
+                </Slider.Dot>
+              </div>
+            )}
+
+            <SliderJS rootId={idContainer} />
+          </div>
+        </div>
+
+        <figcaption
+          class={`
+          absolute bottom-1 left-0 justify-end w-full flex flex-col gap-3 p-2 ${
+            l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
+              ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
+              : "lg:hidden"
+          }`}
+        >
+          {/* SKU Selector */}
+          {l?.onMouseOver?.showSkuSelector && (
+            <ul class="flex justify-center items-center gap-2 w-full">
+              {skuSelector}
+            </ul>
+          )}
+          {l?.onMouseOver?.showCta && cta}
+        </figcaption>
+      </figure>
 
       {/* Image Desktop */}
       <figure
-        class="relative overflow-hidden"
+        class="!hidden lg:!flex relative overflow-hidden"
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}

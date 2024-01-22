@@ -203,7 +203,7 @@ function ProductShelf({
             />
           </Slider.NextButton>
 
-          <SliderJS rootId={id} />
+          <SliderJS rootId={id} infinite />
           <SendEventOnLoad
             event={{
               name: "view_item_list",

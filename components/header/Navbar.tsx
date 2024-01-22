@@ -135,61 +135,69 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
       {/* Desktop Version */}
       <div
-        class={`hidden md:flex flex-row justify-between items-center w-full h-[50px] z-[999] md:${display} bg-[${backgroundColor}] hover:bg-white-lily group/hover py-5 px-24`}
+        class={`hidden md:flex h-[50px] md:${display} bg-[${backgroundColor}] hover:bg-white-lily group/hover py-5`}
         onMouseEnter={() => (displayHover.value = true)}
         onMouseLeave={() => (displayHover.value = false)}
       >
-        <div class="flex-none w-44">
-          {logo && (
+        <div class="container flex flex-row justify-between items-center w-full z-[999]">
+          <div class="flex-none w-44">
+            {logo && (
+              <a
+                href="/"
+                aria-label="Store logoBranco && logoPreto"
+                class="block px-4 py-3 w-[160px]"
+              >
+                <Image
+                  src={logoBranco.src}
+                  alt={logoBranco.alt}
+                  width={126}
+                  height={16}
+                  class={
+                    displayTop.value === true && displayHover.value === false
+                      ? ""
+                      : "hidden"
+                  }
+                />
+                <Image
+                  src={logoPreto.src}
+                  alt={logoPreto.alt}
+                  width={126}
+                  height={16}
+                  class={
+                    displayTop.value === false || displayHover.value === true
+                      ? ""
+                      : "hidden"
+                  }
+                />
+              </a>
+            )}
+          </div>
+          <div class="flex-auto flex justify-center">
+            {items.map((item) => (
+              <NavItem item={item} colorIcon={colorIcon} />
+            ))}
+          </div>
+          <div class="flex-none w-44 flex items-center justify-end gap-2">
+            <SearchButton colorIcon={colorIcon} />
+            <Searchbar searchbar={searchbar} />
+            {platform === "vtex" && <CartButtonVTEX />}
+            {platform === "vnda" && <CartButtonVDNA />}
+            {platform === "wake" && <CartButtonWake />}
+            {platform === "linx" && <CartButtonLinx />}
+            {platform === "shopify" && <CartButton colorIcon={colorIcon} />}
             <a
-              href="/"
-              aria-label="Store logoBranco && logoPreto"
-              class="block px-4 py-3 w-[160px]"
+              class="btn btn-circle btn-sm btn-ghost"
+              href="/login"
+              aria-label="Log in"
             >
-              <Image
-                src={logoBranco.src}
-                alt={logoBranco.alt}
-                width={126}
-                height={16}
-                class={displayTop.value === true && displayHover.value === false
-                  ? ""
-                  : "hidden"}
-              />
-              <Image
-                src={logoPreto.src}
-                alt={logoPreto.alt}
-                width={126}
-                height={16}
-                class={displayTop.value === false || displayHover.value === true
-                  ? ""
-                  : "hidden"}
+              <Icon
+                id="User"
+                size={24}
+                strokeWidth={0.4}
+                class={`text-[${colorIcon}] group-hover/hover:text-[#101820]`}
               />
             </a>
-          )}
-        </div>
-        <div class="flex-auto flex justify-center">
-          {items.map((item) => <NavItem item={item} colorIcon={colorIcon} />)}
-        </div>
-        <div class="flex-none w-44 flex items-center justify-end gap-2">
-          <SearchButton colorIcon={colorIcon} />
-          <Searchbar searchbar={searchbar} />
-          <a
-            class="btn btn-circle btn-sm btn-ghost"
-            href="/login"
-            aria-label="Log in"
-          >
-            <Icon
-              id="User"
-              size={24}
-              strokeWidth={0.4}
-              class={`text-[${colorIcon}] group-hover/hover:text-[#101820]`}
-            />
-          </a>
-          {platform === "vtex" && <CartButtonVTEX />}
-          {platform === "vnda" && <CartButtonVDNA />}
-          {platform === "wake" && <CartButtonWake />}
-          {platform === "linx" && <CartButtonLinx />}
-          {platform === "shopify" && <CartButton colorIcon={colorIcon} />}
+          </div>
         </div>
       </div>
     </>

@@ -4,10 +4,12 @@ function Dot({
   index,
   children,
   bgWhite = true,
+  classes,
 }: {
   index: number;
   children: ComponentChildren;
   bgWhite?: boolean;
+  classes: string;
 }) {
   return (
     <button
@@ -18,7 +20,7 @@ function Dot({
         bgWhite
           ? "bg-[#FFFFFF] disabled:bg-[#FFFFFF]"
           : "bg-[#E4E4E4] disabled:bg-[#CE0F69]"
-      }`}
+      } ${classes}`}
     >
       {children}
     </button>

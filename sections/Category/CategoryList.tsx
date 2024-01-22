@@ -95,7 +95,7 @@ function CategoryList(props: Props) {
   return (
     <div
       id={id}
-      class="py-[40px] lg:py-[120px] lg:ml-[5%] flex items-center flex-col lg:flex-row gap-8 lg:gap-[75px] text-base-content"
+      class="py-[40px] lg:py-[90px] lg:ml-[10%] xl:ml-[7%] 2xl:ml-[14%] flex items-center flex-col lg:flex-row gap-8 lg:gap-[75px] text-base-content"
       style={{
         "background-color": props.backgroundColor,
       }}

@@ -2,7 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+@layer base { 
+  .newsProductsFlex > section > div {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (min-width:1536px){
+    .container { 
+      max-width: 1300px!important;
+    } 
+  }
 
   @media (min-width: 1024px) {
     .gridBestSellers {
@@ -14,6 +25,14 @@
     .gridBestSellers {
       grid-template-columns: 40% 59%;
     }
+  }
+
+  .linkReadMore a {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
+    text-decoration: underline;
+    color: #CE0F69;
   }
 
   .textHighlightPopup strong {

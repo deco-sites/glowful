@@ -9,14 +9,14 @@ export interface Props {
   };
 
   text?: string;
+  title?: string;
   /**
    * @format html
    */
-  title: string;
-  description?: string;
+  description: string;
   link?: {
-    text: string;
-    href: string;
+    text?: string;
+    href?: string;
     /**
      * @format color
      */
@@ -28,28 +28,15 @@ export interface Props {
   };
 }
 
-const DEFAULT_PROPS: Props = {
-  title: "",
-  image: {
-    mobile:
-      "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/cac2dc1c-48ac-4274-ad42-4016b0bbe947",
-    altText: "Fashion",
-  },
-  styles: {
-    invertImage: false,
-  },
-};
-
 export default function ImageAndText(props: Props) {
   const { link, text, title, description, image, styles } = {
-    ...DEFAULT_PROPS,
     ...props,
   };
 
   return (
-    <div class="container px-[24px]">
+    <div class="container ">
       <div
-        class={`py-8 lg:py-[70px] card lg:card-side rounded flex justify-between  flex-col gap-[30px] lg:gap-[50px] ${
+        class={`lg:py-[90px] card lg:card-side rounded flex justify-between flex-col ${
           styles?.invertImage ? "lg:flex-row-reverse" : "lg:flex-row"
         }`}
       >
@@ -59,13 +46,13 @@ export default function ImageAndText(props: Props) {
               media="(max-width: 767px)"
               src={image?.mobile}
               width={360}
-              height={268}
+              height={360}
             />
             <Source
               media="(min-width: 768px)"
               src={image?.desktop ? image?.desktop : image?.mobile}
-              width={670}
-              height={500}
+              width={630}
+              height={450}
             />
             <img
               class="w-full object-cover max-w-[670px]"
@@ -77,15 +64,19 @@ export default function ImageAndText(props: Props) {
             />
           </Picture>
         </figure>
-        <div class="card-body p-0 gap-0 w-full max-w-[430px]">
-          <span class="pb-[16px] pt-[30px] md:pt-0">{text}</span>
+        <div class="card-body p-0 gap-0 w-full max-w-[550px] px-[24px] py-[40px] lg:py-0">
+          <span class="pb-[24px] lg:pb-[40px] lg:text-[20px] font-bold tracking-[1.20px] lg:tracking-[1.6px] text-cherry-pop">
+            {text}
+          </span>
+          <h2 class="card-title font-fraunces text-[28px] lg:text-[40px] pb-[32px] lg:pb-[24px] leading-[130%]">
+            {title}
+          </h2>
           <div
-            class="card-title textHighlight text-[24px] lg:text-[32px]  pb-[32px]"
-            dangerouslySetInnerHTML={{ __html: title }}
+            class="text-[16px] leading-[150%] text-deep-beauty linkReadMore"
+            dangerouslySetInnerHTML={{ __html: description }}
           />
-          <p class="pb-[40px] ">{description}</p>
           <div class="card-actions justify-center lg:justify-start">
-            {link && (
+            {link?.text && link?.href && (
               <a
                 class={`btn bg-transparent px-[50px] text-[${
                   link?.color ? link?.color : "#fff"

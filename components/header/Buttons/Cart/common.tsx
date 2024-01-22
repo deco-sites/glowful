@@ -32,10 +32,10 @@ function CartButton({ loading, currency, total, items, colorIcon }: {
   return (
     <div class="indicator">
       <span
-        class={`indicator-item badge badge-secondary badge-sm bg-cherry-pop h-[1.2rem] border-cherry-pop${
+        class={`indicator-item badge badge-secondary badge-sm bg-cherry-pop h-[1.2rem] border-cherry-pop ${
           totalItems === 0 ? "hidden" : ""
         }`}
-        style={{transform: 'translateY(-20%) translateX(60%)'}}
+        style={{transform: 'translateY(-20%) translateX(45%)'}}
       >
         {totalItems > 9 ? "9+" : totalItems}
       </span>

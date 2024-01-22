@@ -1,5 +1,5 @@
 import Icon from "$store/components/ui/Icon.tsx";
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useRef } from "preact/hooks";
 import { useUI } from "$store/sdk/useUI.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
@@ -75,6 +75,7 @@ export default function Popup({
 }: Props) {
   const { displayPopup } = useUI();
   const [animationPopup, setAnimationPopup] = useState(false);
+  const popupRenderedRef = useRef(false);
 
   useEffect(() => {
     function handleClick(event: any) {
@@ -87,37 +88,33 @@ export default function Popup({
     document.addEventListener("mouseclick", handleClick);
   }, [displayPopup.value]);
 
-  let inactivityTimer: any;
-
-  const resetInactivityTimer = () => {
-    clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(() => {
-      displayPopup.value = true;
-      setAnimationPopup(true);
-    }, 20000); // 20 segundos em milissegundos
-  };
-
   const handleUserActivity = () => {
     if (!displayPopup.value) {
       displayPopup.value = false;
       setAnimationPopup(true);
-      resetInactivityTimer();
     }
   };
 
   const handleScroll = () => {
-    if (!displayPopup.value) {
-      displayPopup.value = false;
+    const secondSectionOffset = 650;
+
+    const windowScrollPosition =
+      window.pageYOffset || document.documentElement.scrollTop;
+
+    if (
+      windowScrollPosition >= secondSectionOffset &&
+      !displayPopup.value &&
+      !popupRenderedRef.current
+    ) {
+      displayPopup.value = true;
       setAnimationPopup(true);
-      resetInactivityTimer();
+      popupRenderedRef.current = true;
     }
   };
 
   const closeModal = () => {
     setAnimationPopup(false);
-    setTimeout(() => {
-      displayPopup.value = false;
-    }, 500);
+    displayPopup.value = false;
   };
 
   useEffect(() => {
@@ -125,13 +122,10 @@ export default function Popup({
     self.addEventListener("keydown", handleUserActivity);
     self.addEventListener("scroll", handleScroll);
 
-    resetInactivityTimer();
-
     return () => {
       self.removeEventListener("mousemove", handleUserActivity);
       self.removeEventListener("keydown", handleUserActivity);
       self.removeEventListener("scroll", handleScroll);
-      clearTimeout(inactivityTimer);
     };
   }, [displayPopup.value]);
 
