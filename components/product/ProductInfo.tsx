@@ -20,6 +20,7 @@ import Image from "apps/website/components/Image.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
+import ProductImages from "$store/islands/ProductImages.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -35,7 +36,7 @@ interface Props {
 
 function ProductInfo({ page, layout }: Props) {
   const platform = usePlatform();
-    const id = useId();
+  const id = useId();
 
   if (page === null) {
     throw new Error("Missing Product Details Page Info");
@@ -70,23 +71,7 @@ function ProductInfo({ page, layout }: Props) {
 
   return (
     <div class="relative flex items-start gap-[50px] pt-[40px]">
-      <div class="hidden w-full max-w-[512px] lg:flex flex-wrap gap-[24px]">
-        {images?.map((img, index) => (
-          <div class="max-w-[240px]">
-            <Image
-              class="w-full"
-              sizes="(max-width: 640px) 100vw, 40vw"
-              src={img.url!}
-              alt={img.alternateName}
-              width={300}
-              height={300}
-              // Preload LCP image for better web vitals
-              preload={index === 0}
-              loading={index === 0 ? "eager" : "lazy"}
-            />
-          </div>
-        ))}
-      </div>
+      <ProductImages images={images} />
       <div class="flex flex-col px-[24px] sticky top-[60px]">
         {/* Code and name */}
         <div>
@@ -164,84 +149,86 @@ function ProductInfo({ page, layout }: Props) {
         <p class="text-[16px] font-fraunces font-semibold my-[30px]">Combos:</p>
 
         {/* Prices */}
-        {/* <div class="mt-4">
+        {
+          /* <div class="mt-4">
         <div class="flex flex-row gap-2 items-center">
           <span class="font-medium text-xl text-secondary">
             {formatPrice(price, offers?.priceCurrency)}
           </span>
         </div>
-      </div> */}
+      </div> */
+        }
 
         {/* Quantity Items */}
         <ChangeQuantityProduct inventoryLevel={inventoryLevel} price={price} />
 
         {/* Add to Cart and Favorites button */}
         <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-          {availability === "https://schema.org/InStock" ? (
-            <>
-              {platform === "vtex" && (
-                <>
-                  <AddToCartButtonVTEX
+          {availability === "https://schema.org/InStock"
+            ? (
+              <>
+                {platform === "vtex" && (
+                  <>
+                    <AddToCartButtonVTEX
+                      url={url || ""}
+                      name={name}
+                      productID={productID}
+                      productGroupID={productGroupID}
+                      price={price}
+                      discount={discount}
+                      seller={seller}
+                    />
+                    <WishlistButton
+                      variant="full"
+                      productID={productID}
+                      productGroupID={productGroupID}
+                    />
+                  </>
+                )}
+                {platform === "wake" && (
+                  <AddToCartButtonWake
                     url={url || ""}
                     name={name}
                     productID={productID}
                     productGroupID={productGroupID}
                     price={price}
                     discount={discount}
-                    seller={seller}
                   />
-                  <WishlistButton
-                    variant="full"
+                )}
+                {platform === "linx" && (
+                  <AddToCartButtonLinx
+                    url={url || ""}
+                    name={name}
                     productID={productID}
                     productGroupID={productGroupID}
+                    price={price}
+                    discount={discount}
                   />
-                </>
-              )}
-              {platform === "wake" && (
-                <AddToCartButtonWake
-                  url={url || ""}
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                />
-              )}
-              {platform === "linx" && (
-                <AddToCartButtonLinx
-                  url={url || ""}
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                />
-              )}
-              {platform === "vnda" && (
-                <AddToCartButtonVNDA
-                  url={url || ""}
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                  additionalProperty={additionalProperty}
-                />
-              )}
-              {platform === "shopify" && (
-                <AddToCartButtonShopify
-                  url={url || ""}
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                />
-              )}
-            </>
-          ) : (
-            <OutOfStock productID={productID} />
-          )}
+                )}
+                {platform === "vnda" && (
+                  <AddToCartButtonVNDA
+                    url={url || ""}
+                    name={name}
+                    productID={productID}
+                    productGroupID={productGroupID}
+                    price={price}
+                    discount={discount}
+                    additionalProperty={additionalProperty}
+                  />
+                )}
+                {platform === "shopify" && (
+                  <AddToCartButtonShopify
+                    url={url || ""}
+                    name={name}
+                    productID={productID}
+                    productGroupID={productGroupID}
+                    price={price}
+                    discount={discount}
+                  />
+                )}
+              </>
+            )
+            : <OutOfStock productID={productID} />}
         </div>
         {/* Shipping Simulation */}
         <div class="mt-8">
