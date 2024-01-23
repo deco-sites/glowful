@@ -29,7 +29,7 @@ export default function ImageAndIcons(props: Props) {
   };
 
   return (
-    <div class="container bg-[#F4f4f4] rounded flex flex-col lg:gap-[60px] pb-[60px] lg:px-[120px] lg:my-[60px]">
+    <div class="container bg-[#F4f4f4] rounded flex flex-col lg:gap-[60px] pb-[60px] lg:px-[60px] lg:my-[60px]">
       {title && (
         <div
           class="hidden lg:block pt-[32px] pb-[24px] textHighlightBannerCategory text-[24px] lg:text-[36px] text-center lg:text-start leading-[140%] font-fraunces tracking-[1.8px] font-semibold text-deep-beauty "
@@ -38,7 +38,7 @@ export default function ImageAndIcons(props: Props) {
       )}
 
       <div class="flex flex-col lg:flex-row gap-[60px] items-center justify-between">
-        <figure class="relative w-full max-h-[450px] ">
+        <figure class="relative w-fit max-h-[450px] ">
           <Picture preload>
             <Source
               src={image.mobile}

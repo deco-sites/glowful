@@ -8,6 +8,8 @@ import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
+import NotFound from "$store/components/ui/NotFound.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Layout {
   /**
@@ -20,19 +22,27 @@ export interface Layout {
   columns?: Columns;
 }
 
+interface NotFound {
+  image: {
+    mobile: ImageWidget;
+    desktop?: ImageWidget;
+    altText: string;
+  };
+  highlight?: string;
+  title?: string;
+  description?: string;
+  link: {
+    text: string;
+    href: string;
+  };
+}
+
 export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
   cardLayout?: CardLayout;
-}
-
-function NotFound() {
-  return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
-    </div>
-  );
+  notFound?: NotFound;
 }
 
 function Result({
@@ -118,12 +128,14 @@ function Result({
   );
 }
 
-function SearchResult({ page, ...props }: Props) {
-  if (!page) {
-    return <NotFound />;
-  }
+function SearchResult({ page, notFound, ...props }: Props) {
+  const pageContent = page?.products.length == 0 ? false : true;
 
-  return <Result {...props} page={page} />;
+  if (pageContent) {
+    return <Result {...props} page={page} />;
+  } else {
+    return <NotFound {...notFound} />;
+  }
 }
 
 export default SearchResult;
