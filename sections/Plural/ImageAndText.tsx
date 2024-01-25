@@ -1,5 +1,6 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import DescriptionReadMore from "$store/islands/DescriptionReadMore.tsx";
 
 export interface Props {
   image: {
@@ -22,14 +23,14 @@ export interface Props {
      */
     color?: string;
   };
-
+  oneColumn?: boolean;
   styles?: {
     invertImage?: boolean;
   };
 }
 
 export default function ImageAndText(props: Props) {
-  const { link, text, title, description, image, styles } = {
+  const { link, text, title, description, image, styles, oneColumn } = {
     ...props,
   };
 
@@ -71,24 +72,14 @@ export default function ImageAndText(props: Props) {
           <h2 class="card-title font-fraunces text-[28px] lg:text-[40px] pb-[32px] lg:pb-[24px] leading-[130%]">
             {title}
           </h2>
-          <div
-            class="text-[16px] leading-[150%] text-deep-beauty linkReadMore"
-            dangerouslySetInnerHTML={{ __html: description }}
-          />
-          <div class="card-actions justify-center lg:justify-start">
-            {link?.text && link?.href && (
-              <a
-                class={`btn bg-transparent px-[50px] text-[${
-                  link?.color ? link?.color : "#fff"
-                }] border-[${
-                  link?.color ? link?.color : "#fff"
-                }] text-sm font-normal tracking-[1px] hover:bg-white-lily hover:brightness-75 hover:border-brightness-75 hover:font-bold`}
-                href={link?.href}
-              >
-                {link?.text}
-              </a>
-            )}
-          </div>
+          {oneColumn ? (
+            <div
+              class="text-[16px] leading-[150%] text-deep-beauty linkReadMore"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
+          ) : (
+            <DescriptionReadMore description={description} />
+          )}
         </div>
       </div>
     </div>

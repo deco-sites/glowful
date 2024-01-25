@@ -54,8 +54,6 @@ function Result({
   const perPage = pageInfo.recordPerPage || products.length;
   const offset = pageInfo.currentPage * perPage;
 
-  console.log(page);
-
   return (
     <>
       <div class="container px-4 sm:py-10">

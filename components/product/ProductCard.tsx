@@ -279,7 +279,7 @@ function ProductCard({
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full ${
+            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${
               l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""

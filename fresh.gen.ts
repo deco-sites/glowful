@@ -12,6 +12,7 @@ import * as $Alert from "./islands/Alert.tsx";
 import * as $ChangeQuantityProduct from "./islands/ChangeQuantityProduct.tsx";
 import * as $ClearFilter from "./islands/ClearFilter.tsx";
 import * as $DescriptionAboutCategory from "./islands/DescriptionAboutCategory.tsx";
+import * as $DescriptionReadMore from "./islands/DescriptionReadMore.tsx";
 import * as $FilterRangePrice from "./islands/FilterRangePrice.tsx";
 import * as $FiltersMobile from "./islands/FiltersMobile.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
@@ -51,6 +52,7 @@ const manifest = {
     "./islands/ChangeQuantityProduct.tsx": $ChangeQuantityProduct,
     "./islands/ClearFilter.tsx": $ClearFilter,
     "./islands/DescriptionAboutCategory.tsx": $DescriptionAboutCategory,
+    "./islands/DescriptionReadMore.tsx": $DescriptionReadMore,
     "./islands/FilterRangePrice.tsx": $FilterRangePrice,
     "./islands/FiltersMobile.tsx": $FiltersMobile,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
