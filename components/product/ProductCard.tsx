@@ -86,6 +86,8 @@ function ProductCard({
     product.description || isVariantOf?.description || "{}"
   );
 
+  console.log(product);
+
   const l = layout;
   const align =
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
@@ -380,7 +382,9 @@ function ProductCard({
             ) : (
               <h2
                 class=" break-words text-[18px] lg:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
-                dangerouslySetInnerHTML={{ __html: name ?? "" }}
+                dangerouslySetInnerHTML={{
+                  __html: isVariantOf?.name ?? name ?? "",
+                }}
               />
             )}
           </a>

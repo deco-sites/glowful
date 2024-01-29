@@ -80,8 +80,13 @@ function Sort({ sortOptions }: Props) {
           loading="lazy"
           width="24"
           height="24"
+          title="Ordenar"
+          aria-label="Ordenar produtos"
           src="/icons/sort-quantidade-alt.svg"
-          class={`${isAscending ? "" : "rotate-180"} transition-all duration-300 `}
+          alt=""
+          class={`${
+            isAscending ? "" : "rotate-180"
+          } transition-all duration-300 `}
         />
       </button>
     </>

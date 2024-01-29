@@ -10,7 +10,13 @@ export default function ClearFilter() {
       onClick={() => handleClearFilters()}
     >
       Limpar Filtro
-      <img loading="lazy" width="22" height="22" src="/icons/trash.svg" />
+      <img
+        loading="lazy"
+        width="22"
+        height="22"
+        src="/icons/trash.svg"
+        alt=""
+      />
     </button>
   );
 }

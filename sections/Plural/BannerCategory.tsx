@@ -35,7 +35,7 @@ function BannerCategory({ subTitle, title, color, imageIcon, image }: Props) {
           src={imageIcon}
           alt=""
           decoding="async"
-          loading="lazy"
+          loading="eager"
         />
 
         <div

@@ -28,6 +28,7 @@ function ValueItem({ url, selected, label, quantity }: FilterToggleValue) {
     <a href={url} class="flex items-center gap-2">
       <div
         aria-checked={selected}
+        
         class="checkbox !rounded-full h-[20px] w-[20px]"
       />
       <span class="text-[18px] text-[#666]">{label}</span>
