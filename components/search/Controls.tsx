@@ -58,13 +58,13 @@ function SearchControls({ filters, displayFilter, sortOptions }: Props) {
         </>
       }
     >
-      <div class="flex flex-col justify-end mb-4 p-4 sm:mb-[40px] sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px]">
-        <div class="flex flex-row items-center justify-center flex-wrap gap-[10px] sm:gap-4">
+      <div class="flex flex-col justify-end mb-4 p-4 lg:mb-[40px] lg:p-0 lg:gap-4 lg:flex-row lg:h-[53px]">
+        <div class="flex flex-row items-center justify-center flex-wrap gap-[10px] lg:gap-4">
           <Button
             class={
               displayFilter
                 ? "btn-ghost"
-                : "font-semibold bg-transparent h-[36px] px-[20px] rounded-[50px] border-1 border-[#CCC] text-[14px] text-[#878787]  sm:hidden"
+                : "font-semibold bg-transparent h-[36px] px-[20px] rounded-[50px] border-1 border-[#CCC] text-[14px] text-[#878787]  lg:hidden"
             }
             onClick={() => {
               open.value = true;

@@ -115,7 +115,7 @@ function ProductCard({
   return (
     <div
       id={id}
-      class={`card card-compact group w-full max-w-[360px] min-w-[290px] ${
+      class={`card card-compact group self-start w-full max-w-[360px] min-w-[290px] ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -365,7 +365,7 @@ function ProductCard({
 
         <div class="flex justify-between items-center">
           <a
-            class="w-full flex flex-col gap-[8px] max-w-[256px] "
+            class="w-full flex flex-col gap-[8px] max-w-[224px] "
             href={url && relative(url)}
             aria-label="view product"
           >
@@ -379,7 +379,7 @@ function ProductCard({
               ""
             ) : (
               <h2
-                class="truncate text-[18px] lg:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
+                class=" break-words text-[18px] lg:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
                 dangerouslySetInnerHTML={{ __html: name ?? "" }}
               />
             )}

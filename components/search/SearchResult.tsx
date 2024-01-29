@@ -56,10 +56,10 @@ function Result({
 
   return (
     <>
-      <div class="container px-4 sm:py-10">
+      <div class="container md:max-w-full px-4 sm:py-10">
         <div class="flex flex-col sm:flex-row gap-[50px]">
           {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[270px]">
+            <aside class="hidden lg:block w-min min-w-[270px]">
               <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
 
               <Filters filters={filters} />
