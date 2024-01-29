@@ -305,7 +305,7 @@ function ProductCard({
 
               {!l?.hide?.cta ? (
                 <div
-                  class={`lg:block hidden absolute bottom-[32px] px-[32px] w-full h-fit opacity-0 group-hover:opacity-100 transition-all duration-300 ${
+                  class={`lg:block hidden absolute bottom-[32px] px-[32px] xl:px-[18px] w-full h-fit opacity-0 group-hover:opacity-100 transition-all duration-300 ${
                     l?.onMouseOver?.showCta ? "lg:hidden" : ""
                   }`}
                 >

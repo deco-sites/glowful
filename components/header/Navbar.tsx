@@ -195,11 +195,11 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               </a>
             )}
           </div>
-          <div class="flex-auto flex justify-center">
+          <ul class="flex-auto flex justify-center">
             {items.map((item) => (
               <NavItem item={item} colorIcon={colorIcon} />
             ))}
-          </div>
+          </ul>
           <div class="flex-none w-44 flex items-center justify-end gap-2">
             <SearchButton colorIcon={colorIcon} />
             <Searchbar searchbar={searchbar} />
