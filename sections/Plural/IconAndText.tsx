@@ -58,7 +58,7 @@ export default function ImageAndText(props: Props) {
                   {/* MOBILE */}
                   <div class="flex lg:hidden flex-col gap-[12px]">
                     <div class="flex gap-[20px] items-center">
-                      <img src={benefit.image} width={32} height={32} />
+                      <img src={benefit.image} width={32} height={32} alt="" />
                       <p class="text-[16px] font-semibold tracking-[0.8px] leading-[130%] text-deep-beauty">
                         {benefit.title}
                       </p>
@@ -70,7 +70,7 @@ export default function ImageAndText(props: Props) {
 
                   {/* DESKTOP */}
                   <div class="hidden lg:flex items-start  gap-[24px] lg:max-w-[260px]">
-                    <img src={benefit.image} width={32} height={32} />
+                    <img src={benefit.image} width={32} height={32} alt="" />
                     <div class="flex flex-col gap-[16px]">
                       <p class="text-[22px] font-semibold tracking-[1.1px] leading-[130%] text-deep-beauty">
                         {benefit.title}
