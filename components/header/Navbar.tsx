@@ -14,7 +14,7 @@ import SearchButton from "./Buttons/Search.tsx";
 import CartButton from "./Buttons/Cart/shopify.tsx";
 import { navbarHeight } from "./constants.ts";
 import { useUI } from "$store/sdk/useUI.ts";
-import { useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 export interface Props {
   items: SiteNavigationElement[];
@@ -36,8 +36,11 @@ export interface Props {
 
 function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
   const { displayTop, displayHover, scrollDirection } = useUI();
+  const [displayNavbar, setDisplayNavbar] = useState("visible");
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const pathname = window.location.pathname;
+
   useEffect(() => {
     let lastScrollY = 0;
 
@@ -45,45 +48,62 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
       const scrollY = window.scrollY;
       if (scrollY > lastScrollY) {
         scrollDirection.value = "down";
+        setDisplayNavbar("invisible");
       } else if (scrollY < lastScrollY) {
         scrollDirection.value = "up";
+        setDisplayNavbar("visible");
       }
       lastScrollY = scrollY;
     };
 
-    window.addEventListener("scroll", updateScrollDirection);
+    self.addEventListener("scroll", updateScrollDirection);
     return () => {
-      window.removeEventListener("scroll", updateScrollDirection);
+      self.removeEventListener("scroll", updateScrollDirection);
     };
   }, [scrollDirection]);
 
+  useEffect(() => {
+    const handleMouseMove = (event: any) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
+    if (mousePosition.y < 50) {
+      setDisplayNavbar("visible");
+      scrollDirection.value = "up";
+    }
+
+    self.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      self.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [mousePosition.y]);
+
   let logo = logoBranco;
-  let display = "";
   let colorIcon = logoBranco.textColor ?? "#FFF";
   let backgroundColor;
 
   if (displayTop.value) {
     logo = logoBranco;
-    display = "visible";
     colorIcon = logoBranco.textColor ?? "#FFF";
     backgroundColor = "";
   } else {
     logo = logoPreto;
-    display = "none";
     colorIcon = logoPreto.textColor ?? "#101820";
     backgroundColor = "#FFF";
   }
 
-  if (pathname !== "/") {
-    displayTop.value = false;
-  }
+  // Manter o header visivel caso não seja a home
+  // if (pathname !== "/") {
+  //   displayTop.value = false;
+  //   setDisplayNavbar("visible");
+  // }
 
   return (
     <>
       {/* Mobile Version */}
       <div
         style={{ height: navbarHeight }}
-        class={`md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${display} bg-[${backgroundColor}] md:hover:visible md:hover:bg-white-lily py-4`}
+        class={`md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${displayNavbar} bg-[${backgroundColor}] md:hover:visible md:hover:bg-white-lily py-4`}
       >
         <MenuButton />
 
@@ -135,11 +155,14 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
       {/* Desktop Version */}
       <div
-        class={`hidden md:flex h-[50px] md:${display} bg-[${backgroundColor}] hover:bg-white-lily group/hover py-5`}
-        onMouseEnter={() => (displayHover.value = true)}
+        class={`hidden md:flex h-[50px] ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover py-5`}
+        onMouseEnter={() => {
+          displayHover.value = true;
+          setDisplayNavbar("visible");
+        }}
         onMouseLeave={() => (displayHover.value = false)}
       >
-        <div class="container flex flex-row justify-between items-center w-full z-[999]">
+        <div class="container inis flex flex-row justify-between items-center w-full z-[999]">
           <div class="flex-none w-44">
             {logo && (
               <a
@@ -187,7 +210,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
             {platform === "shopify" && <CartButton colorIcon={colorIcon} />}
             <a
               class="btn btn-circle btn-sm btn-ghost"
-              href="/login"
+              href="/loginn"
               aria-label="Log in"
             >
               <Icon

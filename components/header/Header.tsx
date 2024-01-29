@@ -26,10 +26,10 @@ export interface Props {
   navItems?: SiteNavigationElement[] | null;
 
   /** @title Logo Branco */
-  logoBranco?: { src: ImageWidget; alt: string; textColor?: string };
+  logoBranco: { src: ImageWidget; alt: string; textColor?: string };
 
   /** @title Logo Preto */
-  logoPreto?: { src: ImageWidget; alt: string; textColor?: string };
+  logoPreto: { src: ImageWidget; alt: string; textColor?: string };
 }
 
 function Header({ alerts, searchbar, navItems, logoBranco, logoPreto }: Props) {
