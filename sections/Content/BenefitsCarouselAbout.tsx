@@ -75,16 +75,15 @@ export default function BenefitsCarouselAbout({
           ))}
 
           <SliderJS rootId={id} />
-
-          <Slider.NextButton class="flex lg:hidden w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[16px] transform -translate-y-1/2 z-[1] ">
-            <Icon
-              size={32}
-              id="ChevronRight"
-              strokeWidth={3}
-              class="text-white-lily"
-            />
-          </Slider.NextButton>
         </Slider>
+        <Slider.NextButton class="flex lg:hidden w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[16px] transform -translate-y-1/2 z-[1] ">
+          <Icon
+            size={32}
+            id="ChevronRight"
+            strokeWidth={3}
+            class="text-white-lily"
+          />
+        </Slider.NextButton>
       </div>
 
       {/* Desktop Flex */}
