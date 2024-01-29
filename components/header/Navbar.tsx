@@ -210,7 +210,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
             {platform === "shopify" && <CartButton colorIcon={colorIcon} />}
             <a
               class="btn btn-circle btn-sm btn-ghost"
-              href="/loginn"
+              href="/login"
               aria-label="Log in"
             >
               <Icon
