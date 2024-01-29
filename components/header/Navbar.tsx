@@ -93,10 +93,10 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
   }
 
   // Manter o header visivel caso não seja a home
-  // if (pathname !== "/") {
-  //   displayTop.value = false;
-  //   setDisplayNavbar("visible");
-  // }
+  if (pathname !== "/") {
+    displayTop.value = false;
+    setDisplayNavbar("visible");
+  }
 
   return (
     <>
