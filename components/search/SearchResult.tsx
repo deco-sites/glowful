@@ -74,6 +74,7 @@ function Result({
 
             <ProductGallery
               products={products}
+              pageInfo={pageInfo}
               offset={offset}
               layout={{ card: cardLayout, columns: layout?.columns }}
             />

@@ -75,7 +75,7 @@ function ProductCard({
 }: Props) {
   const { url, productID, name, image: images, offers, isVariantOf } = product;
   const idContainer = useId();
-  const id = `product-card-${productID}`;
+  const id = `product-card-${productID}-${idContainer}`;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = isVariantOf?.image ?? [];
@@ -150,70 +150,7 @@ function ProductCard({
         class="!flex lg:!hidden relative overflow-hidden"
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
-        {/* Product Images */}
-        <div class="grid grid-cols-1 grid-rows-1 w-full relative">
-          <FlatDiscount
-            listPrice={listPrice ?? 0}
-            price={price ?? 0}
-            absolutePosition
-          />
 
-          {/* TODO - Get flag Shopify */}
-          <div
-            className={`flex justify-center items-center px-[20px] py-[5px] text-[#101820] bg-white-lily text-center text-[14px] font-semibold leading-[130%] tracking-[1px] absolute top-[20px] left-[20px] z-10 rounded-[8px]`}
-          >
-            NOVO
-          </div>
-
-          <div id={idContainer} class="relative">
-            <Slider class="carousel carousel-center w-full gap-[10px]">
-              <Slider.Item index={0} class="carousel-item w-full">
-                <Image
-                  src={front.url!}
-                  alt={front.alternateName}
-                  width={WIDTH}
-                  height={HEIGHT}
-                  class={`w-full bg-base-100 col-span-full row-span-full rounded-[15px]`}
-                  sizes="(max-width: 640px) 50vw, 20vw"
-                  preload={preload}
-                  loading={preload ? "eager" : "lazy"}
-                  decoding="async"
-                />
-              </Slider.Item>
-              <Slider.Item index={1} class="carousel-item w-full">
-                <Image
-                  src={back?.url ?? front.url!}
-                  alt={back?.alternateName ?? front.alternateName}
-                  width={WIDTH}
-                  height={HEIGHT}
-                  class="w-full bg-base-100 col-span-full row-span-full rounded-[15px]"
-                  sizes="(max-width: 640px) 50vw, 20vw"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </Slider.Item>
-            </Slider>
-
-            {back.url && front.url && (
-              <div class="flex gap-[8px] absolute right-[16px] bottom-[16px]">
-                <Slider.Dot
-                  index={0}
-                  classes="!w-[14px] !h-[14px] !rounded-full !border disabled:!bg-cherry-pop disabled:!border-cherry-pop !bg-transparent !border-[#878787]"
-                >
-                  <></>
-                </Slider.Dot>
-                <Slider.Dot
-                  index={1}
-                  classes="!w-[14px] !h-[14px] !rounded-full !border disabled:!bg-cherry-pop disabled:!border-cherry-pop !bg-transparent !border-[#878787]"
-                >
-                  <></>
-                </Slider.Dot>
-              </div>
-            )}
-
-            <SliderJS rootId={idContainer} />
-          </div>
-        </div>
 
         <figcaption
           class={`

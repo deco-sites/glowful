@@ -49,7 +49,7 @@ const isHTMLElement = (x: Element): x is HTMLElement =>
 const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   const root = document.getElementById(rootId);
   const slider = root?.querySelector(`[${ATTRIBUTES["data-slider"]}]`);
-  const items = root?.querySelectorAll(`[${ATTRIBUTES["data-slider-item"]}]`);
+  const items = root?.querySelectorAll(`#${rootId}>ul>li[${ATTRIBUTES["data-slider-item"]}]`);
   const prev = root?.querySelector(`[${ATTRIBUTES['data-slide="prev"']}]`);
   const next = root?.querySelector(`[${ATTRIBUTES['data-slide="next"']}]`);
   const dots = root?.querySelectorAll(`[${ATTRIBUTES["data-dot"]}]`);
@@ -63,9 +63,12 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     return;
   }
 
+  const minSlideStep = items.item(0).getBoundingClientRect().width * THRESHOLD;
+
   const getElementsInsideContainer = () => {
     const indices: number[] = [];
     const sliderRect = slider.getBoundingClientRect();
+    console.log(items.length)
 
     for (let index = 0; index < items.length; index++) {
       const item = items.item(index);
@@ -95,10 +98,16 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
       return;
     }
 
+    const diff = (item.offsetLeft - root.offsetLeft) - slider.scrollLeft;
+
+    const left = diff < 0 
+      ? slider.scrollLeft - minSlideStep 
+      : slider.scrollLeft + minSlideStep;
+
     slider.scrollTo({
       top: 0,
+      left,
       behavior: scroll,
-      left: item.offsetLeft - root.offsetLeft,
     });
   };
 
@@ -116,12 +125,13 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   };
 
   const onClickNext = () => {
-    const indices = getElementsInsideContainer();
+    const indices = getElementsInsideContainer()
     // Wow! items per page is how many elements are being displayed inside the container!!
     const itemsPerPage = indices.length;
 
     const isShowingLast = indices[indices.length - 1] === items.length - 1;
     const pageIndex = Math.floor(indices[0] / itemsPerPage);
+
 
     goToItem(isShowingLast ? 0 : (pageIndex + 1) * itemsPerPage);
   };

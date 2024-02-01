@@ -17,7 +17,7 @@ export const Preview = (props: Props) => {
       <div class="max-w-xs">
         <ProductCard
           layout={layout}
-          platform={usePlatform()}
+          platform={"shopify"}
           product={{
             "@type": "Product",
             "category": "Masculino>Camisetas Gola Lisa",
