@@ -145,7 +145,7 @@ export default function Contact({ props }: { props: Props }) {
           height={2175}
         />
         <img
-          class="object-cover w-full h-full max-h-screen"
+          class="object-cover w-full h-full 2xl:max-h-screen"
           loading={image.preload ? "eager" : "lazy"}
           src={image.src}
           alt={image.alt}
