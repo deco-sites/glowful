@@ -29,7 +29,7 @@ export default function ImageAndIcons(props: Props) {
   };
 
   return (
-    <div class="container bg-[#F4f4f4] rounded flex flex-col lg:gap-[60px] pb-[60px] lg:px-[60px] lg:my-[60px]">
+    <div class="container bg-[#F4f4f4] rounded flex flex-col lg:gap-[60px] pb-[60px] lg:px-[60px] lg:my-[80px]">
       {title && (
         <div
           class="hidden lg:block pt-[32px] pb-[24px] textHighlightBannerCategory text-[24px] lg:text-[36px] text-center lg:text-start leading-[140%] font-fraunces tracking-[1.8px] font-semibold text-deep-beauty "

@@ -56,7 +56,7 @@ function Result({
 
   return (
     <>
-      <div class="container md:max-w-full px-4 sm:py-10">
+      <div class="container md:max-w-full px-4 sm:py-10 sm:pb-[80px]">
         <div class="flex flex-col sm:flex-row gap-[50px]">
           {layout?.variant === "aside" && filters.length > 0 && (
             <aside class="hidden lg:block w-min min-w-[270px]">
@@ -78,30 +78,6 @@ function Result({
               offset={offset}
               layout={{ card: cardLayout, columns: layout?.columns }}
             />
-          </div>
-        </div>
-
-        <div class="flex justify-center my-4">
-          <div class="join">
-            <a
-              aria-label="previous page link"
-              rel="prev"
-              href={pageInfo.previousPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronLeft" size={24} strokeWidth={2} />
-            </a>
-            <span class="btn btn-ghost join-item">
-              Page {pageInfo.currentPage + 1}
-            </span>
-            <a
-              aria-label="next page link"
-              rel="next"
-              href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronRight" size={24} strokeWidth={2} />
-            </a>
           </div>
         </div>
       </div>

@@ -86,8 +86,6 @@ function ProductCard({
     product.description || isVariantOf?.description || "{}"
   );
 
-  console.log(product);
-
   const l = layout;
   const align =
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"

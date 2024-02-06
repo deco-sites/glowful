@@ -18,9 +18,6 @@ function ProductImages({ images }: Props) {
     setDisplayedImages([...displayedImages, ...newImages]);
   };
 
-  //console.log("PRODUTO", product);
-  //console.log("PRODUTO", JSON.parse(product?.description));
-
   return (
     <div class="relative flex flex-col items-center justify-end pt-[40px]">
       <div class="hidden w-full max-w-[512px] lg:flex flex-wrap gap-[24px]">

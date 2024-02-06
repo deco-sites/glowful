@@ -68,7 +68,6 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   const getElementsInsideContainer = () => {
     const indices: number[] = [];
     const sliderRect = slider.getBoundingClientRect();
-    console.log(items.length)
 
     for (let index = 0; index < items.length; index++) {
       const item = items.item(index);

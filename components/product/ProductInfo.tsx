@@ -66,9 +66,6 @@ function ProductInfo({ page, layout }: Props) {
   const inventoryLevel = offers?.offers[0].inventoryLevel.value;
   const images = product.isVariantOf?.image;
 
-  // console.log("PRODUTO", product);
-  // console.log("PRODUTO", JSON.parse(product?.description));
-
   return (
     <div class="relative flex items-start gap-[50px] pt-[40px]">
       <ProductImages images={images} />

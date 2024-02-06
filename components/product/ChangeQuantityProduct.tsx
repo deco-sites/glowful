@@ -9,8 +9,6 @@ interface Props {
 function ChangeQuantityProduct({ inventoryLevel, price }: Props) {
   const { quantityProduct } = useUI();
 
-  console.log(quantityProduct.value);
-
   return (
     <div class="max-w-[312px] flex justify-between items-center">
       <div class="flex items-center gap-[8px]">
