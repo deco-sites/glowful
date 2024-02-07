@@ -51,9 +51,8 @@ function CardText({
 }) {
   return (
     <div
-      class={`flex flex-col ${
-        alignment === "center" ? "text-center" : "text-left"
-      }`}
+      class={`flex flex-col ${alignment === "center" ? "text-center" : "text-left"
+        }`}
     >
       {tag && <div class="text-sm text-primary">{tag}</div>}
       {label && (
@@ -95,7 +94,7 @@ function CategoryList(props: Props) {
   return (
     <div
       id={id}
-      class="py-[40px] lg:py-[90px] lg:ml-[10%] xl:ml-[7%] 2xl:ml-[14%] flex items-center flex-col lg:flex-row gap-8 lg:gap-[75px] text-base-content"
+      class="py-[40px] lg:py-[90px] lg:ml-[10%] xl:ml-[7%] 2xl:ml-[14%] flex items-center flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-[75px] text-base-content"
       style={{
         "background-color": props.backgroundColor,
       }}
@@ -126,11 +125,11 @@ function CategoryList(props: Props) {
             ({ label, href, imageDesktop, imageMobile, buttonText }, index) => (
               <Slider.Item
                 index={index}
-                class="m-[8px] flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300"
+                class="m-[8px] lg:m-0 flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300 lg:w-1/3 max-w-[350px] min-w-[200px]"
               >
                 <a
                   href={href}
-                  class="flex flex-col gap-4 w-[296px] lg:w-[360px] lg:h-auto"
+                  class="flex flex-col gap-4 w-[296px] lg:w-full lg:h-auto"
                 >
                   {imageDesktop && imageMobile && (
                     <figure>
@@ -156,7 +155,7 @@ function CategoryList(props: Props) {
 
                 <div class="absolute top-[80%] lg:group-hover:top-[33%] w-full h-fit lg:h-full flex flex-col items-center gap-[32px] transition-all duration-300 z-[2]">
                   {label && (
-                    <p class="text-[24px] lg:text-[32px] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
+                    <p class="text-[24px] lg:text-xl xl:text-[32px] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
                       {label}
                     </p>
                   )}
