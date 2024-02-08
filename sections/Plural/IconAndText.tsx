@@ -31,7 +31,7 @@ export default function ImageAndText(props: Props) {
 
   return (
     <div class="lg:bg-[#F4F4F4]">
-      <div class="py-[40px] lg:py-0 lg:px-0 lg:ml-[2%]  xl:ml-[10%] card lg:card-side rounded grid grid-cols-1 justify-betweenx lg:grid-cols-[50%_48%] xl:grid-cols-[58%_40%] justify-items-center">
+      <div class="py-[40px] lg:py-0 lg:px-0 lg:ml-[2%]  xl:ml-[10%] card lg:card-side rounded grid grid-cols-1 justify-betweenx lg:grid-cols-[50%_48%] xl:grid-cols-[58%_40%] justify-items-center gap-2">
         <figure class=" relative items-center justify-centera justify-self-end max-h-[750px] ">
           <Picture class="hidden lg:flex items-center justify-center">
             <img
@@ -51,7 +51,7 @@ export default function ImageAndText(props: Props) {
             dangerouslySetInnerHTML={{ __html: title }}
           />
 
-          <div class="flex flex-col lg:flex-row lg:flex-wrap gap-[40px] xl:gap-[40px] md:gap-[20px] px-[20px] py-[30px]  lg:p-0  bg-[#F4F4F4] rounded-[15px]">
+          <div class="flex flex-col lg:flex-row lg:flex-wrap gap-[40px] xl:gap-[40px] md:gap-5 px-[20px] py-[30px] lg:p-0 justify-center bg-[#F4F4F4] rounded-[15px]">
             {benefits &&
               benefits.map((benefit) => (
                 <>
@@ -69,13 +69,13 @@ export default function ImageAndText(props: Props) {
                   </div>
 
                   {/* DESKTOP */}
-                  <div class="hidden lg:flex items-start  gap-[24px] lg:max-w-[260px]">
+                  <div class="hidden lg:flex items-start gap-6 lg:max-w-[260px]" style={{ width: "calc(50% - 1rem)" }}>
                     <img src={benefit.image} width={32} height={32} alt="" />
                     <div class="flex flex-col gap-[16px]">
-                      <p class="text-[22px] font-semibold tracking-[1.1px] leading-[130%] text-deep-beauty">
+                      <p class="xl:text-[22px] font-semibold tracking-[1.1px] leading-[130%] text-deep-beauty text-base">
                         {benefit.title}
                       </p>
-                      <span class="text-[16px] text-deep-beauty leading-[140%]">
+                      <span class="xl:text-[16px] text-deep-beauty leading-[140%] text-sm">
                         {benefit.description}
                       </span>
                     </div>
