@@ -2,8 +2,8 @@
   "imports": {
     "deco-sites/glowful/": "./",
     "$store/": "./",
-    "deco/": "https://denopkg.com/deco-cx/deco@1.52.12/",
-    "apps/": "../apps/",
+    "deco/": "https://denopkg.com/deco-cx/deco@1.53.9/",
+    "apps/": "https://denopkg.com/deco-cx/apps@0.32.42/",
     "$fresh/": "https://deno.land/x/fresh@1.6.1/",
     "preact": "https://esm.sh/preact@10.19.2",
     "preact/": "https://esm.sh/preact@10.19.2/",
