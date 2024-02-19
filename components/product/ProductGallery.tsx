@@ -37,7 +37,9 @@ function ProductGallery({ products, layout, offset, pageInfo }: Props) {
   const desktop = DESKTOP_COLUMNS[layout?.columns?.desktop ?? 4];
 
   return (
-    <div class={`grid ${mobile} gap-x-[32px] gap-y-[80px] items-center justify-items-center sm:grid-cols-2 xl:grid-cols-3`}>
+    <div
+      class={`relative grid ${mobile} pb-[80px] gap-x-[32px] gap-y-[80px] items-center justify-items-center sm:grid-cols-2 xl:grid-cols-3 before:w-full before:h-[1px] before:bg-[#E4E4E4] before:absolute before:bottom-0`}
+    >
       {products?.map((product, index) => (
         <ProductCard
           product={product}
@@ -47,7 +49,8 @@ function ProductGallery({ products, layout, offset, pageInfo }: Props) {
           platform={platform}
         />
       ))}
-      <ShowMore nextPage={pageInfo.nextPage}/>
+
+      <ShowMore nextPage={pageInfo.nextPage} layout={layout?.card} />
     </div>
   );
 }
