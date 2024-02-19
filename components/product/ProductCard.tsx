@@ -324,7 +324,7 @@ function ProductCard({
           {l?.hide?.allPrices ? (
             ""
           ) : (
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2 items-end">
               <div
                 class={`flex flex-col gap-2 items-end w-fit ${l?.basics?.oldPriceSize === "Normal"
                   ? ""
@@ -342,7 +342,7 @@ function ProductCard({
                 </div>
               </div>
               {l?.hide?.installments && priceInstallments && (
-                <p class ="text-sm  text-[#101820] text-end font-medium">
+                <p class="text-sm  text-[#101820] text-end font-medium w-max">
                   {quantityInstallments.value + "x " + formatPrice(priceInstallments, offers?.priceCurrency)}
                 </p>
               )}
