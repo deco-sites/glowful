@@ -10,30 +10,32 @@ export default function ShowMore({ nextPage, layout }) {
   const hasNextPage = useSignal<string | undefined>("");
   const page = useSignal(1);
   const nextPageIsUndefined = useSignal(false);
+  const sortUrl = useSignal("");
+
+  console.log("NEXTPAGE", nextPage);
 
   const loadMore = async () => {
     const url = new URL(window.location.href + nextPage);
-    const searchParams = url.searchParams;
-    const startCursor = searchParams.get("startCursor") || "";
-    const sort = url.searchParams.get("sort") ?? "";
+
     const collectionName = url.pathname.split("/")[1];
 
     const pageInfo = await invoke.shopify.loaders.ProductListingPage({
       count: 1,
-      page: page.value,
-      startCursor,
-      collectionName,
+      pageHref: url.href,
     });
 
     if (pageInfo) {
+      hasNextPage.value = pageInfo.pageInfo.nextPage;
+
       if (pageInfo.pageInfo.nextPage === undefined) {
-        hasNextPage.value = window.location.href;
         nextPageIsUndefined.value = true;
       } else {
         hasNextPage.value = pageInfo.pageInfo.nextPage;
       }
 
       products.value = [...products.value, ...pageInfo.products];
+
+      console.log("HASNEXTPAGE", hasNextPage.value);
 
       window.history.pushState("Object", collectionName, hasNextPage.value);
     }

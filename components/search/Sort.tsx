@@ -21,6 +21,10 @@ const applySort = (e: JSX.TargetedEvent<HTMLSelectElement, Event>) => {
     urlSearchParams.set(SORT_QUERY_PARAM, selectedValue);
   }
 
+  urlSearchParams.delete("startCursor");
+  urlSearchParams.delete("endCursor");
+  urlSearchParams.delete("page");
+
   window.location.search = urlSearchParams.toString();
 };
 
