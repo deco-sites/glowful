@@ -10,12 +10,13 @@ export default function ShowMore({ nextPage, layout }) {
   const hasNextPage = useSignal<string | undefined>("");
   const page = useSignal(1);
   const nextPageIsUndefined = useSignal(false);
-  const sortUrl = useSignal("");
 
-  console.log("NEXTPAGE", nextPage);
+  if (nextPage === undefined) {
+    nextPageIsUndefined.value = true;
+  }
 
   const loadMore = async () => {
-    const url = new URL(window.location.href + nextPage);
+    const url = new URL(window.location.href);
 
     const collectionName = url.pathname.split("/")[1];
 
@@ -25,8 +26,6 @@ export default function ShowMore({ nextPage, layout }) {
     });
 
     if (pageInfo) {
-      hasNextPage.value = pageInfo.pageInfo.nextPage;
-
       if (pageInfo.pageInfo.nextPage === undefined) {
         nextPageIsUndefined.value = true;
       } else {
@@ -34,8 +33,6 @@ export default function ShowMore({ nextPage, layout }) {
       }
 
       products.value = [...products.value, ...pageInfo.products];
-
-      console.log("HASNEXTPAGE", hasNextPage.value);
 
       window.history.pushState("Object", collectionName, hasNextPage.value);
     }
