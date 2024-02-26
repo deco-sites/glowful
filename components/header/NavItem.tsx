@@ -1,6 +1,6 @@
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
-import { headerHeight } from "./constants.ts";
+import { navbarHeight } from "./constants.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 
 function NavItem({
@@ -30,7 +30,7 @@ function NavItem({
           w-full m-auto left-1/2 ${
             displayTop.value ? "top-[45px]" : "top-[0]"
           } transform -translate-x-1/2`}
-          style={{ marginTop: headerHeight }}
+          style={{ marginTop: "80px" }}
         >
           <ul class="flex items-start justify-center gap-10">
             {children.map((node) => (

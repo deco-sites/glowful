@@ -102,7 +102,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
     <>
       {/* Mobile Version */}
       <div
-        style={{ height: navbarHeight }}
+        style={{ height: "60px" }}
         class={`md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${displayNavbar} bg-[${backgroundColor}] md:hover:visible md:hover:bg-white-lily py-4`}
       >
         <MenuButton />
@@ -111,7 +111,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
           <a
             href="/"
             class="flex-grow inline-flex items-center"
-            style={{ minHeight: navbarHeight }}
+            style={{ minHeight: "60px" }}
             aria-label="Store logo"
           >
             <Image
@@ -155,7 +155,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
       {/* Desktop Version */}
       <div
-        class={`hidden md:flex  ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover py-5`}
+        class={`hidden md:flex  ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover`}
         style={{ minHeight: navbarHeight }}
         onMouseEnter={() => {
           displayHover.value = true;
@@ -163,7 +163,10 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
         }}
         onMouseLeave={() => (displayHover.value = false)}
       >
-        <div class="container inis flex flex-row justify-between items-center w-full z-[999]">
+        <div
+          class="container inis flex flex-row justify-between items-center w-full z-[999] h-full"
+          style={{ minHeight: navbarHeight }}
+        >
           <div class="flex-none w-44">
             {logo && (
               <a
@@ -196,7 +199,10 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               </a>
             )}
           </div>
-          <ul class="flex-auto flex justify-center">
+          <ul
+            class="flex-auto flex justify-center"
+            style={{ minHeight: navbarHeight }}
+          >
             {items.map((item) => (
               <NavItem item={item} colorIcon={colorIcon} />
             ))}
