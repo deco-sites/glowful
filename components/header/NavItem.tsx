@@ -9,8 +9,8 @@ function NavItem({
 }: {
   item: SiteNavigationElement;
   colorIcon: string;
-  }) {
-    const { displayTop } = useUI();
+}) {
+  const { displayTop } = useUI();
   const { url, name, children } = item;
   const image = item?.image;
 
@@ -26,14 +26,16 @@ function NavItem({
 
       {children && children.length > 0 && (
         <div
-          class={`fixed hidden hover:flex group-hover:flex bg-[#FFF] shadow-glowful items-start justify-center gap-6 border-t border-b-2 border-base-200 
-          w-[95%] m-auto left-1/2 ${displayTop.value ? "top-[45px]" : "top-[0]"} transform -translate-x-1/2`}
+          class={`fixed hidden py-[70px] hover:flex group-hover:flex bg-[#FFF] shadow-glowful items-start justify-center gap-[50px] border-t border-b-2 border-base-200 
+          w-full m-auto left-1/2 ${
+            displayTop.value ? "top-[45px]" : "top-[0]"
+          } transform -translate-x-1/2`}
           style={{ marginTop: headerHeight }}
         >
           <ul class="flex items-start justify-center gap-10">
             {children.map((node) => (
-              <li class="max-w-[260px] py-[50px]">
-                <p class="pb-[12px] text-deep-beauty text-[18px] font-bold border-b border-[#D1D1D1]">
+              <li class="max-w-[260px] ">
+                <p class="text-deep-beauty text-[18px] font-bold">
                   <span>{node.name}</span>
                 </p>
 
@@ -52,17 +54,18 @@ function NavItem({
             ))}
           </ul>
 
-          {image &&
-            image.map((image: any) => (
-              <Image
-                class="p-6"
-                src={image.url}
-                alt={image.alternateName}
-                width={290}
-                height={340}
-                loading="lazy"
-              />
-            ))}
+          <div class="flex gap-[32px]">
+            {image &&
+              image.map((image: any) => (
+                <Image
+                  src={image.url}
+                  alt={image.alternateName}
+                  width={280}
+                  height={320}
+                  loading="lazy"
+                />
+              ))}
+          </div>
         </div>
       )}
     </li>

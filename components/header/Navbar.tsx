@@ -155,7 +155,8 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
       {/* Desktop Version */}
       <div
-        class={`hidden md:flex h-[50px] ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover py-5`}
+        class={`hidden md:flex  ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover py-5`}
+        style={{ minHeight: navbarHeight }}
         onMouseEnter={() => {
           displayHover.value = true;
           setDisplayNavbar("visible");
