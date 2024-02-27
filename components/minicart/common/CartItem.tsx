@@ -84,10 +84,10 @@ function CartItem({
         </div>
         <div class="flex items-center gap-[8px]">
           <span class="text-[#101820] text-[16px] uppercase leading-[13px] line-through">
-            {formatPrice(list, currency, locale)}
+            {formatPrice(sale, currency, locale)}
           </span>
           <span class="text-cherry-pop text-[16px] font-bold uppercase leading-[13px]">
-            {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
+            {isGift ? "Grátis" : formatPrice(list, currency, locale)}
           </span>
         </div>
 

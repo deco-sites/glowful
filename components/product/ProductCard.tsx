@@ -151,7 +151,36 @@ function ProductCard({
         class="!flex lg:!hidden relative overflow-hidden"
         style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
+        <div class="grid grid-cols-1 grid-rows-1 w-full relative">
+          <FlatDiscount
+            listPrice={listPrice ?? 0}
+            price={price ?? 0}
+            absolutePosition
+          />
 
+          {/* TODO - Get flag Shopify */}
+          <div
+            className={`flex justify-center items-center px-[20px] py-[5px] text-[#101820] bg-white-lily text-center text-[14px] font-semibold leading-[130%] tracking-[1px] absolute top-[20px] left-[20px] z-10 rounded-[8px]`}
+          >
+            NOVO
+          </div>
+
+          <Image
+            src={front.url!}
+            alt={front.alternateName}
+            width={WIDTH}
+            height={HEIGHT}
+            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${
+              l?.onMouseOver?.image == "Zoom image"
+                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                : ""
+            }`}
+            sizes="(max-width: 640px) 50vw, 20vw"
+            preload={preload}
+            loading={preload ? "eager" : "lazy"}
+            decoding="async"
+          />
+        </div>
 
         <figcaption
           class={`

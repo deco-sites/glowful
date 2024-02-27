@@ -11,23 +11,22 @@ export default function ShowMore({ nextPage, layout }) {
   const page = useSignal(1);
   const nextPageIsUndefined = useSignal(false);
 
+  if (nextPage === undefined) {
+    nextPageIsUndefined.value = true;
+  }
+
   const loadMore = async () => {
-    const url = new URL(window.location.href + nextPage);
-    const searchParams = url.searchParams;
-    const startCursor = searchParams.get("startCursor") || "";
-    const sort = url.searchParams.get("sort") ?? "";
+    const url = new URL(window.location.href);
+
     const collectionName = url.pathname.split("/")[1];
 
     const pageInfo = await invoke.shopify.loaders.ProductListingPage({
       count: 1,
-      page: page.value,
-      startCursor,
-      collectionName,
+      pageHref: url.href,
     });
 
     if (pageInfo) {
       if (pageInfo.pageInfo.nextPage === undefined) {
-        hasNextPage.value = window.location.href;
         nextPageIsUndefined.value = true;
       } else {
         hasNextPage.value = pageInfo.pageInfo.nextPage;
