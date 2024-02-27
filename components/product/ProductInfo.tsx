@@ -21,6 +21,7 @@ import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import ProductImages from "$store/islands/ProductImages.tsx";
+import { useUI } from "../../sdk/useUI.ts";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -32,11 +33,19 @@ interface Props {
      */
     name?: "concat" | "productGroup" | "product";
   };
+    /**
+   * @description maximum value of installments, default 5x
+   * @default "5"
+   */
+    installments?: number;
 }
 
-function ProductInfo({ page, layout }: Props) {
+function ProductInfo({ page, layout, installments = 5 }: Props) {
   const platform = usePlatform();
   const id = useId();
+  const {quantityInstallments} = useUI()
+
+  quantityInstallments.value = installments;
 
   if (page === null) {
     throw new Error("Missing Product Details Page Info");
@@ -57,7 +66,6 @@ function ProductInfo({ page, layout }: Props) {
     price = 0,
     listPrice,
     seller = "1",
-    installments,
     availability,
   } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
