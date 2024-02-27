@@ -14,6 +14,7 @@ const displayHover = signal(false);
 const scrollDirection = signal("down");
 const displayPopup = signal(false);
 const quantityProduct = signal(1);
+const quantityInstallments = signal(5);
 
 const state = {
   displayCart,
@@ -25,6 +26,7 @@ const state = {
   scrollDirection,
   displayPopup,
   quantityProduct,
+  quantityInstallments
 };
 
 // Keyboard event listeners
