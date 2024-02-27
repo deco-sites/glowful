@@ -6,27 +6,22 @@ export interface Props {
 }
 
 function MenuItem({ item }: { item: SiteNavigationElement }) {
-  return item.children.length > 1 ? (
+  return item.children && item.children.length > 1 ? (
     <div class="collapse collapse-plus">
       <input type="checkbox" />
       <div class="collapse-title">{item.name}</div>
       <div class="collapse-content">
         <ul>
           {item.children?.map((node) => (
-            <div class="collapse collapse-plus">
-              <input type="checkbox" />
-              <div class="collapse-title">{node.name}</div>
-              <div class="collapse-content">
-                <ul class="flex flex-col">
-                  {node.children?.map((node2) => (
-                    <a class="pl-5 py-3" href={node2.url}>
-                      {node2.name}
-                    </a>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <li>
+              <MenuItem item={node} />
+            </li>
           ))}
+          <li>
+            <a class="block m-4 underline text-sm" href={item.url}>
+              Ver todos
+            </a>
+          </li>
         </ul>
       </div>
     </div>

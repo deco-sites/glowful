@@ -33,6 +33,9 @@ function FilterRangePrice() {
       }
     });
 
+    urlSearchParams.delete("startCursor");
+    urlSearchParams.delete("page");
+
     urlSearchParams.delete("filter.v.price.gte");
     urlSearchParams.delete("filter.v.price.lte");
 
@@ -45,7 +48,8 @@ function FilterRangePrice() {
     }
 
     addedFilters.forEach((filter) => {
-      urlSearchParams.set(String(filter), "");
+      const currentValue = urlSearchParams.get(String(filter)) || "";
+      urlSearchParams.set(String(filter), currentValue);
     });
 
     const newUrl = `${window.location.pathname}?${urlSearchParams.toString()}`;
