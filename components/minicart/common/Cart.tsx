@@ -115,7 +115,7 @@ function Cart({
               <div class="flex justify-between items-center w-full">
                 <span class="text-[14px] lg:text-[16px]">Total</span>
                 <span class="font-medium text-[18px] lg:text-[20px]">
-                  {formatPrice(total, currency, locale)}
+                  {formatPrice(subtotal, currency, locale)}
                 </span>
               </div>
               <span class="text-sm text-[#878787]">
@@ -124,7 +124,7 @@ function Cart({
             </div>
 
             <div class="p-[32px]">
-              <a class="w-full flex justify-center" href="/cart">
+              <a class="w-full flex justify-center" href={checkoutHref}>
                 <Button
                   data-deco="buy-button"
                   class="h-fit w-fit bg-[#000] rounded-full border-none text-[#fff] text-sm uppercase px-[40px] py-[16px] lg:px-[60px] lg:py-[18px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"

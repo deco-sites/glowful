@@ -7,7 +7,7 @@ import ProductCard, {
 
 export default function ShowMore({ nextPage, layout }) {
   const products = useSignal<Product[]>([]);
-  const hasNextPage = useSignal<string | undefined>("");
+  const hasNextPage = useSignal<string | undefined>(nextPage);
   const page = useSignal(1);
   const nextPageIsUndefined = useSignal(false);
 
@@ -16,13 +16,18 @@ export default function ShowMore({ nextPage, layout }) {
   }
 
   const loadMore = async () => {
-    const url = new URL(window.location.href);
+    const currentUrl = new URL(window.location.href);
+    const nextPageParams = new URLSearchParams(hasNextPage.value);
 
-    const collectionName = url.pathname.split("/")[1];
+    for (const [key, value] of nextPageParams.entries()) {
+      currentUrl.searchParams.append(key, value);
+    }
+
+    const collectionName = currentUrl.pathname.split("/")[1];
 
     const pageInfo = await invoke.shopify.loaders.ProductListingPage({
       count: 1,
-      pageHref: url.href,
+      pageHref: currentUrl.href,
     });
 
     if (pageInfo) {
