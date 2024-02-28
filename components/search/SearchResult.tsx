@@ -77,6 +77,7 @@ function Result({
               pageInfo={pageInfo}
               offset={offset}
               layout={{ card: cardLayout, columns: layout?.columns }}
+              perPage={perPage}
             />
           </div>
         </div>
@@ -105,7 +106,7 @@ function Result({
 
 function SearchResult({ page, notFound, ...props }: Props) {
   const pageContent = page?.products.length == 0 ? false : true;
- 
+
   if (pageContent) {
     return <Result {...props} page={page} />;
   } else {
