@@ -108,5 +108,9 @@
 		<path fill-rule="evenodd" clip-rule="evenodd" d="M40.2424 10.2684L42.6128 21.9066H39.891L39.5396 20.2061H35.7635L35.1501 21.9066H32.0769L36.4663 11.1637C36.642 10.6268 37.1691 10.2684 37.6962 10.2684H40.2424ZM39.0122 17.7887L38.1353 13.4025L36.554 17.7887H39.0122Z"/>
 	</symbol>
 
+	<symbol id="Arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16" fill="none">
+		<path d="M11.0516 14.125L18 8L11.0516 1.875" stroke="#CE0F69" stroke-width="2.5"/>
+		<path d="M17.5 8L0.5 8" stroke="#CE0F69" stroke-width="2.5"/>
+	</sumbol>
 
 </svg>

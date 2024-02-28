@@ -4,7 +4,7 @@ import type { JSX } from "preact";
 export type AvailableIcons =
   | "Add"
   | "Sub"
-  | "CheckPdp" 
+  | "CheckPdp"
   | "BarCode"
   | "Wallet"
   | "Shipping"
@@ -46,7 +46,8 @@ export type AvailableIcons =
   | "Visa"
   | "WhatsApp"
   | "XMark"
-  | "Zoom";
+  | "Zoom"
+  | "Arrow";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
