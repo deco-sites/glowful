@@ -3,6 +3,9 @@ import CardStep from "../../components/Steps/CardStep.tsx";
 import Icon from "../../components/ui/Icon.tsx";
 
 
+/**
+ * @titleBy title
+ */
 export interface Props {
     title: string;
     steps: StepsProps[];

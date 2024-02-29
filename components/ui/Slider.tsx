@@ -4,7 +4,7 @@ function Dot({
   index,
   children,
   bgWhite = true,
-  classes,
+  classes = " w-[42px]  disabled:w-[84px]",
 }: {
   index: number;
   children: ComponentChildren;
@@ -15,7 +15,7 @@ function Dot({
     <button
       data-dot={index}
       aria-label={`go to slider item ${index}`}
-      class={`focus:outline-none group w-[42px] h-[8px] rounded opacity-60 disabled:w-[84px]  disabled:opacity-100 transition-all
+      class={`focus:outline-none group h-[8px] rounded opacity-60 disabled:opacity-100 transition-all
       ${
         bgWhite
           ? "bg-[#FFFFFF] disabled:bg-[#FFFFFF]"
