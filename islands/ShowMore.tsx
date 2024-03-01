@@ -5,17 +5,19 @@ import ProductCard, {
   Layout as CardLayout,
 } from "$store/components/product/ProductCard.tsx";
 
-export default function ShowMore({ nextPage, layout }) {
+export default function ShowMore({ nextPage, layout, perPage }) {
   const products = useSignal<Product[]>([]);
   const hasNextPage = useSignal<string | undefined>(nextPage);
   const page = useSignal(1);
   const nextPageIsUndefined = useSignal(false);
+  const loading = useSignal(false);
 
   if (nextPage === undefined) {
     nextPageIsUndefined.value = true;
   }
 
   const loadMore = async () => {
+    loading.value = true;
     const currentUrl = new URL(window.location.href);
     const nextPageParams = new URLSearchParams(hasNextPage.value);
 
@@ -26,7 +28,7 @@ export default function ShowMore({ nextPage, layout }) {
     const collectionName = currentUrl.pathname.split("/")[1];
 
     const pageInfo = await invoke.shopify.loaders.ProductListingPage({
-      count: 1,
+      count: perPage,
       pageHref: currentUrl.href,
     });
 
@@ -43,6 +45,8 @@ export default function ShowMore({ nextPage, layout }) {
     }
 
     page.value = page.value + 1;
+
+    loading.value = false;
   };
 
   return (
@@ -59,6 +63,7 @@ export default function ShowMore({ nextPage, layout }) {
 
       {!nextPageIsUndefined.value && (
         <button
+          disabled={loading}
           class="absolute bottom-[-25px] h-[48px] px-[14px] rounded-[100px] bg-cherry-pop text-white-lily text-[16px] font-bold uppercase tracking-[2px] flex justify-center items-center shadow-2x1 hover:bg-[#111] hover:px-[30px] transition-all duration-300 "
           onClick={() => loadMore()}
           onMouseOver={(e) => {
