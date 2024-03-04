@@ -115,7 +115,7 @@ function Cart({
               <div class="flex justify-between items-center w-full">
                 <span class="text-[14px] lg:text-[16px]">Total</span>
                 <span class="font-medium text-[18px] lg:text-[20px]">
-                  {formatPrice(total, currency, locale)}
+                  {formatPrice(subtotal, currency, locale)}
                 </span>
               </div>
               <span class="text-sm text-[#878787]">
