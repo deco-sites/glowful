@@ -1,8 +1,15 @@
+import { invoke } from "$store/runtime.ts";
+
 export interface Props {
   title: string;
 }
 
-function Review({ title }: Props) {
+async function Review({ title }: Props) {
+  const product = await invoke.shopify.loaders.ProductDetailsPage();
+
+  console.log("PRODUCT");
+  console.log(product);
+
   return (
     <>
       <script
