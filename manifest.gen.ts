@@ -57,12 +57,11 @@ import * as $$$$$$47 from "./sections/Product/NotFoundChallenge.tsx";
 import * as $$$$$$48 from "./sections/Product/ProductInfo.tsx";
 import * as $$$$$$49 from "./sections/Product/ProductShelf.tsx";
 import * as $$$$$$50 from "./sections/Product/ProductShelfTabbed.tsx";
-import * as $$$$$$51 from "./sections/Product/Review.tsx";
-import * as $$$$$$52 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$53 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$54 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$55 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$56 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$51 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$52 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$53 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$54 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$55 from "./sections/Theme/Theme.tsx";
 
 const manifest = {
   "loaders": {
@@ -122,12 +121,11 @@ const manifest = {
     "deco-sites/glowful/sections/Product/ProductInfo.tsx": $$$$$$48,
     "deco-sites/glowful/sections/Product/ProductShelf.tsx": $$$$$$49,
     "deco-sites/glowful/sections/Product/ProductShelfTabbed.tsx": $$$$$$50,
-    "deco-sites/glowful/sections/Product/Review.tsx": $$$$$$51,
-    "deco-sites/glowful/sections/Product/SearchResult.tsx": $$$$$$52,
-    "deco-sites/glowful/sections/Product/Wishlist.tsx": $$$$$$53,
-    "deco-sites/glowful/sections/Social/InstagramPosts.tsx": $$$$$$54,
-    "deco-sites/glowful/sections/Social/WhatsApp.tsx": $$$$$$55,
-    "deco-sites/glowful/sections/Theme/Theme.tsx": $$$$$$56,
+    "deco-sites/glowful/sections/Product/SearchResult.tsx": $$$$$$51,
+    "deco-sites/glowful/sections/Product/Wishlist.tsx": $$$$$$52,
+    "deco-sites/glowful/sections/Social/InstagramPosts.tsx": $$$$$$53,
+    "deco-sites/glowful/sections/Social/WhatsApp.tsx": $$$$$$54,
+    "deco-sites/glowful/sections/Theme/Theme.tsx": $$$$$$55,
   },
   "apps": {
     "deco-sites/glowful/apps/decohub.ts": $$$$$$$$$$$0,
