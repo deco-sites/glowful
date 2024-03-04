@@ -31,7 +31,13 @@ const DESKTOP_COLUMNS = {
   5: "sm:grid-cols-5",
 };
 
-function ProductGallery({ products, layout, offset, pageInfo }: Props) {
+function ProductGallery({
+  products,
+  layout,
+  offset,
+  pageInfo,
+  perPage,
+}: Props) {
   const platform = usePlatform();
   const mobile = MOBILE_COLUMNS[layout?.columns?.mobile ?? 2];
   const desktop = DESKTOP_COLUMNS[layout?.columns?.desktop ?? 4];
@@ -50,7 +56,11 @@ function ProductGallery({ products, layout, offset, pageInfo }: Props) {
         />
       ))}
 
-      <ShowMore nextPage={pageInfo.nextPage} layout={layout?.card} />
+      <ShowMore
+        perPage={perPage}
+        nextPage={pageInfo.nextPage}
+        layout={layout?.card}
+      />
     </div>
   );
 }
