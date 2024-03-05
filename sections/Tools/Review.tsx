@@ -4,7 +4,10 @@ export interface Props {
   AllReviews?: boolean;
   reviewStyle:
     | "Product Review Widget"
-    | "Gallery Carousel Widget";
+    | "Gallery Carousel Widget"
+    | "Rating Widget"
+    | "Cards Carousel Widget"
+    | "Testimonials Carousel Widget";
 }
 
 function Review({ AllReviews, reviewStyle }: Props) {
@@ -32,6 +35,27 @@ function Review({ AllReviews, reviewStyle }: Props) {
               class="loox-v2-carousel-container"
               id="LOOX-V2_CAROUSEL-gallery"
               data-slide-type="gallery"
+            ></div>
+          </div>
+        )}
+        {reviewStyle === "Rating Widget" && (
+          <div class="loox-rating" data-fetch data-id={id}></div>
+        )}
+        {reviewStyle === "Cards Carousel Widget" && (
+          <div id="loox-default-carousel">
+            <div
+              class="loox-v2-carousel-container"
+              id="LOOX-V2_CAROUSEL-card"
+              data-slide-type="card"
+            ></div>
+          </div>
+        )}
+        {reviewStyle === "Testimonials Carousel Widget" && (
+          <div id="loox-default-carousel">
+            <div
+              class="loox-v2-carousel-container"
+              id="LOOX-V2_CAROUSEL-testimonial"
+              data-slide-type="testimonial"
             ></div>
           </div>
         )}
