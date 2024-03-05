@@ -31,15 +31,6 @@ function Review({ AllReviews, reviewStyle }: Props) {
         {AllReviews === false && reviewStyle == "Product Review Widget" && (
           <div id="looxReviews" data-product-id={id}></div>
         )}
-        {reviewStyle === "Gallery Carousel Widget" && (
-          <div id="loox-default-carousel">
-            <div
-              class="loox-v2-carousel-container"
-              id="LOOX-V2_CAROUSEL-gallery"
-              data-slide-type="gallery"
-            ></div>
-          </div>
-        )}
         {reviewStyle === "Rating Widget" && (
           <div class="loox-rating" data-fetch data-id={id}></div>
         )}
@@ -58,6 +49,15 @@ function Review({ AllReviews, reviewStyle }: Props) {
               class="loox-v2-carousel-container"
               id="LOOX-V2_CAROUSEL-testimonial"
               data-slide-type="testimonial"
+            ></div>
+          </div>
+        )}
+        {reviewStyle === "Gallery Carousel Widget" && (
+          <div id="loox-default-carousel">
+            <div
+              class="loox-v2-carousel-container"
+              id="LOOX-V2_CAROUSEL-gallery"
+              data-slide-type="gallery"
             ></div>
           </div>
         )}
