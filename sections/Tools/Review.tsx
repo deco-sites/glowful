@@ -1,11 +1,10 @@
 import { useUI } from "../../sdk/useUI.ts";
 
 export interface Props {
-  title: string;
   AllReviews?: boolean;
 }
 
-function Review({ title, AllReviews }: Props) {
+function Review({ AllReviews }: Props) {
   const { productId } = useUI();
 
   console.log("PRODUCTID", productId.value);
@@ -21,9 +20,7 @@ function Review({ title, AllReviews }: Props) {
         src="//loox.io/widget/loox.js?shop=20c805-5.myshopify.com"
       />
 
-      <div>
-        <h1>{title}</h1>
-
+      <div class="container py-[60px]">
         {AllReviews === true ? (
           <div id="looxReviews" data-loox-aggregate></div>
         ) : (
