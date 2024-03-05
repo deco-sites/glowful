@@ -35,6 +35,8 @@ async function Review({ title }: Props) {
         <h1>{title}</h1>
 
         <div id="looxReviews" data-product-id={productId.value}></div>
+
+        <div id="looxReviews" data-loox-aggregate></div>
       </div>
     </>
   );
