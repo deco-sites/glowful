@@ -9,7 +9,7 @@ export interface Props {
 }
 
 async function Review({ title }: Props) {
-  const { productId } = useUI();
+  // const { productId } = useUI();
   // const [productId, setProductId] = useState();
 
   // const product = productDetails.value;
@@ -22,22 +22,22 @@ async function Review({ title }: Props) {
 
   // setProductId(lastPart);
 
-  console.log(productId);
+  // console.log(productId);
 
   return (
     <>
+      <div class="container py-[40px]">
+        <h1>{title}</h1>
+
+        {/* <div id="looxReviews" data-product-id={productId.value}></div> */}
+
+        <div id="looxReviews" data-loox-aggregate></div>
+      </div>
+
       <script
         async
         src="//loox.io/widget/loox.js?shop=20c805-5.myshopify.com"
       />
-
-      <div class="container py-[40px]">
-        <h1>{title}</h1>
-
-        <div id="looxReviews" data-product-id={productId.value}></div>
-
-        <div id="looxReviews" data-loox-aggregate></div>
-      </div>
     </>
   );
 }
