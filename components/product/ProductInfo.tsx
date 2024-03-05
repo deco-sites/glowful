@@ -33,17 +33,17 @@ interface Props {
      */
     name?: "concat" | "productGroup" | "product";
   };
-    /**
+  /**
    * @description maximum value of installments, default 5x
    * @default "5"
    */
-    installments?: number;
+  installments?: number;
 }
 
 function ProductInfo({ page, layout, installments = 5 }: Props) {
   const platform = usePlatform();
   const id = useId();
-  const {quantityInstallments} = useUI()
+  const { quantityInstallments, productId } = useUI();
 
   quantityInstallments.value = installments;
 
@@ -62,17 +62,17 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
     additionalProperty = [],
   } = product;
   const description = product.description || isVariantOf?.description;
-  const {
-    price = 0,
-    listPrice,
-    seller = "1",
-    availability,
-  } = useOffer(offers);
+  const { price = 0, listPrice, seller = "1", availability } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const discount = price && listPrice ? listPrice - price : 0;
   const descriptionJson = description && JSON.parse(description);
   const inventoryLevel = offers?.offers[0].inventoryLevel.value;
   const images = product.isVariantOf?.image;
+
+  const productGroupId = isVariantOf?.productGroupID;
+  const parts = productGroupId?.split("/");
+  const lastPart = parts[parts.length - 1];
+  productId.value = lastPart;
 
   return (
     <div class="relative flex items-start gap-[50px] pt-[40px]">
@@ -154,86 +154,84 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
         <p class="text-[16px] font-fraunces font-semibold my-[30px]">Combos:</p>
 
         {/* Prices */}
-        {
-          /* <div class="mt-4">
+        {/* <div class="mt-4">
         <div class="flex flex-row gap-2 items-center">
           <span class="font-medium text-xl text-secondary">
             {formatPrice(price, offers?.priceCurrency)}
           </span>
         </div>
-      </div> */
-        }
+      </div> */}
 
         {/* Quantity Items */}
         <ChangeQuantityProduct inventoryLevel={inventoryLevel} price={price} />
 
         {/* Add to Cart and Favorites button */}
         <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-          {availability === "https://schema.org/InStock"
-            ? (
-              <>
-                {platform === "vtex" && (
-                  <>
-                    <AddToCartButtonVTEX
-                      url={url || ""}
-                      name={name}
-                      productID={productID}
-                      productGroupID={productGroupID}
-                      price={price}
-                      discount={discount}
-                      seller={seller}
-                    />
-                    <WishlistButton
-                      variant="full"
-                      productID={productID}
-                      productGroupID={productGroupID}
-                    />
-                  </>
-                )}
-                {platform === "wake" && (
-                  <AddToCartButtonWake
+          {availability === "https://schema.org/InStock" ? (
+            <>
+              {platform === "vtex" && (
+                <>
+                  <AddToCartButtonVTEX
                     url={url || ""}
                     name={name}
                     productID={productID}
                     productGroupID={productGroupID}
                     price={price}
                     discount={discount}
+                    seller={seller}
                   />
-                )}
-                {platform === "linx" && (
-                  <AddToCartButtonLinx
-                    url={url || ""}
-                    name={name}
+                  <WishlistButton
+                    variant="full"
                     productID={productID}
                     productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
                   />
-                )}
-                {platform === "vnda" && (
-                  <AddToCartButtonVNDA
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                    additionalProperty={additionalProperty}
-                  />
-                )}
-                {platform === "shopify" && (
-                  <AddToCartButtonShopify
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                  />
-                )}
-              </>
-            )
-            : <OutOfStock productID={productID} />}
+                </>
+              )}
+              {platform === "wake" && (
+                <AddToCartButtonWake
+                  url={url || ""}
+                  name={name}
+                  productID={productID}
+                  productGroupID={productGroupID}
+                  price={price}
+                  discount={discount}
+                />
+              )}
+              {platform === "linx" && (
+                <AddToCartButtonLinx
+                  url={url || ""}
+                  name={name}
+                  productID={productID}
+                  productGroupID={productGroupID}
+                  price={price}
+                  discount={discount}
+                />
+              )}
+              {platform === "vnda" && (
+                <AddToCartButtonVNDA
+                  url={url || ""}
+                  name={name}
+                  productID={productID}
+                  productGroupID={productGroupID}
+                  price={price}
+                  discount={discount}
+                  additionalProperty={additionalProperty}
+                />
+              )}
+              {platform === "shopify" && (
+                <AddToCartButtonShopify
+                  url={url || ""}
+                  name={name}
+                  productID={productID}
+                  productGroupID={productGroupID}
+                  price={price}
+                  discount={discount}
+                />
+              )}
+            </>
+          ) : (
+            <OutOfStock productID={productID} />
+          )}
         </div>
         {/* Shipping Simulation */}
         <div class="mt-8">

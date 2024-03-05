@@ -2,25 +2,28 @@
 // import type { ProductListingPage } from "apps/commerce/types.ts";
 
 import { useUI } from "../sdk/useUI.ts";
+import { useState, useEffect } from "preact/hooks";
 
 export interface Props {
   title: string;
 }
 
 async function Review({ title }: Props) {
-  const { productDetails } = useUI();
+  const { productId } = useUI();
+  // const [productId, setProductId] = useState();
 
-  const product = productDetails.value;
+  // const product = productDetails.value;
 
-  const productGroupId = product.product.isVariantOf.productGroupID;
+  // const productGroupId = product.product.isVariantOf.productGroupID;
 
-  console.log("GRUPOID", productGroupId);
+  // const parts = productGroupId.split("/");
 
-  const parts = productGroupId.split("/");
+  // const lastPart = parts[parts.length - 1];
 
-  const lastPart = parts[parts.length - 1];
+  // setProductId(lastPart);
 
-  console.log("PARTS", lastPart);
+  console.log(productId);
+
   return (
     <>
       <script
@@ -31,7 +34,7 @@ async function Review({ title }: Props) {
       <div class="container py-[40px]">
         <h1>{title}</h1>
 
-        <div id="looxReviews" data-product-id={lastPart}></div>
+        <div id="looxReviews" data-product-id={productId.value}></div>
       </div>
     </>
   );
