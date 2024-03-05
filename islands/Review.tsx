@@ -1,17 +1,26 @@
-import { invoke } from "$store/runtime.ts";
+// import { invoke } from "$store/runtime.ts";
+// import type { ProductListingPage } from "apps/commerce/types.ts";
+
+import { useUI } from "../sdk/useUI.ts";
 
 export interface Props {
   title: string;
 }
 
 async function Review({ title }: Props) {
-  const url = new URL(window.location.href);
-  const path = url.pathname;
-  const parts = path.split("/");
+  const { productDetails } = useUI();
+
+  const product = productDetails.value;
+
+  const productGroupId = product.product.isVariantOf.productGroupID;
+
+  console.log("GRUPOID", productGroupId);
+
+  const parts = productGroupId.split("/");
+
   const lastPart = parts[parts.length - 1];
 
-  const product = await invoke.shopify.loaders.ProductDetailsPage(lastPart);
-
+  console.log("PARTS", lastPart);
   return (
     <>
       <script
@@ -22,7 +31,7 @@ async function Review({ title }: Props) {
       <div class="container py-[40px]">
         <h1>{title}</h1>
 
-        <div id="looxReviews" data-loox-aggregate></div>
+        <div id="looxReviews" data-product-id={lastPart}></div>
       </div>
     </>
   );
