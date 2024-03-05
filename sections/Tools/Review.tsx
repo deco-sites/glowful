@@ -7,11 +7,7 @@ export interface Props {
 function Review({ AllReviews }: Props) {
   const { productId } = useUI();
 
-  console.log("PRODUCTID", productId.value);
-
   const id = productId.value;
-
-  console.log("ID", id);
 
   return (
     <>
