@@ -62,40 +62,15 @@ function Review({ AllReviews, reviewStyle }: Props) {
       );
       break;
     case "Popup Widget":
-      reviewStyleSelected = (
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-        var loox_pop_active = {
-          true;
-        };
-        var loox_pop_display = {
-          "other_pages":true
-        };
-      `,
-          }}
-        ></script>
-      );
+      reviewStyleSelected = `
+    <script>
+      var loox_pop_active = true;
+      var loox_pop_display = {"other_pages":true};
+    </script>
+  `;
       break;
     case "Sidebar Widget":
-      reviewStyleSelected = (
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-        var loox_floating_widget = {
-          active: true,
-          display_on_other_pages: true,
-          position: "left",
-          button_text: "Reviews",
-          button_bg_color: "333333",
-          button_text_color: "FFFFFF",
-          hide_on_mobile: false,
-          display_on_home_page: true,
-        };
-      `,
-          }}
-        ></script>
-      );
+      reviewStyleSelected = `<script>  var loox_floating_widget = {active: true,    display_on_other_pages: true,    position: "left",    button_text: "Reviews",    button_bg_color: "333333",    button_text_color: "FFFFFF",    hide_on_mobile: false,    display_on_home_page: true,  };</script>`;
       break;
     default:
       reviewStyleSelected = <div id="looxReviews" data-loox-aggregate></div>;
