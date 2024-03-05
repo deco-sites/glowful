@@ -2,10 +2,17 @@ import { useUI } from "../sdk/useUI.ts";
 
 export interface Props {
   title: string;
+  AllReviews?: boolean;
 }
 
-function Review({ title }: Props) {
+function Review({ title, AllReviews }: Props) {
   const { productId } = useUI();
+
+  console.log("PRODUCTID", productId.value);
+
+  const id = productId.value;
+
+  console.log("ID", id);
 
   return (
     <>
@@ -17,8 +24,11 @@ function Review({ title }: Props) {
       <div>
         <h1>{title}</h1>
 
-        <div id="looxReviews" data-product-id={productId.value}></div>
-        <div id="looxReviews" data-loox-aggregate></div>
+        {AllReviews === true ? (
+          <div id="looxReviews" data-loox-aggregate></div>
+        ) : (
+          <div id="looxReviews" data-product-id={id}></div>
+        )}
       </div>
     </>
   );
