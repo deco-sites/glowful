@@ -153,16 +153,16 @@ function CategoryList(props: Props) {
                   )}
                 </a>
 
-                <div class="absolute top-[80%] lg:group-hover:top-[33%] w-full h-fit lg:h-full flex flex-col items-center gap-[32px] transition-all duration-300 z-[2]">
+                <div class="absolute top-[83%] lg:group-hover:top-[33%] w-full h-fit lg:h-full flex flex-col items-center gap-9 transition-all duration-300 z-[2]">
                   {label && (
-                    <p class="text-[24px] lg:text-xl xl:text-[32px] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
+                    <p class="text-[24px] lg:text-xl xl:text-[2rem] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
                       {label}
                     </p>
                   )}
                   {buttonText && (
                     <a
                       href={href}
-                      class="hidden lg:block w-fit bg-[#FFF] rounded-full border-none text-[#000] text-sm uppercase px-[60px] py-[18px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"
+                      class="hidden lg:block w-fit bg-[#FFF] rounded-full border-none text-[#000] text-sm xl:text-base uppercase lg:px-8 lg:py-3 px-[60px] py-[18px] xl:px-[60px] xl:py-[18px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"
                     >
                       {buttonText}
                     </a>
