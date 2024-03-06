@@ -1,7 +1,9 @@
 import { useUI } from "../../sdk/useUI.ts";
 
 export interface Props {
+  /** @description Aplicavel apenas no "Product Review Widget" */
   AllReviews?: boolean;
+  
   reviewStyle:
     | "Product Review Widget"
     | "Gallery Carousel Widget"
