@@ -1,6 +1,5 @@
-import ProductCard, {
-  Layout as CardLayout,
-} from "$store/components/product/ProductCard.tsx";
+import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/islands/ProductCard.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product } from "apps/commerce/types.ts";
 import ShowMore from "deco-sites/glowful/islands/ShowMore.tsx";

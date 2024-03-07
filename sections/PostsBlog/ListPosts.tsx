@@ -6,6 +6,10 @@ import { useId } from "$store/sdk/useId.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Props {
+  /**
+   * @description Ex: https://blog-glowful.vercel.app
+   */
+  urlBlog: string;
   title?: string;
   blogText?: string;
   buttonText?: string;
@@ -47,6 +51,7 @@ export interface Data {
 
 export async function loader(
   {
+    urlBlog,
     title,
     blogText,
     buttonText,
@@ -54,7 +59,7 @@ export async function loader(
   }: Props,
   _req: Request,
 ) {
-  const url = `https://template-blog-beryl.vercel.app/api/mostViewedPosts`;
+  const url = `${urlBlog}/api/mostViewedPosts`;
 
   const data = await fetch(url).then((r) => r.json()).catch((err) => {
     console.error("error fetching posts from blog", err);
@@ -63,6 +68,7 @@ export async function loader(
 
   return {
     data: data.slice(0, numberOfPosts ?? 12),
+    urlBlog,
     title,
     blogText,
     buttonText,
@@ -71,6 +77,7 @@ export async function loader(
 }
 
 function ListPosts({
+  urlBlog,
   title,
   blogText,
   buttonText,
@@ -78,7 +85,7 @@ function ListPosts({
   data,
 }: SectionProps<typeof loader>) {
   const id = useId();
-  const url = `https://template-blog-beryl.vercel.app`;
+  const url = urlBlog;
   return (
     <div
       id={id}
