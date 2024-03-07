@@ -170,11 +170,10 @@ function ProductCard({
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${
-              l?.onMouseOver?.image == "Zoom image"
+            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
-            }`}
+              }`}
             sizes="(max-width: 640px) 50vw, 20vw"
             preload={preload}
             loading={preload ? "eager" : "lazy"}
@@ -341,7 +340,7 @@ function ProductCard({
               ""
             ) : (
               <h2
-                class=" break-words text-[18px] lg:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
+                class=" break-words text-[18px] xl:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
                 dangerouslySetInnerHTML={{
                   __html: isVariantOf?.name ?? name ?? "",
                 }}
@@ -366,7 +365,7 @@ function ProductCard({
                 >
                   {formatPrice(listPrice, offers?.priceCurrency)}
                 </div>
-                <div class="lg:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
+                <div class="xl:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
                   {formatPrice(price, offers?.priceCurrency)}
                 </div>
               </div>
@@ -384,7 +383,7 @@ function ProductCard({
           ""
         ) : (
           <div
-            class="mt-[16px] text-[14px] lg:text-[16px] font-light leading-[150%] text-[#101820]"
+            class="mt-[16px] text-[14px] xl:text-[16px] font-light leading-[150%] text-[#101820]"
             dangerouslySetInnerHTML={{ __html: description.description ?? "" }}
           />
         )}
