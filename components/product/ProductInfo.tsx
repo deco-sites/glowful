@@ -36,7 +36,7 @@ interface Props {
 function ProductInfo({ page, layout, installments = 5 }: Props) {
   const platform = usePlatform();
   const id = useId();
-  const { quantityInstallments } = useUI();
+  const { quantityInstallments, productId } = useUI();
 
   quantityInstallments.value = installments;
 
@@ -66,6 +66,11 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
   const descriptionJson = description && JSON.parse(description);
   const inventoryLevel = offers?.offers[0].inventoryLevel.value;
   const images = product.isVariantOf?.image;
+
+  const productGroupId = isVariantOf?.productGroupID;
+  const parts = productGroupId?.split("/");
+  const lastPart = parts[parts.length - 1];
+  productId.value = lastPart;
 
   return (
     <div class="relative flex items-start gap-[50px] pt-[40px]">
