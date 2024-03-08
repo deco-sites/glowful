@@ -25,10 +25,13 @@
     justify-content: center;
   }
 
-  @media (min-width:1536px){
-    .container { 
-      max-width: 1300px!important;
-    } 
+  .scrollbar-minicart::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .scrollbar-minicart::-webkit-scrollbar-thumb {
+    background-color: #000;
+    border-radius: 20px;
   }
 
   @media (min-width: 1024px) {
