@@ -95,22 +95,22 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
     <a
       href={action?.href ?? "#"}
       aria-label={action?.label}
-      class="relative h-[700px] overflow-y-hidden w-full"
+      class="relative h-[calc(100vw*(650/375))] md:h-[calc(100vw*(650/1440))] md:max-h-[700px] overflow-y-hidden w-full"
     >
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={mobile}
-          width={360}
-          height={700}
+          width={375}
+          height={650}
         />
         <Source
           media="(min-width: 768px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={desktop}
           width={1440}
-          height={700}
+          height={650}
         />
         <img
           class="object-cover w-full h-full"
@@ -121,13 +121,13 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
       </Picture>
       {action && (
         <div class="absolute h-min top-0 bottom-0 m-auto left-0 sm:right-auto sm:left-[12%] max-h-min w-screen max-w-[284px] flex flex-col p-6">
-          <span class="text-[#FFF] text-[32px] sm:text-[60px] font-normal leading-[100%]">
+          <span class="text-[#FFF] text-[32px] lg:text-[44px] 2xl:text-[60px] font-normal leading-[100%]">
             {action.title}
           </span>
-          <span class="text-[#FFF] font-bold font-fraunces italic text-[32px] sm:text-[60px] leading-[100%]">
+          <span class="text-[#FFF] font-bold font-fraunces italic text-[32px] lg:text-[44px] 2xl:text-[60px] leading-[100%]">
             {action.highlight}
           </span>
-          <span class="text-[#FFF] text-[20px] sm:text-[32px] sm:leading-[130%] leading-6 font-normal mt-[30px] mb-[60px]">
+          <span class="text-[#FFF] text-[20px] lg:text-[26px] 2xl:text-[32px] sm:leading-[130%] leading-6 font-normal my-[30px] 2xl:mb-[60px]">
             {action.subTitle}
           </span>
           <Button class="bg-white-lily rounded-full border-none text-deep-beauty text-sm uppercase font-bold tracking-[1px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none">
