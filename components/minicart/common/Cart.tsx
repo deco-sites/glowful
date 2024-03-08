@@ -87,6 +87,17 @@ function Cart({
                 />
               </li>
             ))}
+
+            {/* REBUY SCRIPT */}
+            <script
+              defer
+              src="https://cdn.rebuyengine.com/onsite/js/rebuy.js?shop=20c805-5.myshopify.com"
+            ></script>
+
+            {/* REBUY CART */}
+            <div>
+              <div data-rebuy-id="137695"></div>
+            </div>
           </ul>
 
           {/* Cart Footer */}
