@@ -340,7 +340,7 @@ function ProductCard({
               ""
             ) : (
               <h2
-                class=" break-words text-[18px] xl:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
+                class=" break-words text-[18px] 2xl:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
                 dangerouslySetInnerHTML={{
                   __html: isVariantOf?.name ?? name ?? "",
                 }}
@@ -365,7 +365,7 @@ function ProductCard({
                 >
                   {formatPrice(listPrice, offers?.priceCurrency)}
                 </div>
-                <div class="xl:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
+                <div class="2xl:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
                   {formatPrice(price, offers?.priceCurrency)}
                 </div>
               </div>
