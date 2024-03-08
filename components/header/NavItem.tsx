@@ -26,12 +26,12 @@ function NavItem({
 
       {children && children.length > 0 && (
         <div
-          class={`fixed hidden py-5 2xl:py-[70px] mt-12 2xl:mt-20 hover:flex group-hover:flex bg-[#FFF] shadow-glowful border-t border-b-2 border-base-200 
+          class={`fixed hidden py-5 2xl:py-[40px] mt-12 2xl:mt-20 hover:flex group-hover:flex bg-[#FFF] shadow-glowful border-t border-b-2 border-base-200 
           w-full m-auto left-1/2 ${
             displayTop.value ? "top-[45px]" : "top-[0]"
           } transform -translate-x-1/2`}
         >
-          <div class={`flex items-start w-[95%] mx-auto px-4 max-w-[1300px] gap-[60px] justify-center`}>
+          <div class={`container flex items-start w-[95%] mx-auto px-6 xl:px-[54px] xl:max-w-[1408px] gap-[60px] justify-center`}>
           <ul class="w-[calc(50%-24px)] flex items-start justify-between">
             {children.map((node) => (
               <li class="max-w-[260px] ">

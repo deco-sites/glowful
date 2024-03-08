@@ -103,7 +103,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
       {/* Mobile Version */}
       <div
         style={{ height: "60px" }}
-        class={`md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${displayNavbar} bg-[${backgroundColor}] md:hover:visible md:hover:bg-white-lily py-4`}
+        class={`lg:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${displayNavbar} bg-[${backgroundColor}] md:hover:visible md:hover:bg-white-lily py-4`}
       >
         <MenuButton />
 
@@ -155,7 +155,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
       {/* Desktop Version */}
       <div
-        class={`hidden md:flex 2xl:min-h-[86px] lg:min-h-[60px] ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover`}
+        class={`hidden lg:flex 2xl:min-h-[86px] lg:min-h-[60px] ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover`}
         onMouseEnter={() => {
           displayHover.value = true;
           setDisplayNavbar("visible");
@@ -163,7 +163,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
         onMouseLeave={() => (displayHover.value = false)}
       >
         <div
-          class={`container 2xl:min-h-[86px] w-[95%] max-w-[1300px] 2xl:max-w-none lg:min-h-[60px] inis flex flex-row justify-between items-center z-[999] h-full`}
+          class={`container 2xl:min-h-[86px] w-[95%] px-2 xl:px-9 mx-auto xl:max-w-[1408px] lg:min-h-[60px] inis flex flex-row justify-between items-center z-[999] h-full`}
         >
           <div class="flex-none w-44">
             {logo && (
