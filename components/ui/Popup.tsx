@@ -57,7 +57,7 @@ export function PopupIcon({
   return (
     <button
       onClick={() => (displayPopup.value = true)}
-      class={`fixed flex items-center justify-center p-[12px] transition-all duration-300 ease-out rounded-[14px] lg:w-[70px] lg:h-[70px] w-[54px] h-[54px] hover:scale-[1.15] text-[16px] lg:text-[20px] font-bold uppercase text-center text-white-lily leading-[120%] tracking-[1px]  bg-red-500 bg-cherry-pop z-50 shadow-md ${
+      class={`fixed flex items-center justify-center p-[12px] transition-all duration-300 ease-out rounded-[14px] lg:w-[70px] lg:h-[70px] w-[54px] h-[54px] hover:scale-[1.15] text-[16px] lg:text-[20px] font-bold uppercase text-center text-white-lily leading-[120%] tracking-[1px]  bg-red-500 bg-cherry-pop z-40 shadow-md ${
         position ? position : "right-0 bottom-0"
       }`}
     >

@@ -11,7 +11,7 @@ function Coupon({ coupon, onAddCoupon }: Props) {
   const [display, setDisplay] = useState(false);
 
   return (
-    <div class="flex justify-between items-center px-[32px]">
+    <div class="flex justify-between items-center px-4 lg:px-6">
       <span class="text-[14px] lg:text-[16px]">Cupom de desconto</span>
       {display ? (
         <form
@@ -54,7 +54,7 @@ function Coupon({ coupon, onAddCoupon }: Props) {
         </form>
       ) : (
         <Button
-          class="btn-ghost underline font-normal"
+          class="btn-ghost underline font-normal pr-0"
           onClick={() => setDisplay(true)}
         >
           {coupon || "Adicionar"}
