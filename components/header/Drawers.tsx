@@ -22,13 +22,16 @@ export interface Props {
   platform: ReturnType<typeof usePlatform>;
 }
 
-const Aside = (
-  { title, onClose, children }: {
-    title: string;
-    onClose?: () => void;
-    children: ComponentChildren;
-  },
-) => (
+
+const Aside = ({
+  title,
+  onClose,
+  children,
+}: {
+  title: string;
+  onClose?: () => void;
+  children: ComponentChildren;
+}) => (
   <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw]">
     <div class="flex justify-between items-center">
       <h1 class="px-[32px] py-[24px]">
@@ -52,7 +55,7 @@ const Aside = (
   </div>
 );
 
-function Drawers({ menu, searchbar, children, platform }: Props) {
+function Drawers({ idWidgetRebuy, menu, searchbar, children, platform }: Props) {
   const { displayCart, displayMenu, displaySearchDrawer } = useUI();
 
   return (
@@ -82,13 +85,10 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
       <Drawer // right drawer
         class="drawer-end"
         open={displayCart.value !== false}
-        onClose={() => displayCart.value = false}
+        onClose={() => (displayCart.value = false)}
         aside={
-          <Aside
-            title="CARRINHO"
-            onClose={() => displayCart.value = false}
-          >
-            <Cart platform={platform} />
+          <Aside title="CARRINHO" onClose={() => (displayCart.value = false)}>
+            <Cart platform={platform} idWidgetRebuy={idWidgetRebuy} />
           </Aside>
         }
       >

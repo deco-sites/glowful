@@ -8,6 +8,7 @@ import Coupon, { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
 
 interface Props {
+  idWidgetRebuy: string;
   items: Item[];
   loading: boolean;
   total: number;
@@ -24,6 +25,7 @@ interface Props {
 }
 
 function Cart({
+  idWidgetRebuy,
   items,
   total,
   subtotal,
@@ -43,7 +45,7 @@ function Cart({
 
   return (
     <div
-      class="flex flex-col justify-center items-center overflow-hidden"
+      class="flex flex-col justify-center items-center overflow-hidden z-20"
       style={{ minWidth: "calc(min(100vw, 425px))", maxWidth: "425px" }}
     >
       {isEmtpy ? (
@@ -96,42 +98,20 @@ function Cart({
 
             {/* REBUY CART */}
             <div>
-              <div data-rebuy-id="137695"></div>
+              <div data-rebuy-id={idWidgetRebuy}></div>
             </div>
           </ul>
 
           {/* Cart Footer */}
           <footer class="w-full">
             {/* Subtotal */}
-            <div class="border-t border-base-200 py-[16px] flex flex-col">
-              {discounts > 0 && (
-                <div class="flex justify-between items-center px-[24px] lg:px-[32px] ">
-                  <span class="text-sm">Descontos</span>
-                  <span class="text-sm">
-                    {formatPrice(discounts, currency, locale)}
-                  </span>
-                </div>
-              )}
+            <div class="border-t border-base-200 pt-[16px] flex flex-col">
               <div class="w-full flex justify-between px-[24px] lg:px-[32px]  text-sm">
                 <span class="text-[14px] lg:text-[16px]">Subtotal</span>
                 <span class="px-4">
                   {formatPrice(subtotal, currency, locale)}
                 </span>
               </div>
-              <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
-            </div>
-
-            {/* Total */}
-            <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-[32px] mx-[32px]">
-              <div class="flex justify-between items-center w-full">
-                <span class="text-[14px] lg:text-[16px]">Total</span>
-                <span class="font-medium text-[18px] lg:text-[20px]">
-                  {formatPrice(subtotal, currency, locale)}
-                </span>
-              </div>
-              <span class="text-sm text-[#878787]">
-                Taxas e fretes serão calculados no checkout
-              </span>
             </div>
 
             <div class="p-[32px]">
