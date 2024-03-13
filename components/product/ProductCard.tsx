@@ -16,6 +16,7 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useUI } from "../../sdk/useUI.ts";
 import ModalProduct from "$store/components/ui/ModalProduct.tsx";
+import Button from "$store/components/ui/Button.tsx";
 
 export interface Layout {
   basics?: {
@@ -262,7 +263,6 @@ function ProductCard({
           >
             NOVO
           </div>
-
           <Image
             src={front.url!}
             alt={front.alternateName}
@@ -277,22 +277,27 @@ function ProductCard({
             preload={preload}
             loading={preload ? "eager" : "lazy"}
             decoding="async"
-            onClick={openModal}
           />
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
             <>
-              <Image
-                src={back?.url ?? front.url!}
-                alt={back?.alternateName ?? front.alternateName}
-                width={WIDTH}
-                height={HEIGHT}
+              <a
+                href={url && relative(url)}
+                aria-label="view product"
                 class="cursor-pointer bg-base-100 col-span-full row-span-full transition-opacity rounded-[15px] w-full opacity-0 lg:group-hover:opacity-100"
-                sizes="(max-width: 640px) 50vw, 20vw"
-                loading="lazy"
-                decoding="async"
-                onClick={openModal}
-              />
+              >
+                <Image
+                  src={back?.url ?? front.url!}
+                  alt={back?.alternateName ?? front.alternateName}
+                  width={WIDTH}
+                  height={HEIGHT}
+                  sizes="(max-width: 640px) 50vw, 20vw"
+                  loading="lazy"
+                  decoding="async"
+                  href={url && relative(url)}
+                  aria-label="view product"
+                />
+              </a>
 
               {!l?.hide?.cta
                 ? (
@@ -301,14 +306,22 @@ function ProductCard({
                       l?.onMouseOver?.showCta ? "lg:hidden" : ""
                     }`}
                   >
-                    <AddToCartButtonShopify
+                    <Button
+                      class={`w-full block bg-white-lily rounded-full px-[32px] xl:px-[18px] py-[14px] border-none text-deep-beauty text-[16px] uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300`}
+                      onClick={openModal}
+                    >
+                      Adicionar ao Carrinho
+                    </Button>
+                    {
+                      /* <AddToCartButtonShopify
                       url={url || ""}
                       name={name}
                       productID={productID}
                       productGroupID={productGroupID}
                       price={price}
                       variant="cta"
-                    />
+                    /> */
+                    }
                   </div>
                 )
                 : (
