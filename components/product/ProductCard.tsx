@@ -186,21 +186,26 @@ function ProductCard({
             NOVO
           </div>
 
-          <Image
-            src={front.url!}
-            alt={front.alternateName}
-            width={WIDTH}
-            height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${
-              l?.onMouseOver?.image == "Zoom image"
-                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                : ""
-            }`}
-            sizes="(max-width: 640px) 50vw, 20vw"
-            preload={preload}
-            loading={preload ? "eager" : "lazy"}
-            decoding="async"
-          />
+          <a
+            href={url && relative(url)}
+            aria-label="view product"
+          >
+            <Image
+              src={front.url!}
+              alt={front.alternateName}
+              width={WIDTH}
+              height={HEIGHT}
+              class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${
+                l?.onMouseOver?.image == "Zoom image"
+                  ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                  : ""
+              }`}
+              sizes="(max-width: 640px) 50vw, 20vw"
+              preload={preload}
+              loading={preload ? "eager" : "lazy"}
+              decoding="async"
+            />
+          </a>
         </div>
 
         <figcaption
