@@ -1,3 +1,4 @@
+import { useState } from "preact/hooks";
 import type { Platform } from "$store/apps/site.ts";
 import { SendEventOnClick } from "$store/components/Analytics.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
@@ -14,6 +15,8 @@ import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useUI } from "../../sdk/useUI.ts";
+import ModalProduct from "$store/components/ui/ModalProduct.tsx";
+import Button from "$store/components/ui/Button.tsx";
 
 export interface Layout {
   basics?: {
@@ -84,12 +87,12 @@ function ProductCard({
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
   const description = JSON.parse(
-    product.description || isVariantOf?.description || "{}"
+    product.description || isVariantOf?.description || "{}",
   );
 
-
-  const { quantityInstallments } = useUI()
-  const priceInstallments = price ? (price / quantityInstallments.value) : null
+  const { quantityInstallments } = useUI();
+  const priceInstallments = price ? (price / quantityInstallments.value) : null;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const l = layout;
   const align =
@@ -107,6 +110,14 @@ function ProductCard({
     </li>
   ));
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const cta = (
     <a
       href={url && relative(url)}
@@ -120,14 +131,24 @@ function ProductCard({
   return (
     <div
       id={id}
-      class={`card card-compact group self-start w-full max-w-[360px] min-w-[290px] ${align === "center" ? "text-center" : "text-start"
-        } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
-        ${l?.onMouseOver?.card === "Move up" &&
+      class={`card card-compact group self-start w-full max-w-[360px] min-w-[290px] ${
+        align === "center" ? "text-center" : "text-start"
+      } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
+        ${
+        l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
-        }
+      }
       `}
       data-deco="view-product"
     >
+      {isModalOpen &&
+        (
+          <ModalProduct
+            product={product}
+            isOpen={isModalOpen}
+            closeModal={closeModal}
+          />
+        )}
       <SendEventOnClick
         id={id}
         event={{
@@ -164,7 +185,10 @@ function ProductCard({
           >
             NOVO
           </div>
-
+          <a
+            href={url && relative(url)}
+            aria-label="view product"
+          >
           <Image
             src={front.url!}
             alt={front.alternateName}
@@ -179,14 +203,16 @@ function ProductCard({
             loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
+        </a>
         </div>
 
         <figcaption
           class={`
-          absolute bottom-1 left-0 justify-end w-full flex flex-col gap-3 p-2 ${l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
+          absolute bottom-1 left-0 justify-end w-full flex flex-col gap-3 p-2 ${
+            l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
               ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
               : "lg:hidden"
-            }`}
+          }`}
         >
           {/* SKU Selector */}
           {l?.onMouseOver?.showSkuSelector && (
@@ -206,14 +232,16 @@ function ProductCard({
         {/* Wishlist button */}
         <div
           class={`absolute top-2 z-10
-          ${l?.elementsPositions?.favoriteIcon === "Top left"
+          ${
+            l?.elementsPositions?.favoriteIcon === "Top left"
               ? "left-2"
               : "right-2"
-            }
-          ${l?.onMouseOver?.showFavoriteIcon
+          }
+          ${
+            l?.onMouseOver?.showFavoriteIcon
               ? "lg:hidden lg:group-hover:block"
               : "lg:hidden"
-            }
+          }
         `}
         >
           {platform === "vtex" && (
@@ -238,16 +266,16 @@ function ProductCard({
           >
             NOVO
           </div>
-
           <Image
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${l?.onMouseOver?.image == "Zoom image"
-              ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-              : ""
-              }`}
+            class={`cursor-pointer bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${
+              l?.onMouseOver?.image == "Zoom image"
+                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                : ""
+            }`}
             sizes="(max-width: 640px) 50vw, 20vw"
             preload={preload}
             loading={preload ? "eager" : "lazy"}
@@ -255,45 +283,64 @@ function ProductCard({
           />
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
-              <>
+            <>
+              <a
+                href={url && relative(url)}
+                aria-label="view product"
+                class="cursor-pointer bg-base-100 col-span-full row-span-full transition-opacity rounded-[15px] w-full opacity-0 lg:group-hover:opacity-100"
+              >
                 <Image
                   src={back?.url ?? front.url!}
                   alt={back?.alternateName ?? front.alternateName}
                   width={WIDTH}
                   height={HEIGHT}
-                  class="bg-base-100 col-span-full row-span-full transition-opacity rounded-[15px] w-full opacity-0 lg:group-hover:opacity-100"
                   sizes="(max-width: 640px) 50vw, 20vw"
                   loading="lazy"
                   decoding="async"
+                  href={url && relative(url)}
+                  aria-label="view product"
                 />
+              </a>
 
-                {!l?.hide?.cta ? (
+              {!l?.hide?.cta
+                ? (
                   <div
-                    class={`lg:block hidden absolute bottom-[32px] px-[32px] xl:px-[18px] w-full h-fit opacity-0 group-hover:opacity-100 transition-all duration-300 ${l?.onMouseOver?.showCta ? "lg:hidden" : ""
-                      }`}
+                    class={`lg:block hidden absolute bottom-[32px] px-[32px] xl:px-[18px] w-full h-fit opacity-0 group-hover:opacity-100 transition-all duration-300 ${
+                      l?.onMouseOver?.showCta ? "lg:hidden" : ""
+                    }`}
                   >
-                    <AddToCartButtonShopify
+                    <Button
+                      class={`w-full block bg-white-lily rounded-full px-[32px] xl:px-[18px] py-[14px] border-none text-deep-beauty text-[16px] uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300`}
+                      onClick={openModal}
+                    >
+                      Adicionar ao Carrinho
+                    </Button>
+                    {
+                      /* <AddToCartButtonShopify
                       url={url || ""}
                       name={name}
                       productID={productID}
                       productGroupID={productGroupID}
                       price={price}
                       variant="cta"
-                    />
+                    /> */
+                    }
                   </div>
-                ) : (
+                )
+                : (
                   ""
                 )}
-              </>
-            )}
+            </>
+          )}
         </div>
 
         <figcaption
           class={`
-          absolute bottom-1 left-0 justify-end w-full flex flex-col gap-3 p-2 ${l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
+          absolute bottom-1 left-0 justify-end w-full flex flex-col gap-3 p-2 ${
+            l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
               ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
               : "lg:hidden"
-            }`}
+          }`}
         >
           {/* SKU Selector */}
           {l?.onMouseOver?.showSkuSelector && (
@@ -310,19 +357,22 @@ function ProductCard({
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
-            <>
-              {l?.hide?.skuSelector ? (
+          <>
+            {l?.hide?.skuSelector
+              ? (
                 ""
-              ) : (
+              )
+              : (
                 <ul
-                  class={`flex items-center gap-2 w-full overflow-auto p-3 ${align === "center" ? "justify-center" : "justify-start"
-                    } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                  class={`flex items-center gap-2 w-full overflow-auto p-3 ${
+                    align === "center" ? "justify-center" : "justify-start"
+                  } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
                 >
                   {skuSelector}
                 </ul>
               )}
-            </>
-          )}
+          </>
+        )}
 
         <div class="flex justify-between items-center">
           <a
@@ -349,18 +399,22 @@ function ProductCard({
           </a>
 
           {/* Prices */}
-          {l?.hide?.allPrices ? (
-            ""
-          ) : (
-            <div class="flex flex-col gap-2 items-end">
-              <div
-                class={`flex flex-col gap-2 items-end w-fit ${l?.basics?.oldPriceSize === "Normal"
-                  ? ""
-                  : "flex-row lg:gap-2"
-                  } ${align === "center" ? "justify-center" : "justify-start"}`}
-              >
+          {l?.hide?.allPrices
+            ? (
+              ""
+            )
+            : (
+              <div class="flex flex-col gap-2 items-end">
                 <div
-                  class={`text-[14px] font-normal leading-[13px] uppercase line-through text-[#101820] ${l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                  class={`flex flex-col gap-2 items-end w-fit ${
+                    l?.basics?.oldPriceSize === "Normal"
+                      ? ""
+                      : "flex-row lg:gap-2"
+                  } ${align === "center" ? "justify-center" : "justify-start"}`}
+                >
+                  <div
+                    class={`text-[14px] font-normal leading-[13px] uppercase line-through text-[#101820] ${
+                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                     }`}
                 >
                   {formatPrice(listPrice, offers?.priceCurrency)}
@@ -391,16 +445,19 @@ function ProductCard({
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (
           <>
-            {l?.hide?.skuSelector ? (
-              ""
-            ) : (
-              <ul
-                class={`flex items-center gap-2 w-full ${align === "center" ? "justify-center" : "justify-start"
+            {l?.hide?.skuSelector
+              ? (
+                ""
+              )
+              : (
+                <ul
+                  class={`flex items-center gap-2 w-full ${
+                    align === "center" ? "justify-center" : "justify-start"
                   } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
-            )}
+                >
+                  {skuSelector}
+                </ul>
+              )}
           </>
         )}
       </div>

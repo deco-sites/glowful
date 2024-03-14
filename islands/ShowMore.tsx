@@ -1,9 +1,8 @@
 import { useSignal } from "@preact/signals";
 import { invoke } from "$store/runtime.ts";
 import { Product } from "apps/commerce/types.ts";
-import ProductCard, {
-  Layout as CardLayout,
-} from "$store/components/product/ProductCard.tsx";
+import { Layout } from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/islands/ProductCard.tsx";
 
 export default function ShowMore({ nextPage, layout, perPage }) {
   const products = useSignal<Product[]>([]);

@@ -1,11 +1,5 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
-import AddToCartButtonLinx from "$store/islands/AddToCartButton/linx.tsx";
-import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
-import AddToCartButtonVNDA from "$store/islands/AddToCartButton/vnda.tsx";
-import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
-import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
-import OutOfStock from "$store/islands/OutOfStock.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
@@ -13,8 +7,6 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductSelector from "$store/islands/ProductVariantSelector.tsx";
-import ChangeQuantityProduct from "$store/islands/ChangeQuantityProduct.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Image from "apps/website/components/Image.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
@@ -22,6 +14,7 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import ProductImages from "$store/islands/ProductImages.tsx";
 import { useUI } from "../../sdk/useUI.ts";
+import PurchaseOptions from "$store/components/product/PurchaseOptions.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -33,11 +26,11 @@ interface Props {
      */
     name?: "concat" | "productGroup" | "product";
   };
-    /**
+  /**
    * @description maximum value of installments, default 5x
    * @default "5"
    */
-    installments?: number;
+  installments?: number;
 }
 
 function ProductInfo({ page, layout, installments = 5 }: Props) {
@@ -152,94 +145,9 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
             ))}
         </div>
         {/* Sku Selector */}
-        <div class="mt-[55px] sm:mt-[32px]">
-          <ProductSelector product={product} />
-        </div>
-        {/* Combos and Subscriber */}
-        <p class="text-[16px] font-fraunces font-semibold my-[30px]">Combos:</p>
 
-        {/* Prices */}
-        {
-          /* <div class="mt-4">
-        <div class="flex flex-row gap-2 items-center">
-          <span class="font-medium text-xl text-secondary">
-            {formatPrice(price, offers?.priceCurrency)}
-          </span>
-        </div>
-      </div> */
-        }
+        <PurchaseOptions product={product} />
 
-        {/* Quantity Items */}
-        <ChangeQuantityProduct inventoryLevel={inventoryLevel} price={price} />
-
-        {/* Add to Cart and Favorites button */}
-        <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-          {availability === "https://schema.org/InStock"
-            ? (
-              <>
-                {platform === "vtex" && (
-                  <>
-                    <AddToCartButtonVTEX
-                      url={url || ""}
-                      name={name}
-                      productID={productID}
-                      productGroupID={productGroupID}
-                      price={price}
-                      discount={discount}
-                      seller={seller}
-                    />
-                    <WishlistButton
-                      variant="full"
-                      productID={productID}
-                      productGroupID={productGroupID}
-                    />
-                  </>
-                )}
-                {platform === "wake" && (
-                  <AddToCartButtonWake
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                  />
-                )}
-                {platform === "linx" && (
-                  <AddToCartButtonLinx
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                  />
-                )}
-                {platform === "vnda" && (
-                  <AddToCartButtonVNDA
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                    additionalProperty={additionalProperty}
-                  />
-                )}
-                {platform === "shopify" && (
-                  <AddToCartButtonShopify
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                  />
-                )}
-              </>
-            )
-            : <OutOfStock productID={productID} />}
-        </div>
         {/* Shipping Simulation */}
         <div class="mt-8">
           {platform === "vtex" && (

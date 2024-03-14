@@ -11,6 +11,13 @@ function GlobalTags() {
 
       {/* Web Manifest */}
       <link rel="manifest" href={asset("/site.webmanifest")} />
+
+      <script
+        type="text/javascript"
+        async
+        src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/1a4dcf0e-0388-401c-814a-04262b9a4b5f-loader.js"
+      >
+      </script>
     </Head>
   );
 }

@@ -1,7 +1,6 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
-import ProductCard, {
-  Layout as cardLayout,
-} from "$store/components/product/ProductCard.tsx";
+import { Layout as cardLayout } from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/islands/ProductCard.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Header from "$store/components/ui/SectionHeader.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
@@ -43,10 +42,9 @@ function TabbedProductShelf({
 }: Props) {
   const id = useId();
   const platform = usePlatform();
-  const ti =
-    typeof tabIndex === "number"
-      ? Math.min(Math.max(tabIndex, 0), tabs.length)
-      : 0;
+  const ti = typeof tabIndex === "number"
+    ? Math.min(Math.max(tabIndex, 0), tabs.length)
+    : 0;
   const { products } = tabs[ti];
 
   if (!products || products.length === 0) {

@@ -1,4 +1,5 @@
-import ProductCard, { Layout } from "$store/components/product/ProductCard.tsx";
+import { Layout } from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/islands/ProductCard.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 
 interface Props {
