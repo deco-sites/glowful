@@ -12,7 +12,7 @@ export interface Props {
   platform: ReturnType<typeof usePlatform>;
 }
 
-function Cart({ platform }: Props) {
+function Cart({ platform, idWidgetRebuy }: Props) {
   if (platform === "vtex") {
     return <CartVTEX />;
   }
@@ -24,13 +24,13 @@ function Cart({ platform }: Props) {
   if (platform === "wake") {
     return <CartWake />;
   }
-  
+
   if (platform === "linx") {
     return <CartLinx />;
   }
 
   if (platform === "shopify") {
-    return <CartShopify />;
+    return <CartShopify idWidgetRebuy={idWidgetRebuy} />;
   }
 
   return null;

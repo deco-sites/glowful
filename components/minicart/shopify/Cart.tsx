@@ -1,13 +1,12 @@
 import { itemToAnalyticsItem, useCart } from "apps/shopify/hooks/useCart.ts";
 import BaseCart from "../common/Cart.tsx";
 
-function Cart() {
+function Cart({ idWidgetRebuy }) {
   const { cart, loading, updateItems, addCouponsToCart } = useCart();
   const items = cart.value?.lines?.nodes ?? [];
   const coupons = cart.value?.discountCodes;
-  const coupon = coupons && coupons[0]?.applicable
-    ? coupons[0].code
-    : undefined;
+  const coupon =
+    coupons && coupons[0]?.applicable ? coupons[0].code : undefined;
   const locale = "pt-BR";
   const currency = cart.value?.cost?.totalAmount.currencyCode ?? "BRL";
   const total = cart.value?.cost?.totalAmount.amount ?? 0;
@@ -18,6 +17,7 @@ function Cart() {
 
   return (
     <BaseCart
+      idWidgetRebuy={idWidgetRebuy}
       items={items?.map((item) => ({
         image: {
           src: item.merchandise.image.url,
@@ -42,11 +42,14 @@ function Cart() {
       onAddCoupon={(text) => addCouponsToCart({ discountCodes: [text] })}
       onUpdateQuantity={(quantity, index) =>
         updateItems({
-          lines: [{
-            id: items[index].id,
-            quantity: quantity,
-          }],
-        })}
+          lines: [
+            {
+              id: items[index].id,
+              quantity: quantity,
+            },
+          ],
+        })
+      }
       itemToAnalyticsItem={(index) => {
         const item = items[index];
 
