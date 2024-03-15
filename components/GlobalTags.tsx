@@ -25,7 +25,7 @@ function GlobalTags() {
           var FORCE_DOMAIN = true;
           var VIDEOWISE_FAST_INLINE_VIDEO_PLAYER = true;
           var Shopify = { 
-            shop: 'shttps://20c805-5.myshopify.com/',
+            shop: 'https://20c805-5.myshopify.com/',
             currency: { active: 'USD', rate: '1.0' }
           };
 
