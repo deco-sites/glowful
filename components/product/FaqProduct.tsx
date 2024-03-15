@@ -57,6 +57,7 @@ function FaqProduct({ title, page }: Props) {
     
     {/* videowise */}
     <div class="reeview-app-widget" id="reeview-app-widget_65f444fcdb33eb002981be8a"></div>
+
     </>
   );
 }

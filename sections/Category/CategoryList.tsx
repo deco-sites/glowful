@@ -172,7 +172,7 @@ function CategoryList(props: Props) {
 
                 <div class="absolute w-full h-full transition-all duration-300 rounded-[20px] lg:group-hover:bg-[#00000050] z-[1]" />
               </Slider.Item>
-            )
+            ),
           )}
         </Slider>
         <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1]">
@@ -185,6 +185,12 @@ function CategoryList(props: Props) {
         </Slider.NextButton>
 
         <SliderJS rootId={id} />
+      </div>
+      {/* videowise */}
+      <div
+        class="reeview-app-widget"
+        id="reeview-app-widget_65f444fcdb33eb002981be8a"
+      >
       </div>
     </div>
   );
