@@ -63,6 +63,7 @@ import * as $$$$$$53 from "./sections/Social/InstagramPosts.tsx";
 import * as $$$$$$54 from "./sections/Social/WhatsApp.tsx";
 import * as $$$$$$55 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$56 from "./sections/Tools/Review.tsx";
+import * as $$$$$$57 from "./sections/VideoWise/VideoWise.tsx";
 
 const manifest = {
   "loaders": {
@@ -128,6 +129,7 @@ const manifest = {
     "deco-sites/glowful/sections/Social/WhatsApp.tsx": $$$$$$54,
     "deco-sites/glowful/sections/Theme/Theme.tsx": $$$$$$55,
     "deco-sites/glowful/sections/Tools/Review.tsx": $$$$$$56,
+    "deco-sites/glowful/sections/VideoWise/VideoWise.tsx": $$$$$$57,
   },
   "apps": {
     "deco-sites/glowful/apps/decohub.ts": $$$$$$$$$$$0,

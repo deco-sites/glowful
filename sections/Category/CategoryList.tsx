@@ -186,12 +186,6 @@ function CategoryList(props: Props) {
 
         <SliderJS rootId={id} />
       </div>
-      {/* videowise */}
-      <div
-        class="reeview-app-widget"
-        id="reeview-app-widget_65f444fcdb33eb002981be8a"
-      >
-      </div>
     </div>
   );
 }
