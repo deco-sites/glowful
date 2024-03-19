@@ -21,24 +21,39 @@ function GlobalTags() {
 
       <script>
         {`
-          var SKIP_CART = true;
-          var FORCE_DOMAIN = true;
-          var VIDEOWISE_FAST_INLINE_VIDEO_PLAYER = true;
-          var Shopify = { 
-            shop: 'https://20c805-5.myshopify.com/',
-            currency: { active: 'USD', rate: '1.0' }
-          };
+        var SKIP_CART=true;
+        var FORCE_DOMAIN = true;
+        var VIDEOWISE_FAST_INLINE_VIDEO_PLAYER = true;
+        var Shopify = { 
+          shop: '20c805-5.myshopify.com', currency:{active:'USD', rate:'1.0'}
+        };
 
-          var __st = {
-            rid: '',
-            p: 'home'
-          };
+        var __st = {
+          rid: null,
+          p: 'home'
+        };
         `}
       </script>
 
-      <link rel="stylesheet" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://assets.videowise.com/style.css.gz" id="videowise-style-css" />
-      <script defer src="https://assets.videowise.com/vendors.js.gz" id="videowise-vendors-js"></script>
-      <script defer src="https://assets.videowise.com/client.js.gz" id="videowise-client-js"></script>
+      <link
+        rel="stylesheet"
+        as="style"
+        onLoad="this.onload=null;this.rel='stylesheet'"
+        href="https://assets.videowise.com/style.css.gz"
+        id="videowise-style-css"
+      />
+      <script
+        defer
+        src="https://assets.videowise.com/vendors.js.gz"
+        id="videowise-vendors-js"
+      >
+      </script>
+      <script
+        defer
+        src="https://assets.videowise.com/client.js.gz"
+        id="videowise-client-js"
+      >
+      </script>
     </Head>
   );
 }
