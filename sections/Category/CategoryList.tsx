@@ -120,12 +120,12 @@ function CategoryList(props: Props) {
             class="text-white-lily"
           />
         </Slider.PrevButton>
-        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-center sm:carousel-end gap-[20px] lg:gap-[24px] col-span-full row-start-2 row-end-5">
+        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-center sm:carousel-end gap-[20px] lg:gap-[24px] 2xl:gap-[28px] col-span-full row-start-2 row-end-5">
           {list.map(
             ({ label, href, imageDesktop, imageMobile, buttonText }, index) => (
               <Slider.Item
                 index={index}
-                class="m-[8px] lg:m-0 flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300 lg:w-56 max-w-[350px] min-w-[200px]"
+                class="m-[8px] lg:m-0 flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300 lg:w-56 max-w-[350px] 2xl:w-[350px]"
               >
                 <a
                   href={href}
@@ -155,7 +155,7 @@ function CategoryList(props: Props) {
 
                 <div class="absolute top-[83%] lg:group-hover:top-[33%] w-full h-fit lg:h-full flex flex-col items-center gap-9 transition-all duration-300 z-[2]">
                   {label && (
-                    <p class="text-[24px] lg:text-xl xl:text-[1.25rem] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
+                    <p class="text-[24px] lg:text-xl xl:text-[1.25rem] 2xl:text-[2rem] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
                       {label}
                     </p>
                   )}
