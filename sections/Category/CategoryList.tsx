@@ -125,7 +125,7 @@ function CategoryList(props: Props) {
             ({ label, href, imageDesktop, imageMobile, buttonText }, index) => (
               <Slider.Item
                 index={index}
-                class="m-[8px] lg:m-0 flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300 lg:w-1/3 max-w-[350px] min-w-[200px]"
+                class="m-[8px] lg:m-0 flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300 lg:w-56 max-w-[350px] min-w-[200px]"
               >
                 <a
                   href={href}
@@ -155,14 +155,14 @@ function CategoryList(props: Props) {
 
                 <div class="absolute top-[83%] lg:group-hover:top-[33%] w-full h-fit lg:h-full flex flex-col items-center gap-9 transition-all duration-300 z-[2]">
                   {label && (
-                    <p class="text-[24px] lg:text-xl xl:text-[2rem] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
+                    <p class="text-[24px] lg:text-xl xl:text-[1.25rem] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
                       {label}
                     </p>
                   )}
                   {buttonText && (
                     <a
                       href={href}
-                      class="hidden lg:block w-fit bg-[#FFF] rounded-full border-none text-[#000] text-sm xl:text-base uppercase lg:px-8 lg:py-3 px-[60px] py-[18px] xl:px-[60px] xl:py-[18px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"
+                      class="hidden lg:block w-fit bg-[#FFF] rounded-full border-none text-[#000] text-sm xl:text-base uppercase lg:px-8 lg:py-3 px-[60px] py-[18px] xl:px-[40px] xl:py-[16px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"
                     >
                       {buttonText}
                     </a>
@@ -174,7 +174,7 @@ function CategoryList(props: Props) {
             )
           )}
         </Slider>
-        <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1]">
+        <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[6%] transform -translate-y-1/2 z-[1]">
           <Icon
             size={24}
             id="ChevronRight"

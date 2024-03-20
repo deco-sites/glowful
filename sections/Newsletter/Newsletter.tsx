@@ -42,7 +42,7 @@ export default function Newsletter(props: Props) {
   const headerLayout = (
     <div class="flex flex-col gap-[24px] lg:gap-[32px] w-full">
       <h3
-        class="text-[26px] lg:text-[40px] font-fraunces font-normal leading-[50%] text-deep-beauty"
+        class="text-[26px]  lg:text-[38px] xl:text-[40px] font-fraunces font-normal leading-[50%] text-deep-beauty"
         style={{ color: color ? color : "#101820" }}
       >
         {title}

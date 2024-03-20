@@ -111,13 +111,6 @@
     font-weight: 600;
     line-height: 130%;
   }
-
-  @media (min-width: 1024px) {
-    .textIconHighLight strong {
-      font-size: 30px;
-    }
-  }
-  
   
   .textWithStrong strong {
     font-family: Fraunces;
@@ -126,12 +119,34 @@
     line-height: 130%;
   }
 
+  .textCategoryHighlight p {
+    font-family: 'Red Hat Display';
+    color: black;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
   .textCategoryHighlight strong {
     font-family: Fraunces;
     font-style: italic;
     font-weight: 600;
     line-height: 130%;
-    font-size: 42px;
+    font-size: 28px;
+    text-transform: capitalize;
+  }
+
+  @media (min-width: 1024px) {
+    .textIconHighLight strong {
+      font-size: 30px;
+    }
+
+    .textCategoryHighlight p {
+      font-size: 2rem;
+    }
+    .textCategoryHighlight strong {
+      font-size: 2.625rem;
+    }
+
   }
 
   .popup strong {

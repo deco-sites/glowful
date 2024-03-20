@@ -115,12 +115,12 @@ function ListPosts({
             class="text-white-lily"
           />
         </Slider.PrevButton>
-        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-end gap-[20px] lg:gap-[24px] col-span-full row-start-1 row-end-1">
+        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-end gap-[20px] lg:gap-[18px] col-span-full row-start-1 row-end-1">
           {data.map((post, index) => (
             <Slider.Item
               index={index}
               key={index}
-              class="bg-[#f4f4f4] m-[8px] max-w-[274px] lg:max-w-[380px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
+              class="bg-[#f4f4f4] m-[8px] max-w-[274px] lg:max-w-[330px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
             >
               <a
                 aria-label={`Link para a página do post ${post?.title?.rendered}`}

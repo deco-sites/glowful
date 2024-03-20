@@ -39,7 +39,7 @@ function PluralBanner({
       <div
         class={`${
           layoutCenter ? "lg:justify-center" : "lg:justify-start"
-        } container w-full flex justify-center items-center  z-[1] pt-[63px] pb-[240px] lg:py-[70px]`}
+        } container w-full flex justify-center items-center  z-[1] pt-[63px] pb-[240px] lg:py-[70px] lg:max-h-[28rem]`}
       >
         <div
           class={`${

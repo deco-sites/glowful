@@ -31,9 +31,9 @@ export default function ImageAndText(props: Props) {
 
   return (
     <div class="lg:bg-[#F4F4F4]">
-      <div class="py-[40px] lg:py-0 lg:px-0 lg:ml-[2%]  xl:ml-[10%] card lg:card-side rounded grid grid-cols-1 justify-betweenx lg:grid-cols-[50%_48%] xl:grid-cols-[58%_40%] justify-items-center gap-2">
+      <div class="py-[40px] lg:py-0 lg:px-0 lg:ml-[2%] card lg:card-side rounded grid grid-cols-1 justify-betweenx lg:grid-cols-[50%_48%] xl:grid-cols-[58%_40%] justify-items-center gap-2">
         <figure class=" relative items-center justify-centera justify-self-end max-h-[750px] ">
-          <Picture class="hidden lg:flex items-center justify-center">
+          <Picture class="hidden lg:flex justify-center">
             <img
               class="w-full object-cover"
               sizes="(max-width: 640px) 100vw, 30vw"

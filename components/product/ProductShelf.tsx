@@ -60,7 +60,7 @@ function ProductShelf({
   }
 
   return (
-    <div class="w-full container flex flex-col lg:flex-row gap-[32px] items-start">
+    <div class="w-full container flex flex-col lg:flex-row gap-[32px] items-start lg:p-0">
       {layout?.directionProductsMobile === "Row" ? (
         <>
           {/* MOBILE */}
@@ -176,7 +176,7 @@ function ProductShelf({
           {/* DESKTOP */}
           <div
             id={idDesktop}
-            class="container hidden lg:grid grid-cols-[48px_1fr_48px] gap-[32px] relative"
+            class="container hidden lg:grid grid-cols-[48px_1fr_48px] gap-[32px] relative lg:p-0"
           >
             <Slider.PrevButton
               class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]"
@@ -228,7 +228,7 @@ function ProductShelf({
               {products?.map((product, index) => (
                 <Slider.Item
                   index={index + 1}
-                  class="carousel-item w-[296px] xl:w-[300px] 2xl:w-[360px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0 "
+                  class="carousel-item w-[296px] xl:w-[285px] 2xl:w-[360px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0 "
                 >
                   <ProductCard
                     product={product}

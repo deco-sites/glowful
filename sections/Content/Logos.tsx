@@ -41,16 +41,16 @@ function Logos(props: Props) {
 
   return (
     <div class="bg-[#f4f4f4]">
-      <div class="container lg:gap-[100px] flex justify-between flex-col items-center gap-[50px] lg:flex-row w-full text-center  py-[50px] lg:py-[40px] px-[32px] ">
+      <div class="container lg:gap-[100px] flex justify-center flex-col items-center gap-[50px] lg:flex-row w-full text-center  py-[50px] lg:py-[40px] px-[32px] ">
         <img
-          className="object-contain w-full h-full max-w-[258px] m-h-[82px]"
+          className="object-contain w-full h-full max-w-[258px] m-h-[82px] lg:max-w-[220px]"
           src={mainImage}
           alt={mainImageAltText || ""}
         />
-        <div class="flex flex-row flex-wrap gap-[30px] lg:gap-[70px] lg:justify-between justify-center items-center">
+        <div class="flex flex-row flex-wrap gap-[30px] lg:gap-[70px] lg:justify-evenly justify-center items-center lg:pl-6">
           {list.map((element) => (
             <img
-              className="object-contain max-w-fit max-h-[46px] lg:max-h-[63px]"
+              className="object-contain max-w-fit max-h-[46px] lg:max-h-[48px]"
               src={element.image}
               alt={element.altText || ""}
             />
