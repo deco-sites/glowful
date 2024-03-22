@@ -17,6 +17,7 @@ import { useId } from "$store/sdk/useId.ts";
 import { useUI } from "../../sdk/useUI.ts";
 import ModalProduct from "$store/components/ui/ModalProduct.tsx";
 import Button from "$store/components/ui/Button.tsx";
+import { useSignal } from "@preact/signals";
 
 export interface Layout {
   basics?: {
@@ -77,6 +78,7 @@ function ProductCard({
   platform,
   index,
 }: Props) {
+  const modal = useSignal(false);
   const { url, productID, name, image: images, offers, isVariantOf } = product;
   const idContainer = useId();
   const id = `product-card-${productID}-${idContainer}`;
@@ -92,7 +94,6 @@ function ProductCard({
 
   const { quantityInstallments } = useUI();
   const priceInstallments = price ? (price / quantityInstallments.value) : null;
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const l = layout;
   const align =
@@ -111,11 +112,11 @@ function ProductCard({
   ));
 
   const openModal = () => {
-    setIsModalOpen(true);
+    modal.value = true;
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    modal.value = false;
   };
 
   const cta = (
@@ -141,11 +142,11 @@ function ProductCard({
       `}
       data-deco="view-product"
     >
-      {isModalOpen &&
+      {modal.value === true  &&
         (
           <ModalProduct
             product={product}
-            isOpen={isModalOpen}
+            isOpen={modal.value}
             closeModal={closeModal}
           />
         )}
