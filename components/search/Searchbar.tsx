@@ -278,8 +278,11 @@ function Searchbar({
                       class="flex gap-3 md:flex-wrap md:gap-x-[12px] md:gap-y-[20px] w-full overflow-y-scroll md:overflow-auto"
                     >
                       {dataProducts.categories.map((category: any) => (
-                        <li class="rounded-[20px] px-5 py-3.5 md:px-[18px] md:py-[12px] bg-[#CE0F69] md:bg-[#E4E4E4] hover:bg-[#CE0F69] transition-colors font-bold text-[20px] md:text-[16px] leading-[26px] md:leading-[20px] text-white-lily md:text-[#000] hover:text-white-lily">
-                          <a href={`/${category.title.toLowerCase()}`}>
+                        <li>
+                          <a
+                            class="block rounded-[20px] px-5 py-3.5 md:px-[18px] md:py-[12px] bg-[#CE0F69] md:bg-[#E4E4E4] hover:bg-[#CE0F69] transition-colors font-bold text-[20px] md:text-[16px] leading-[26px] md:leading-[20px] text-white-lily md:text-[#000] hover:text-white-lily"
+                            href={`/${category.title.toLowerCase()}`}
+                          >
                             <span>{category.title}</span>
                           </a>
                         </li>
