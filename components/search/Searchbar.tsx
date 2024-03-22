@@ -185,7 +185,7 @@ function Searchbar({
       dataProducts.categories?.length > 0 ? (
         <div class="overflow-x-scroll lg:overflow-hidden h-[calc(100vh-130px)] md:h-fit">
           <div class="flex gap-[30px] md:gap-[30px] xl:gap-[60px] lg:justify-between">
-            <div class="flex flex-col gap-[30px] md:gap-[40px] w-full lg:max-w-[240px]">
+            <div class="flex flex-col gap-[30px] md:gap-[40px] w-full md:max-w-[240px]">
               {dataSuggestions.length > 0 && (
                 <div class="flex flex-col gap-[24px] md:gap-[30px] w-full">
                   <span
@@ -297,7 +297,7 @@ function Searchbar({
                 >
                   {searchEmpty ? "PRODUTOS POPULARES" : "PRODUTOS"}
                 </span>
-                <div class="grid grid-cols-2 gap-y-[20px] xl:gap-y-[50px] gap-x-[30px] xl:gap-x-[70px]">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-[20px] xl:gap-y-[50px] gap-x-[30px] xl:gap-x-[70px]">
                   {dataProducts.items.map((product: any) => (
                     <a
                       href={product.link}

@@ -10,7 +10,7 @@ export default function SearchButton({ colorIcon }: {
   return (
     <>
       <Button
-        class="btn-circle btn-sm btn-ghost hidden sm:block"
+        class="btn-circle btn-sm btn-ghost hidden sm:flex items-center justify-center"
         aria-label="search icon button"
         onClick={() => {
           displaySearchPopup.value = !displaySearchPopup.value;
