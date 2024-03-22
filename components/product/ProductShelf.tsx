@@ -192,7 +192,7 @@ function ProductShelf({
               />
             </Slider.PrevButton>
 
-            <Slider class="flex mb-[40px] lg:mb-0 justify-between gap-[30px] lg:gap-6 xl:gap-0 lg:mr-1 xl:mr-0 carousel carousel-center sm:carousel-end  col-span-full row-start-2 row-end-5 ">
+            <Slider class="flex mb-[40px] lg:mb-0 justify-between gap-[30px] lg:gap-6 lg:mr-1 xl:mr-0 carousel carousel-center sm:carousel-end  col-span-full row-start-2 row-end-5 ">
               {allowBanner && (
                 <Slider.Item index={0} class="carousel-item">
                   <div class="relative rounded-[15px] lg:min-w-[360px]">

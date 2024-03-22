@@ -18,7 +18,7 @@ function NavItem({
     <li class="group flex items-center">
       <a href={url} class="px-4 py-3">
         <span
-          class={`text-[14px] font-medium tracking-[2px] text-[${colorIcon}] group-hover/hover:text-[#101820] group-hover:text-[#D62C79]`}
+          class={`text-[14px] font-bold tracking-[2px] text-[${colorIcon}] group-hover/hover:text-[#101820] group-hover:text-[#D62C79]`}
         >
           {name}
         </span>

@@ -190,3 +190,10 @@
     --dot-progress: 100%
   }
 }
+
+@media (min-width: 1280px) {
+  .bestSellers ul {
+    gap: 0;
+  }
+
+}

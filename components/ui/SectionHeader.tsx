@@ -31,7 +31,7 @@ function Header(props: Props) {
           )}
           {props.description && (
             <h2
-              class={` text-[16px] lg:text-[17px] xl:text-[18px] ${props.black ? "text-center " : "text-white-lily lg:text-start"
+              class={` text-[16px] lg:text-[17px] xl:text-[20px] ${props.black ? "text-center " : "text-white-lily lg:text-start"
                 }${props.alignment === "left" ? "lg:text-left" : "lg:text-center"
                 } text-center
                   leading-6 lg:leading-8

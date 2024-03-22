@@ -43,12 +43,12 @@ function PluralBanner({
       >
         <div
           class={`${
-            layoutCenter ? "lg:max-w-[600px]" : "lg:max-w-[380px]" 
-          } w-full px-[24px] text-end lg:text-center flex flex-col items-end lg:items-center`}
+            layoutCenter ? "lg:max-w-[600px]" : "lg:max-w-[390px]" 
+          } w-full px-[24px] text-end lg:text-center flex flex-col items-end lg:items-start`}
         >
           {title && (
             <div
-              class="card-title text-[32px] lg:text-[40px] font-semibold leading-[130%] textWithStrong "
+              class="card-title text-[32px] lg:text-[40px] font-semibold leading-[130%] textWithStrong lg:text-left"
               style={{ color: color ? color : "#FFF" }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
@@ -57,7 +57,7 @@ function PluralBanner({
           {description && (
             <p
               style={{ color: color ? color : "#FFF" }}
-              class="text-[24px] leading-[130%] mt-[24px] lg:mt-[38px] mb-[32px] lg:mb-[60px]"
+              class="text-[24px] leading-[130%] mt-[24px] lg:mt-[38px] mb-[32px] lg:mb-[60px] lg:text-left"
             >
               {description}
             </p>
