@@ -300,7 +300,7 @@ function Searchbar({
                 >
                   {searchEmpty ? "PRODUTOS POPULARES" : "PRODUTOS"}
                 </span>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-[20px] xl:gap-y-[50px] gap-x-[30px] xl:gap-x-[70px]">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-[20px] xl:gap-y-[50px] gap-x-[30px] xl:gap-x-[50px]">
                   {dataProducts.items.map((product: any) => (
                     <a
                       href={product.link}
@@ -316,12 +316,12 @@ function Searchbar({
                           <span class="text-[14px] leading-[17px]">
                             {product.tags ?? product.tags[0]}
                           </span>
-                          <p class="leading-[23px] font-semibold text-[18px]">
+                          <p class="leading-[23px] font-semibold text-[16px]">
                             {product.title}
                           </p>
                         </div>
                         <div>
-                          <p class="text-[20px] text-[#CE0F69] leading-[21px] font-semibold">
+                          <p class="text-[18px] text-[#CE0F69] leading-[21px] font-semibold">
                             {formatPrice(product.price)}
                           </p>
                           <p class="text-[14px] leading-[17px]">
