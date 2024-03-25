@@ -10,7 +10,7 @@ export default function SearchButton({ colorIcon }: {
   return (
     <>
       <Button
-        class="btn-circle btn-sm btn-ghost hidden sm:flex items-center justify-center"
+        class="btn-circle btn-sm btn-ghost hidden md:flex items-center justify-center"
         aria-label="search icon button"
         onClick={() => {
           displaySearchPopup.value = !displaySearchPopup.value;
@@ -24,7 +24,7 @@ export default function SearchButton({ colorIcon }: {
         />
       </Button>
       <Button
-        class="btn-circle btn-sm btn-ghost sm:hidden"
+        class="btn-circle btn-sm btn-ghost md:hidden"
         aria-label="search icon button"
         onClick={() => {
           displaySearchDrawer.value = !displaySearchDrawer.value;

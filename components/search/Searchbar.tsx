@@ -129,8 +129,6 @@ function Searchbar({
     }
   }
 
-  console.log(notFound);
-
   return (
     <div class="w-full grid gap-8 px-4 lg:p-10 lg:rounded-b-[8px] py-6 overflow-y-hidden lg:h-fit lg:max-w-[1130px]">
       <div class="flex">
