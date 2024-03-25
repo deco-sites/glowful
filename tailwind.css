@@ -151,11 +151,8 @@
     margin: 0;
   }
 
-  /* Disable scroll once drawer/modal is openned */
-  body:has(.drawer-toggle:checked),
-  body:has(.modal-toggle:checked) {
-    overflow: hidden;
-    height: 100vh;
+  :root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
+      overflow: auto !important;
   }
 }
 

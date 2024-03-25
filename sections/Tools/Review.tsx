@@ -17,8 +17,6 @@ function Review({ AllReviews, reviewStyle }: Props) {
 
   const id = productId.value;
 
-  console.log(reviewStyle);
-
   return (
     <>
       <script

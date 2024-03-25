@@ -17,8 +17,6 @@ export default function PriceFilter() {
     window.location.href = urlWithoutPrices;
   };
 
-  console.log(gte ?? 0, lte ?? 0);
-
   return gte !== "0" || lte !== "0" ? (
     <button
       className="rounded-[16px] bg-[#F4F4F4] text-[14px] text-[#666] flex items-center gap-[8px] px-[16px] py-[8px]"
