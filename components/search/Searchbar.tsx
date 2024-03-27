@@ -63,8 +63,6 @@ function Searchbar({
   const [searchEmpty, setSearchEmpty] = useState(false);
   const popularSearchFormated = popularSearch?.map((term) => term.search);
 
-  console.log(popularSearchFormated);
-
   useEffect(() => {
     if (displaySearchPopup.value === true) {
       searchInputRef.current?.focus();
