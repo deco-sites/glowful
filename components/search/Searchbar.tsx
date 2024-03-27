@@ -37,12 +37,17 @@ export interface Props {
    * @default q
    */
   name?: string;
+
+  popularSearch: {
+    search: string;
+  }[];
 }
 
 function Searchbar({
   placeholder = "O que você está procurando?",
   action = "/s",
   name = "q",
+  popularSearch,
 }: Props) {
   const id = useId();
   const { displaySearchPopup, displaySearchDrawer, quantityInstallments } =
@@ -56,6 +61,9 @@ function Searchbar({
   });
   const [notFound, setNotFound] = useState(false);
   const [searchEmpty, setSearchEmpty] = useState(false);
+  const popularSearchFormated = popularSearch?.map((term) => term.search);
+
+  console.log(popularSearchFormated);
 
   useEffect(() => {
     if (displaySearchPopup.value === true) {
@@ -85,7 +93,9 @@ function Searchbar({
               categories: data2.categories,
               items: data2.items,
             });
-            setDataSuggestions(data1.suggestions);
+            if (popularSearchFormated) {
+              setDataSuggestions(popularSearchFormated);
+            }
           } else {
             setNotFound(true);
             setDataSuggestions([]);
