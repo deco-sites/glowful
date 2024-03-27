@@ -70,9 +70,9 @@ function CartItem({
     >
       <Image
         {...image}
-        style={{ aspectRatio: "150 / 150" }}
-        width={150}
-        height={150}
+        style={{ aspectRatio: "124 / 140" }}
+        width={124}
+        height={140}
         class="h-full object-contain"
       />
 

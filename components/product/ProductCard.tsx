@@ -132,7 +132,7 @@ function ProductCard({
   return (
     <div
       id={id}
-      class={`card card-compact group self-start w-full max-w-[360px] min-w-[290px] ${
+      class={`card card-compact group self-start w-full max-w-[360px] lg:max-w-[265px] 2xl:max-w-[360px] min-w-[290px] lg:min-w-[200px] 2xl:min-w-[290px] ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -186,27 +186,25 @@ function ProductCard({
           >
             NOVO
           </div>
-
           <a
             href={url && relative(url)}
             aria-label="view product"
           >
-            <Image
-              src={front.url!}
-              alt={front.alternateName}
-              width={WIDTH}
-              height={HEIGHT}
-              class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${
-                l?.onMouseOver?.image == "Zoom image"
-                  ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                  : ""
+          <Image
+            src={front.url!}
+            alt={front.alternateName}
+            width={WIDTH}
+            height={HEIGHT}
+            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${l?.onMouseOver?.image == "Zoom image"
+                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                : ""
               }`}
-              sizes="(max-width: 640px) 50vw, 20vw"
-              preload={preload}
-              loading={preload ? "eager" : "lazy"}
-              decoding="async"
-            />
-          </a>
+            sizes="(max-width: 640px) 50vw, 20vw"
+            preload={preload}
+            loading={preload ? "eager" : "lazy"}
+            decoding="async"
+          />
+        </a>
         </div>
 
         <figcaption
@@ -313,7 +311,7 @@ function ProductCard({
                     }`}
                   >
                     <Button
-                      class={`w-full block bg-white-lily rounded-full px-[32px] xl:px-[18px] py-[14px] border-none text-deep-beauty text-[16px] uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300`}
+                      class={`w-full block bg-white-lily rounded-full px-[32px] xl:px-[18px] py-[14px] border-none text-deep-beauty text-[16px] uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300 content-center`}
                       onClick={openModal}
                     >
                       Adicionar ao Carrinho
@@ -389,18 +387,16 @@ function ProductCard({
             </p>
 
             {/* Product Name */}
-            {l?.hide?.productName
-              ? (
-                ""
-              )
-              : (
-                <h2
-                  class=" break-words text-[18px] lg:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
-                  dangerouslySetInnerHTML={{
-                    __html: isVariantOf?.name ?? name ?? "",
-                  }}
-                />
-              )}
+            {l?.hide?.productName ? (
+              ""
+            ) : (
+              <h2
+                class=" break-words text-[18px] 2xl:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
+                dangerouslySetInnerHTML={{
+                  __html: isVariantOf?.name ?? name ?? "",
+                }}
+              />
+            )}
           </a>
 
           {/* Prices */}
@@ -421,36 +417,31 @@ function ProductCard({
                     class={`text-[14px] font-normal leading-[13px] uppercase line-through text-[#101820] ${
                       l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                     }`}
-                  >
-                    {formatPrice(listPrice, offers?.priceCurrency)}
-                  </div>
-                  <div class="lg:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
-                    {formatPrice(price, offers?.priceCurrency)}
-                  </div>
+                >
+                  {formatPrice(listPrice, offers?.priceCurrency)}
                 </div>
-                {l?.hide?.installments && priceInstallments && (
-                  <p class="text-sm  text-[#101820] text-end font-medium w-max">
-                    {quantityInstallments.value + "x " +
-                      formatPrice(priceInstallments, offers?.priceCurrency)}
-                  </p>
-                )}
+                <div class="2xl:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
+                  {formatPrice(price, offers?.priceCurrency)}
+                </div>
               </div>
-            )}
+              {l?.hide?.installments && priceInstallments && (
+                <p class="text-sm  text-[#101820] text-end font-medium w-max">
+                  {quantityInstallments.value + "x " + formatPrice(priceInstallments, offers?.priceCurrency)}
+                </p>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Description */}
-        {l?.hide?.productDescription
-          ? (
-            ""
-          )
-          : (
-            <div
-              class="mt-[16px] text-[14px] lg:text-[16px] font-light leading-[150%] text-[#101820]"
-              dangerouslySetInnerHTML={{
-                __html: description.description ?? "",
-              }}
-            />
-          )}
+        {l?.hide?.productDescription ? (
+          ""
+        ) : (
+          <div
+            class="mt-[16px] text-[14px] xl:text-[16px] font-light leading-[150%] text-[#101820]"
+            dangerouslySetInnerHTML={{ __html: description.description ?? "" }}
+          />
+        )}
 
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (

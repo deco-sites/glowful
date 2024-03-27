@@ -31,9 +31,9 @@ const Aside = (
 ) => (
   <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw]">
     <div class="flex justify-between items-center">
-      <h1 class="px-[32px] py-[24px]">
-        <span class="font-bold text-[32px]">{title}</span>
-      </h1>
+      <h3 class="px-4 py-6 lg:py-4 2xl:py-6">
+        <span class="font-bold text-lg">{title}</span>
+      </h3>
       {onClose && (
         <Button class="btn btn-ghost" onClick={onClose}>
           <Icon id="XMark" size={24} strokeWidth={1} class="text-[#878787]" />

@@ -115,12 +115,12 @@ function ListPosts({
             class="text-white-lily"
           />
         </Slider.PrevButton>
-        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-end gap-[20px] lg:gap-[24px] col-span-full row-start-1 row-end-1">
+        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-end gap-[20px] lg:gap-[18px] 2xl:gap-[32px] col-span-full row-start-1 row-end-1">
           {data.map((post, index) => (
             <Slider.Item
               index={index}
               key={index}
-              class="bg-[#f4f4f4] m-[8px] max-w-[274px] lg:max-w-[380px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
+              class="bg-[#f4f4f4] m-[8px] max-w-[274px] lg:max-w-[330px] 2xl:max-w-[380px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
             >
               <a
                 aria-label={`Link para a página do post ${post?.title?.rendered}`}
@@ -174,7 +174,7 @@ function ListPosts({
             </Slider.Item>
           ))}
         </Slider>
-        <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1]">
+        <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] 2xl:right-[4%] transform -translate-y-1/2 z-[1]">
           <Icon
             size={24}
             id="ChevronRight"

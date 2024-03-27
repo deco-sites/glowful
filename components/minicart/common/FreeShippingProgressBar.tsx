@@ -14,7 +14,7 @@ function FreeShippingProgressBar({ target, total, currency, locale }: Props) {
 
   return (
     <div class="flex flex-col w-full gap-2">
-      <div class="flex flex-col justify-center items-center gap-[20px] text-primary">
+      <div class="flex flex-col justify-center items-center gap-4 text-primary">
         <progress
           class="progress progress-primary w-full"
           value={percent}
@@ -22,7 +22,7 @@ function FreeShippingProgressBar({ target, total, currency, locale }: Props) {
         />
         {remaining > 0 ? (
           <span class="text-[14px] lg:text-[16px] text-center lg:text-start">
-            Faltam ${formatPrice(remaining, currency, locale)} para ganhar{" "}
+            Faltam {formatPrice(remaining, currency, locale)} para ganhar{" "}
             <strong>FRETE GRÁTIS</strong>
           </span>
         ) : (
