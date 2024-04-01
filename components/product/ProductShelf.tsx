@@ -69,9 +69,9 @@ function ProductShelf({
             class="container grid lg:hidden grid-cols-[48px_1fr_48px] gap-[32px] relative"
           >
             <Slider.PrevButton
-              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]"
+              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-[34%] lg:top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]"
               style={{
-                display: layout.allowArrowDesktop ? "flex" : "none",
+                display: layout.allowArrowDesktop ? "flex" : "",
               }}
             >
               <Icon
@@ -97,7 +97,7 @@ function ProductShelf({
 
                 <div class="absolute w-full h-full top-0 right-0 flex flex-col justify-end items-center gap-[16px] py-[32px]">
                   {banner?.text && (
-                    <h3 class="text-[32px] font-fraunces font-semibold text-white-lily">
+                    <h3 class="text-[32px] font-redhat font-semibold text-white-lily">
                       {banner?.text}
                     </h3>
                   )}
@@ -142,10 +142,9 @@ function ProductShelf({
             </ul>
 
             <Slider.NextButton
-              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1] "
+              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-[34%] xl:top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1] "
               style={{
-                display: layout.allowArrowDesktop ? "flex" : "none",
-                right: layout.allowArrowDesktop ? "0" : "10%",
+                display: layout.allowArrowDesktop ? "flex" : ""
               }}
             >
               <Icon
@@ -176,7 +175,7 @@ function ProductShelf({
           {/* DESKTOP */}
           <div
             id={idDesktop}
-            class="container hidden lg:grid grid-cols-[48px_1fr_48px] gap-[32px] relative lg:p-0"
+            class="container hidden lg:block relative lg:p-0"
           >
             <Slider.PrevButton
               class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]"
@@ -209,7 +208,7 @@ function ProductShelf({
 
                     <div class="absolute w-full h-full top-0 right-0 flex flex-col justify-end items-center gap-[16px] py-[32px]">
                       {banner?.text && (
-                        <h3 class="text-[32px] font-fraunces font-semibold text-white-lily">
+                        <h3 class="text-[32px] font-redhat font-semibold text-white-lily">
                           {banner?.text}
                         </h3>
                       )}
@@ -242,7 +241,7 @@ function ProductShelf({
             </Slider>
 
             <Slider.NextButton
-              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1] "
+              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-[34%] lg:top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1] "
               style={{
                 display: layout.allowArrowDesktop ? "flex" : "none",
                 right: layout.allowArrowDesktop ? "0" : "10%",

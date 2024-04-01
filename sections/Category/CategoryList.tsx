@@ -94,7 +94,7 @@ function CategoryList(props: Props) {
   return (
     <div
       id={id}
-      class="py-[40px] lg:py-[90px] lg:ml-[10%] xl:ml-[7%] 2xl:ml-[14%] flex items-center flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-[75px] text-base-content"
+      class="py-[40px] lg:py-[90px] lg:ml-[10%] xl:ml-[7%] 2xl:ml-[8%] flex items-center flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-[75px] text-base-content"
       style={{
         "background-color": props.backgroundColor,
       }}
@@ -110,7 +110,7 @@ function CategoryList(props: Props) {
 
       <div
         id={id}
-        class="container grid grid-cols-[48px_1fr_48px] px-[0] pl-[24px] relative"
+        class="container grid grid-cols-[48px_1fr_48px] px-[0] pl-[24px] relative xl:pl-0"
       >
         <Slider.PrevButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]">
           <Icon
@@ -120,12 +120,12 @@ function CategoryList(props: Props) {
             class="text-white-lily"
           />
         </Slider.PrevButton>
-        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-center sm:carousel-end gap-[20px] lg:gap-[24px] 2xl:gap-[28px] col-span-full row-start-2 row-end-5">
+        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-center sm:carousel-end gap-[20px] lg:gap-[24px] 2xl:gap-7 3xl:gap-10 col-span-full row-start-2 row-end-5">
           {list.map(
             ({ label, href, imageDesktop, imageMobile, buttonText }, index) => (
               <Slider.Item
                 index={index}
-                class="m-[8px] lg:m-0 flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300 lg:w-56 max-w-[350px] 2xl:w-[350px]"
+                class="m-[8px] lg:m-0 flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300 lg:w-56 max-w-[350px] 2xl:w-[350px] 3xl:max-w-none 3xl:w-96"
               >
                 <a
                   href={href}

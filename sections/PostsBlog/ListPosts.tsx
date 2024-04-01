@@ -157,7 +157,7 @@ function ListPosts({
                   class="gap-[10px]"
                   target="_blank"
                 >
-                  <h3 class="text-deep-beauty text-[22px] lg:text-[28px] font-[400] mb-[16px]">
+                  <h3 class="text-deep-beauty text-[22px] lg:text-[28px] font-[400] mb-[16px] font-fraunces">
                     {post?.title?.rendered}
                   </h3>
                   <div

@@ -67,6 +67,9 @@ export default {
       animation: {
         "shake-in": "shakeIn 1s ease-in-out 1",
         "shake-out": "shakeOut 0.6s ease-in-out 1"
+      },
+      screens: {
+        '3xl': '1820px',
       }
     },
   },

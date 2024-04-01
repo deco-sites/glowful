@@ -105,11 +105,12 @@
 
   .textIconHighLight strong {
     font-family: Fraunces;
-    font-size: 22px;
+    font-size: 34px;
     color:#CE0F69;
     font-style: italic;
     font-weight: 600;
     line-height: 130%;
+    text-transform: lowercase;
   }
   
   .textWithStrong strong {
@@ -137,7 +138,7 @@
 
   @media (min-width: 1024px) {
     .textIconHighLight strong {
-      font-size: 30px;
+      font-size: 50px;
     }
 
     .textCategoryHighlight p {
@@ -196,4 +197,9 @@
     gap: 0;
   }
 
+}
+
+.keen-slider__slide {
+  min-width: none;
+  max-width: 350px;
 }

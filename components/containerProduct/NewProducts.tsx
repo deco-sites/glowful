@@ -20,8 +20,8 @@ export default function NewProducts({
   products: { Component, props },
 }: Props) {
   return (
-    <div class="lg:bg-[#F4F4F4]">
-      <div class="2xl:mr-[12%]  card xl:card-side rounded flex flex-col lg:grid justify-between items-center lg:grid-cols-[30%_68%] xl:grid-cols-[40%_60%] 2xl:grid-cols-[45%_65%]  2xl: justify-items-center">
+    <div class="bg-[#F4F4F4] lg:bg-[#F2F2F2]">
+      <div class="2xl:mr-[12%]  card xl:card-side rounded xl:items-center flex flex-col lg:grid justify-between items-center lg:grid-cols-[30%_68%] xl:grid-cols-[40%_60%] 2xl:grid-cols-[45%_65%]  2xl: justify-items-center">
         <figure class="w-full lg:h-full max-h-[890px] h-[360px] relative lg:flex items-center justify-center">
           <img
             class="lg:block hidden w-full h-full object-cover"

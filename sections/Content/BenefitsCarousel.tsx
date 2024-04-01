@@ -77,7 +77,7 @@ export default function BenefitsCarousel({
 
       {/* Desktop Flex */}
       <div class={`hidden lg:flex `} style={{ "background-color": background }}>
-        <div class="container justify-between carousel carousel-center w-full text-center px-[20px] py-[32px] ml-[10%] xl:ml-[7%] 2xl:ml-[14%] ">
+        <div class="container justify-between carousel carousel-center w-full text-center px-[20px] py-[32px] ml-[10%] xl:ml-[7%] 2xl:ml-[8%] ">
           {benifits.map((benifit) => (
             <div class="carousel-item flex justify-center items-center gap-[16px] w-fit">
               <img

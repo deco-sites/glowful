@@ -382,7 +382,7 @@ function ProductCard({
             aria-label="view product"
           >
             {/* Category */}
-            <p class="text-[14px] lg:text-[16px] leading-[13px] font-semibold text-[#101820]">
+            <p class="text-[14px] lg:text-[14px] leading-[13px] font-semibold text-[#101820]">
               {description.category}
             </p>
 
@@ -391,7 +391,7 @@ function ProductCard({
               ""
             ) : (
               <h2
-                class=" break-words text-[18px] 2xl:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
+                class=" break-words text-[16px] 2xl:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
                 dangerouslySetInnerHTML={{
                   __html: isVariantOf?.name ?? name ?? "",
                 }}
@@ -420,7 +420,7 @@ function ProductCard({
                 >
                   {formatPrice(listPrice, offers?.priceCurrency)}
                 </div>
-                <div class="2xl:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
+                <div class="2xl:text-[20px] text-[16px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
                   {formatPrice(price, offers?.priceCurrency)}
                 </div>
               </div>
@@ -438,7 +438,7 @@ function ProductCard({
           ""
         ) : (
           <div
-            class="mt-[16px] text-[14px] xl:text-[16px] font-light leading-[150%] text-[#101820]"
+            class="mt-[16px] text-[14px] font-light leading-[150%] text-[#101820]"
             dangerouslySetInnerHTML={{ __html: description.description ?? "" }}
           />
         )}

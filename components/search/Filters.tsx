@@ -111,7 +111,7 @@ function Filters({ filters }: Props) {
 
       {filters.filter(isRange).map((filter) => (
         <li class="flex flex-col gap-[24px] ">
-          <span class="text-[18px] text-[#1a1a1a] font-bold border-b border-b-[#CCC] p-[8px]">
+          <span class="text-[18px] text-[#1a1a1a] font-bold border-b border-b-[#CCC] p-[8px] uppercase">
             {filter.label}
           </span>
           <FilterRangePrice />
@@ -120,7 +120,7 @@ function Filters({ filters }: Props) {
 
       {filters.filter(isToggle).map((filter) => (
         <li class="flex flex-col gap-[24px]">
-          <span class="text-[18px] text-[#1a1a1a] font-bold border-b border-b-[#CCC] p-[8px]">
+          <span class="text-[18px] text-[#1a1a1a] font-bold border-b border-b-[#CCC] p-[8px] uppercase">
             {filter.label}
           </span>
           <FilterValues {...filter} />

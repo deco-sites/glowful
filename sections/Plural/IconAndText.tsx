@@ -47,7 +47,7 @@ export default function ImageAndText(props: Props) {
 
         <div class="lg:py-[80px] px-[24px] lg:px-0 flex flex-col items-center gap-[28px] lg:gap-[80px] lg:row-start-1 lg:col-start-1 lg:max-w-[616px]">
           <div
-            class="card-title textIconHighLight text-[24px] tracking-[1.2px] uppercase font-medium lg:text-[32px] text-center justify-center"
+            class="card-title textIconHighLight text-[24px] tracking-[1.2px] uppercase font-medium lg:text-[36px] text-center justify-center"
             dangerouslySetInnerHTML={{ __html: title }}
           />
 
@@ -87,7 +87,7 @@ export default function ImageAndText(props: Props) {
           {href && buttonText && (
             <a
               href={href}
-              class="w-fit bg-cherry-pop rounded-full border-none text-white-lily text-sm uppercase px-[60px] py-[18px] font-bold tracking-[1px] hover:bg-white-lily hover:text-cherry-pop hover:border-none transition-all duration-300"
+              class="w-fit bg-cherry-pop rounded-full border-none absolute bottom-3 lg:static text-white-lily text-sm uppercase px-[40px] py-[16px] lg:px-[60px] lg:py-[18px] font-bold tracking-[1px] hover:bg-white-lily hover:text-cherry-pop hover:border-none transition-all duration-300"
             >
               {buttonText}
             </a>
