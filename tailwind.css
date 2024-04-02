@@ -24,7 +24,9 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-
+  .clampTitleSection{
+    font-size: clamp(1.5rem, -0.63rem + 3vw, 2.25rem);
+  }
   .scrollbar-minicart::-webkit-scrollbar {
     width: 3px;
   }
@@ -105,7 +107,8 @@
 
   .textIconHighLight strong {
     font-family: Fraunces;
-    font-size: 22px;
+    text-transform: lowercase;
+    font-size: 32px;
     color:#CE0F69;
     font-style: italic;
     font-weight: 600;
@@ -137,16 +140,22 @@
 
   @media (min-width: 1024px) {
     .textIconHighLight strong {
-      font-size: 30px;
+      font-size: 42px;
+      text-transform: lowercase;
     }
 
     .textCategoryHighlight p {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 0.5rem + 1.25vw, 2rem);
+      line-height: 1;
     }
     .textCategoryHighlight strong {
-      font-size: 2.625rem;
+      font-size: clamp(1.75rem, 0rem + 2.1875vw, 2.625rem);
     }
 
+  }
+  
+  .containerLeftCategory{
+    margin-left: clamp(5.0625rem, -45.6875rem + 52.8646vw, 17.75rem);
   }
 
   .popup strong {

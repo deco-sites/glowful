@@ -45,7 +45,7 @@ export default function ImageAndText(props: Props) {
           </Picture>
         </figure>
 
-        <div class="lg:py-[80px] px-[24px] lg:px-0 flex flex-col items-center gap-[28px] lg:gap-[80px] lg:row-start-1 lg:col-start-1 lg:max-w-[616px]">
+        <div class="lg:py-10 2xl:py-20 px-[24px] lg:px-0 flex flex-col items-center gap-[28px] lg:gap-[80px] lg:row-start-1 lg:col-start-1 lg:max-w-[616px]">
           <div
             class="card-title textIconHighLight text-[24px] tracking-[1.2px] uppercase font-medium lg:text-[32px] text-center justify-center"
             dangerouslySetInnerHTML={{ __html: title }}

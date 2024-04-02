@@ -12,7 +12,7 @@ function Header(props: Props) {
     <>
       {props.title || props.description ? (
         <div
-          class={`flex flex-col gap-[24px]  m-auto lg:m-0 ${props.black ? "max-w-[650px]" : "max-w-[380px]"
+          class={`flex flex-col gap-6 lg:gap-4 2xl:gap-6 m-auto lg:m-0 ${props.black ? "max-w-[650px]" : "max-w-[380px]"
             } ${props.alignment === "left" ? "lg:text-left" : "lg:text-center"
             } text-center`}
         >
@@ -31,10 +31,9 @@ function Header(props: Props) {
           )}
           {props.description && (
             <h2
-              class={` text-[16px] lg:text-[17px] xl:text-[20px] ${props.black ? "text-center " : "text-white-lily lg:text-start"
+              class={` text-base 2xl:text-xl ${props.black ? "text-center " : "text-white-lily lg:text-start"
                 }${props.alignment === "left" ? "lg:text-left" : "lg:text-center"
                 } text-center
-                  leading-6 lg:leading-8
                   ${props.colorReverse
                   ? "text-primary-content"
                   : "text-[#000000]"

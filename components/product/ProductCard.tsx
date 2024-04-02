@@ -171,7 +171,6 @@ function ProductCard({
       {/* Image Mobile */}
       <figure
         class="!flex lg:!hidden relative overflow-hidden"
-        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         <div class="grid grid-cols-1 grid-rows-1 w-full relative">
           <FlatDiscount
@@ -195,7 +194,7 @@ function ProductCard({
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${l?.onMouseOver?.image == "Zoom image"
+            class={`w-[296px] h-[320px] bg-base-100 col-span-full row-span-full rounded-[15px] object-cover ${l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
               }`}
@@ -311,7 +310,7 @@ function ProductCard({
                     }`}
                   >
                     <Button
-                      class={`w-full block bg-white-lily rounded-full px-[32px] xl:px-[18px] py-[14px] border-none text-deep-beauty text-[16px] uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300 content-center`}
+                      class={`w-full block bg-white-lily rounded-full px-[32px] xl:px-[18px] py-[14px] border-none text-deep-beauty text-base lg:text-xs 2xl:text-base uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300 content-center`}
                       onClick={openModal}
                     >
                       Adicionar ao Carrinho
@@ -354,7 +353,7 @@ function ProductCard({
       </figure>
 
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col pt-[24px]">
+      <div class="flex-auto flex flex-col pt-6 lg:pt-4 2xl:pt-6">
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
@@ -382,7 +381,7 @@ function ProductCard({
             aria-label="view product"
           >
             {/* Category */}
-            <p class="text-[14px] lg:text-[16px] leading-[13px] font-semibold text-[#101820]">
+            <p class="text-sm xl:text-base leading-[13px] font-semibold text-[#101820]">
               {description.category}
             </p>
 
@@ -391,7 +390,7 @@ function ProductCard({
               ""
             ) : (
               <h2
-                class=" break-words text-[18px] 2xl:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
+                class=" break-words text-lg lg:text-sm xl:text-base 2xl:text-xl leading-[130%] uppercase font-semibold text-[#101820]"
                 dangerouslySetInnerHTML={{
                   __html: isVariantOf?.name ?? name ?? "",
                 }}
@@ -405,27 +404,27 @@ function ProductCard({
               ""
             )
             : (
-              <div class="flex flex-col gap-2 items-end">
+              <div class="flex flex-col gap-2 lg:gap-1 2xl:gap-2 items-end">
                 <div
-                  class={`flex flex-col gap-2 items-end w-fit ${
+                  class={`flex flex-col gap-2 lg:gap-1 2xl:gap-2 items-end w-fit ${
                     l?.basics?.oldPriceSize === "Normal"
                       ? ""
                       : "flex-row lg:gap-2"
                   } ${align === "center" ? "justify-center" : "justify-start"}`}
                 >
                   <div
-                    class={`text-[14px] font-normal leading-[13px] uppercase line-through text-[#101820] ${
+                    class={`text-sm leading-none font-normal lg:text-xs 2xl:text-sm uppercase line-through text-[#101820] ${
                       l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                     }`}
                 >
                   {formatPrice(listPrice, offers?.priceCurrency)}
                 </div>
-                <div class="2xl:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
+                <div class="2xl:text-xl text-lg lg:text-base leading-none uppercase font-bold text-[#CE0F69] ">
                   {formatPrice(price, offers?.priceCurrency)}
                 </div>
               </div>
               {l?.hide?.installments && priceInstallments && (
-                <p class="text-sm  text-[#101820] text-end font-medium w-max">
+                <p class="text-sm lg:text-xs 2xl:text-sm text-[#101820] text-end font-medium w-max">
                   {quantityInstallments.value + "x " + formatPrice(priceInstallments, offers?.priceCurrency)}
                 </p>
               )}
@@ -438,7 +437,7 @@ function ProductCard({
           ""
         ) : (
           <div
-            class="mt-[16px] text-[14px] xl:text-[16px] font-light leading-[150%] text-[#101820]"
+            class="mt-4 lg:mt-2.5 2xl:mt-4 text-sm xl:text-base font-light leading-[150%] text-[#101820]"
             dangerouslySetInnerHTML={{ __html: description.description ?? "" }}
           />
         )}

@@ -89,10 +89,10 @@ function ListPosts({
   return (
     <div
       id={id}
-      class="py-[40px] lg:py-[120px] lg:ml-[5%] flex lg:items-start flex-col gap-8 lg:gap-[75px] text-base-content"
+      class="py-[40px] lg:py-[120px] lg:ml-[5%] flex lg:items-start flex-col gap-8 2xl:gap-[75px] text-base-content"
     >
-      <div class="flex flex-col lg:flex-row items-center gap-[4px] lg:gap-[24px]">
-        <h3 class="text-deep-beauty text-[24px] lg:text-[36px] uppercase tracking-[1.2px] font-bold text-left">
+      <div class="flex flex-col lg:flex-row items-center gap-[4px] lg:pl-8 lg:gap-[24px]">
+        <h3 class="text-deep-beauty text-[24px] lg:text-[28px] 2xl:text-[36px] uppercase tracking-[1.2px] font-bold text-left">
           {title}
         </h3>
         <a
@@ -135,7 +135,7 @@ function ListPosts({
                     width={380}
                     height={160}
                     loading="lazy"
-                    class="w-full h-full lg:block hidden rounded-t-[14px]"
+                    class="w-full h-[160px] object-cover lg:block hidden rounded-t-[14px]"
                   />
                   <Image
                     src={post?.acf?.image_mobile.url}
@@ -144,11 +144,11 @@ function ListPosts({
                     width={274}
                     height={160}
                     loading="lazy"
-                    class="w-full h-full lg:hidden block rounded-t-[14px]"
+                    class="w-full h-[160px] object-cover lg:hidden block rounded-t-[14px]"
                   />
                 </figure>
               </a>
-              <div class="w-full flex flex-col py-[24px] px-[16px] lg:p-[32px] gap-[10px]">
+              <div class="w-full flex flex-col py-[24px] px-[16px] lg:p-5 2xl:p-[32px] gap-[10px]">
                 <span class="text-deep-beauty text-[18px] tracking-[1.2px] font-bold">
                   Categoria
                 </span>
