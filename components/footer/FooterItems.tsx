@@ -61,7 +61,7 @@ export default function FooterItems({
                       <span>{section.label}</span>
                     </div>
                     <div class="collapse-content pl-0">
-                      <ul class={`flex flex-col gap-[16px] pt-[28px]`}>
+                      <ul class={`flex flex-col gap-[16px] pt-6`}>
                         {section.items?.map((item) => (
                           <li>
                             <a
@@ -79,9 +79,9 @@ export default function FooterItems({
               ) : (
                 <li>
                   <div class="min-h-[0] w-fit !p-0 !pr-[35px] flex gap-2 font-bold text-lg text-white-lily">
-                    <span>{section.label}</span>
+                    <span class={`tracking-widest`}>{section.label}</span>
                   </div>
-                  <ul class={`flex flex-col gap-[16px] pt-[28px]`}>
+                  <ul class={`flex flex-col gap-[16px] pt-6`}>
                     {section.items?.map((item) => (
                       <li>
                         <a

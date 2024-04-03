@@ -20,7 +20,7 @@ function FlagDiscount({
 
     return (
       <span
-        className={`flex justify-center items-center px-[20px] py-[5px] text-white-lily bg-[#CE0F69] text-center text-[14px] font-semibold leading-[130%] tracking-[1px] ${
+        className={`flex justify-center items-center px-5 py-[5px] lg:px-2.5 2xl:px-5 text-white-lily bg-[#CE0F69] text-center text-[14px] font-semibold leading-[130%] tracking-[1px] ${
           absolutePosition ? "absolute top-[20px] right-[20px]" : ""
         } z-10 rounded-[8px]`}
       >

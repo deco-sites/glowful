@@ -40,10 +40,10 @@ function Logos(props: Props) {
   );
 
   return (
-    <div class="bg-[#f4f4f4]">
+    <div class="bg-[#E4E4E4]">
       <div class="container lg:gap-[100px] flex justify-center flex-col items-center gap-[50px] lg:flex-row w-full text-center  py-[50px] lg:py-[40px] px-[32px] ">
         <img
-          className="object-contain w-full h-full max-w-[258px] m-h-[82px] lg:max-w-[220px]"
+          className="object-contain w-full h-full max-w-40 m-h-[82px] lg:max-w-[219px]"
           src={mainImage}
           alt={mainImageAltText || ""}
         />

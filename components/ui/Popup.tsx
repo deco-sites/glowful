@@ -142,7 +142,7 @@ export default function Popup({
       >
         <div className={"w-full h-full flex justify-center items-center px-4"}>
           <div
-            className={`bg-white-lily flex flex-row justify-between w-full max-w-[312px] lg:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-[24px] lg:p-0 ${
+            className={`bg-white-lily flex flex-row justify-between w-full max-w-[312px] lg:max-w-[700px] 2xl:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-[24px] lg:p-0 ${
               animationPopup ? "animate-shake-in" : "animate-shake-out"
             }`}
           >
@@ -153,7 +153,7 @@ export default function Popup({
               <Icon id="Plus" size={32} strokeWidth={1} />
             </div>
 
-            <div class="pt-[30px] flex flex-col gap-[16px] lg:max-w-[315px] lg:m-[90px] lg:pt-0">
+            <div class="pt-[30px] flex flex-col gap-[16px] lg:max-w-[315px] lg:m-[50px] 2xl:m-[90px] lg:pt-0">
               {title && (
                 <div
                   class="textHighlight popup text-center w-full pr-4"

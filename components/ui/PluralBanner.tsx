@@ -69,7 +69,7 @@ function PluralBanner({
                 style={{
                   backgroundColor: color ? color : "#FFF",
                 }}
-                class="px-[40px] lg:px-[60px] py-[16px] lg:py-[18px] rounded-full border-none text-[#000000] text-[16px] lg:text-[20px] font-bold uppercase tracking-[1px] hover:!bg-[#CE0F69] hover:text-[#FFF] hover:border-none transition-all duration-300 "
+                class="px-[40px] lg:py-2.5 lg:px-10 2xl:px-[60px] py-[16px] 2xl:py-[18px] rounded-full border-none text-[#000000] text-base 2xl:text-[20px] font-bold uppercase tracking-[1px] hover:!bg-[#CE0F69] hover:text-[#FFF] hover:border-none transition-all duration-300 "
                 href={link?.href}
               >
                 {link?.text}
