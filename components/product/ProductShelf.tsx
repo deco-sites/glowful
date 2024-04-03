@@ -69,7 +69,7 @@ function ProductShelf({
             class="container grid lg:hidden grid-cols-[48px_1fr_48px] gap-[32px] relative"
           >
             <Slider.PrevButton
-              class={`${layout.allowArrowDesktop ? "lg:flex" : "lg:hidden"} flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]`}
+              class={`${layout.allowArrowDesktop ? "lg:flex" : "lg:hidden"} disabled:hidden flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute ${allowBanner ? "top-[57%]" : "top-[35%]"} left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]`}
             >
               <Icon
                 size={24}
@@ -139,7 +139,7 @@ function ProductShelf({
             </ul>
 
             <Slider.NextButton
-              class={`${layout.allowArrowDesktop ? "lg:flex right-[10%]" : "lg:hidden right-0"} flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1]`}
+              class={`${layout.allowArrowDesktop ? "lg:flex right-[10%]" : "lg:hidden right-0"} disabled:hidden flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute ${allowBanner ? "top-[57%]" : "top-[35%]"} right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1]`}
             >
               <Icon
                 size={24}
@@ -172,10 +172,7 @@ function ProductShelf({
             class="container hidden lg:grid grid-cols-[48px_1fr_48px] gap-[32px] relative lg:p-0"
           >
             <Slider.PrevButton
-              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]"
-              style={{
-                display: layout.allowArrowDesktop ? "flex" : "none",
-              }}
+              class={`${layout.allowArrowDesktop ? "flex" : "hidden"} disabled:hidden flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]`}
             >
               <Icon
                 size={24}
@@ -235,11 +232,7 @@ function ProductShelf({
             </Slider>
 
             <Slider.NextButton
-              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1] "
-              style={{
-                display: layout.allowArrowDesktop ? "flex" : "none",
-                right: layout.allowArrowDesktop ? "0" : "10%",
-              }}
+              class={`${layout.allowArrowDesktop ? "lg:flex right-0" : "lg:hidden"} disabled:hidden flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 transform -translate-y-1/2 z-[1]`}
             >
               <Icon
                 size={24}
