@@ -8,6 +8,7 @@ import RegionSelector from "$store/components/footer/RegionSelector.tsx";
 import Social from "$store/components/footer/Social.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import PoweredByDeco from "apps/website/components/PoweredByDeco.tsx";
+import Image from "apps/website/components/Image.tsx";
 
 export type Item = {
   label: string;
@@ -211,29 +212,28 @@ function Footer({
       class="w-full flex flex-col pt-10 pb-2 lg:pt-[90px] lg:pb-10 gap-10"
       style={{ background: backgroundColor ? backgroundColor : "#1D1D1D" }}
     >
-      <div class="lg:container mx-6 lg:mx-auto">
+      <div class="lg:w-[95%] lg:px-9 lg:max-w-[1408px] mx-6 lg:mx-auto">
         {(!layout?.variation || layout?.variation == "Variation 1") && (
           <div class="flex flex-col gap-10">
             <div class="lg:flex lg:gap-[50px] lg:mb-[100px] lg:justify-between">
-              <div class="lg:flex lg:flex-col max-w-[490px]">
+              <div class="lg:flex lg:flex-col max-w-[310px]">
                 <div class="flex flex-col gap-[24px] mb-[32px]">
-                  {title && (
-                    <h3 class="text-[26px] font-fraunces leading-[20px] text-white-lily">
-                      {title}
-                    </h3>
-                  )}
-                  {description && (
-                    <p class="leading-[140%] text-[#E4E4E4]">{description}</p>
-                  )}
+                <Image
+                  src={logo.image}
+                  alt={"Logo Glowful"}
+                  width={170}
+                  height={25}
+                  class={`w-[170px] lg:w-[220px]`}
+                />
                 </div>
 
                 <div class="lg:mb-0 flex flex-col gap-[30px] lg:flex-nowrap">
                   {_social}
                 </div>
 
-                <div class="mt-[40px] mb-[64px]">
+                <div class="mt-[40px] mb-[64px] lg:flex lg:m-0 lg:h-full lg:items-end">
                   {details && (
-                    <p class="text-[14px] leading-[150%] text-[#878787]">
+                    <p class="text-[14px] leading-[150%] text-[#E4E4E4]">
                       {details}
                     </p>
                   )}
