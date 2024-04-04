@@ -13,8 +13,6 @@ export interface Props {
   /** @format color */
   color?: string;
   form?: Form;
-  backgroundDesktop?: ImageWidget;
-  backgroundMobile?: ImageWidget;
 }
 
 const DEFAULT_PROPS: Props = {
@@ -32,8 +30,6 @@ export default function Newsletter(props: Props) {
     description,
     form,
     color,
-    backgroundDesktop,
-    backgroundMobile,
   } = {
     ...DEFAULT_PROPS,
     ...props,
@@ -81,8 +77,7 @@ export default function Newsletter(props: Props) {
     <>
       {/* Desktop */}
       <div
-        class={`hidden lg:block p-0 bg-cover bg-no-repeat bg-center`}
-        style={{ backgroundImage: `url("${backgroundDesktop}")` }}
+        class={`hidden lg:block p-0 bg-peach-skin`}
       >
         <div
           class={`container max-w-[1200px] flex flex-col rounded justify-between lg:items-end lg:flex-row px-[24px] py-[60px] gap-[40px] lg:py-[90px] lg:gap-[70px]`}
@@ -94,8 +89,7 @@ export default function Newsletter(props: Props) {
 
       {/* Mobile */}
       <div
-        class={`block lg:hidden p-0 bg-cover bg-no-repeat bg-center`}
-        style={{ backgroundImage: `url("${backgroundMobile}")` }}
+        class={`block lg:hidden p-0 bg-peach-skin`}
       >
         <div
           class={`container max-w-[1200px] flex flex-col rounded justify-between lg:items-end lg:flex-row px-[24px] py-[60px] gap-[40px] lg:py-[90px] lg:gap-[70px]`}
