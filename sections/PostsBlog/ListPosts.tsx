@@ -89,7 +89,7 @@ function ListPosts({
   return (
     <div
       id={id}
-      class="py-[40px] lg:py-[120px] lg:ml-[5%] flex lg:items-start flex-col gap-8 2xl:gap-[75px] text-base-content"
+      class="py-[60px] lg:py-12 2xl:py-[90px] lg:ml-[5%] flex lg:items-start flex-col gap-8 2xl:gap-[75px] text-base-content"
     >
       <div class="flex flex-col lg:flex-row items-center gap-[4px] lg:pl-8 lg:gap-[24px]">
         <h3 class="text-deep-beauty text-[24px] lg:text-[28px] 2xl:text-[36px] uppercase tracking-[1.2px] font-bold text-left">
