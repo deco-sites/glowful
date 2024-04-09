@@ -51,9 +51,8 @@ function CardText({
 }) {
   return (
     <div
-      class={`flex flex-col ${
-        alignment === "center" ? "text-center" : "text-left"
-      }`}
+      class={`flex flex-col ${alignment === "center" ? "text-center" : "text-left"
+        }`}
     >
       {tag && <div class="text-sm text-primary">{tag}</div>}
       {label && (
@@ -95,12 +94,12 @@ function CategoryList(props: Props) {
   return (
     <div
       id={id}
-      class="py-[40px] lg:py-[90px] lg:ml-[10%] xl:ml-[7%] 2xl:ml-[14%] flex items-center flex-col lg:flex-row gap-8 lg:gap-[75px] text-base-content"
+      class="py-[60px] lg:py-12 2xl:py-[90px] lg:ml-[10%] xl:ml-[7%] 2xl:ml-[14%] flex items-center flex-col lg:flex-row gap-8 lg:gap-0 2xl:containerLeftCategory text-base-content"
       style={{
         "background-color": props.backgroundColor,
       }}
     >
-      <div class="max-w-[300px] px-[24px]">
+      <div class="max-w-[300px] px-[24px] lg:pl-0">
         <Header
           title={header.title}
           description={header.description || ""}
@@ -113,7 +112,7 @@ function CategoryList(props: Props) {
         id={id}
         class="container grid grid-cols-[48px_1fr_48px] px-[0] pl-[24px] relative"
       >
-        <Slider.PrevButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]">
+        <Slider.PrevButton class="disabled:opacity-0 w-[32px] h-[32px] lg:w-9 lg:h-9 2xl:w-[50px] 2xl:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]">
           <Icon
             size={24}
             id="ChevronLeft"
@@ -121,16 +120,16 @@ function CategoryList(props: Props) {
             class="text-white-lily"
           />
         </Slider.PrevButton>
-        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-center sm:carousel-end gap-[20px] lg:gap-[24px] col-span-full row-start-2 row-end-5">
+        <Slider class="lg:overflow-hidden lg:py-1.5 flex justify-between carousel carousel-center sm:carousel-end gap-4 lg:gap-[24px] 2xl:gap-[28px] col-span-full row-start-2 row-end-5">
           {list.map(
             ({ label, href, imageDesktop, imageMobile, buttonText }, index) => (
               <Slider.Item
                 index={index}
-                class="m-[8px] flex flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300"
+                class="m-[8px] lg:m-0 flex w-[210px] flex-col gap-4 carousel-item relative group rounded-[20px] shadow-md lg:hover:scale-[1.022] transition-all duration-300 lg:w-56 xl:w-[27.6%] max-w-[350px] 2xl:w-[28%]"
               >
                 <a
                   href={href}
-                  class="flex flex-col gap-4 w-[296px] lg:w-[360px] lg:h-auto"
+                  class="flex flex-col gap-4 w-[210px] lg:w-full lg:h-auto"
                 >
                   {imageDesktop && imageMobile && (
                     <figure>
@@ -143,7 +142,7 @@ function CategoryList(props: Props) {
                         loading="lazy"
                       />
                       <Image
-                        class="card w-full h-full lg:hidden block"
+                        class="card w-[210px] lg:w-full h-full lg:hidden block"
                         src={imageMobile}
                         alt={label || ""}
                         width={210}
@@ -154,16 +153,16 @@ function CategoryList(props: Props) {
                   )}
                 </a>
 
-                <div class="absolute top-[80%] lg:group-hover:top-[33%] w-full h-fit lg:h-full flex flex-col items-center gap-[32px] transition-all duration-300 z-[2]">
+                <div class="absolute top-[83%] lg:group-hover:top-[33%] w-full h-fit lg:h-full flex flex-col items-center gap-9 transition-all duration-300 z-[2]">
                   {label && (
-                    <p class="text-[24px] lg:text-[32px] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
+                    <p class="text-[24px] lg:text-xl xl:text-[1.25rem] 2xl:text-[2rem] tracking-[1.6px] text-white-lily text-center uppercase font-bold">
                       {label}
                     </p>
                   )}
                   {buttonText && (
                     <a
                       href={href}
-                      class="hidden lg:block w-fit bg-[#FFF] rounded-full border-none text-[#000] text-sm uppercase px-[60px] py-[18px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"
+                      class="hidden lg:block w-fit bg-[#FFF] rounded-full border-none text-[#000] text-sm 2xl:text-base uppercase lg:px-6 lg:py-2.5 px-[60px] py-[18px] 2xl:px-[40px] 2xl:py-[16px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"
                     >
                       {buttonText}
                     </a>
@@ -175,7 +174,7 @@ function CategoryList(props: Props) {
             ),
           )}
         </Slider>
-        <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1]">
+        <Slider.NextButton class="disabled:opacity-0 w-[32px] h-[32px] lg:w-9 lg:h-9 2xl:w-[50px] 2xl:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[6%] transform -translate-y-1/2 z-[1]">
           <Icon
             size={24}
             id="ChevronRight"
@@ -185,12 +184,6 @@ function CategoryList(props: Props) {
         </Slider.NextButton>
 
         <SliderJS rootId={id} />
-      </div>
-      {/* videowise */}
-      <div
-        class="reeview-app-widget"
-        id="reeview-app-widget_65f444fcdb33eb002981be8a"
-      >
       </div>
     </div>
   );

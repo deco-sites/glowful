@@ -60,7 +60,7 @@ function ProductShelf({
   }
 
   return (
-    <div class="w-full container flex flex-col lg:flex-row gap-[32px] items-start">
+    <div class="w-full container flex flex-col lg:flex-row gap-[32px] items-start lg:p-0">
       {layout?.directionProductsMobile === "Row" ? (
         <>
           {/* MOBILE */}
@@ -69,10 +69,7 @@ function ProductShelf({
             class="container grid lg:hidden grid-cols-[48px_1fr_48px] gap-[32px] relative"
           >
             <Slider.PrevButton
-              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]"
-              style={{
-                display: layout.allowArrowDesktop ? "flex" : "none",
-              }}
+              class={`${layout.allowArrowDesktop ? "lg:flex" : "lg:hidden"} disabled:hidden flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute ${allowBanner ? "top-[57%]" : "top-[35%]"} left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]`}
             >
               <Icon
                 size={24}
@@ -142,11 +139,7 @@ function ProductShelf({
             </ul>
 
             <Slider.NextButton
-              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1] "
-              style={{
-                display: layout.allowArrowDesktop ? "flex" : "none",
-                right: layout.allowArrowDesktop ? "0" : "10%",
-              }}
+              class={`${layout.allowArrowDesktop ? "lg:flex right-[10%]" : "lg:hidden right-0"} disabled:hidden flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute ${allowBanner ? "top-[57%]" : "top-[35%]"} right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1]`}
             >
               <Icon
                 size={24}
@@ -176,13 +169,10 @@ function ProductShelf({
           {/* DESKTOP */}
           <div
             id={idDesktop}
-            class="container hidden lg:grid grid-cols-[48px_1fr_48px] gap-[32px] relative"
+            class="container hidden lg:grid grid-cols-[48px_1fr_48px] gap-[32px] relative lg:p-0"
           >
             <Slider.PrevButton
-              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]"
-              style={{
-                display: layout.allowArrowDesktop ? "flex" : "none",
-              }}
+              class={`${layout.allowArrowDesktop ? "flex" : "hidden"} disabled:hidden flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]`}
             >
               <Icon
                 size={24}
@@ -192,13 +182,13 @@ function ProductShelf({
               />
             </Slider.PrevButton>
 
-            <Slider class="flex mb-[40px] lg:mb-0 justify-between gap-[30px] carousel carousel-center sm:carousel-end  col-span-full row-start-2 row-end-5 ">
+            <Slider class="flex mb-[40px] lg:mb-0 justify-between gap-[30px] lg:gap-4 2xl:gap-8 lg:mr-1 xl:mr-0 carousel carousel-center sm:carousel-end  col-span-full row-start-2 row-end-5 ">
               {allowBanner && (
                 <Slider.Item index={0} class="carousel-item">
-                  <div class="relative rounded-[15px] lg:min-w-[360px]">
+                  <div class="relative rounded-[15px] lg:w-[265px] 2xl:w-[360px]">
                     <figure class="w-full lg:h-full h-[360px] relative lg:flex items-center justify-center">
                       <img
-                        class="w-full h-full object-cover"
+                        class="w-full h-full object-cover rounded-2xl"
                         sizes="(max-width: 640px) 100vw, 30vw"
                         src={banner?.imageDesktop}
                         alt={banner?.altText}
@@ -228,7 +218,7 @@ function ProductShelf({
               {products?.map((product, index) => (
                 <Slider.Item
                   index={index + 1}
-                  class="carousel-item w-[296px] lg:w-[360px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0 "
+                  class="carousel-item w-[296px] xl:w-[265px] 2xl:w-[360px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0 "
                 >
                   <ProductCard
                     product={product}
@@ -242,11 +232,7 @@ function ProductShelf({
             </Slider>
 
             <Slider.NextButton
-              class="flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1] "
-              style={{
-                display: layout.allowArrowDesktop ? "flex" : "none",
-                right: layout.allowArrowDesktop ? "0" : "10%",
-              }}
+              class={`${layout.allowArrowDesktop ? "lg:flex right-0" : "lg:hidden"} disabled:hidden flex w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 transform -translate-y-1/2 z-[1]`}
             >
               <Icon
                 size={24}
@@ -276,16 +262,16 @@ function ProductShelf({
       ) : null}
       {layout?.directionProductsMobile === "Column"
         ? products?.map((product, index) => (
-            <div class="flex flex-col w-[296px] lg:w-[360px]">
-              <ProductCard
-                product={product}
-                itemListName={title}
-                layout={cardLayout}
-                platform={platform}
-                index={index}
-              />
-            </div>
-          ))
+          <div class="flex flex-col min-w-[296px] lg:min-w-[235px] lg:w-[22vw] 2xl:w-[25rem] lg:max-w-[300px] 2xl:max-w-[360px]">
+            <ProductCard
+              product={product}
+              itemListName={title}
+              layout={cardLayout}
+              platform={platform}
+              index={index}
+            />
+          </div>
+        ))
         : null}
     </div>
   );

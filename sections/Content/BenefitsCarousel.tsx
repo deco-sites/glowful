@@ -52,17 +52,17 @@ export default function BenefitsCarousel({
               <img
                 src={benifit.icon}
                 alt={benifit.icon || ""}
-                className="object-cover max-w-[40px] max-h-[40px]"
+                className="object-cover max-w-[40px] max-h-[40px] lg:max-w-[30px] lg:max-h-[30px] 2xl:max-w-[40px] 2xl:max-h-[40px]"
               />
               <div class="flex flex-col items-start">
                 <strong
-                  class={`text-[18px] leading-[120%] tracking-[0.9] flex justify-center items-center text-[${color}]`}
+                  class={`text-lg lg:text-base 2xl:text-lg flex justify-center items-center text-[${color}]`}
                   style={{ color: color }}
                 >
                   {benifit?.title}
                 </strong>
                 <span
-                  class={`text-[16px] leading-[120%] tracking-[0.8] uppercase flex justify-center items-center text-[${color}]`}
+                  class={`text-base lg:text-xs 2xl:text-base tracking-[0.8] uppercase flex justify-center items-center text-[${color}]`}
                   style={{ color: color }}
                 >
                   {benifit?.description}
@@ -77,7 +77,7 @@ export default function BenefitsCarousel({
 
       {/* Desktop Flex */}
       <div class={`hidden lg:flex `} style={{ "background-color": background }}>
-        <div class="container justify-between gap-[20px] carousel carousel-center w-full text-center px-[20px] py-[32px]">
+        <div class="lg:w-[95%] lg:px-[51px] lg:mx-auto xl:max-w-[1408px] justify-between carousel carousel-center w-full text-center px-[20px] py-[32px] ml-[10%] lg:ml-auto">
           {benifits.map((benifit) => (
             <div class="carousel-item flex justify-center items-center gap-[16px] w-fit">
               <img
@@ -92,7 +92,7 @@ export default function BenefitsCarousel({
                   {benifit?.title}
                 </strong>
                 <span
-                  class={`text-sm leading-[120%] tracking-[0.8] uppercase flex justify-center items-center text-[${color}]`}
+                  class={`text-sm lg:text-xs xl:text-sm leading-[120%] tracking-[0.8] uppercase flex justify-center items-center text-[${color}]`}
                 >
                   {benifit?.description}
                 </span>

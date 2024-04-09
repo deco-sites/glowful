@@ -20,12 +20,11 @@ export default function NewProducts({
   products: { Component, props },
 }: Props) {
   return (
-    <div class="lg:bg-[#F4F4F4]">
-      <div class="2xl:mr-[12%]  card xl:card-side rounded flex flex-col xl:grid justify-between items-center gridBestSellers justify-items-center">
-        <figure class="w-full xl:h-full max-h-[890px] h-[360px] relative xl:flex items-center justify-center">
+    <div class="bg-[#F4F4F4]">
+      <div class="flex flex-col lg:flex-row">
+        <figure class="w-full lg:w-[35%] 2xl:w-[36%] lg:h-full h-[360px] relative lg:flex items-center justify-center">
           <img
-            class="lg:block hidden w-full h-full object-cover"
-            sizes="(max-width: 640px) 100vw, 30vw"
+            class="lg:block hidden w-full h-full lg:h-[calc(31.2vw*(876/522))] lg:max-h-[640px] 2xl:max-h-[820px] object-cover"
             src={image.desktop}
             alt={image.altText}
             decoding="async"
@@ -41,9 +40,9 @@ export default function NewProducts({
           />
         </figure>
 
-        <div class="newsProductsFlex py-[40px] xl:py-[80px] px-[24px] lg:px-0 flex flex-col items-center xl:items-start xl:row-start-1 xl:col-start-2 xl:max-w-[1300px]">
+        <div class="newsProductsFlex py-[60px] lg:p-0 lg:justify-center lg:mx-auto px-[24px] lg:px-0 flex flex-col items-center xl:items-start xl:row-start-1 xl:col-start-2 xl:max-w-[1300px]">
           {title && (
-            <h3 class="pb-[40px] xl:pb-[60px] text-deep-beauty text-[24px] lg:text-[36px] uppercase tracking-[1.2px] font-bold text-left">
+            <h3 class="pb-[40px] lg:pb-2.5 xl:pb-8 2xl:pb-[60px] text-deep-beauty text-[24px] lg:clampTitleSection uppercase tracking-[1.2px] font-bold text-left">
               {title}
             </h3>
           )}
