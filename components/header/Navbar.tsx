@@ -204,7 +204,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               <NavItem item={item} colorIcon={colorIcon} />
             ))}
           </ul>
-          <div class="flex-none w-44 flex items-center justify-end gap-2">
+          <div class="flex-none w-fit flex items-center justify-end gap-2">
             <SearchButton colorIcon={colorIcon} />
             <Searchbar searchbar={searchbar} />
             {platform === "vtex" && <CartButtonVTEX />}

@@ -22,35 +22,50 @@ export interface Props {
   platform: ReturnType<typeof usePlatform>;
 }
 
-const Aside = (
-  { title, onClose, children }: {
-    title: string;
-    onClose?: () => void;
-    children: ComponentChildren;
-  },
-) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw]">
-    <div class="flex justify-between items-center">
-      <h3 class="px-4 py-6 lg:py-4 2xl:py-6">
-        <span class="font-bold text-lg">{title}</span>
-      </h3>
-      {onClose && (
-        <Button class="btn btn-ghost" onClick={onClose}>
-          <Icon id="XMark" size={24} strokeWidth={1} class="text-[#878787]" />
-        </Button>
-      )}
+const Aside = ({
+  title,
+  onClose,
+  children,
+}: {
+  title: string;
+  onClose?: () => void;
+  children: ComponentChildren;
+}) =>
+  title === "Menu" ? (
+    <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw]">
+      <div class="flex justify-between items-center">
+        <h1 class="px-[32px] py-[24px]">
+          <span class="font-bold text-[32px]">{title}</span>
+        </h1>
+        {onClose && (
+          <Button class="btn btn-ghost" onClick={onClose}>
+            <Icon id="XMark" size={24} strokeWidth={1} class="text-[#878787]" />
+          </Button>
+        )}
+      </div>
+      <Suspense
+        fallback={
+          <div class="w-screen flex items-center justify-center">
+            <span class="loading loading-ring" />
+          </div>
+        }
+      >
+        {children}
+      </Suspense>
     </div>
-    <Suspense
-      fallback={
-        <div class="w-screen flex items-center justify-center">
-          <span class="loading loading-ring" />
-        </div>
-      }
-    >
-      {children}
-    </Suspense>
-  </div>
-);
+  ) : (
+    <div class="bg-base-100 grid grid-rows-[auto_1fr] max-h-full divide-y max-w-[100vw] z-[60]">
+      <Suspense
+        fallback={
+          <div class="w-screen flex items-center justify-center">
+            <span class="loading loading-ring" />
+          </div>
+        }
+      >
+        {children}
+      </Suspense>
+    </div>
+  );
 
 function Drawers({ menu, searchbar, children, platform }: Props) {
   const { displayCart, displayMenu, displaySearchDrawer } = useUI();
@@ -72,7 +87,7 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
         >
           {displayMenu.value && <Menu {...menu} />}
           {searchbar && displaySearchDrawer.value && (
-            <div class="w-screen">
+            <div class="w-screen overflow-hidden">
               <Searchbar {...searchbar} />
             </div>
           )}
@@ -82,12 +97,9 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
       <Drawer // right drawer
         class="drawer-end"
         open={displayCart.value !== false}
-        onClose={() => displayCart.value = false}
+        onClose={() => (displayCart.value = false)}
         aside={
-          <Aside
-            title="CARRINHO"
-            onClose={() => displayCart.value = false}
-          >
+          <Aside title="CARRINHO" onClose={() => (displayCart.value = false)}>
             <Cart platform={platform} />
           </Aside>
         }
