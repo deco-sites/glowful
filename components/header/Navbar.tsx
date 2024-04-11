@@ -92,6 +92,13 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
     backgroundColor = "#FFF";
   }
 
+  if (pathname !== "/") {
+    logo = logoPreto;
+    colorIcon = logoPreto.textColor ?? "#101820";
+    backgroundColor = "#FFF";
+    setDisplayNavbar("visible");
+  }
+
   return (
     <>
       {/* Mobile Version */}
@@ -172,7 +179,9 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
                   width={126}
                   height={16}
                   class={
-                    displayTop.value === true && displayHover.value === false
+                    displayTop.value === true &&
+                    displayHover.value === false &&
+                    pathname === "/"
                       ? ""
                       : "hidden"
                   }
@@ -183,7 +192,9 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
                   width={126}
                   height={16}
                   class={
-                    displayTop.value === false || displayHover.value === true
+                    displayTop.value === false ||
+                    displayHover.value === true ||
+                    pathname !== "/"
                       ? ""
                       : "hidden"
                   }
