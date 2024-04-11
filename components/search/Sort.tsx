@@ -33,8 +33,13 @@ export type Props = Pick<ProductListingPage, "sortOptions">;
 const portugueseMappings = {
   "best:asc": "Melhor avaliado",
   "news:desc": "Mais novos",
-  "name:asc": "Nome",
-  "price:asc": "Preço",
+  "name:asc": "Nome:Asc",
+  "name:desc": "Nome:Desc",
+  "price:asc": "Preço:Asc",
+  "price:desc": "Preço:Desc",
+  "relevance:desc": "Relevância:Desc",
+  "release:desc": "Lançamento:Desc",
+  "orders:desc": "Pedidos:Desc"
 };
 
 function Sort({ sortOptions }: Props) {

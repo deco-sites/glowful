@@ -86,7 +86,7 @@ function FilterRangePrice() {
           class="w-[100px] h-[33px] input input-bordered rounded-full"
           type="number"
           placeholder="Mínimo"
-          value={min}
+          value={min == 0 ? "" : min}
           onChange={handleMinChange}
         />
         <span class="h-[1px] w-full bg-[#ccc]" />
@@ -94,7 +94,7 @@ function FilterRangePrice() {
           class="w-[100px] h-[33px] input input-bordered rounded-full"
           type="number"
           placeholder="Máximo"
-          value={max}
+          value={max == 0 ? "" : max}
           onChange={handleMaxChange}
         />
       </div>

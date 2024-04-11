@@ -9,7 +9,7 @@ export default function ClearFilter() {
       class={`border-0 flex gap-[8px] items-center text-[14px] text-[#4D4D4D]`}
       onClick={() => handleClearFilters()}
     >
-      Limpar Filtro
+      Limpar Filtros
       <img
         loading="lazy"
         width="22"
