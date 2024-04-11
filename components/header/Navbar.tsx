@@ -92,7 +92,6 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
     backgroundColor = "#FFF";
   }
 
-  // Manter o header visivel caso não seja a home
   if (pathname !== "/") {
     logo = logoPreto;
     colorIcon = logoPreto.textColor ?? "#101820";
