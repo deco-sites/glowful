@@ -37,7 +37,7 @@ function Header({ alerts, searchbar, navItems, logoBranco, logoPreto }: Props) {
   const items = navItems ?? [];
 
   return (
-    <header class={`h-28 xl:h-32`} >
+    <header class={`h-24`} >
       <Drawers menu={{ items }} searchbar={searchbar} platform={platform}>
         <div className="fixed w-full z-50">
           <Alert alerts={alerts} />
