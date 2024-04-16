@@ -30,6 +30,9 @@ interface NotFound {
   };
   highlight?: string;
   title?: string;
+  /**
+   * @format html
+   */
   description?: string;
   link: {
     text: string;

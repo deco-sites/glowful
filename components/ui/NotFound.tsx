@@ -18,8 +18,8 @@ export interface Props {
 
 function NotFound({ highlight, title, description, link, image }: Props) {
   return (
-    <div class="relative pt-[60px] lg:p-0 flex flex-col lg:flex-row  items-center">
-      <div class="px-[24px] pb-[60px] lg:px-0 flex flex-col items-center lg:items-start text-center lg:text-start  w-full mx-auto max-w-[500px]">
+    <div class="relative pt-20 lg:p-0 flex flex-col lg:flex-row  items-center">
+      <div class="px-[24px] pb-[60px] lg:px-0 flex flex-col items-center text-center w-full mx-auto max-w-[500px]">
         {highlight && (
           <p class="font-fraunces text-[20px] lg:text-[28px] font-bold leading-[100%] text-deep-beauty">
             {highlight}
@@ -31,9 +31,9 @@ function NotFound({ highlight, title, description, link, image }: Props) {
           </h1>
         )}
         {description && (
-          <p class="pb-[60px] text-[#ccc] leading-[150%] lg:text-[22px]">
-            {description}
-          </p>
+          <div class="pb-[60px] text-[#666666] leading-[150%] lg:text-[22px]"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         )}
         {link.text && link.href && (
           <a
@@ -60,7 +60,7 @@ function NotFound({ highlight, title, description, link, image }: Props) {
             height={823}
           />
           <img
-            class="w-full object-cover max-w-[530px]"
+            class="w-full object-cover max-w-[530px] lg:max-w-none"
             sizes="(max-width: 640px) 100vw, 30vw"
             src={image?.mobile}
             alt={image?.altText}

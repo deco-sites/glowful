@@ -37,11 +37,11 @@ export default function ImageAndText(props: Props) {
   return (
     <div class="container ">
       <div
-        class={`lg:py-[90px] card lg:card-side rounded flex justify-between flex-col ${
+        class={`lg:py-[90px] lg:card lg:card-side rounded flex justify-between flex-col ${
           styles?.invertImage ? "lg:flex-row-reverse" : "lg:flex-row"
         }`}
       >
-        <figure class={`relative w-fit h-fit`}>
+        <figure class={`relative w-full lg:w-fit block h-fit`}>
           <Picture>
             <Source
               media="(max-width: 767px)"
@@ -65,11 +65,16 @@ export default function ImageAndText(props: Props) {
             />
           </Picture>
         </figure>
-        <div class="card-body p-0 gap-0 w-full max-w-[550px] px-[24px] py-[40px] lg:py-0">
-          <span class="pb-[24px] lg:pb-[40px] lg:text-[20px] font-bold tracking-[1.20px] lg:tracking-[1.6px] text-cherry-pop">
+        <div class={`card-body p-0 gap-0 w-full max-w-[550px] px-[24px] py-[40px] lg:py-0 ${
+          styles?.invertImage ? "xl:pr-16 xl:pl-0" : "xl:pl-16 xl:pr-0"
+        }`}>
+          <span class={`pb-[24px] lg:pb-[40px] lg:text-[20px] font-bold tracking-[1.20px] lg:tracking-[1.6px] text-cherry-pop ${
+          styles?.invertImage ? "" : "hidden lg:flex"}`}>
             {text}
           </span>
-          <h2 class="card-title font-fraunces text-[28px] lg:text-[40px] pb-[32px] lg:pb-[24px] leading-[130%]">
+          <h2 class={`card-title font-fraunces font-medium text-[28px] lg:text-[40px] pb-[32px] lg:pb-[24px] leading-[130%] ${
+          styles?.invertImage ? "" : "hidden lg:flex"}
+          `}>
             {title}
           </h2>
           {oneColumn ? (
