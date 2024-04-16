@@ -124,7 +124,7 @@ function Cart({
             </div>
 
             <div class="p-5">
-              <a class="w-full flex justify-center" href={checkoutHref}>
+              <a class="w-full flex justify-center" href="/cart">
                 <Button
                   data-deco="buy-button"
                   class="h-fit w-fit bg-[#000] rounded-full border-none text-[#fff] text-sm uppercase px-[40px] py-[16px] lg:px-[60px] lg:py-[18px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"
