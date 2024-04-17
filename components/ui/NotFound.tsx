@@ -45,7 +45,7 @@ function NotFound({ highlight, title, description, link, image }: Props) {
         )}
       </div>
 
-      <figure class={`relative w-full h-fit flex justify-center lg:w-fit`}>
+      <figure class={`relative w-full h-fit flex justify-center lg:w-fit lg:max-w-[50%]`}>
         <Picture class="w-full">
           <Source
             media="(max-width: 767px)"
