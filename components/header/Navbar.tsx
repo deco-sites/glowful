@@ -120,14 +120,22 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               alt={logoBranco.alt}
               width={126}
               height={16}
-              class={displayTop.value === true ? "" : "hidden"}
+              class={
+                displayTop.value === true &&
+                pathname === "/"
+                  ? ""
+                  : "hidden"}
             />
             <Image
               src={logoPreto.src}
               alt={logoPreto.alt}
               width={126}
               height={16}
-              class={displayTop.value === false ? "" : "hidden"}
+              class={
+                displayTop.value === false ||
+                pathname !== "/"
+                  ? ""
+                  : "hidden"}
             />
           </a>
         )}
