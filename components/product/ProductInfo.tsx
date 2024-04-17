@@ -14,7 +14,9 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import ProductImages from "$store/islands/ProductImages.tsx";
 import { useUI } from "../../sdk/useUI.ts";
-import PurchaseOptions from "$store/components/product/PurchaseOptions.tsx";
+import PurchaseOptions from "$store/islands/PurchaseOptions.tsx";
+import FaqProduct from "$store/components/product/FaqProduct.tsx";
+import ProductInfoCarousel from "$store/islands/ProductInfoCarousel.tsx"
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -55,12 +57,7 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
     additionalProperty = [],
   } = product;
   const description = product.description || isVariantOf?.description;
-  const {
-    price = 0,
-    listPrice,
-    seller = "1",
-    availability,
-  } = useOffer(offers);
+  const { price = 0, listPrice, seller = "1", availability } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const discount = price && listPrice ? listPrice - price : 0;
   const descriptionJson = description && JSON.parse(description);
@@ -72,14 +69,38 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
   const lastPart = parts[parts.length - 1];
   productId.value = lastPart;
 
+  const tag =
+    isVariantOf?.hasVariant[0].isVariantOf.additionalProperty[0].value;
+
   return (
-    <div class="relative flex items-start gap-[50px] pt-[40px]">
-      <ProductImages images={images} />
-      <div class="flex flex-col px-[24px] sticky top-[60px]">
+    <div class="relative flex flex-col  lg:flex-row items-start gap-[24px] lg:gap-[50px] pt-[40px] lg:pt-[50px]">
+      <div class="lg:flex hidden flex-col">
+        <div class="hidden lg:block">
+          <Breadcrumb
+            itemListElement={breadcrumbList?.itemListElement}
+            classes="lg:!mb-0"
+          />
+        </div>
+
+        <ProductImages images={images} />
+
+        <FaqProduct page={page} />
+      </div>
+
+      <div class="block lg:hidden pl-[24px]">
+        <Breadcrumb itemListElement={breadcrumbList?.itemListElement} />
+      </div>
+
+      <div class="flex flex-col sticky top-[80px] md:max-w-[420px]">
+        {/* Carousel product - MOBILE */}
+      <ProductInfoCarousel product={product}/>
+
         {/* Code and name */}
-        <div>
+        <div class="px-[24px] lg:px-0 mb-[20px] lg:mb-[24px] mt-[32px] lg:mt-0 flex flex-col gap-[16px] lg:gap-[20px]">
+          <p class="text-[14px] lg:text-[16px]">{tag}</p>
+
           <h1>
-            <span class="font-semibold text-[#000] text-[24px] uppercase mb-[8px]">
+            <span class="font-bold text-[#000] text-[24px] uppercase mb-[24px]">
               {layout?.name === "concat"
                 ? `${isVariantOf?.name} ${name}`
                 : layout?.name === "productGroup"
@@ -87,66 +108,26 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
                 : name}
             </span>
           </h1>
-          <p></p>
-        </div>
-
-        {/* Description */}
-        {descriptionJson.description && (
-          <p class="text-[14px] font-fraunces font-light">
-            {descriptionJson.description}
-          </p>
-        )}
-
-        {/* Stars Reviews */}
-        <p class="my-[16px]">Review Stars</p>
-
-        {/* Carousel product - MOBILE */}
-        <div
-          id={id}
-          class="lg:hidden grid grid-flow-row sm:grid-flow-col my-[55px]"
-        >
-          {/* Image Slider */}
-          <div class="relative order-1 sm:order-2">
-            <Slider class="carousel carousel-center gap-0 pr-[40px] w-full sm:w-[40vw]">
-              {images?.map((img, index) => (
-                <Slider.Item index={index} class="carousel-item w-full">
-                  <Image
-                    class="w-full"
-                    sizes="(max-width: 640px) 100vw, 60vw"
-                    src={img.url!}
-                    alt={img.alternateName}
-                    width={300}
-                    height={300}
-                    // Preload LCP image for better web vitals
-                    preload={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </Slider.Item>
-              ))}
-            </Slider>
-          </div>
-
-          <SliderJS rootId={id} />
         </div>
 
         {/* Diferentails */}
-        <div class="grid grid-cols-2 lg:grid-cols-3 gap-[8px] ">
+        <div class="px-[24px] lg:px-0 grid grid-cols-2 gap-[8px] lg:gap-[20px]">
           {descriptionJson &&
             descriptionJson.diferenciais.map((dif: Array<string>) => (
               <div class="flex gap-[8px]">
-                <Icon
-                  id="CheckPdp"
-                  size={20}
-                  strokeWidth={1}
-                  class="text-[#1C8172]"
-                />
-                <p class="text-[14px] font-fraunces font-light">{dif}</p>
+                <Icon id="CheckPdp" size={18} strokeWidth={1} />
+                <p class="text-[12px]">{dif}</p>
               </div>
             ))}
         </div>
-        {/* Sku Selector */}
 
+        {/* Sku Selector */}
         <PurchaseOptions product={product} />
+
+        {/* FAQ */}
+        <div class="block lg:hidden">
+          <FaqProduct page={page} />
+        </div>
 
         {/* Shipping Simulation */}
         <div class="mt-8">

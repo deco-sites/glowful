@@ -2,13 +2,14 @@ import type { BreadcrumbList } from "apps/commerce/types.ts";
 
 interface Props {
   itemListElement: BreadcrumbList["itemListElement"];
+  classes?: string;
 }
 
-function Breadcrumb({ itemListElement = [] }: Props) {
+function Breadcrumb({ itemListElement = [], classes }: Props) {
   const items = [{ name: "Home", item: "/" }, ...itemListElement];
 
   return (
-    <div class="breadcrumbs p-0 lg:mb-[64px]">
+    <div class={`breadcrumbs p-0 lg:mb-[64px] ${classes}`}>
       <ul>
         {items
           .filter(({ name, item }) => name && item)

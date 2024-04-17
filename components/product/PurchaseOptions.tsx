@@ -10,14 +10,13 @@ import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { Product } from "apps/commerce/types.ts";
+import { useEffect } from "preact/hooks";
 
 export interface Props {
   product: Product;
 }
 
-function PurchaseOptions(
-  { product }: Props,
-) {
+function PurchaseOptions({ product }: Props) {
   const platform = "shopify";
 
   const {
@@ -29,88 +28,64 @@ function PurchaseOptions(
     additionalProperty = [],
   } = product;
   const description = product.description || isVariantOf?.description;
-  const {
-    price = 0,
-    listPrice,
-    seller = "1",
-    availability,
-  } = useOffer(offers);
+  const { price = 0, listPrice, seller = "1", availability } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const discount = price && listPrice ? listPrice - price : 0;
   const inventoryLevel = offers?.offers[0].inventoryLevel.value;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const addToCartButton = document.getElementById("addToCartSection");
+      const fixedCtaButton = document.getElementById("fixedCtaButton");
+
+      if (addToCartButton || fixedCtaButton) {
+        const rect = addToCartButton.getBoundingClientRect();
+        if (rect.bottom < 0) {
+          fixedCtaButton.style.bottom = "0px";
+        } else {
+          fixedCtaButton.style.bottom = "-70px";
+        }
+      }
+    };
+
+    self.addEventListener("scroll", handleScroll);
+    return () => self.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div class="mt-[55px] sm:mt-[32px]">
+    <div class="mt-[32px] sm:mt-[40px] px-[24px] lg:px-0">
       <ProductSelector product={product} />
-      <ChangeQuantityProduct inventoryLevel={inventoryLevel} price={price} />
 
-      {/* Opções de Compra */}
+      <div
+        class="mt-[24px] h-[40px]  p-[3px] flex rounded-full bg-[#000]"
+        id="addToCartSection"
+      >
+        <ChangeQuantityProduct inventoryLevel={inventoryLevel} price={price} />
 
-      <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-        {availability === "https://schema.org/InStock"
-          ? (
-            <>
-              {platform === "vtex" && (
-                <>
-                  <AddToCartButtonVTEX
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                    seller={seller}
-                  />
-                  <WishlistButton
-                    variant="full"
-                    productID={productID}
-                    productGroupID={productGroupID}
-                  />
-                </>
-              )}
-              {platform === "wake" && (
-                <AddToCartButtonWake
-                  url={url || ""}
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                />
-              )}
-              {platform === "linx" && (
-                <AddToCartButtonLinx
-                  url={url || ""}
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                />
-              )}
-              {platform === "vnda" && (
-                <AddToCartButtonVNDA
-                  url={url || ""}
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                  additionalProperty={additionalProperty}
-                />
-              )}
-              {platform === "shopify" && (
-                <AddToCartButtonShopify
-                  url={url || ""}
-                  name={name}
-                  productID={productID}
-                  productGroupID={productGroupID}
-                  price={price}
-                  discount={discount}
-                />
-              )}
-            </>
-          )
-          : <OutOfStock productID={productID} />}
+        {availability === "https://schema.org/InStock" && (
+          <AddToCartButtonShopify
+            url={url || ""}
+            name={name}
+            productID={productID}
+            productGroupID={productGroupID}
+            price={price}
+            discount={discount}
+          />
+        )}
+      </div>
+      <div
+        id="fixedCtaButton"
+        class="lg:!hidden fixed bottom-0 left-0 w-screen py-[20px] bg-deep-beauty flex justify-center items-center transition-all duration-300 z-[9999]"
+        style={{ bottom: "-70px" }}
+      >
+        <AddToCartButtonShopify
+          url={url || ""}
+          name={name}
+          productID={productID}
+          productGroupID={productGroupID}
+          price={price}
+          discount={discount}
+        />
       </div>
     </div>
   );

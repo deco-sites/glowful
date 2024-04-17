@@ -39,7 +39,7 @@ function Header({ alerts, searchbar, navItems, logoBranco, logoPreto }: Props) {
   return (
     <header class={`h-10 lg:h-[34px] 2xl:h-10`} >
       <Drawers menu={{ items }} searchbar={searchbar} platform={platform}>
-        <div className="fixed w-full z-50">
+        <div className="fixed w-full z-50 shadow-sm">
           <Alert alerts={alerts} />
           <Navbar
             items={items}
