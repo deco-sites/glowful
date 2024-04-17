@@ -44,13 +44,13 @@ export default function BenefitsCarouselAbout({
           />
         </Slider.PrevButton>
         <Slider
-          class={`lg:hidden  carousel carousel-center items-center w-full text-center px-[34px] gap-[34px]`}
+          class={`lg:hidden  carousel carousel-center items-center w-full text-center px-[34px] gap-[34px] rounded-2xl`}
           style={{ backgroundColor: background }}
         >
           {benifits.map((benifit, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item h-fit flex flex-col justify-center items-center gap-[20px] w-full py-[48px] "
+              class="carousel-item h-fit flex flex-col justify-center items-center gap-[20px] w-full py-[48px]"
             >
               <img
                 src={benifit.icon}
