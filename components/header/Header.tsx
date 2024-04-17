@@ -6,6 +6,7 @@ import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Alert from "../../islands/Alert.tsx";
 import Navbar from "../../islands/Header/Navbar.tsx";
 import { headerHeight } from "./constants.ts";
+import type { SectionProps } from "deco/types.ts";
 
 export interface Props {
   alerts?: {
@@ -32,12 +33,18 @@ export interface Props {
   logoPreto: { src: ImageWidget; alt: string; textColor?: string };
 }
 
-function Header({ alerts, searchbar, navItems, logoBranco, logoPreto }: Props) {
+
+function Header(Props: SectionProps<ReturnType<typeof loader>>) {
+  const { alerts, searchbar, navItems, logoBranco, logoPreto, isHome } = Props
   const platform = usePlatform();
   const items = navItems ?? [];
 
   return (
-    <header class={`h-16 lg:h-[34px] 2xl:h-10`} >
+    <header class={
+      isHome
+        ? "mb-11 lg:mb-[34px] 2xl:mb-11"
+        : "mb-[104px] lg:mb-[94px] 2xl:mb-[130px]"
+    } >
       <Drawers menu={{ items }} searchbar={searchbar} platform={platform}>
         <div className="fixed w-full z-50">
           <Alert alerts={alerts} />
@@ -53,5 +60,13 @@ function Header({ alerts, searchbar, navItems, logoBranco, logoPreto }: Props) {
     </header>
   );
 }
+
+export const loader = (props: Props, req: Request) => {
+
+  const isHome = new URLPattern({ pathname: "/" }).test(req.url)
+
+
+  return { isHome, ...props };
+};
 
 export default Header;
