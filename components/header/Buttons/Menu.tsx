@@ -4,10 +4,11 @@ import { useUI } from "$store/sdk/useUI.ts";
 
 export default function MenuButton() {
   const { displayMenu, displayTop } = useUI();
+  const pathname = window.location.pathname;
 
   let colorIcon;
 
-  if (displayTop.value) {
+  if (displayTop.value && pathname === "/") {
     colorIcon = "text-white-lily";
   } else {
     colorIcon = "text-deep-beauty";
