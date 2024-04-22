@@ -42,9 +42,9 @@ export default function NewProducts({
 
         <div class="newsProductsFlex py-[60px] lg:p-0 lg:justify-center lg:mx-auto px-[24px] lg:px-0 flex flex-col items-center xl:items-start xl:row-start-1 xl:col-start-2 xl:max-w-[1300px]">
           {title && (
-            <h3 class="pb-[40px] lg:pb-2.5 xl:pb-8 2xl:pb-[60px] text-deep-beauty text-[24px] lg:clampTitleSection uppercase tracking-[1.2px] font-bold text-left">
+            <h2 class="pb-[40px] lg:pb-2.5 xl:pb-8 2xl:pb-[60px] text-deep-beauty text-[24px] lg:clampTitleSection uppercase tracking-[1.2px] font-bold text-left">
               {title}
-            </h3>
+            </h2>
           )}
 
           <Component {...props} />

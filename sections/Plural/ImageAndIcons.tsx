@@ -68,7 +68,8 @@ export default function ImageAndIcons(props: Props) {
                     width={24}
                     height={24}
                     class="mt-[4px]"
-                    alt=""
+                    alt={benefit.title}
+                    loading="lazy"
                   />
 
                   <div class="flex flex-col items-start gap-[16px]">

@@ -241,6 +241,7 @@ function Searchbar({
                         class="object-cover w-full h-full rounded-[8px] max-w-[122px] max-h-[109px]"
                         loading="lazy"
                         src={product.image_link}
+                        alt={product.title}
                       />
                       <div class="flex flex-col justify-center gap-3">
                         <div>
@@ -316,6 +317,7 @@ function Searchbar({
                         class="object-cover w-full h-full rounded-[8px] max-w-[150px] max-h-[134px]"
                         loading="lazy"
                         src={product.image_link}
+                        alt={product.title}
                       />
                       <div class="flex flex-col justify-center gap-3">
                         <div>

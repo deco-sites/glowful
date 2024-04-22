@@ -46,6 +46,9 @@ function Logos(props: Props) {
           className="object-contain w-full h-full max-w-40 m-h-[82px] lg:max-w-[219px]"
           src={mainImage}
           alt={mainImageAltText || ""}
+          data-test={list[0]}
+          height="56px"
+          loading="lazy"
         />
         <div class="flex flex-row flex-wrap gap-[30px] lg:gap-[70px] lg:justify-evenly justify-center items-center lg:pl-6">
           {list.map((element) => (
@@ -53,6 +56,8 @@ function Logos(props: Props) {
               className="object-contain max-w-fit max-h-[46px] lg:max-h-[48px]"
               src={element.image}
               alt={element.altText || ""}
+              height="45px"
+              loading="lazy"
             />
           ))}
         </div>

@@ -94,9 +94,9 @@ function ProductShelf({
 
                 <div class="absolute w-full h-full top-0 right-0 flex flex-col justify-end items-center gap-[16px] py-[32px]">
                   {banner?.text && (
-                    <h3 class="text-[32px] font-fraunces font-semibold text-white-lily">
+                    <h2 class="text-[32px] font-fraunces font-semibold text-white-lily">
                       {banner?.text}
-                    </h3>
+                    </h2>
                   )}
                   {banner?.button && (
                     <a
@@ -199,9 +199,9 @@ function ProductShelf({
 
                     <div class="absolute w-full h-full top-0 right-0 flex flex-col justify-end items-center gap-[16px] py-[32px]">
                       {banner?.text && (
-                        <h3 class="text-[32px] font-fraunces font-semibold text-white-lily">
+                        <h2 class="text-[32px] font-fraunces font-semibold text-white-lily">
                           {banner?.text}
-                        </h3>
+                        </h2>
                       )}
                       {banner?.button && (
                         <a

@@ -52,7 +52,7 @@ export default function ImageAndIcons(props: Props) {
               height={425}
               media="(min-width: 767px)"
             />
-            <img class="object-cover" src={image.desktop} alt={image?.alt} />
+            <img class="object-cover" src={image.desktop} alt={image?.alt} loading="lazy" />
           </Picture>
         </figure>
 
