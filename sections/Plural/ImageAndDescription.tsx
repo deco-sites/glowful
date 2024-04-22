@@ -31,11 +31,11 @@ export default function ImageAndDescription(props: Props) {
   return (
     <div class="container ">
       <div
-        class={`lg:py-[90px] card lg:card-side rounded flex justify-between flex-col lg:gap-[50px] ${
+        class={`lg:py-[90px] lg:card lg:card-side lg:rounded-none rounded flex justify-between flex-col lg:gap-[50px] ${
           styles?.invertImage ? "lg:flex-row-reverse" : "lg:flex-row"
         }`}
       >
-        <figure class={`relative w-fit h-fit`}>
+        <figure class={`relative w-full lg:w-fit h-fit`}>
           <Picture>
             <Source
               media="(max-width: 767px)"

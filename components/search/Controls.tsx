@@ -64,7 +64,7 @@ function SearchControls({ filters, displayFilter, sortOptions }: Props) {
             class={
               displayFilter
                 ? "btn-ghost"
-                : "font-semibold bg-transparent h-[36px] px-[20px] rounded-[50px] border-1 border-[#CCC] text-[14px] text-[#878787]  lg:hidden"
+                : "font-normal bg-transparent h-[36px] px-[20px] rounded-[50px] border-1 border-[#CCC] text-[14px] text-[#878787]  lg:hidden"
             }
             onClick={() => {
               open.value = true;
