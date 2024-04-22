@@ -16,7 +16,7 @@ export default function DescriptionAboutCategory({
   };
 
   return (
-    <div class="w-fit flex flex-col lg:flex-row lg:gap-[60px] gap-[20px] px-[24px] lg:px-0">
+    <div class="w-fit flex flex-col lg:flex-row lg:gap-[40px] xl:gap-[60px] gap-[20px] px-[24px] lg:px-0">
       {descriptionOne && (
         <div
           class="w-full max-w-[100%] lg:max-w-[320px] text-[16px] leading-[150%] text-[#101820]"

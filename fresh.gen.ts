@@ -31,7 +31,9 @@ import * as $PriceFilter from "./islands/PriceFilter.tsx";
 import * as $ProductCard from "./islands/ProductCard.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
 import * as $ProductImages from "./islands/ProductImages.tsx";
+import * as $ProductInfoCarousel from "./islands/ProductInfoCarousel.tsx";
 import * as $ProductVariantSelector from "./islands/ProductVariantSelector.tsx";
+import * as $PurchaseOptions from "./islands/PurchaseOptions.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
 import * as $SearchbarModal from "./islands/SearchbarModal.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
@@ -74,7 +76,9 @@ const manifest = {
     "./islands/ProductCard.tsx": $ProductCard,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
     "./islands/ProductImages.tsx": $ProductImages,
+    "./islands/ProductInfoCarousel.tsx": $ProductInfoCarousel,
     "./islands/ProductVariantSelector.tsx": $ProductVariantSelector,
+    "./islands/PurchaseOptions.tsx": $PurchaseOptions,
     "./islands/SearchControls.tsx": $SearchControls,
     "./islands/SearchbarModal.tsx": $SearchbarModal,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,

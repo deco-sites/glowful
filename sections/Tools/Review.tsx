@@ -24,7 +24,7 @@ function Review({ AllReviews, reviewStyle }: Props) {
         src="//loox.io/widget/loox.js?shop=20c805-5.myshopify.com"
       />
 
-      <div class="container py-[60px]">
+      <div class="container max-w-[1240px] py-[60px]">
         {AllReviews === true && reviewStyle == "Product Review Widget" && (
           <div id="looxReviews" data-loox-aggregate></div>
         )}
