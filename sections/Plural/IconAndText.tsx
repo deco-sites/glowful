@@ -1,5 +1,6 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import { SectionProps } from "deco/types.ts";
 
 interface Benefits {
   image?: ImageWidget;
@@ -24,8 +25,15 @@ export interface Props {
   href?: string;
 }
 
-export default function ImageAndText(props: Props) {
-  const { title, image, benefits, href, buttonText } = {
+export const loader = (props: Props, req: Request) => {
+
+  const isSubscribePage = new URLPattern({ pathname: "/assinatura" }).test(req.url)
+
+  return { isSubscribePage, ...props };
+};
+
+export default function ImageAndText(props: SectionProps<ReturnType<typeof loader>>) {
+  const { title, image, benefits, href, buttonText, isSubscribePage } = {
     ...props,
   };
 
@@ -84,7 +92,7 @@ export default function ImageAndText(props: Props) {
               ))}
           </div>
 
-          {href && buttonText && (
+          {href && buttonText && !isSubscribePage && (
             <a
               href={href}
               class="w-fit mt-[-50px] lg:mt-0 bg-cherry-pop rounded-full border-none text-white-lily text-sm uppercase px-[60px] py-[18px] font-bold tracking-[1px] hover:bg-white-lily hover:text-cherry-pop hover:border-none transition-all duration-300"

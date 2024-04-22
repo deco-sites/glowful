@@ -39,7 +39,7 @@ export default function SectionDifference({ props }: { props: Props }) {
         <div class={`flex flex-col justify-center items-center gap-6 ${DESKTOP_DIRECTION[layout ?? "imagem na direita"]} lg:container lg:py-11 lg:px-0 xl:gap-9 lg:justify-between`}>
             <div class={`w-full lg:w-2/4 ${JUSTIFY_IMG[layout ?? "imagem na direita"]} flex`}>
 
-                <Picture>
+                <Picture class={"w-full"}>
                     <Source
                         media="(max-width: 767px)"
                         src={image.src}
@@ -68,7 +68,7 @@ export default function SectionDifference({ props }: { props: Props }) {
                 <span class="text-base text-[#000] lg:max-w-[500px]" dangerouslySetInnerHTML={{ __html: content }}>
 
                 </span>
-                <ul class="flex flex-col gap-2 lg:gap-4 lg:max-w-[500px]">
+                <ul class="flex flex-col gap-5 lg:gap-9 lg:max-w-[500px]">
                     {itens.map((item) => (
                         <li class="uppercase text-sm font-medium text-[#000] flex flex-row gap-2"><Icon id="check" size={22} strokeWidth={1} /> <span>{item}</span></li>
                     ))}

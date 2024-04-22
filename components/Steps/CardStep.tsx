@@ -20,7 +20,7 @@ export default function CardStep({ props, index }: { props: Props, index: number
                 {index}
             </span>
             <h4 class="uppercase font-bold text-base w-[calc(100%-50px-1rem)] lg:w-full lg:text-lg lg:text-center">{title}</h4>
-            <span class="text-base lg:text-center" dangerouslySetInnerHTML={{ __html: content }}></span>
+            <span class="text-base lg:text-center lg:max-w-80" dangerouslySetInnerHTML={{ __html: content }}></span>
         </div>
     )
 }

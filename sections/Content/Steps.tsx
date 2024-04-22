@@ -32,7 +32,7 @@ export default function Steps({ title, button, steps }: Props) {
             </div>
             <a
                 href={button.href}
-                class="w-fit bg-cherry-pop rounded-full border-none text-white-lily text-sm uppercase px-6 py-[18px] font-bold tracking-[1px] hover:bg-white-lily hover:text-cherry-pop hover:border-none transition-all duration-300 self-center"
+                class="w-fit bg-deep-beauty rounded-full border-none text-white-lily text-sm uppercase px-6 py-[18px] font-bold tracking-[1px] hover:bg-white-lily hover:text-cherry-pop hover:border-none transition-all duration-300 self-center"
             >
                 {button.label}
             </a>
