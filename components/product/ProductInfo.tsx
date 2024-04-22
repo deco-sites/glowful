@@ -11,12 +11,11 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Image from "apps/website/components/Image.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
-import { useId } from "$store/sdk/useId.ts";
 import ProductImages from "$store/islands/ProductImages.tsx";
 import { useUI } from "../../sdk/useUI.ts";
 import PurchaseOptions from "$store/islands/PurchaseOptions.tsx";
 import FaqProduct from "$store/components/product/FaqProduct.tsx";
-import ProductInfoCarousel from "$store/islands/ProductInfoCarousel.tsx"
+import ProductInfoCarousel from "$store/islands/ProductInfoCarousel.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -37,7 +36,7 @@ interface Props {
 
 function ProductInfo({ page, layout, installments = 5 }: Props) {
   const platform = usePlatform();
-  const id = useId();
+
   const { quantityInstallments, productId } = useUI();
 
   quantityInstallments.value = installments;
@@ -73,8 +72,8 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
     isVariantOf?.hasVariant[0].isVariantOf.additionalProperty[0].value;
 
   return (
-    <div class="relative flex flex-col  lg:flex-row items-start gap-[24px] lg:gap-[50px] pt-[40px] lg:pt-[50px]">
-      <div class="lg:flex hidden flex-col">
+    <div class="relative flex flex-col  lg:flex-row items-start gap-[24px] md:gap-[50px] xl:gap-[55px] pt-[40px] lg:pt-[70px] md:w-full">
+      <div class="lg:flex hidden flex-col w-full max-w-[740px]">
         <div class="hidden lg:block">
           <Breadcrumb
             itemListElement={breadcrumbList?.itemListElement}
@@ -87,13 +86,13 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
         <FaqProduct page={page} />
       </div>
 
-      <div class="block lg:hidden pl-[24px]">
+      <div class="block lg:hidden px-[24px] w-screen overflow-scroll">
         <Breadcrumb itemListElement={breadcrumbList?.itemListElement} />
       </div>
 
-      <div class="flex flex-col sticky top-[80px] md:max-w-[420px]">
+      <div class="flex flex-col sticky top-[80px] sm:max-w-[380px] xl:max-w-[420px] w-full">
         {/* Carousel product - MOBILE */}
-      <ProductInfoCarousel product={product}/>
+        <ProductInfoCarousel product={product} />
 
         {/* Code and name */}
         <div class="px-[24px] lg:px-0 mb-[20px] lg:mb-[24px] mt-[32px] lg:mt-0 flex flex-col gap-[16px] lg:gap-[20px]">

@@ -53,16 +53,41 @@ function PurchaseOptions({ product }: Props) {
   }, []);
 
   return (
-    <div class="mt-[32px] sm:mt-[40px] px-[24px] lg:px-0">
+    <div class="mt-[32px] sm:mt-[40px] px-[20px] w-full lg:px-0">
       <ProductSelector product={product} />
 
       <div
         class="mt-[24px] h-[40px]  p-[3px] flex rounded-full bg-[#000]"
         id="addToCartSection"
       >
-        <ChangeQuantityProduct inventoryLevel={inventoryLevel} price={price} />
+        {availability === "https://schema.org/InStock" ? (
+          <>
+            <ChangeQuantityProduct
+              inventoryLevel={inventoryLevel}
+              price={price}
+            />
 
-        {availability === "https://schema.org/InStock" && (
+            <AddToCartButtonShopify
+              url={url || ""}
+              name={name}
+              productID={productID}
+              productGroupID={productGroupID}
+              price={price}
+              discount={discount}
+            />
+          </>
+        ) : (
+          <p class="w-full h-full text-white-lily text-center leading-[2]">
+            Produto indisponivel
+          </p>
+        )}
+      </div>
+      <div
+        id="fixedCtaButton"
+        class="lg:!hidden fixed bottom-0 left-0 w-screen py-[20px] bg-deep-beauty flex justify-center items-center transition-all duration-300 z-[9999]"
+        style={{ bottom: "-70px" }}
+      >
+        {availability === "https://schema.org/InStock" ? (
           <AddToCartButtonShopify
             url={url || ""}
             name={name}
@@ -71,21 +96,11 @@ function PurchaseOptions({ product }: Props) {
             price={price}
             discount={discount}
           />
+        ) : (
+          <p class="w-full h-full text-white-lily text-center">
+            Produto indisponivel
+          </p>
         )}
-      </div>
-      <div
-        id="fixedCtaButton"
-        class="lg:!hidden fixed bottom-0 left-0 w-screen py-[20px] bg-deep-beauty flex justify-center items-center transition-all duration-300 z-[9999]"
-        style={{ bottom: "-70px" }}
-      >
-        <AddToCartButtonShopify
-          url={url || ""}
-          name={name}
-          productID={productID}
-          productGroupID={productGroupID}
-          price={price}
-          discount={discount}
-        />
       </div>
     </div>
   );

@@ -77,7 +77,7 @@ export default function AddToCartButton(props: Props) {
     <Button
       {...btnProps}
       data-deco="add-to-cart"
-      class={`w-full flex-1 h-auto min-h-fit flex justify-center btn px-[20px] border-0 text-white-lily uppercase text-[14px] tracking-[4%] font-medium bg-transparent transition-all duration-300 hover:bg-transparent`}
+      class={`sm:w-full flex-1 h-auto min-h-fit flex justify-center btn px-[20px] border-0 text-white-lily uppercase text-[14px] tracking-[4%] font-medium bg-transparent transition-all duration-300 hover:bg-transparent`}
     >
       Adicionar ao Carrinho
     </Button>

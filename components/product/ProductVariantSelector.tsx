@@ -74,7 +74,7 @@ function VariantSelector({ product }: Props) {
       </li>
 
       {/* Renderizar tamanho */}
-      <li className="flex items-center gap-2 pl-[16px] lg:pl-0">
+      <li className="flex items-center gap-2 pl-[16px] lg:pl-0 w-fit">
         {possibilities["Tamanho"] && (
           <div className="flex flex-col lg:flex-row gap-[16px] lg:gap-[14px]">
             <span className="text-[14px] lg:text-[16px] mr-2">Tamanho:</span>

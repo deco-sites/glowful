@@ -41,7 +41,7 @@ function ProductImages({ images }: Props) {
         id="image-container"
       >
         {displayedImages?.map((img, index) => (
-          <div class="lg:w-[360px] lg:h-[450px]">
+          <div class="xl:w-[360px] xl:h-[450px] lg:w-[260px] lg:h-[310px]">
             <Image
               id={`image-${index}`}
               class="w-full h-full object-cover"
