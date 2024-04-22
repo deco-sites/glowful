@@ -33,8 +33,13 @@ export type Props = Pick<ProductListingPage, "sortOptions">;
 const portugueseMappings = {
   "best:asc": "Melhor avaliado",
   "news:desc": "Mais novos",
-  "name:asc": "Nome",
-  "price:asc": "Preço",
+  "name:asc": "Nome:Asc",
+  "name:desc": "Nome:Desc",
+  "price:asc": "Preço:Asc",
+  "price:desc": "Preço:Desc",
+  "relevance:desc": "Relevância:Desc",
+  "release:desc": "Lançamento:Desc",
+  "orders:desc": "Pedidos:Desc"
 };
 
 function Sort({ sortOptions }: Props) {
@@ -62,7 +67,7 @@ function Sort({ sortOptions }: Props) {
         id="sort"
         name="sort"
         onInput={applySort}
-        class="w-[220px] h-[36px] px-[20px] rounded-full text-[16px] text-[#878787] cursor-pointer select select-bordered"
+        class="w-[166px] h-[36px] px-[20px] rounded-full text-[16px] text-[#878787] cursor-pointer select select-bordered"
       >
         {sortOptions
           .map(({ value, label }) => ({

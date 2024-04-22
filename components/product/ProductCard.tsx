@@ -132,7 +132,7 @@ function ProductCard({
   return (
     <div
       id={id}
-      class={`card card-compact group self-start w-full max-w-[360px] lg:max-w-[265px] 2xl:max-w-[360px] min-w-[290px] lg:min-w-[200px] 2xl:min-w-[290px] ${
+      class={`card card-compact group self-start w-full max-w-[300px] lg:max-w-[265px] 2xl:max-w-[360px] min-w-[290px] lg:min-w-[200px] 2xl:min-w-[290px] ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -194,7 +194,7 @@ function ProductCard({
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`w-[296px] h-[320px] bg-base-100 col-span-full row-span-full rounded-[15px] object-cover ${l?.onMouseOver?.image == "Zoom image"
+            class={`h-[320px] bg-base-100 col-span-full row-span-full rounded-[15px] object-cover ${l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
               }`}

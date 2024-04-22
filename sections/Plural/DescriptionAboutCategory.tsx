@@ -43,7 +43,7 @@ export default function DescriptionAboutCategory({
 
           <button
             onClick={handleToggleDescription}
-            class="w-fit underline block lg:hidden text-cherry-pop text-[16px] tracking-[0.32px]"
+            class="w-fit border-b border-cherry-pop block lg:hidden text-cherry-pop text-[16px] font-medium tracking-[0.32px]"
           >
             {showFullDescription ? "Ler menos -" : "Ler mais +"}
           </button>

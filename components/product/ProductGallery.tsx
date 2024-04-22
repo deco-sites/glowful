@@ -43,7 +43,7 @@ function ProductGallery({
 
   return (
     <div
-      class={`relative grid ${mobile} pb-[80px] mb-[80px] lg:mb-0 gap-x-[32px] gap-y-[80px] items-center justify-items-center sm:grid-cols-2 xl:grid-cols-3 before:w-full before:h-[1px] before:bg-[#E4E4E4] before:absolute before:bottom-0`}
+      class={`w-full relative grid ${mobile} pb-[80px] mb-[80px] lg:mb-0 gap-x-[32px] gap-y-[80px] items-center justify-items-center sm:grid-cols-2  lg:justify-between xl:grid-cols-3 before:w-full before:h-[1px] before:bg-[#E4E4E4] before:absolute before:bottom-0`}
     >
       {products?.map((product, index) => (
         <ProductCard

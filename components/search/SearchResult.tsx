@@ -30,6 +30,9 @@ interface NotFound {
   };
   highlight?: string;
   title?: string;
+  /**
+   * @format html
+   */
   description?: string;
   link: {
     text: string;
@@ -56,16 +59,17 @@ function Result({
 
   return (
     <>
-      <div class="container md:max-w-full px-4 sm:py-10 sm:pb-[80px]">
-        <div class="flex flex-col sm:flex-row gap-[50px]">
+      <div class="container md:max-w-full lg:px-14 sm:py-10 sm:pb-[80px]">
+        <div class="flex flex-col lg:flex-row gap-2 lg:gap-24">
           {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden lg:block w-min min-w-[270px]">
+            <aside class="w-min min-w-[270px]">
               <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
-
-              <Filters filters={filters} />
+              <div class="hidden lg:block">
+                <Filters filters={filters} />
+              </div>
             </aside>
           )}
-          <div class="flex flex-col flex-grow">
+          <div class="flex flex-col lg:w-full lg:items-center">
             <SearchControls
               sortOptions={sortOptions}
               filters={filters}

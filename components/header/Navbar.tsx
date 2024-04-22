@@ -92,9 +92,10 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
     backgroundColor = "#FFF";
   }
 
-  // Manter o header visivel caso não seja a home
   if (pathname !== "/") {
-    displayTop.value = false;
+    logo = logoPreto;
+    colorIcon = logoPreto.textColor ?? "#101820";
+    backgroundColor = "#FFF";
     setDisplayNavbar("visible");
   }
 
@@ -119,14 +120,22 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               alt={logoBranco.alt}
               width={126}
               height={16}
-              class={displayTop.value === true ? "" : "hidden"}
+              class={
+                displayTop.value === true &&
+                pathname === "/"
+                  ? ""
+                  : "hidden"}
             />
             <Image
               src={logoPreto.src}
               alt={logoPreto.alt}
               width={126}
               height={16}
-              class={displayTop.value === false ? "" : "hidden"}
+              class={
+                displayTop.value === false ||
+                pathname !== "/"
+                  ? ""
+                  : "hidden"}
             />
           </a>
         )}
@@ -178,7 +187,9 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
                   width={126}
                   height={16}
                   class={
-                    displayTop.value === true && displayHover.value === false
+                    displayTop.value === true &&
+                    displayHover.value === false &&
+                    pathname === "/"
                       ? ""
                       : "hidden"
                   }
@@ -189,7 +200,9 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
                   width={126}
                   height={16}
                   class={
-                    displayTop.value === false || displayHover.value === true
+                    displayTop.value === false ||
+                    displayHover.value === true ||
+                    pathname !== "/"
                       ? ""
                       : "hidden"
                   }
@@ -197,9 +210,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               </a>
             )}
           </div>
-          <ul
-            class="2xl:min-h-[86px] lg:min-h-[60px] flex-auto flex justify-center"
-          >
+          <ul class="2xl:min-h-[86px] lg:min-h-[60px] flex-auto flex justify-center">
             {items.map((item) => (
               <NavItem item={item} colorIcon={colorIcon} />
             ))}

@@ -58,7 +58,7 @@ function FiltersMobile({ filters }: Props) {
 
   return (
     <ul class="flex flex-col gap-[32px] p-4 px-[24px]">
-      <li class="flex flex-col gap-[24px]">
+      {/* <li class="flex flex-col gap-[24px]">
         <div class="flex p-[8px] justify-between border-b border-b-[#CCC]">
           <span class="text-[18px  ] text-[#1a1a1a] font-bold">FILTROS</span>
         </div>
@@ -78,7 +78,7 @@ function FiltersMobile({ filters }: Props) {
             </a>
           ))}
         </div>
-      </li>
+      </li> */}
 
       {filters.filter(isRange).map((filter) => (
         <li class="flex flex-col gap-[24px] ">
