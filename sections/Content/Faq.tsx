@@ -127,7 +127,7 @@ export default function FAQ(props: Props) {
         <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-0  lg:max-w-4xl">
           <div class="flex flex-col gap-8 lg:gap-10">
             <div
-              class="hidden card-title textHighlight text-[24px] lg:text-[44px]  lg:block lg:pb-[10px] text-left justify-start font-fraunces"
+              class="hidden card-title textHighlight text-[24px] lg:text-[44px]  lg:block lg:pb-[10px] text-left justify-start font-fraunces font-normal"
               dangerouslySetInnerHTML={{ __html: title }}
             />
             <div class="join join-vertical w-full">
