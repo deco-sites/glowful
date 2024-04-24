@@ -65,7 +65,7 @@ function ProductShelf({
         <>
           {/* MOBILE */}
           <div
-            id={idMobile}
+            id={idMobile} 
             class="container grid lg:hidden grid-cols-[48px_1fr_48px] gap-[32px] relative"
           >
             <Slider.PrevButton
