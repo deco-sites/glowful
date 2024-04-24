@@ -92,7 +92,7 @@ function Sort({ sortOptions }: Props) {
           title="Ordenar"
           aria-label="Ordenar produtos"
           src="/icons/sort-quantidade-alt.svg"
-          alt=""
+          alt="botão em formato de funil"
           class={`${
             isAscending ? "" : "rotate-180"
           } transition-all duration-300 `}

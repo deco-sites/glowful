@@ -17,7 +17,7 @@ function Header(props: Props) {
             } text-center`}
         >
           {props.title && (
-            <div
+            <h2
               class={`font-medium tracking-[1.6px] uppercase textCategoryHighlight text-[28px] lg:text-3xl xl:text-[32px] ${props.black ? "text-center" : "text-white-lily lg:text-start"
                 } ${props.alignment === "left" ? "lg:text-left" : "lg:text-center"
                 } text-center leading-8 lg:leading-10
@@ -30,7 +30,7 @@ function Header(props: Props) {
             />
           )}
           {props.description && (
-            <h2
+            <p
               class={` text-base 2xl:text-xl ${props.black ? "text-center " : "text-white-lily lg:text-start"
                 }${props.alignment === "left" ? "lg:text-left" : "lg:text-center"
                 } text-center
@@ -41,7 +41,7 @@ function Header(props: Props) {
                 `}
             >
               {props.description}
-            </h2>
+            </p>
           )}
         </div>
       ) : null}

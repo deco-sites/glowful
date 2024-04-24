@@ -46,9 +46,9 @@ function BannerCategory(props: SectionProps<ReturnType<typeof loader>>) {
           class="object-cover w-[130px] h-[130px] lg:h-[140px] lg:w-[140px]"
           sizes="(max-width: 640px) 100vw, 30vw"
           src={imageIcon}
-          alt=""
+          alt={title}
           decoding="async"
-          loading="eager"
+          loading="lazy"
         />
 
         <div
@@ -90,6 +90,7 @@ function BannerCategory(props: SectionProps<ReturnType<typeof loader>>) {
           class="w-full h-full object-cover"
           src={image.desktop}
           alt={image?.alt}
+          loading="lazy"
         />
       </Picture>
     </div>
@@ -112,6 +113,7 @@ function BannerCategory(props: SectionProps<ReturnType<typeof loader>>) {
           class="w-full h-full object-cover"
           src={image.desktop}
           alt={image?.alt}
+          loading="lazy"
         />
       </Picture>
     </div>

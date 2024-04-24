@@ -104,7 +104,8 @@ function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
                     width={24}
                     height={24}
                     class="mt-[2px] lg:mt-[8px]"
-                    alt=""
+                    alt={benefit.title}
+                    loading="lazy"
                   />
 
                   <div class="flex flex-col items-start gap-[16px] sm:gap-[14px]">

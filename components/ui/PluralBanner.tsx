@@ -47,7 +47,7 @@ function PluralBanner({
           } w-full px-[24px] text-end lg:text-center flex flex-col items-end lg:items-start`}
         >
           {title && (
-            <div
+            <h2
               class="card-title text-[32px] lg:text-[40px] font-semibold leading-[130%] textWithStrong lg:text-left"
               style={{ color: color ? color : "#FFF" }}
               dangerouslySetInnerHTML={{ __html: title }}
@@ -95,6 +95,7 @@ function PluralBanner({
           class="w-full h-full object-cover"
           src={image.desktop}
           alt={image?.alt}
+          loading="lazy"
         />
       </Picture>
     </div>
@@ -118,6 +119,7 @@ function PluralBanner({
             class="w-full h-full object-cover"
             src={image.desktop}
             alt={image?.alt}
+            loading="lazy"
           />
         </Picture>
       </a>

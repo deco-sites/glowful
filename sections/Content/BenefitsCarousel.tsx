@@ -53,6 +53,7 @@ export default function BenefitsCarousel({
                 src={benifit.icon}
                 alt={benifit.icon || ""}
                 className="object-cover max-w-[40px] max-h-[40px] lg:max-w-[30px] lg:max-h-[30px] 2xl:max-w-[40px] 2xl:max-h-[40px]"
+                loading="lazy"
               />
               <div class="flex flex-col items-start">
                 <strong
@@ -84,6 +85,7 @@ export default function BenefitsCarousel({
                 src={benifit.icon}
                 alt={benifit.icon || ""}
                 className="object-cover max-w-[40px] max-h-[40px]"
+                loading="lazy"
               />
               <div class="flex flex-col items-start">
                 <strong

@@ -46,7 +46,7 @@ export default function ImageAndText(props: Props) {
         </figure>
 
         <div class="lg:py-10 2xl:py-20 px-[24px] lg:px-0 flex flex-col items-center gap-[28px] lg:gap-[80px] lg:row-start-1 lg:col-start-1 lg:max-w-[616px] 2xl:max-w-[716px]">
-          <div
+          <h2
             class="card-title textIconHighLight text-[24px] tracking-[1.2px] uppercase font-medium lg:text-[32px] text-center justify-center"
             dangerouslySetInnerHTML={{ __html: title }}
           />
@@ -57,27 +57,27 @@ export default function ImageAndText(props: Props) {
                 <>
                   {/* MOBILE */}
                   <div class="flex lg:hidden flex-col gap-[12px]">
-                    <div class="flex gap-[20px] items-center">
-                      <img src={benefit.image} width={32} height={32} alt="" />
-                      <p class="text-[16px] font-semibold tracking-[0.8px] leading-[130%] text-deep-beauty">
+                    <h3 class="flex gap-[20px] items-center">
+                      <img src={benefit.image} width={32} height={32} alt={benefit.title} loading="lazy"/>
+                      <span class="text-[16px] font-semibold tracking-[0.8px] leading-[130%] text-deep-beauty">
                         {benefit.title}
-                      </p>
-                    </div>
-                    <span class="text-[14px] text-deep-beauty">
+                      </span>
+                    </h3>
+                    <p class="text-[14px] text-deep-beauty">
                       {benefit.description}
-                    </span>
+                    </p>
                   </div>
 
                   {/* DESKTOP */}
                   <div class="hidden lg:flex items-start gap-6 lg:max-w-[260px] 2xl:max-w-[335px]" style={{ width: "calc(50% - 1rem)" }}>
-                    <img src={benefit.image} width={32} height={32} alt="" />
+                    <img src={benefit.image} width={32} height={32} alt={benefit.title} loading="lazy"/>
                     <div class="flex flex-col gap-[16px]">
-                      <p class="xl:text-[22px] font-semibold tracking-[1.1px] leading-[130%] text-deep-beauty text-base">
+                      <h3 class="xl:text-[22px] font-semibold tracking-[1.1px] leading-[130%] text-deep-beauty text-base">
                         {benefit.title}
-                      </p>
-                      <span class="xl:text-[16px] text-deep-beauty leading-[140%] text-sm">
+                      </h3>
+                      <p class="xl:text-[16px] text-deep-beauty leading-[140%] text-sm">
                         {benefit.description}
-                      </span>
+                      </p>
                     </div>
                   </div>
                 </>

@@ -15,7 +15,8 @@ export default function ClearFilter() {
         width="22"
         height="22"
         src="/icons/trash.svg"
-        alt=""
+        alt="Botão com formato de lixo"
+        loading="lazy"
       />
     </button>
   );
