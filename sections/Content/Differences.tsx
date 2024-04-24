@@ -92,7 +92,7 @@ export default function Differences({ sections }: Props) {
 
                 <SliderJS rootId={id} infinite />
             </div>
-            <div class="hidden lg:flex flex-col py-11">
+            <div class="hidden lg:flex flex-col py-11 lg:mx-[120px]">
                 {sections.map((section, index) => (
                     <SectionDifference props={section} />
                 ))}
