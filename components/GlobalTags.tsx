@@ -15,6 +15,7 @@ function GlobalTags() {
       <script
         type="text/javascript"
         async
+        defer
         src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/1a4dcf0e-0388-401c-814a-04262b9a4b5f-loader.js"
       >
       </script>
@@ -44,12 +45,14 @@ function GlobalTags() {
       />
       <script
         defer
+        async
         src="https://assets.videowise.com/vendors.js.gz"
         id="videowise-vendors-js"
       >
       </script>
       <script
         defer
+        async
         src="https://assets.videowise.com/client.js.gz"
         id="videowise-client-js"
       >
