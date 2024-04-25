@@ -6,6 +6,10 @@ import { useId } from "$store/sdk/useId.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 
 export interface Props {
+  /**
+   * @description Ex: https://blog-glowful.vercel.app
+   */
+  urlBlog: string;
   title?: string;
   blogText?: string;
   buttonText?: string;
@@ -47,6 +51,7 @@ export interface Data {
 
 export async function loader(
   {
+    urlBlog,
     title,
     blogText,
     buttonText,
@@ -54,7 +59,7 @@ export async function loader(
   }: Props,
   _req: Request,
 ) {
-  const url = `https://template-blog-beryl.vercel.app/api/mostViewedPosts`;
+  const url = `${urlBlog}/api/mostViewedPosts`;
 
   const data = await fetch(url).then((r) => r.json()).catch((err) => {
     console.error("error fetching posts from blog", err);
@@ -63,6 +68,7 @@ export async function loader(
 
   return {
     data: data.slice(0, numberOfPosts ?? 12),
+    urlBlog,
     title,
     blogText,
     buttonText,
@@ -71,6 +77,7 @@ export async function loader(
 }
 
 function ListPosts({
+  urlBlog,
   title,
   blogText,
   buttonText,
@@ -78,16 +85,16 @@ function ListPosts({
   data,
 }: SectionProps<typeof loader>) {
   const id = useId();
-  const url = `https://template-blog-beryl.vercel.app`;
+  const url = urlBlog;
   return (
     <div
       id={id}
-      class="py-[40px] lg:py-[120px] lg:ml-[5%] flex lg:items-start flex-col gap-8 lg:gap-[75px] text-base-content"
+      class="py-[60px] lg:py-12 2xl:py-[90px] lg:ml-[5%] flex lg:items-start flex-col gap-8 2xl:gap-[75px] text-base-content"
     >
-      <div class="flex flex-col lg:flex-row items-center gap-[4px] lg:gap-[24px]">
-        <h3 class="text-deep-beauty text-[24px] lg:text-[36px] uppercase tracking-[1.2px] font-bold text-left">
+      <div class="flex flex-col lg:flex-row items-center gap-[4px] lg:pl-8 lg:gap-[24px]">
+        <h2 class="text-deep-beauty text-[24px] lg:text-[28px] 2xl:text-[36px] uppercase tracking-[1.2px] font-bold text-left">
           {title}
-        </h3>
+        </h2>
         <a
           href={url}
           target="_blank"
@@ -108,12 +115,12 @@ function ListPosts({
             class="text-white-lily"
           />
         </Slider.PrevButton>
-        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-end gap-[20px] lg:gap-[24px] col-span-full row-start-1 row-end-1">
+        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-end gap-[20px] lg:gap-[18px] 2xl:gap-[32px] col-span-full row-start-1 row-end-1">
           {data.map((post, index) => (
             <Slider.Item
               index={index}
               key={index}
-              class="bg-[#f4f4f4] m-[8px] max-w-[274px] lg:max-w-[380px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
+              class="bg-[#f4f4f4] m-[8px] max-w-[274px] lg:max-w-[330px] 2xl:max-w-[380px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
             >
               <a
                 aria-label={`Link para a página do post ${post?.title?.rendered}`}
@@ -128,7 +135,7 @@ function ListPosts({
                     width={380}
                     height={160}
                     loading="lazy"
-                    class="w-full h-full lg:block hidden rounded-t-[14px]"
+                    class="w-full h-[160px] object-cover lg:block hidden rounded-t-[14px]"
                   />
                   <Image
                     src={post?.acf?.image_mobile.url}
@@ -137,11 +144,11 @@ function ListPosts({
                     width={274}
                     height={160}
                     loading="lazy"
-                    class="w-full h-full lg:hidden block rounded-t-[14px]"
+                    class="w-full h-[160px] object-cover lg:hidden block rounded-t-[14px]"
                   />
                 </figure>
               </a>
-              <div class="w-full flex flex-col py-[24px] px-[16px] lg:p-[32px] gap-[10px]">
+              <div class="w-full flex flex-col py-[24px] px-[16px] lg:p-5 2xl:p-[32px] gap-[10px]">
                 <span class="text-deep-beauty text-[18px] tracking-[1.2px] font-bold">
                   Categoria
                 </span>
@@ -167,7 +174,7 @@ function ListPosts({
             </Slider.Item>
           ))}
         </Slider>
-        <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] transform -translate-y-1/2 z-[1]">
+        <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] 2xl:right-[4%] transform -translate-y-1/2 z-[1]">
           <Icon
             size={24}
             id="ChevronRight"

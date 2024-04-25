@@ -6,7 +6,7 @@
   .textArea h2 {
     font-size: 18px;
     margin-bottom: 24px;
-    margin-top: 30px;
+    margin-top: 70px;
   }
 
   .textArea p {
@@ -24,11 +24,16 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+  .clampTitleSection{
+    font-size: clamp(1.5rem, -0.63rem + 3vw, 2.25rem);
+  }
+  .scrollbar-minicart::-webkit-scrollbar {
+    width: 3px;
+  }
 
-  @media (min-width:1536px){
-    .container { 
-      max-width: 1300px!important;
-    } 
+  .scrollbar-minicart::-webkit-scrollbar-thumb {
+    background-color: #000;
+    border-radius: 20px;
   }
 
   @media (min-width: 1024px) {
@@ -102,19 +107,13 @@
 
   .textIconHighLight strong {
     font-family: Fraunces;
-    font-size: 22px;
+    text-transform: lowercase;
+    font-size: 32px;
     color:#CE0F69;
     font-style: italic;
     font-weight: 600;
     line-height: 130%;
   }
-
-  @media (min-width: 1024px) {
-    .textIconHighLight strong {
-      font-size: 30px;
-    }
-  }
-  
   
   .textWithStrong strong {
     font-family: Fraunces;
@@ -123,12 +122,40 @@
     line-height: 130%;
   }
 
+  .textCategoryHighlight p {
+    font-family: 'Red Hat Display';
+    color: black;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
   .textCategoryHighlight strong {
     font-family: Fraunces;
     font-style: italic;
     font-weight: 600;
     line-height: 130%;
-    font-size: 42px;
+    font-size: 28px;
+    text-transform: capitalize;
+  }
+
+  @media (min-width: 1024px) {
+    .textIconHighLight strong {
+      font-size: 42px;
+      text-transform: lowercase;
+    }
+
+    .textCategoryHighlight p {
+      font-size: clamp(1.5rem, 0.5rem + 1.25vw, 2rem);
+      line-height: 1;
+    }
+    .textCategoryHighlight strong {
+      font-size: clamp(1.75rem, 0rem + 2.1875vw, 2.625rem);
+    }
+
+  }
+  
+  .containerLeftCategory{
+    margin-left: clamp(5.0625rem, -45.6875rem + 52.8646vw, 17.75rem);
   }
 
   .popup strong {
@@ -151,11 +178,8 @@
     margin: 0;
   }
 
-  /* Disable scroll once drawer/modal is openned */
-  body:has(.drawer-toggle:checked),
-  body:has(.modal-toggle:checked) {
-    overflow: hidden;
-    height: 100vh;
+  :root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])) {
+      overflow: auto !important;
   }
 }
 
@@ -171,4 +195,11 @@
   to {
     --dot-progress: 100%
   }
+}
+
+@media (min-width: 1280px) {
+  .bestSellers ul {
+    gap: 0;
+  }
+
 }

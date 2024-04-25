@@ -21,6 +21,10 @@ const applySort = (e: JSX.TargetedEvent<HTMLSelectElement, Event>) => {
     urlSearchParams.set(SORT_QUERY_PARAM, selectedValue);
   }
 
+  urlSearchParams.delete("startCursor");
+  urlSearchParams.delete("endCursor");
+  urlSearchParams.delete("page");
+
   window.location.search = urlSearchParams.toString();
 };
 
@@ -29,8 +33,13 @@ export type Props = Pick<ProductListingPage, "sortOptions">;
 const portugueseMappings = {
   "best:asc": "Melhor avaliado",
   "news:desc": "Mais novos",
-  "name:asc": "Nome",
-  "price:asc": "Preço",
+  "name:asc": "Nome:Asc",
+  "name:desc": "Nome:Desc",
+  "price:asc": "Preço:Asc",
+  "price:desc": "Preço:Desc",
+  "relevance:desc": "Relevância:Desc",
+  "release:desc": "Lançamento:Desc",
+  "orders:desc": "Pedidos:Desc"
 };
 
 function Sort({ sortOptions }: Props) {
@@ -58,7 +67,7 @@ function Sort({ sortOptions }: Props) {
         id="sort"
         name="sort"
         onInput={applySort}
-        class="w-[220px] h-[36px] px-[20px] rounded-full text-[16px] text-[#878787] cursor-pointer select select-bordered"
+        class="w-[166px] h-[36px] px-[20px] rounded-full text-[16px] text-[#878787] cursor-pointer select select-bordered"
       >
         {sortOptions
           .map(({ value, label }) => ({
@@ -83,7 +92,7 @@ function Sort({ sortOptions }: Props) {
           title="Ordenar"
           aria-label="Ordenar produtos"
           src="/icons/sort-quantidade-alt.svg"
-          alt=""
+          alt="botão em formato de funil"
           class={`${
             isAscending ? "" : "rotate-180"
           } transition-all duration-300 `}

@@ -57,7 +57,7 @@ export function PopupIcon({
   return (
     <button
       onClick={() => (displayPopup.value = true)}
-      class={`fixed flex items-center justify-center p-[12px] transition-all duration-300 ease-out rounded-[14px] lg:w-[70px] lg:h-[70px] w-[54px] h-[54px] hover:scale-[1.15] text-[16px] lg:text-[20px] font-bold uppercase text-center text-white-lily leading-[120%] tracking-[1px]  bg-red-500 bg-cherry-pop z-50 shadow-md ${
+      class={`fixed flex items-center justify-center p-[12px] transition-all duration-300 ease-out rounded-[14px] lg:w-[70px] lg:h-[70px] w-[54px] h-[54px] hover:scale-[1.15] text-[16px] lg:text-[20px] font-bold uppercase text-center text-white-lily leading-[120%] tracking-[1px]  bg-red-500 bg-cherry-pop z-40 shadow-md ${
         position ? position : "right-0 bottom-0"
       }`}
     >
@@ -142,7 +142,7 @@ export default function Popup({
       >
         <div className={"w-full h-full flex justify-center items-center px-4"}>
           <div
-            className={`bg-white-lily flex flex-row justify-between w-full max-w-[312px] lg:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-[24px] lg:p-0 ${
+            className={`bg-white-lily flex flex-row justify-between w-full max-w-[312px] lg:max-w-[700px] 2xl:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-[24px] lg:p-0 ${
               animationPopup ? "animate-shake-in" : "animate-shake-out"
             }`}
           >
@@ -153,7 +153,7 @@ export default function Popup({
               <Icon id="Plus" size={32} strokeWidth={1} />
             </div>
 
-            <div class="pt-[30px] flex flex-col gap-[16px] lg:max-w-[315px] lg:m-[90px] lg:pt-0">
+            <div class="pt-[30px] flex flex-col gap-[16px] lg:max-w-[315px] lg:m-[50px] 2xl:m-[90px] lg:pt-0">
               {title && (
                 <div
                   class="textHighlight popup text-center w-full pr-4"

@@ -14,7 +14,7 @@ export default function Logo({ logo }: Props) {
           <img
             loading="lazy"
             src={logo?.image}
-            alt=""
+            alt="Logo glowful"
             width={112}
             height={16}
           />

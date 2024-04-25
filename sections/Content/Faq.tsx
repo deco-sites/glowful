@@ -1,4 +1,5 @@
 import Header from "$store/components/ui/SectionHeader.tsx";
+import Icon from "../../components/ui/Icon.tsx";
 
 export interface Question {
   question: string;
@@ -55,12 +56,17 @@ const DEFAULT_PROPS = {
 
 function Question({ question, answer }: Question) {
   return (
-    <details class="collapse collapse-arrow join-item border-t border-base-200">
-      <summary class="collapse-title pb-[28px] lg:pb-[57px] text-lg font-semibold text-[#101820] uppercase">
-        {question}
+    <details class="collapse join-item border-t border-base-200">
+      <summary class="collapse-title pb-6 pr-4 lg:pb-8 text-lg font-semibold text-[#101820] uppercase">
+        <div class=" flex flex-row justify-between items-center">
+          <p class="w-[calc(100%-24px)] text-base font-bold lg:text-lg">
+            {question}
+          </p>
+          <Icon id="Plus" size={24} strokeWidth={2} />
+        </div>
       </summary>
       <div
-        class="collapse-content lg:pb-[30px]"
+        class="collapse-content lg:pb-[30px] lg:mr-8"
         dangerouslySetInnerHTML={{ __html: answer }}
       />
     </details>
@@ -97,12 +103,13 @@ export default function FAQ(props: Props) {
   } = { ...DEFAULT_PROPS, ...props };
 
   return (
-    <>
+    <div class=" w-full h-full bg-[#F4F4F4] py-20">
+
       {(!layout?.variation || layout?.variation === "Compact") && (
-        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40">
+        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40 bg-[#F4F4F4]">
           <div class="flex flex-col gap-8 lg:gap-10">
             <div
-              class="card-title textHighlight text-[24px] lg:text-[32px] lg:block lg:pb-[10px] text-center justify-center"
+              class="card-title textHighlight text-[24px] lg:text-[32px] lg:block lg:pb-[10px] text-center"
               dangerouslySetInnerHTML={{ __html: title }}
             />
             <div class="join join-vertical w-full">
@@ -117,10 +124,10 @@ export default function FAQ(props: Props) {
       )}
 
       {layout?.variation === "Full" && (
-        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-0">
+        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-0  lg:max-w-4xl">
           <div class="flex flex-col gap-8 lg:gap-10">
             <div
-              class="card-title textHighlight text-[24px] lg:text-[32px]  lg:block lg:pb-[10px] text-center justify-center"
+              class="hidden card-title textHighlight text-[24px] lg:text-[44px]  lg:block lg:pb-[10px] text-left justify-start font-fraunces font-normal"
               dangerouslySetInnerHTML={{ __html: title }}
             />
             <div class="join join-vertical w-full">
@@ -154,6 +161,6 @@ export default function FAQ(props: Props) {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

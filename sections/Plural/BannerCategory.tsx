@@ -1,7 +1,11 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import type { SectionProps } from "deco/types.ts";
 
-export interface Props {
+export interface BannerCategory {
+  /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
+  matcher: string;
+
   subTitle?: string;
   /**
    * @format html
@@ -23,19 +27,28 @@ export interface Props {
   };
 }
 
-function BannerCategory({ subTitle, title, color, imageIcon, image }: Props) {
+function BannerCategory(props: SectionProps<ReturnType<typeof loader>>) {
+  const bannerCategorys = props;
+
+  if (!bannerCategorys) {
+    return null;
+  }
+
+  const { bannerCategory } = bannerCategorys;
+  const { subTitle, title, color, imageIcon, image } = bannerCategory;
+
   return title && subTitle && imageIcon ? (
     <div class="relative flex">
       <div
-        class={`container w-full max-w-[960px] flex flex-col lg:flex-row justify-center items-center gap-[40px] z-[1] py-[100px] lg:py-[140px]`}
+        class={`container w-full max-w-[960px] flex flex-col lg:flex-row justify-center items-center gap-[40px] z-[1] py-[80px] lg:py-[120px]`}
       >
         <img
           class="object-cover w-[130px] h-[130px] lg:h-[140px] lg:w-[140px]"
           sizes="(max-width: 640px) 100vw, 30vw"
           src={imageIcon}
-          alt=""
+          alt={title}
           decoding="async"
-          loading="eager"
+          loading="lazy"
         />
 
         <div
@@ -53,7 +66,7 @@ function BannerCategory({ subTitle, title, color, imageIcon, image }: Props) {
 
           {title && (
             <div
-              class="font-fraunces text-[20px] lg:text-[30px] font-light leading-[130%]"
+              class="font-fraunces text-[20px] lg:text-[24px] font-light leading-[120%]"
               style={{ color: color ? color : "#FFF" }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
@@ -77,6 +90,7 @@ function BannerCategory({ subTitle, title, color, imageIcon, image }: Props) {
           class="w-full h-full object-cover"
           src={image.desktop}
           alt={image?.alt}
+          loading="lazy"
         />
       </Picture>
     </div>
@@ -99,10 +113,24 @@ function BannerCategory({ subTitle, title, color, imageIcon, image }: Props) {
           class="w-full h-full object-cover"
           src={image.desktop}
           alt={image?.alt}
+          loading="lazy"
         />
       </Picture>
     </div>
   );
 }
+export interface Props {
+  bannerCategorys?: BannerCategory[];
+}
+
+export const loader = (props: Props, req: Request) => {
+  const { bannerCategorys } = { ...props };
+
+  const bannerCategory = bannerCategorys.find(({ matcher }) =>
+    new URLPattern({ pathname: matcher }).test(req.url)
+  );
+
+  return { bannerCategory };
+};
 
 export default BannerCategory;

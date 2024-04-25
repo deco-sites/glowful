@@ -30,6 +30,9 @@ interface NotFound {
   };
   highlight?: string;
   title?: string;
+  /**
+   * @format html
+   */
   description?: string;
   link: {
     text: string;
@@ -56,16 +59,17 @@ function Result({
 
   return (
     <>
-      <div class="container md:max-w-full px-4 sm:py-10">
-        <div class="flex flex-col sm:flex-row gap-[50px]">
+      <div class="container md:max-w-full lg:px-14 sm:py-10 sm:pb-[80px]">
+        <div class="flex flex-col lg:flex-row gap-2 lg:gap-24">
           {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden lg:block w-min min-w-[270px]">
+            <aside class="w-min min-w-[270px]">
               <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
-
-              <Filters filters={filters} />
+              <div class="hidden lg:block">
+                <Filters filters={filters} />
+              </div>
             </aside>
           )}
-          <div class="flex flex-col flex-grow">
+          <div class="flex flex-col lg:w-full lg:items-center">
             <SearchControls
               sortOptions={sortOptions}
               filters={filters}
@@ -74,33 +78,11 @@ function Result({
 
             <ProductGallery
               products={products}
+              pageInfo={pageInfo}
               offset={offset}
               layout={{ card: cardLayout, columns: layout?.columns }}
+              perPage={perPage}
             />
-          </div>
-        </div>
-
-        <div class="flex justify-center my-4">
-          <div class="join">
-            <a
-              aria-label="previous page link"
-              rel="prev"
-              href={pageInfo.previousPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronLeft" size={24} strokeWidth={2} />
-            </a>
-            <span class="btn btn-ghost join-item">
-              Page {pageInfo.currentPage + 1}
-            </span>
-            <a
-              aria-label="next page link"
-              rel="next"
-              href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronRight" size={24} strokeWidth={2} />
-            </a>
           </div>
         </div>
       </div>

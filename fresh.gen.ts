@@ -28,11 +28,16 @@ import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
 import * as $Popup from "./islands/Popup.tsx";
 import * as $PriceFilter from "./islands/PriceFilter.tsx";
+import * as $ProductCard from "./islands/ProductCard.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
 import * as $ProductImages from "./islands/ProductImages.tsx";
+import * as $ProductInfoCarousel from "./islands/ProductInfoCarousel.tsx";
 import * as $ProductVariantSelector from "./islands/ProductVariantSelector.tsx";
+import * as $PurchaseOptions from "./islands/PurchaseOptions.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
+import * as $SearchbarModal from "./islands/SearchbarModal.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
+import * as $ShowMore from "./islands/ShowMore.tsx";
 import * as $SliderJS from "./islands/SliderJS.tsx";
 import * as $Sort from "./islands/Sort.tsx";
 import * as $WishlistButton from "./islands/WishlistButton.tsx";
@@ -68,11 +73,16 @@ const manifest = {
     "./islands/OutOfStock.tsx": $OutOfStock,
     "./islands/Popup.tsx": $Popup,
     "./islands/PriceFilter.tsx": $PriceFilter,
+    "./islands/ProductCard.tsx": $ProductCard,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
     "./islands/ProductImages.tsx": $ProductImages,
+    "./islands/ProductInfoCarousel.tsx": $ProductInfoCarousel,
     "./islands/ProductVariantSelector.tsx": $ProductVariantSelector,
+    "./islands/PurchaseOptions.tsx": $PurchaseOptions,
     "./islands/SearchControls.tsx": $SearchControls,
+    "./islands/SearchbarModal.tsx": $SearchbarModal,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,
+    "./islands/ShowMore.tsx": $ShowMore,
     "./islands/SliderJS.tsx": $SliderJS,
     "./islands/Sort.tsx": $Sort,
     "./islands/WishlistButton.tsx": $WishlistButton,

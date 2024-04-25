@@ -52,14 +52,14 @@ export default function DescriptionReadMore({ description }: Props) {
       {currentDescription.length < description.length ? (
         <button
           onClick={handleReadMore}
-          class="w-fit underline block text-cherry-pop text-[16px] tracking-[0.32px]"
+          class="w-fit border-b border-cherry-pop block text-cherry-pop text-[16px] font-medium tracking-[0.32px]"
         >
           Ler mais +
         </button>
       ) : (
         <button
           onClick={handleReadLess}
-          class="w-fit underline block text-cherry-pop text-[16px] tracking-[0.32px]"
+          class="w-fit border-b border-cherry-pop block text-cherry-pop text-[16px] font-medium tracking-[0.32px]"
         >
           Ler menos -
         </button>

@@ -44,18 +44,19 @@ export default function BenefitsCarouselAbout({
           />
         </Slider.PrevButton>
         <Slider
-          class={`lg:hidden  carousel carousel-center items-center w-full text-center px-[34px] gap-[34px]`}
+          class={`lg:hidden  carousel carousel-center items-center w-full text-center px-[34px] gap-[34px] rounded-2xl`}
           style={{ backgroundColor: background }}
         >
           {benifits.map((benifit, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item h-fit flex flex-col justify-center items-center gap-[20px] w-full py-[48px] "
+              class="carousel-item h-fit flex flex-col justify-center items-center gap-[20px] w-full py-[48px]"
             >
               <img
                 src={benifit.icon}
                 alt={benifit.icon || ""}
                 className="object-cover max-w-[48px] max-h-[48px]"
+                loading="lazy"
               />
               <div class="flex flex-col items-center gap-[16px]">
                 <strong
@@ -90,13 +91,14 @@ export default function BenefitsCarouselAbout({
         class={`hidden lg:flex  py-[90px]`}
         style={{ backgroundColor: background }}
       >
-        <div class="container flex flex-wrap justify-center gap-[40px] carousel carousel-center w-full text-center">
+        <div class="container flex flex-wrap justify-center xl:justify-between gap-[40px] carousel carousel-center w-full text-center">
           {benifits.map((benifit) => (
-            <div class="flex flex-col justify-center items-center gap-[24px] w-full max-w-[400px] xl:max-w-[330px]">
+            <div class="flex flex-col items-center gap-[24px] w-full max-w-[400px] xl:max-w-[330px]">
               <img
                 src={benifit.icon}
                 alt={benifit.icon || ""}
                 className="object-cover max-w-[55px] max-h-[55px]"
+                loading="lazy"
               />
               <div class="flex flex-col items-center gap-[16px]">
                 <strong

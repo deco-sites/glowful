@@ -1,11 +1,5 @@
 import { SendEventOnLoad } from "$store/components/Analytics.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
-import AddToCartButtonLinx from "$store/islands/AddToCartButton/linx.tsx";
-import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
-import AddToCartButtonVNDA from "$store/islands/AddToCartButton/vnda.tsx";
-import AddToCartButtonVTEX from "$store/islands/AddToCartButton/vtex.tsx";
-import AddToCartButtonWake from "$store/islands/AddToCartButton/wake.tsx";
-import OutOfStock from "$store/islands/OutOfStock.tsx";
 import ShippingSimulation from "$store/islands/ShippingSimulation.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
@@ -13,14 +7,15 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductSelector from "$store/islands/ProductVariantSelector.tsx";
-import ChangeQuantityProduct from "$store/islands/ChangeQuantityProduct.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Image from "apps/website/components/Image.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
-import { useId } from "$store/sdk/useId.ts";
 import ProductImages from "$store/islands/ProductImages.tsx";
+import { useUI } from "../../sdk/useUI.ts";
+import PurchaseOptions from "$store/islands/PurchaseOptions.tsx";
+import FaqProduct from "$store/components/product/FaqProduct.tsx";
+import ProductInfoCarousel from "$store/islands/ProductInfoCarousel.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -32,11 +27,19 @@ interface Props {
      */
     name?: "concat" | "productGroup" | "product";
   };
+  /**
+   * @description maximum value of installments, default 5x
+   * @default "5"
+   */
+  installments?: number;
 }
 
-function ProductInfo({ page, layout }: Props) {
+function ProductInfo({ page, layout, installments = 5 }: Props) {
   const platform = usePlatform();
-  const id = useId();
+
+  const { quantityInstallments, productId } = useUI();
+
+  quantityInstallments.value = installments;
 
   if (page === null) {
     throw new Error("Missing Product Details Page Info");
@@ -53,30 +56,50 @@ function ProductInfo({ page, layout }: Props) {
     additionalProperty = [],
   } = product;
   const description = product.description || isVariantOf?.description;
-  const {
-    price = 0,
-    listPrice,
-    seller = "1",
-    installments,
-    availability,
-  } = useOffer(offers);
+  const { price = 0, listPrice, seller = "1", availability } = useOffer(offers);
   const productGroupID = isVariantOf?.productGroupID ?? "";
   const discount = price && listPrice ? listPrice - price : 0;
   const descriptionJson = description && JSON.parse(description);
   const inventoryLevel = offers?.offers[0].inventoryLevel.value;
   const images = product.isVariantOf?.image;
 
-  // console.log("PRODUTO", product);
-  // console.log("PRODUTO", JSON.parse(product?.description));
+  const productGroupId = isVariantOf?.productGroupID;
+  const parts = productGroupId?.split("/");
+  const lastPart = parts[parts.length - 1];
+  productId.value = lastPart;
+
+  const tag =
+    isVariantOf?.hasVariant[0].isVariantOf.additionalProperty[0].value;
 
   return (
-    <div class="relative flex items-start gap-[50px] pt-[40px]">
-      <ProductImages images={images} />
-      <div class="flex flex-col px-[24px] sticky top-[60px]">
+    <div class="relative flex flex-col  lg:flex-row items-start gap-[24px] md:gap-[50px] xl:gap-[55px] pt-[40px] lg:pt-[70px] md:w-full">
+      <div class="lg:flex hidden flex-col w-full max-w-[740px]">
+        <div class="hidden lg:block">
+          <Breadcrumb
+            itemListElement={breadcrumbList?.itemListElement}
+            classes="lg:!mb-0"
+          />
+        </div>
+
+        <ProductImages images={images} />
+
+        <FaqProduct page={page} />
+      </div>
+
+      <div class="block lg:hidden px-[24px] w-screen overflow-scroll">
+        <Breadcrumb itemListElement={breadcrumbList?.itemListElement} />
+      </div>
+
+      <div class="flex flex-col sticky top-[80px] sm:max-w-[380px] xl:max-w-[420px] w-full">
+        {/* Carousel product - MOBILE */}
+        <ProductInfoCarousel product={product} />
+
         {/* Code and name */}
-        <div>
+        <div class="px-[24px] lg:px-0 mb-[20px] lg:mb-[24px] mt-[32px] lg:mt-0 flex flex-col gap-[16px] lg:gap-[20px]">
+          <p class="text-[14px] lg:text-[16px]">{tag}</p>
+
           <h1>
-            <span class="font-semibold text-[#000] text-[24px] uppercase mb-[8px]">
+            <span class="font-bold text-[#000] text-[24px] uppercase mb-[24px]">
               {layout?.name === "concat"
                 ? `${isVariantOf?.name} ${name}`
                 : layout?.name === "productGroup"
@@ -84,152 +107,27 @@ function ProductInfo({ page, layout }: Props) {
                 : name}
             </span>
           </h1>
-          <p></p>
-        </div>
-
-        {/* Description */}
-        {descriptionJson.description && (
-          <p class="text-[14px] font-fraunces font-light">
-            {descriptionJson.description}
-          </p>
-        )}
-
-        {/* Stars Reviews */}
-        <p class="my-[16px]">Review Stars</p>
-
-        {/* Carousel product - MOBILE */}
-        <div
-          id={id}
-          class="lg:hidden grid grid-flow-row sm:grid-flow-col my-[55px]"
-        >
-          {/* Image Slider */}
-          <div class="relative order-1 sm:order-2">
-            <Slider class="carousel carousel-center gap-0 pr-[40px] w-full sm:w-[40vw]">
-              {images?.map((img, index) => (
-                <Slider.Item index={index} class="carousel-item w-full">
-                  <Image
-                    class="w-full"
-                    sizes="(max-width: 640px) 100vw, 60vw"
-                    src={img.url!}
-                    alt={img.alternateName}
-                    width={300}
-                    height={300}
-                    // Preload LCP image for better web vitals
-                    preload={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </Slider.Item>
-              ))}
-            </Slider>
-          </div>
-
-          <SliderJS rootId={id} />
         </div>
 
         {/* Diferentails */}
-        <div class="grid grid-cols-2 lg:grid-cols-3 gap-[8px] ">
+        <div class="px-[24px] lg:px-0 grid grid-cols-2 gap-[8px] lg:gap-[20px]">
           {descriptionJson &&
             descriptionJson.diferenciais.map((dif: Array<string>) => (
               <div class="flex gap-[8px]">
-                <Icon
-                  id="CheckPdp"
-                  size={20}
-                  strokeWidth={1}
-                  class="text-[#1C8172]"
-                />
-                <p class="text-[14px] font-fraunces font-light">{dif}</p>
+                <Icon id="CheckPdp" size={18} strokeWidth={1} />
+                <p class="text-[12px]">{dif}</p>
               </div>
             ))}
         </div>
+
         {/* Sku Selector */}
-        <div class="mt-[55px] sm:mt-[32px]">
-          <ProductSelector product={product} />
-        </div>
-        {/* Combos and Subscriber */}
-        <p class="text-[16px] font-fraunces font-semibold my-[30px]">Combos:</p>
+        <PurchaseOptions product={product} />
 
-        {/* Prices */}
-        {
-          /* <div class="mt-4">
-        <div class="flex flex-row gap-2 items-center">
-          <span class="font-medium text-xl text-secondary">
-            {formatPrice(price, offers?.priceCurrency)}
-          </span>
+        {/* FAQ */}
+        <div class="block lg:hidden">
+          <FaqProduct page={page} />
         </div>
-      </div> */
-        }
 
-        {/* Quantity Items */}
-        <ChangeQuantityProduct inventoryLevel={inventoryLevel} price={price} />
-
-        {/* Add to Cart and Favorites button */}
-        <div class="mt-4 sm:mt-10 flex flex-col gap-2">
-          {availability === "https://schema.org/InStock"
-            ? (
-              <>
-                {platform === "vtex" && (
-                  <>
-                    <AddToCartButtonVTEX
-                      url={url || ""}
-                      name={name}
-                      productID={productID}
-                      productGroupID={productGroupID}
-                      price={price}
-                      discount={discount}
-                      seller={seller}
-                    />
-                    <WishlistButton
-                      variant="full"
-                      productID={productID}
-                      productGroupID={productGroupID}
-                    />
-                  </>
-                )}
-                {platform === "wake" && (
-                  <AddToCartButtonWake
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                  />
-                )}
-                {platform === "linx" && (
-                  <AddToCartButtonLinx
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                  />
-                )}
-                {platform === "vnda" && (
-                  <AddToCartButtonVNDA
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                    additionalProperty={additionalProperty}
-                  />
-                )}
-                {platform === "shopify" && (
-                  <AddToCartButtonShopify
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    discount={discount}
-                  />
-                )}
-              </>
-            )
-            : <OutOfStock productID={productID} />}
-        </div>
         {/* Shipping Simulation */}
         <div class="mt-8">
           {platform === "vtex" && (

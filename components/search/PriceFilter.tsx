@@ -2,8 +2,8 @@ import Icon from "$store/components/ui/Icon.tsx";
 
 export default function PriceFilter() {
   const searchParams = new URLSearchParams(window.location.search);
-  const gte = searchParams.get("filter.v.price.gte");
-  const lte = searchParams.get("filter.v.price.lte");
+  const gte = searchParams.get("filter.v.price.gte") ?? "0";
+  const lte = searchParams.get("filter.v.price.lte") ?? "0";
 
   const removeFilter = () => {
     const filteredParams = new URLSearchParams(searchParams);
@@ -17,7 +17,7 @@ export default function PriceFilter() {
     window.location.href = urlWithoutPrices;
   };
 
-  return gte && lte ? (
+  return gte !== "0" || lte !== "0" ? (
     <button
       className="rounded-[16px] bg-[#F4F4F4] text-[14px] text-[#666] flex items-center gap-[8px] px-[16px] py-[8px]"
       onClick={() => removeFilter()}

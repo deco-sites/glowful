@@ -39,16 +39,16 @@ function PluralBanner({
       <div
         class={`${
           layoutCenter ? "lg:justify-center" : "lg:justify-start"
-        } container w-full flex justify-center items-center  z-[1] pt-[63px] pb-[240px] lg:py-[70px]`}
+        } container w-full flex justify-center items-center  z-[1] pt-[63px] pb-[240px] lg:py-[70px] lg:max-h-[28rem]`}
       >
         <div
           class={`${
-            layoutCenter ? "lg:max-w-[600px]" : "lg:max-w-[380px]" 
-          } w-full px-[24px] text-end lg:text-center flex flex-col items-end lg:items-center`}
+            layoutCenter ? "lg:max-w-[600px]" : "lg:max-w-[390px]" 
+          } w-full px-[24px] text-end lg:text-center flex flex-col items-end lg:items-start`}
         >
           {title && (
-            <div
-              class="card-title text-[32px] lg:text-[40px] font-semibold leading-[130%] textWithStrong "
+            <h2
+              class="card-title text-[32px] lg:text-[40px] font-semibold leading-[130%] textWithStrong lg:text-left"
               style={{ color: color ? color : "#FFF" }}
               dangerouslySetInnerHTML={{ __html: title }}
             />
@@ -57,7 +57,7 @@ function PluralBanner({
           {description && (
             <p
               style={{ color: color ? color : "#FFF" }}
-              class="text-[24px] leading-[130%] mt-[24px] lg:mt-[38px] mb-[32px] lg:mb-[60px]"
+              class="text-[24px] leading-[130%] mt-[24px] lg:mt-[38px] mb-[32px] lg:mb-[60px] lg:text-left"
             >
               {description}
             </p>
@@ -69,7 +69,7 @@ function PluralBanner({
                 style={{
                   backgroundColor: color ? color : "#FFF",
                 }}
-                class="px-[40px] lg:px-[60px] py-[16px] lg:py-[18px] rounded-full border-none text-[#000000] text-[16px] lg:text-[20px] font-bold uppercase tracking-[1px] hover:!bg-[#CE0F69] hover:text-[#FFF] hover:border-none transition-all duration-300 "
+                class="px-[40px] lg:py-2.5 lg:px-10 2xl:px-[60px] py-[16px] 2xl:py-[18px] rounded-full border-none text-[#000000] text-base 2xl:text-[20px] font-bold uppercase tracking-[1px] hover:!bg-[#CE0F69] hover:text-[#FFF] hover:border-none transition-all duration-300 "
                 href={link?.href}
               >
                 {link?.text}
@@ -95,6 +95,7 @@ function PluralBanner({
           class="w-full h-full object-cover"
           src={image.desktop}
           alt={image?.alt}
+          loading="lazy"
         />
       </Picture>
     </div>
@@ -118,6 +119,7 @@ function PluralBanner({
             class="w-full h-full object-cover"
             src={image.desktop}
             alt={image?.alt}
+            loading="lazy"
           />
         </Picture>
       </a>

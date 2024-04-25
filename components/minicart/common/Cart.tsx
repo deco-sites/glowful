@@ -61,7 +61,7 @@ function Cart({
       ) : (
         <>
           {/* Free Shipping Bar */}
-          <div class="px-[24px] lg:px-[32px] py-4 w-full">
+          <div class="px-4 lg:px-6 py-4 w-full">
             <FreeShippingProgressBar
               total={total}
               locale={locale}
@@ -73,7 +73,7 @@ function Cart({
           {/* Cart Items */}
           <ul
             role="list"
-            class="mt-6 px-[24px] lg:px-[32px] flex-grow overflow-y-auto flex flex-col gap-6 w-full"
+            class="mt-2.5 px-4 scrollbar-minicart lg:px-6 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
           >
             {items.map((item, index) => (
               <li key={index}>
@@ -101,9 +101,9 @@ function Cart({
                   </span>
                 </div>
               )}
-              <div class="w-full flex justify-between px-[24px] lg:px-[32px]  text-sm">
+              <div class="w-full flex justify-between px-4 lg:px-6 text-sm">
                 <span class="text-[14px] lg:text-[16px]">Subtotal</span>
-                <span class="px-4">
+                <span class="">
                   {formatPrice(subtotal, currency, locale)}
                 </span>
               </div>
@@ -111,11 +111,11 @@ function Cart({
             </div>
 
             {/* Total */}
-            <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-[32px] mx-[32px]">
+            <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-5 mx-4 lg:mx-6">
               <div class="flex justify-between items-center w-full">
                 <span class="text-[14px] lg:text-[16px]">Total</span>
                 <span class="font-medium text-[18px] lg:text-[20px]">
-                  {formatPrice(total, currency, locale)}
+                  {formatPrice(subtotal, currency, locale)}
                 </span>
               </div>
               <span class="text-sm text-[#878787]">
@@ -123,8 +123,8 @@ function Cart({
               </span>
             </div>
 
-            <div class="p-[32px]">
-              <a class="w-full flex justify-center" href={checkoutHref}>
+            <div class="p-5">
+              <a class="w-full flex justify-center" href="/cart">
                 <Button
                   data-deco="buy-button"
                   class="h-fit w-fit bg-[#000] rounded-full border-none text-[#fff] text-sm uppercase px-[40px] py-[16px] lg:px-[60px] lg:py-[18px] font-bold tracking-[1px] hover:bg-cherry-pop hover:text-white-lily hover:border-none transition-all duration-300"

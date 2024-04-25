@@ -11,6 +11,7 @@ export default function MobileApps(
                 loading="lazy"
                 width="135"
                 height="40"
+                alt="logo apple"
                 src="/image/app-apple.png"
               />
             </a>
@@ -21,6 +22,7 @@ export default function MobileApps(
                 loading="lazy"
                 width="135"
                 height="40"
+                alt="logo android"
                 src="/image/app-android.png"
               />
             </a>

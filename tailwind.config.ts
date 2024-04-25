@@ -5,7 +5,16 @@ export default {
   daisyui: { themes: [], logs: false },
   content: ["./**/*.tsx"],
   theme: {
-    container: { center: true },
+    container: { 
+      center: true, 
+      padding: {
+        DEFAULT: '0rem',
+        sm: '0rem',
+        lg: '1rem',
+        xl: '2rem',
+        '2xl': '0rem',
+      },
+    },
     fontFamily: {
       redhat: ["Red Hat Display"],
       fraunces: ["Fraunces"],

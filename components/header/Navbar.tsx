@@ -92,9 +92,10 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
     backgroundColor = "#FFF";
   }
 
-  // Manter o header visivel caso não seja a home
   if (pathname !== "/") {
-    displayTop.value = false;
+    logo = logoPreto;
+    colorIcon = logoPreto.textColor ?? "#101820";
+    backgroundColor = "#FFF";
     setDisplayNavbar("visible");
   }
 
@@ -102,8 +103,8 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
     <>
       {/* Mobile Version */}
       <div
-        style={{ height: navbarHeight }}
-        class={`md:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${displayNavbar} bg-[${backgroundColor}] md:hover:visible md:hover:bg-white-lily py-4`}
+        style={{ height: "60px" }}
+        class={`lg:hidden flex flex-row justify-between items-center w-full pl-2 pr-6 gap-2 ${displayNavbar} bg-[${backgroundColor}] md:hover:visible md:hover:bg-white-lily py-4`}
       >
         <MenuButton />
 
@@ -111,7 +112,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
           <a
             href="/"
             class="flex-grow inline-flex items-center"
-            style={{ minHeight: navbarHeight }}
+            style={{ minHeight: "60px" }}
             aria-label="Store logo"
           >
             <Image
@@ -119,14 +120,22 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               alt={logoBranco.alt}
               width={126}
               height={16}
-              class={displayTop.value === true ? "" : "hidden"}
+              class={
+                displayTop.value === true &&
+                pathname === "/"
+                  ? ""
+                  : "hidden"}
             />
             <Image
               src={logoPreto.src}
               alt={logoPreto.alt}
               width={126}
               height={16}
-              class={displayTop.value === false ? "" : "hidden"}
+              class={
+                displayTop.value === false ||
+                pathname !== "/"
+                  ? ""
+                  : "hidden"}
             />
           </a>
         )}
@@ -155,14 +164,16 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
       {/* Desktop Version */}
       <div
-        class={`hidden md:flex h-[50px] ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover py-5`}
+        class={`hidden lg:flex 2xl:min-h-[86px] lg:min-h-[60px] ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover`}
         onMouseEnter={() => {
           displayHover.value = true;
           setDisplayNavbar("visible");
         }}
         onMouseLeave={() => (displayHover.value = false)}
       >
-        <div class="container inis flex flex-row justify-between items-center w-full z-[999]">
+        <div
+          class={`container 2xl:min-h-[86px] w-[95%] px-2 xl:px-9 mx-auto xl:max-w-[1408px] lg:min-h-[60px] inis flex flex-row justify-between items-center z-[999] h-full`}
+        >
           <div class="flex-none w-44">
             {logo && (
               <a
@@ -176,7 +187,9 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
                   width={126}
                   height={16}
                   class={
-                    displayTop.value === true && displayHover.value === false
+                    displayTop.value === true &&
+                    displayHover.value === false &&
+                    pathname === "/"
                       ? ""
                       : "hidden"
                   }
@@ -187,7 +200,9 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
                   width={126}
                   height={16}
                   class={
-                    displayTop.value === false || displayHover.value === true
+                    displayTop.value === false ||
+                    displayHover.value === true ||
+                    pathname !== "/"
                       ? ""
                       : "hidden"
                   }
@@ -195,12 +210,12 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               </a>
             )}
           </div>
-          <ul class="flex-auto flex justify-center">
+          <ul class="2xl:min-h-[86px] lg:min-h-[60px] flex-auto flex justify-center">
             {items.map((item) => (
               <NavItem item={item} colorIcon={colorIcon} />
             ))}
           </ul>
-          <div class="flex-none w-44 flex items-center justify-end gap-2">
+          <div class="flex-none w-fit flex items-center justify-end gap-2">
             <SearchButton colorIcon={colorIcon} />
             <Searchbar searchbar={searchbar} />
             {platform === "vtex" && <CartButtonVTEX />}

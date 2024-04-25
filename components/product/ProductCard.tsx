@@ -1,3 +1,4 @@
+import { useState } from "preact/hooks";
 import type { Platform } from "$store/apps/site.ts";
 import { SendEventOnClick } from "$store/components/Analytics.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
@@ -13,6 +14,10 @@ import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
+import { useUI } from "../../sdk/useUI.ts";
+import ModalProduct from "$store/components/ui/ModalProduct.tsx";
+import Button from "$store/components/ui/Button.tsx";
+import { useSignal } from "@preact/signals";
 
 export interface Layout {
   basics?: {
@@ -73,20 +78,22 @@ function ProductCard({
   platform,
   index,
 }: Props) {
+  const modal = useSignal(false);
   const { url, productID, name, image: images, offers, isVariantOf } = product;
   const idContainer = useId();
-  const id = `product-card-${productID}`;
+  const id = `product-card-${productID}-${idContainer}`;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = isVariantOf?.image ?? [];
-  const { listPrice, price, installments } = useOffer(offers);
+  const { listPrice, price } = useOffer(offers);
   const possibilities = useVariantPossibilities(hasVariant, product);
   const variants = Object.entries(Object.values(possibilities)[0] ?? {});
   const description = JSON.parse(
-    product.description || isVariantOf?.description || "{}"
+    product.description || isVariantOf?.description || "{}",
   );
 
-  console.log(product);
+  const { quantityInstallments } = useUI();
+  const priceInstallments = price ? (price / quantityInstallments.value) : null;
 
   const l = layout;
   const align =
@@ -104,6 +111,14 @@ function ProductCard({
     </li>
   ));
 
+  const openModal = () => {
+    modal.value = true;
+  };
+
+  const closeModal = () => {
+    modal.value = false;
+  };
+
   const cta = (
     <a
       href={url && relative(url)}
@@ -117,16 +132,24 @@ function ProductCard({
   return (
     <div
       id={id}
-      class={`card card-compact group self-start w-full max-w-[360px] min-w-[290px] ${
+      class={`card card-compact group self-start w-full max-w-[300px] lg:max-w-[265px] 2xl:max-w-[360px] min-w-[290px] lg:min-w-[200px] 2xl:min-w-[290px] ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
-          l?.onMouseOver?.card === "Move up" &&
-          "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
-        }
+        l?.onMouseOver?.card === "Move up" &&
+        "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
+      }
       `}
       data-deco="view-product"
     >
+      {modal.value === true  &&
+        (
+          <ModalProduct
+            product={product}
+            isOpen={modal.value}
+            closeModal={closeModal}
+          />
+        )}
       <SendEventOnClick
         id={id}
         event={{
@@ -148,9 +171,7 @@ function ProductCard({
       {/* Image Mobile */}
       <figure
         class="!flex lg:!hidden relative overflow-hidden"
-        style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
-        {/* Product Images */}
         <div class="grid grid-cols-1 grid-rows-1 w-full relative">
           <FlatDiscount
             listPrice={listPrice ?? 0}
@@ -164,55 +185,25 @@ function ProductCard({
           >
             NOVO
           </div>
-
-          <div id={idContainer} class="relative">
-            <Slider class="carousel carousel-center w-full gap-[10px]">
-              <Slider.Item index={0} class="carousel-item w-full">
-                <Image
-                  src={front.url!}
-                  alt={front.alternateName}
-                  width={WIDTH}
-                  height={HEIGHT}
-                  class={`w-full bg-base-100 col-span-full row-span-full rounded-[15px]`}
-                  sizes="(max-width: 640px) 50vw, 20vw"
-                  preload={preload}
-                  loading={preload ? "eager" : "lazy"}
-                  decoding="async"
-                />
-              </Slider.Item>
-              <Slider.Item index={1} class="carousel-item w-full">
-                <Image
-                  src={back?.url ?? front.url!}
-                  alt={back?.alternateName ?? front.alternateName}
-                  width={WIDTH}
-                  height={HEIGHT}
-                  class="w-full bg-base-100 col-span-full row-span-full rounded-[15px]"
-                  sizes="(max-width: 640px) 50vw, 20vw"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </Slider.Item>
-            </Slider>
-
-            {back.url && front.url && (
-              <div class="flex gap-[8px] absolute right-[16px] bottom-[16px]">
-                <Slider.Dot
-                  index={0}
-                  classes="!w-[14px] !h-[14px] !rounded-full !border disabled:!bg-cherry-pop disabled:!border-cherry-pop !bg-transparent !border-[#878787]"
-                >
-                  <></>
-                </Slider.Dot>
-                <Slider.Dot
-                  index={1}
-                  classes="!w-[14px] !h-[14px] !rounded-full !border disabled:!bg-cherry-pop disabled:!border-cherry-pop !bg-transparent !border-[#878787]"
-                >
-                  <></>
-                </Slider.Dot>
-              </div>
-            )}
-
-            <SliderJS rootId={idContainer} />
-          </div>
+          <a
+            href={url && relative(url)}
+            aria-label="view product"
+          >
+          <Image
+            src={front.url!}
+            alt={front.alternateName}
+            width={WIDTH}
+            height={HEIGHT}
+            class={`h-[320px] bg-base-100 col-span-full row-span-full rounded-[15px] object-cover ${l?.onMouseOver?.image == "Zoom image"
+                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                : ""
+              }`}
+            sizes="(max-width: 640px) 50vw, 20vw"
+            preload={preload}
+            loading={preload ? "eager" : "lazy"}
+            decoding="async"
+          />
+        </a>
         </div>
 
         <figcaption
@@ -275,13 +266,12 @@ function ProductCard({
           >
             NOVO
           </div>
-
           <Image
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${
+            class={`cursor-pointer bg-base-100 col-span-full row-span-full rounded-[15px] w-full object-cover ${
               l?.onMouseOver?.image == "Zoom image"
                 ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                 : ""
@@ -294,35 +284,52 @@ function ProductCard({
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && (
             <>
-              <Image
-                src={back?.url ?? front.url!}
-                alt={back?.alternateName ?? front.alternateName}
-                width={WIDTH}
-                height={HEIGHT}
-                class="bg-base-100 col-span-full row-span-full transition-opacity rounded-[15px] w-full opacity-0 lg:group-hover:opacity-100"
-                sizes="(max-width: 640px) 50vw, 20vw"
-                loading="lazy"
-                decoding="async"
-              />
+              <a
+                href={url && relative(url)}
+                aria-label="view product"
+                class="cursor-pointer bg-base-100 col-span-full row-span-full transition-opacity rounded-[15px] w-full opacity-0 lg:group-hover:opacity-100"
+              >
+                <Image
+                  src={back?.url ?? front.url!}
+                  alt={back?.alternateName ?? front.alternateName}
+                  width={WIDTH}
+                  height={HEIGHT}
+                  sizes="(max-width: 640px) 50vw, 20vw"
+                  loading="lazy"
+                  decoding="async"
+                  href={url && relative(url)}
+                  aria-label="view product"
+                />
+              </a>
 
-              {!l?.hide?.cta ? (
-                <div
-                  class={`lg:block hidden absolute bottom-[32px] px-[32px] xl:px-[18px] w-full h-fit opacity-0 group-hover:opacity-100 transition-all duration-300 ${
-                    l?.onMouseOver?.showCta ? "lg:hidden" : ""
-                  }`}
-                >
-                  <AddToCartButtonShopify
-                    url={url || ""}
-                    name={name}
-                    productID={productID}
-                    productGroupID={productGroupID}
-                    price={price}
-                    variant="cta"
-                  />
-                </div>
-              ) : (
-                ""
-              )}
+              {!l?.hide?.cta
+                ? (
+                  <div
+                    class={`lg:block hidden absolute bottom-[32px] px-[32px] xl:px-[18px] w-full h-fit opacity-0 group-hover:opacity-100 transition-all duration-300 ${
+                      l?.onMouseOver?.showCta ? "lg:hidden" : ""
+                    }`}
+                  >
+                    <Button
+                      class={`w-full block bg-white-lily rounded-full px-[32px] xl:px-[18px] py-[14px] border-none text-deep-beauty text-base lg:text-xs 2xl:text-base uppercase font-bold tracking-[0.8px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none transition-all duration-300 content-center`}
+                      onClick={openModal}
+                    >
+                      Adicionar ao Carrinho
+                    </Button>
+                    {
+                      /* <AddToCartButtonShopify
+                      url={url || ""}
+                      name={name}
+                      productID={productID}
+                      productGroupID={productGroupID}
+                      price={price}
+                      variant="cta"
+                    /> */
+                    }
+                  </div>
+                )
+                : (
+                  ""
+                )}
             </>
           )}
         </div>
@@ -346,22 +353,24 @@ function ProductCard({
       </figure>
 
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col pt-[24px]">
+      <div class="flex-auto flex flex-col pt-6 lg:pt-4 2xl:pt-6">
         {/* SKU Selector */}
         {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
           <>
-            {l?.hide?.skuSelector ? (
-              ""
-            ) : (
-              <ul
-                class={`flex items-center gap-2 w-full overflow-auto p-3 ${
-                  align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
-            )}
+            {l?.hide?.skuSelector
+              ? (
+                ""
+              )
+              : (
+                <ul
+                  class={`flex items-center gap-2 w-full overflow-auto p-3 ${
+                    align === "center" ? "justify-center" : "justify-start"
+                  } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                >
+                  {skuSelector}
+                </ul>
+              )}
           </>
         )}
 
@@ -372,7 +381,7 @@ function ProductCard({
             aria-label="view product"
           >
             {/* Category */}
-            <p class="text-[14px] lg:text-[16px] leading-[13px] font-semibold text-[#101820]">
+            <p class="text-sm xl:text-base leading-[13px] font-semibold text-[#101820]">
               {description.category}
             </p>
 
@@ -380,8 +389,8 @@ function ProductCard({
             {l?.hide?.productName ? (
               ""
             ) : (
-              <h2
-                class=" break-words text-[18px] lg:text-[20px] leading-[130%] uppercase font-semibold text-[#101820]"
+              <h3
+                class=" break-words text-lg lg:text-sm xl:text-base 2xl:text-xl leading-[130%] uppercase font-semibold text-[#101820]"
                 dangerouslySetInnerHTML={{
                   __html: isVariantOf?.name ?? name ?? "",
                 }}
@@ -390,34 +399,34 @@ function ProductCard({
           </a>
 
           {/* Prices */}
-          {l?.hide?.allPrices ? (
-            ""
-          ) : (
-            <div class="flex flex-col gap-2">
-              <div
-                class={`flex flex-col gap-2 items-end w-fit ${
-                  l?.basics?.oldPriceSize === "Normal"
-                    ? ""
-                    : "flex-row lg:gap-2"
-                } ${align === "center" ? "justify-center" : "justify-start"}`}
-              >
+          {l?.hide?.allPrices
+            ? (
+              ""
+            )
+            : (
+              <div class="flex flex-col gap-2 lg:gap-1 2xl:gap-2 items-end">
                 <div
-                  class={`text-[14px] font-normal leading-[13px] uppercase line-through text-[#101820] ${
-                    l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                  }`}
+                  class={`flex flex-col gap-2 lg:gap-1 2xl:gap-2 items-end w-fit ${
+                    l?.basics?.oldPriceSize === "Normal"
+                      ? ""
+                      : "flex-row lg:gap-2"
+                  } ${align === "center" ? "justify-center" : "justify-start"}`}
+                >
+                  <div
+                    class={`text-sm leading-none font-normal lg:text-xs 2xl:text-sm uppercase line-through text-[#101820] ${
+                      l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                    }`}
                 >
                   {formatPrice(listPrice, offers?.priceCurrency)}
                 </div>
-                <div class="lg:text-[20px] text-[18px] leading-[20px] uppercase font-bold text-[#CE0F69] ">
+                <div class="2xl:text-xl text-lg lg:text-base leading-none uppercase font-bold text-[#CE0F69] ">
                   {formatPrice(price, offers?.priceCurrency)}
                 </div>
               </div>
-              {l?.hide?.installments ? (
-                ""
-              ) : (
-                <div class="text-[14px] font-normal leading-[13px] uppercase line-through text-[#101820] ">
-                  ou {installments}
-                </div>
+              {l?.hide?.installments && priceInstallments && (
+                <p class="text-sm lg:text-xs 2xl:text-sm text-[#101820] text-end font-medium w-max">
+                  {quantityInstallments.value + "x " + formatPrice(priceInstallments, offers?.priceCurrency)}
+                </p>
               )}
             </div>
           )}
@@ -428,7 +437,7 @@ function ProductCard({
           ""
         ) : (
           <div
-            class="mt-[16px] text-[14px] lg:text-[16px] font-light leading-[150%] text-[#101820]"
+            class="mt-4 lg:mt-2.5 2xl:mt-4 text-sm xl:text-base font-light leading-[150%] text-[#101820]"
             dangerouslySetInnerHTML={{ __html: description.description ?? "" }}
           />
         )}
@@ -436,17 +445,19 @@ function ProductCard({
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (
           <>
-            {l?.hide?.skuSelector ? (
-              ""
-            ) : (
-              <ul
-                class={`flex items-center gap-2 w-full ${
-                  align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
-            )}
+            {l?.hide?.skuSelector
+              ? (
+                ""
+              )
+              : (
+                <ul
+                  class={`flex items-center gap-2 w-full ${
+                    align === "center" ? "justify-center" : "justify-start"
+                  } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
+                >
+                  {skuSelector}
+                </ul>
+              )}
           </>
         )}
       </div>
