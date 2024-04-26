@@ -69,14 +69,14 @@ export default function Contact({ props }: { props: Props }) {
     <div
       class={`flex w-full flex-col ${
         LAYOUT_IMAGE[layout.positionImage]
-      } lg:gap-24 2xl:gap-32`}
+      } lg:gap-16 xl:gap-0`}
     >
       <div
-        class={`flex flex-col gap-8 w-full lg:w-2/4 max-w-[500px] ml-auto py-10 px-6 m-auto justify-center ${
+        class={`flex flex-col gap-6 lg:gap-8 w-full max-w-[500px] ml-auto py-10 px-6 m-auto lg:mr-auto justify-center ${
           LAYOUT_FORM[layout.positionImage]
         }`}
       >
-        <h2 class="text-[26px] lg:text-[40px] font-fraunces font-normal text-deep-beauty">
+        <h2 class="text-[28px] lg:text-[40px] font-fraunces font-normal text-deep-beauty">
           {title}
         </h2>
         <span
@@ -84,7 +84,7 @@ export default function Contact({ props }: { props: Props }) {
           dangerouslySetInnerHTML={{ __html: content }}
         >
         </span>
-        <form class="w-full flex flex-col gap-6 items-center px-2 lg:p-0">
+        <form class="w-full flex flex-col gap-4 lg:gap-5 items-center px-2 lg:p-0">
           <input
             class="h-[56px] input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
             type="text"
@@ -122,7 +122,7 @@ export default function Contact({ props }: { props: Props }) {
           >
           </textarea>
           <button
-            class="btn max-w-[245px] mt-4 px-[24px] w-full  py-[14px] rounded-full border-0 text-white-lily uppercase text-[14px] tracking-[0.7px] font-semibold bg-deep-beauty hover:bg-[#878787] hover:text-deep-beauty"
+            class="btn max-w-44 lg:max-w-[245px] mt-4 px-[24px] w-full py-4  rounded-full border-0 text-white-lily uppercase text-[14px] lg:text-[16px] tracking-[0.7px] font-semibold bg-deep-beauty hover:bg-[#878787] hover:text-deep-beauty"
             type="submit"
           >
             {form.labelButton}
