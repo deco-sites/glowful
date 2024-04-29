@@ -72,11 +72,11 @@ export default function Contact({ props }: { props: Props }) {
       } lg:gap-16 xl:gap-0`}
     >
       <div
-        class={`flex flex-col gap-6 lg:gap-8 w-full max-w-[500px] ml-auto py-10 px-6 m-auto lg:mr-auto justify-center ${
+        class={`flex flex-col gap-6 lg:gap-6 2xl:gap-8 w-full max-w-[500px] ml-auto py-10 px-6 m-auto lg:pt-5 2xl:pt-10 lg:mr-auto justify-center lg:mt-10 2xl:mt-auto ${
           LAYOUT_FORM[layout.positionImage]
         }`}
       >
-        <h2 class="text-[28px] lg:text-[40px] font-fraunces font-normal text-deep-beauty">
+        <h2 class="text-[28px] lg:text-[40px] lg:leading-tight font-fraunces font-normal text-deep-beauty">
           {title}
         </h2>
         <span
@@ -84,23 +84,23 @@ export default function Contact({ props }: { props: Props }) {
           dangerouslySetInnerHTML={{ __html: content }}
         >
         </span>
-        <form class="w-full flex flex-col gap-4 lg:gap-5 items-center px-2 lg:p-0">
+        <form class="w-full flex flex-col gap-4 items-center px-2 lg:p-0">
           <input
-            class="h-[56px] input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
+            class="h-[56px] lg:h-12 input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
             type="text"
             placeholder={form.placeholderName}
             required
           >
           </input>
           <input
-            class="h-[56px] input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
+            class="h-[56px] lg:h-12 input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
             type="email"
             placeholder={form.placeholderEmail}
             required
           >
           </input>
           <select
-            class="h-[56px] select select-primary w-full focus:outline-none bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[#878787] text-[16px] font-redhat"
+            class="h-[56px] lg:h-12 select select-primary w-full focus:outline-none bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[#878787] text-[16px] font-redhat"
             style={{
               backgroundImage: `url(${asset("/icons/down_arrow.svg")})`,
               backgroundSize: "1.5rem auto",
@@ -117,12 +117,12 @@ export default function Contact({ props }: { props: Props }) {
           </select>
           <textarea
             required
-            class="h-[126px] py-2 leading-7 input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
+            class="h-[126px] lg:h-20 py-2 leading-7 input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
             placeholder={form.placeholderText}
           >
           </textarea>
           <button
-            class="btn max-w-44 lg:max-w-[245px] mt-4 px-[24px] w-full py-4  rounded-full border-0 text-white-lily uppercase text-[14px] lg:text-[16px] tracking-[0.7px] font-semibold bg-deep-beauty hover:bg-[#878787] hover:text-deep-beauty"
+            class="btn max-w-44 lg:max-w-[245px] mt-4 px-[24px] w-full py-4  rounded-full border-0 text-white-lily uppercase text-[14px] lg:text-[16px] lg:mt-1 2xl:mt-4 tracking-[0.7px] font-semibold bg-deep-beauty hover:bg-[#878787] hover:text-deep-beauty"
             type="submit"
           >
             {form.labelButton}
