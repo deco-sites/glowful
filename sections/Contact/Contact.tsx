@@ -72,7 +72,7 @@ export default function Contact({ props }: { props: Props }) {
       } lg:gap-16 xl:gap-0`}
     >
       <div
-        class={`flex flex-col gap-6 lg:gap-6 2xl:gap-8 w-full max-w-[500px] ml-auto py-10 px-6 m-auto lg:pt-5 2xl:pt-10 lg:mr-auto justify-center lg:mt-10 2xl:mt-auto ${
+        class={`flex flex-col gap-6 lg:gap-6 2xl:gap-8 w-full max-w-[500px] ml-auto py-10 px-6 m-auto lg:pt-5 2xl:pt-10 lg:mr-auto justify-center lg:mt-10 2xl:mt-14 ${
           LAYOUT_FORM[layout.positionImage]
         }`}
       >
