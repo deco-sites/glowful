@@ -11,12 +11,16 @@ import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { useEffect } from "preact/hooks";
+import Subscriptions from "deco-sites/glowful/components/product/Subscriptions.tsx";
+import { useUI } from "deco-sites/glowful/sdk/useUI.ts";
+import { Discounts } from "$store/loaders/Discounts/Discounts.ts";
 
 export interface Props {
   product: Product;
+  discounts?: Discounts;
 }
 
-function PurchaseOptions({ product }: Props) {
+function PurchaseOptions({ product, discounts }: Props) {
   const platform = "shopify";
 
   const {
@@ -55,6 +59,8 @@ function PurchaseOptions({ product }: Props) {
   return (
     <div class="mt-[32px] sm:mt-[40px] px-[20px] w-full lg:px-0">
       <ProductSelector product={product} />
+
+      <Subscriptions product={product} discounts={discounts} />
 
       <div
         class="mt-[24px] h-[40px]  p-[3px] flex rounded-full bg-[#000]"

@@ -16,6 +16,8 @@ import { useUI } from "../../sdk/useUI.ts";
 import PurchaseOptions from "$store/islands/PurchaseOptions.tsx";
 import FaqProduct from "$store/components/product/FaqProduct.tsx";
 import ProductInfoCarousel from "$store/islands/ProductInfoCarousel.tsx";
+import Subscriptions from "deco-sites/glowful/components/product/Subscriptions.tsx";
+import { Discounts } from "$store/loaders/Discounts/Discounts.ts";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -32,9 +34,11 @@ interface Props {
    * @default "5"
    */
   installments?: number;
+
+  discounts: Discounts;
 }
 
-function ProductInfo({ page, layout, installments = 5 }: Props) {
+function ProductInfo({ page, layout, installments = 5, discounts }: Props) {
   const platform = usePlatform();
 
   const { quantityInstallments, productId } = useUI();
@@ -61,18 +65,19 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
   const discount = price && listPrice ? listPrice - price : 0;
   const descriptionJson = description && JSON.parse(description);
   const inventoryLevel = offers?.offers[0].inventoryLevel.value;
-  const images = product.isVariantOf?.image;
+  const images = product.isVariantOf?.image?.filter(
+    (img) => !img.alternateName?.toLowerCase().includes("unidade")
+  );
 
   const productGroupId = isVariantOf?.productGroupID;
   const parts = productGroupId?.split("/");
   const lastPart = parts[parts.length - 1];
   productId.value = lastPart;
 
-  const tag =
-    isVariantOf?.hasVariant[0].isVariantOf.additionalProperty[0].value;
+  const tag = isVariantOf?.additionalProperty[0].value;
 
   return (
-    <div class="relative flex flex-col  lg:flex-row items-start gap-[24px] md:gap-[50px] xl:gap-[55px] pt-[40px] lg:pt-[70px] md:w-full">
+    <div class="relative flex flex-col  lg:flex-row items-center lg:items-start gap-[24px] md:gap-[45px] xl:gap-[40px] pt-[30px] md:w-full">
       <div class="lg:flex hidden flex-col w-full max-w-[740px]">
         <div class="hidden lg:block">
           <Breadcrumb
@@ -90,13 +95,13 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
         <Breadcrumb itemListElement={breadcrumbList?.itemListElement} />
       </div>
 
-      <div class="flex flex-col sticky top-[80px] sm:max-w-[380px] xl:max-w-[420px] w-full">
+      <div class="flex flex-col sticky top-[80px] sm:max-w-[600px]  lg:max-w-[380px] xl:max-w-[420px] w-full">
         {/* Carousel product - MOBILE */}
         <ProductInfoCarousel product={product} />
 
         {/* Code and name */}
         <div class="px-[24px] lg:px-0 mb-[20px] lg:mb-[24px] mt-[32px] lg:mt-0 flex flex-col gap-[16px] lg:gap-[20px]">
-          <p class="text-[14px] lg:text-[16px]">{tag}</p>
+          {tag && <p class="text-[14px] lg:text-[16px]">{tag}</p>}
 
           <h1>
             <span class="font-bold text-[#000] text-[24px] uppercase mb-[24px]">
@@ -121,7 +126,7 @@ function ProductInfo({ page, layout, installments = 5 }: Props) {
         </div>
 
         {/* Sku Selector */}
-        <PurchaseOptions product={product} />
+        <PurchaseOptions product={product} discounts={discounts} />
 
         {/* FAQ */}
         <div class="block lg:hidden">

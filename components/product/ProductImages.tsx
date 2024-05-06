@@ -9,7 +9,7 @@ export interface Props {
 
 function ProductImages({ images }: Props) {
   const [displayedImages, setDisplayedImages] = useState(
-    images?.slice(0, 4) ?? []
+    images?.slice(0, 4) ?? [] 
   );
 
   const loadMoreImages = () => {
