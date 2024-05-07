@@ -164,7 +164,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
       {/* Desktop Version */}
       <div
-        class={`hidden lg:flex 2xl:min-h-[86px] lg:min-h-[60px] ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover`}
+        class={`shadow-sm idden lg:flex 2xl:min-h-[86px] lg:min-h-[60px] ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover`}
         onMouseEnter={() => {
           displayHover.value = true;
           setDisplayNavbar("visible");
