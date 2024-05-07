@@ -10,9 +10,9 @@ function ChangeQuantityProduct({ inventoryLevel, price }: Props) {
   const { quantityProduct } = useUI();
 
   return (
-    <div class="max-w-[312px] flex justify-between items-center bg-white-lily rounded-full">
+    <div class="w-[105px] flex justify-center items-center bg-white-lily rounded-full">
       <div class="flex items-center gap-[14px] px-[12px]">
-        <button
+        <button 
           onClick={() =>
             (quantityProduct.value =
               quantityProduct.value != 1 ? quantityProduct.value - 1 : 1)

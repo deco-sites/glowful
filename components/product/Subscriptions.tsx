@@ -137,7 +137,7 @@ export default function Subscriptions({ product, discounts }: Props) {
                   <Slider.Item
                     index={index}
                     key={index}
-                    class="carousel-item flex flex-col items-center gap-3 w-[120px]"
+                    class="carousel-item flex flex-col items-center gap-3 w-[120px] "
                   >
                     {images
                       ?.filter((img) =>
@@ -148,7 +148,7 @@ export default function Subscriptions({ product, discounts }: Props) {
                       .map((img) => (
                         <img src={img.url} alt={img.alternateName} />
                       ))}
-                    <p class="text-[14px] text-center">{discount.title}</p>
+                    <p class="text-[14px] text-center h-full">{discount.title}</p>
                     <button
                       class="bg-white-lily rounded-[50px] px-[29px] py-1.5 text-cherry-pop text-[14px] hover:bg-cherry-pop hover:text-white-lily transition-all duration-200"
                       onClick={() =>

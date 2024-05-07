@@ -23,7 +23,7 @@ function VariantSelector({ product }: Props) {
   const { url, isVariantOf } = product;
   const hasVariant = isVariantOf?.hasVariant ?? [];
   const possibilities = useVariantPossibilities(hasVariant, product);
-  const [relativeLinkSabores, setRelativeLinkSabores] = useState<string>();
+  const [handleDropdown, setHandleDropdown] = useState<boolean>(false);
   const { quantityProduct } = useUI();
 
   // Estado para armazenar as opções selecionadas
@@ -38,7 +38,7 @@ function VariantSelector({ product }: Props) {
       });
 
       return initialSelectedOptions;
-    }
+    },
   );
 
   const handleOptionSelect = (name: string, value: string, link: string) => {
@@ -55,28 +55,45 @@ function VariantSelector({ product }: Props) {
           <div className="flex items-center pl-[16px] lg:pl-0">
             <span className="text-[14px] mr-3 lg:mr-[50px]">Sabor:</span>
 
-            <select
-              className="py-[10px] px-[16px] pr-[40px] bg-[#F4F4F4] leading-[1] rounded-[50px] border border-[#CCC] font-bold outline-none text-[#111] select min-w-[160px] h-[42px] min-h-[42px]"
-              value={selectedOptions["Sabor"]?.value || ""}
-              f-partial={relativeLinkSabores}
-              f-client-nav
-              onChange={(e) => {
-                const value = (e.target as HTMLSelectElement).value;
-                const link = possibilities["Sabor"][value];
-                const relativeLink = relative(link);
+            <div class="relative w-fit">
+              <label class=" peer relative flex h-[42px] min-w-[160px] max-w-[300px] flex-row items-center justify-between bg-[#F4F4f4] rounded-[50px] border-2 border-[#CCCCCC] px-[16px] py-[12px] cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={handleDropdown}
+                  name="todo[1]"
+                  class="peer invisible"
+                  onChange={() => setHandleDropdown(true)}
+                />
 
-                if (relativeLink !== undefined) {
-                  setRelativeLinkSabores(relativeLink);
-                  handleOptionSelect("Sabor", value, relativeLink);
-                }
-              }}
-            >
-              {Object.entries(possibilities["Sabor"]).map(([value, link]) => (
-                <option className="font-bold" key={value} value={value}>
-                  {value}
-                </option>
-              ))}
-            </select>
+                <span class="left-0 z-10 -ml-4 mr-[10px] w-full overflow-hidden text-nowrap font-bold before:absolute before:left-0 before:-z-10 before:h-5 before:w-7 before:bg-white">
+                  {selectedOptions["Sabor"]?.value}
+                </span>
+
+                <div class="h-2 w-2 -rotate-45 border-l-2 border-b-2 border-red-500 duration-300 ease-in-out before:absolute before:bottom-0 before:h-2 before:w-2 before:bg-white peer-checked:rotate-[135deg]">
+                </div>
+              </label>
+
+              <div class="absolute top-full hidden w-full flex-col gap-[2px] border-2 border-[#F4F4F4] bg-[#F4F4F4] peer-has-[:checked]:flex">
+                {Object.entries(possibilities["Sabor"]).map(([value, link]) => {
+                  const relativeLink = relative(link);
+
+                  return (
+                    <button
+                      f-partial={relativeLink}
+                      f-client-nav
+                      key={value}
+                      class="text-left font-bold h-full w-full bg-white-lily px-[16px] py-[10px] text-[#878787] hover:bg-[#CE0F69] hover:text-white-lily"
+                      onClick={() => {
+                        handleOptionSelect("Sabor", value, link);
+                        setHandleDropdown(false);
+                      }}
+                    >
+                      {value}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         )}
       </li>
