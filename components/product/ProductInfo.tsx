@@ -16,7 +16,7 @@ import { useUI } from "../../sdk/useUI.ts";
 import PurchaseOptions from "$store/islands/PurchaseOptions.tsx";
 import FaqProduct from "$store/components/product/FaqProduct.tsx";
 import ProductInfoCarousel from "$store/islands/ProductInfoCarousel.tsx";
-import Subscriptions from "deco-sites/glowful/components/product/Subscriptions.tsx";
+import Subscriptions from "./Subscriptions.tsx";
 import { Discounts } from "$store/loaders/Discounts/Discounts.ts";
 
 interface Props {
@@ -66,7 +66,7 @@ function ProductInfo({ page, layout, installments = 5, discounts }: Props) {
   const descriptionJson = description && JSON.parse(description);
   const inventoryLevel = offers?.offers[0].inventoryLevel.value;
   const images = product.isVariantOf?.image?.filter(
-    (img) => !img.alternateName?.toLowerCase().includes("unidade")
+    (img) => !img.alternateName?.toLowerCase().includes("unidade"),
   );
 
   const productGroupId = isVariantOf?.productGroupID;

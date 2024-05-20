@@ -2,7 +2,7 @@ import { ProductDetailsPage } from "apps/commerce/types.ts";
 
 interface Props {
   product?: ProductDetailsPage | null;
-  // adicionar a api no loader secret
+  
   API_ADMIN?: string;
 }
 

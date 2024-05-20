@@ -17,7 +17,9 @@ export default function Subscriptions({ product, discounts }: Props) {
   const { quantityInstallments, quantityProduct, purchaseAvailable } = useUI();
   const [toggleSingle, setToggleSingle] = useState(false);
   const [toggleSubscription, setToggleSubscription] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [toggleAnnualPlan, setToggleAnnualPlan] = useState(false);
+  const [toggleWeekPlan, setToggleWeekPlan] = useState(false);
+  const [handleDropdown, setHandleDropdown] = useState(false);
   const id = useId();
 
   const discountsProduct = discounts.discounts;
@@ -31,7 +33,7 @@ export default function Subscriptions({ product, discounts }: Props) {
   );
 
   const quantityProductsActive = discountsProduct.filter(
-    (discount) => discount.status === "ACTIVE"
+    (discount) => discount.status === "ACTIVE",
   ).length;
 
   return (
@@ -148,14 +150,14 @@ export default function Subscriptions({ product, discounts }: Props) {
                       .map((img) => (
                         <img src={img.url} alt={img.alternateName} />
                       ))}
-                    <p class="text-[14px] text-center h-full">{discount.title}</p>
+                    <p class="text-[14px] text-center h-full">
+                      {discount.title}
+                    </p>
                     <button
                       class="bg-white-lily rounded-[50px] px-[29px] py-1.5 text-cherry-pop text-[14px] hover:bg-cherry-pop hover:text-white-lily transition-all duration-200"
-                      onClick={() =>
-                        (quantityProduct.value = Number(
-                          discount.minimumRequirement
-                        ))
-                      }
+                      onClick={() => (quantityProduct.value = Number(
+                        discount.minimumRequirement,
+                      ))}
                     >
                       {discount.value * 100}% OFF
                     </button>
@@ -171,7 +173,7 @@ export default function Subscriptions({ product, discounts }: Props) {
       {/* SUBSCRIPTIONS */}
       <div class="collapse grid-rows-[42px_0fr]  bg-[#E6E6E6] rounded-[20px]">
         <input
-          class="h-[42px]"
+          class="min-h-[42px] cursor-pointer"
           type="radio"
           name="my-accordion-1"
           checked={toggleSubscription}
@@ -187,7 +189,7 @@ export default function Subscriptions({ product, discounts }: Props) {
               type="radio"
               checked={toggleSubscription}
               name="radio-3"
-              className="radio h-[18px] w-[18px] border-cherry-pop checked:bg-cherry-pop"
+              className="radio h-[18px] w-[18px] border-cherry-pop checked:bg-cherry-pop cursor-pointer"
             />
 
             <p class="text-[14px] sm:text-[16px]">Assine e economize até 20%</p>
@@ -203,16 +205,119 @@ export default function Subscriptions({ product, discounts }: Props) {
           </div>
         </div>
 
-        <div class="collapse-content">
-          <div class="!p-[20px] flex">
-            <p>Lorem ipsum</p>
-          </div>
-        </div>
-
         <div>
-          <p class="w-full text-center py-[14px] text-[12px] text-cherry-pop">
+          <p class="w-full text-center py-[14px] text-[12px] text-cherry-pop border-b border-[#D9D9D9]">
             Edite, pule ou cancele a qualquer momento!
           </p>
+        </div>
+
+        <div
+          class={`collapse-content !p-0 ${
+            toggleSubscription ? "row-start-3" : "row-start-1'"
+          }`}
+        >
+          <div>
+            <div class="px-6 lg:px-7 py-4 lg:py-9 flex flex-col lg:flex-row lg:gap-6 gap-5">
+              <p class="lg:[writing-mode:vertical-lr] lg:rotate-180 border-b lg:border-b-0 lg:border-l border-[#707070] text-center lg:pb-0 lg:pl-2 pb-[5px]">
+                Frequencia
+              </p>
+
+              <div class="flex flex-col lg:gap-[30px] gap-5">
+                <div class="flex gap-2.5 items-center">
+                  <input
+                    type="radio"
+                    checked={toggleAnnualPlan}
+                    name="radio-4"
+                    id="annualPlan"
+                    className="radio h-[18px] w-[18px] border-cherry-pop checked:bg-cherry-pop cursor-pointer"
+                    onClick={() => {
+                      setToggleAnnualPlan(!toggleAnnualPlan);
+                      setToggleWeekPlan(false);
+                    }}
+                  />
+
+                  <div class="flex gap-4 lg:gap-6 items-center">
+                    <label for="annualPlan" class="block w-max cursor-pointer">
+                      <p class="text-[14px] font-bold block w-max">
+                        20% OFF
+                      </p>
+                      <span class="text-[14px] block w-max">
+                        Plano anual
+                      </span>
+                    </label>
+
+                    <p class="text-[12px] block w-full">
+                      Pague em 12x e receba o ano todo. Entregas mensais
+                      Renovado anualmente.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex gap-2.5 items-center">
+                  <input
+                    type="radio"
+                    checked={toggleWeekPlan}
+                    name="radio-5"
+                    id="weekPlan"
+                    className="radio h-[18px] w-[18px] border-cherry-pop checked:bg-cherry-pop cursor-pointer"
+                    onClick={() => {
+                      setToggleWeekPlan(!toggleWeekPlan);
+                      setToggleAnnualPlan(false);
+                    }}
+                  />
+
+                  <label
+                    for="weekPlan"
+                    class="block w-max max-w-[100px] lg:max-w-full cursor-pointer"
+                  >
+                    <p class="text-[14px] font-bold block w-max">
+                      15% OFF
+                    </p>
+                    <span class="text-[14px] block w-full">
+                      Pagamento e entrega a cada:
+                    </span>
+                  </label>
+
+                  <div class="relative w-fit">
+                    <label class=" peer relative flex h-[26px] flex-row items-center justify-between bg-white-lily rounded-[50px] px-[14px] py-[8px] cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={handleDropdown}
+                        name="todo[1]"
+                        class="peer invisible"
+                        onChange={() => setHandleDropdown(true)}
+                      />
+
+                      <span class="left-0 z-10 -ml-4 mr-[10px] w-full overflow-hidden text-nowrap before:absolute before:left-0 before:-z-10 before:h-5 before:w-7 before:bg-white text-[14px]">
+                        30 dias
+                      </span>
+
+                      <div class="h-2 w-2 -rotate-45 border-l-2 border-b-2 border-red-500 duration-300 ease-in-out before:absolute before:bottom-0 before:h-2 before:w-2 before:bg-white peer-checked:rotate-[135deg]">
+                      </div>
+                    </label>
+
+                    <div class="absolute top-full hidden w-full flex-col gap-[2px] bg-white-lily peer-has-[:checked]:flex">
+                      <button
+                        class="text-left font-bold h-full w-full bg-white-lily px-[12px] py-[6px] text-[#878787] hover:bg-[#CE0F69] hover:text-white-lily text-[14px]"
+                        onClick={() => {
+                          setHandleDropdown(false);
+                        }}
+                      >
+                        15 dias
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="w-full text-center py-[14px] text-[12px] text-cherry-pop border-t border-[#D9D9D9]">
+              Dúvidas sobre assinaturas?{" "}
+              <a href="/assinaturas" class="font-semibold underline">
+                Saiba mais.
+              </a>
+            </p>
+          </div>
         </div>
 
         <div class="rounded-[20px] bg-[#F4F4F4] px-[8px] xl:px-[12px] grid grid-cols-3">

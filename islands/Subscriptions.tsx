@@ -1,4 +1,4 @@
-import Component from "$store/components/product/Subscriptions.tsx";
+import Component from "../components/product/Subscriptions.tsx";
 import type { Props } from "$store/components/product/Subscriptions.tsx";
 
 function Island(props: Props) {
