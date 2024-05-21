@@ -53,7 +53,7 @@ export default function ProductInfoCarousel({ product }: Props) {
     <>
       <div
         id={id}
-        class="lg:hidden grid grid-flow-row sm:grid-flow-col relative w-full  self-center"
+        class="lg:hidden grid grid-flow-row sm:grid-flow-col relative w-full  self-center max-w-[320px]"
       >
         <Slider class="carousel carousel-center col-span-full row-span-full gap-0 w-full relative overflow-hidden ">
           {images?.length > 1 && currentImageIndex !== 0 && (
