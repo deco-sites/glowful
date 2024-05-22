@@ -1,7 +1,9 @@
+import { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Props {
     title: string;
     subTitle: string;
+    image: ImageWidget;
 }
 
 export default function HeroSignature({ title, subTitle }: Props) {

@@ -89,12 +89,12 @@ export default function BenefitsCarousel({
               />
               <div class="flex flex-col items-start">
                 <strong
-                  class={`text-[18px] leading-[120%] tracking-[0.9] flex justify-center font-bold items-center text-[${color}]`}
+                  class={`text-base leading-[120%] tracking-[0.9] flex justify-center font-bold items-center text-deep-beauty`}
                 >
                   {benifit?.title}
                 </strong>
                 <span
-                  class={`text-sm lg:text-xs xl:text-sm leading-[120%] tracking-[0.8] uppercase flex justify-center items-center text-[${color}]`}
+                  class={`text-sm lg:text-xs xl:text-sm leading-[120%] tracking-[0.8] uppercase flex justify-center items-center text-deep-beauty`}
                 >
                   {benifit?.description}
                 </span>

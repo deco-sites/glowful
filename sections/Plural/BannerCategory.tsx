@@ -30,7 +30,7 @@ export interface BannerCategory {
 function BannerCategory(props: SectionProps<ReturnType<typeof loader>>) {
   const bannerCategorys = props;
 
-  if (!bannerCategorys) {
+  if (!bannerCategorys.bannerCategory) {
     return null;
   }
 

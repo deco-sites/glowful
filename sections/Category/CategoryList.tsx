@@ -169,7 +169,7 @@ function CategoryList(props: Props) {
                   )}
                 </div>
 
-                <div class="absolute w-full h-full transition-all duration-300 rounded-[20px] lg:group-hover:bg-[#00000050] z-[1]" />
+                <div class="hidden lg:block absolute w-full h-full transition-all duration-300 rounded-[20px] lg:group-hover:bg-[#00000050] z-[1]" />
               </Slider.Item>
             ),
           )}

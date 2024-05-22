@@ -58,7 +58,7 @@ function SearchControls({ filters, displayFilter, sortOptions }: Props) {
         </>
       }
     >
-      <div class="flex flex-col justify-end mb-4 p-4 lg:mb-[40px] lg:p-0 lg:gap-4 lg:flex-row lg:h-[53px]">
+      <div class="flex flex-col justify-end mb-4 p-4 lg:mb-[40px] lg:gap-4 lg:flex-row lg:h-[53px]">
         <div class="flex flex-row items-center justify-center flex-wrap gap-[10px] lg:gap-4">
           <Button
             class={

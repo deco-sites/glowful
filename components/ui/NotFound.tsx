@@ -38,7 +38,7 @@ function NotFound({ highlight, title, description, link, image }: Props) {
         {link.text && link.href && (
           <a
             href={link.href}
-            class="btn px-[40px] py-[20px] border-0 rounded-full uppercase text-[14px] lg:text-[16px] tracking-[1px] font-bold transition-colors duration-300 text-white-lily bg-deep-beauty hover:bg-cherry-pop"
+            class="btn px-[40px] border-0 rounded-full uppercase text-[14px] lg:text-[16px] tracking-[1px] font-bold transition-colors duration-300 text-white-lily bg-deep-beauty hover:bg-cherry-pop"
           >
             {link.text}
           </a>

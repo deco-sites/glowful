@@ -22,7 +22,7 @@ export default function ExtraLinks({ content, logo }: Props) {
             </p>
             {content.map((item) => (
               <a
-                class="link text-[18px] lg:text-[16px] leading-[30px] text-white-lily col-auto lg:before:content-['|'] lg:before:mr-1 lg:before:text-[#878787]"
+                class="link text-[18px] lg:text-[16px] leading-[30px] col-auto lg:before:content-['|'] lg:before:mr-1 text-[#878787]"
                 href={item.href}
               >
                 {item.label}

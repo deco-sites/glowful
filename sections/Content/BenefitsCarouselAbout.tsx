@@ -91,7 +91,7 @@ export default function BenefitsCarouselAbout({
         class={`hidden lg:flex  py-[90px]`}
         style={{ backgroundColor: background }}
       >
-        <div class="container flex flex-wrap justify-center xl:justify-between gap-[40px] carousel carousel-center w-full text-center">
+        <div class="container flex flex-wrap justify-center xl:grid xl:grid-cols-3 gap-[40px] carousel carousel-center w-full text-center xl:max-w-7xl">
           {benifits.map((benifit) => (
             <div class="flex flex-col items-center gap-[24px] w-full max-w-[400px] xl:max-w-[330px]">
               <img

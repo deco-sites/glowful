@@ -48,7 +48,7 @@ const DEFAULT_PROPS = {
 function AboutCategory(props: SectionProps<ReturnType<typeof loader>>) {
   const aboutCategorys = props;
 
-  if (!aboutCategorys) {
+  if (!aboutCategorys.aboutCategory) {
     return null;
   }
 
