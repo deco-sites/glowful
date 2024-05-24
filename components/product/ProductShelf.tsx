@@ -15,6 +15,7 @@ interface Banner {
   imageMobile: ImageWidget;
   imageDesktop: ImageWidget;
   altText?: string;
+  /** @format html */
   text?: string;
   button?: {
     text?: string;
@@ -94,9 +95,7 @@ function ProductShelf({
 
                 <div class="absolute w-full h-full top-0 right-0 flex flex-col justify-end items-center gap-[16px] py-[32px]">
                   {banner?.text && (
-                    <h2 class="text-[32px] font-fraunces font-semibold text-white-lily">
-                      {banner?.text}
-                    </h2>
+                    <h2 class="text-[32px] font-semibold text-white-lily font-banner" dangerouslySetInnerHTML={{ __html: banner?.text }}/>
                   )}
                   {banner?.button && (
                     <a
@@ -199,9 +198,7 @@ function ProductShelf({
 
                     <div class="absolute w-full h-full top-0 right-0 flex flex-col justify-end items-center gap-[16px] py-[32px]">
                       {banner?.text && (
-                        <h2 class="text-[32px] font-fraunces font-semibold text-white-lily">
-                          {banner?.text}
-                        </h2>
+                        <h2 class="text-[32px] font-medium text-white-lily font-banner" dangerouslySetInnerHTML={{ __html: banner?.text }}/>
                       )}
                       {banner?.button && (
                         <a

@@ -59,7 +59,7 @@ export default function ModalProduct({
       {isOpen && (
         <div className="bg-[#111] bg-opacity-50 fixed inset-0 z-50 overflow-y-auto flex items-center justify-center">
           <div
-            className="modal-container bg-[#fff] rounded-[15px] overflow-hidden max-w-4xl w-full mx-4 p-[50px] relative"
+            className="modal-container bg-[#fff] rounded-[15px] overflow-hidden max-w-md lg:max-w-4xl w-full mx-4 p-5 lg:p-[50px] relative"
             style={{ boxShadow: "5px 10px 10px -5px rgba(0, 0, 0, 0.5)" }}
           >
             <div className="modal-header flex justify-between items-center mb-[50px]">
@@ -84,8 +84,8 @@ export default function ModalProduct({
                 </svg>
               </button>
             </div>
-            <div className="modal-body flex gap-[60px]">
-              <div className="w-1/2 relative">
+            <div className="modal-body flex flex-col lg:flex-row gap-5 lg:gap-[60px]">
+              <div className="lg:w-1/2 relative">
                 <Slider class="h-full relative overflow-hidden">
                   {images.length > 1 && currentImageIndex !== 0 && (
                     <Slider.PrevButton
@@ -126,7 +126,7 @@ export default function ModalProduct({
                   {currentImageIndex + 1}/{totalImages}
                 </div>
               </div>
-              <div className="w-1/2 px-4">
+              <div className="mx-3 lg:mx-0 lg:w-1/2 lg:px-4">
                 <PurchaseOptions product={product} />
               </div>
             </div>

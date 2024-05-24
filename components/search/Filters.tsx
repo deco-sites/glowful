@@ -27,14 +27,13 @@ function ValueItem({ url, selected, label, quantity }: FilterToggleValue) {
   return (
     <a href={url} class="flex items-center gap-2">
       <div
-        aria-checked={selected}
-        
+        aria-checked={selected}        
         class="checkbox !rounded-full h-[20px] w-[20px]"
       />
-      <span class="text-[18px] text-[#666]">{label}</span>
-      {quantity > 0 && (
+      <span class="text-[16px] text-[#666]">{label}</span>
+      {/* {quantity > 0 && (
         <span class="text-[18px] text-[#666]">({quantity})</span>
-      )}
+      )} */}
     </a>
   );
 }
@@ -111,7 +110,7 @@ function Filters({ filters }: Props) {
 
       {filters.filter(isRange).map((filter) => (
         <li class="flex flex-col gap-[24px] ">
-          <span class="text-[18px] text-[#1a1a1a] font-bold border-b border-b-[#CCC] p-[8px]">
+          <span class="text-[18px] text-[#1a1a1a] uppercase font-bold border-b border-b-[#CCC] p-[8px]">
             {filter.label}
           </span>
           <FilterRangePrice />
@@ -120,7 +119,7 @@ function Filters({ filters }: Props) {
 
       {filters.filter(isToggle).map((filter) => (
         <li class="flex flex-col gap-[24px]">
-          <span class="text-[18px] text-[#1a1a1a] font-bold border-b border-b-[#CCC] p-[8px]">
+          <span class="text-[18px] text-[#1a1a1a] uppercase font-bold border-b border-b-[#CCC] p-[8px]">
             {filter.label}
           </span>
           <FilterValues {...filter} />

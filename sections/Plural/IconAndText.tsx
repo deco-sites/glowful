@@ -80,7 +80,7 @@ export default function ImageAndText(props: SectionProps<ReturnType<typeof loade
                   <div class="hidden lg:flex items-start gap-6 lg:max-w-[260px] 2xl:max-w-[335px]" style={{ width: "calc(50% - 1rem)" }}>
                     <img src={benefit.image} width={32} height={32} alt={benefit.title} loading="lazy"/>
                     <div class="flex flex-col gap-[16px]">
-                      <h3 class="xl:text-[22px] font-semibold tracking-[1.1px] leading-[130%] text-deep-beauty text-base">
+                      <h3 class="xl:text-[20px] font-semibold tracking-[1.1px] leading-[130%] text-deep-beauty text-base">
                         {benefit.title}
                       </h3>
                       <p class="xl:text-[16px] text-deep-beauty leading-[140%] text-sm">

@@ -133,7 +133,7 @@ export default function Popup({
     <>
       <PopupIcon
         discountButton={discountButton}
-        position="right-[16px] bottom-[28px] lg:right-[24px] lg:bottom-[30px]"
+        position="left-[20px] bottom-[90px]"
       />
       <div
         className={`w-full h-full fixed top-0 left-0 z-50 bg-[#00000050] ${

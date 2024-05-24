@@ -39,7 +39,7 @@ function NavItem({
                   <span>{node.name}</span>
                 </p>
 
-                <ul class="flex flex-col gap-2.5 mt-2.5 2xl:gap-6 2xl:mt-6">
+                <ul class="flex flex-col gap-2.5 mt-2.5 2xl:mt-6">
                   {node.children?.map((leaf) => (
                     <li>
                       <a class="" href={leaf.url}>
@@ -54,7 +54,7 @@ function NavItem({
             ))}
           </ul>
 
-          <div class="flex gap-4 2xl:gap-8 w-1/2 justify-end">
+          <div class="flex gap-4 2xl:gap-8 w-1/2">
             {image &&
               image.map((image: any) => (
                 <Image
@@ -63,7 +63,7 @@ function NavItem({
                   width={280}
                   height={320}
                   loading="lazy"
-                  class={`w-[calc(50%-8px)] max-w-[280px]`}
+                  class={`w-[calc(50%-8px)] max-w-[280px] max-h-[330px]`}
                 />
               ))}
           </div>

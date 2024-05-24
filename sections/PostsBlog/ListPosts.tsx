@@ -91,14 +91,14 @@ function ListPosts({
       id={id}
       class="py-[60px] lg:py-12 2xl:py-[90px] lg:ml-[5%] flex lg:items-start flex-col gap-8 2xl:gap-[75px] text-base-content"
     >
-      <div class="flex flex-col lg:flex-row items-center gap-[4px] lg:pl-8 lg:gap-[24px]">
+      <div class="flex flex-col lg:flex-row items-baseline gap-[4px] pl-6 lg:pl-8 lg:gap-[24px]">
         <h2 class="text-deep-beauty text-[24px] lg:text-[28px] 2xl:text-[36px] uppercase tracking-[1.2px] font-bold text-left">
           {title}
         </h2>
         <a
           href={url}
           target="_blank"
-          class="text-[#878787] text-[16px] lg:text-[20px] font-semibold tracking-[1.2px] lg:text-center border-b-[1px] lg:border-b-none"
+          class="text-[#878787] text-[16px] lg:text-[20px] tracking-[1.2px] lg:text-center border-b-[1px] lg:border-b-none"
         >
           {blogText}
         </a>
@@ -120,7 +120,7 @@ function ListPosts({
             <Slider.Item
               index={index}
               key={index}
-              class="bg-[#f4f4f4] m-[8px] max-w-[274px] lg:max-w-[330px] 2xl:max-w-[380px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
+              class="bg-[#f4f4f4] m-[8px] max-w-[274px] lg:max-w-[330px] 2xl:max-w-[380px] max-h-[500px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
             >
               <a
                 aria-label={`Link para a página do post ${post?.title?.rendered}`}
@@ -149,7 +149,7 @@ function ListPosts({
                 </figure>
               </a>
               <div class="w-full flex flex-col py-[24px] px-[16px] lg:p-5 2xl:p-[32px] gap-[10px]">
-                <span class="text-deep-beauty text-[18px] tracking-[1.2px] font-bold">
+                <span class="text-deep-beauty text-[16px] tracking-[1.2px] font-bold">
                   Categoria
                 </span>
                 <a
@@ -157,11 +157,11 @@ function ListPosts({
                   class="gap-[10px]"
                   target="_blank"
                 >
-                  <h3 class="text-deep-beauty text-[22px] lg:text-[28px] font-[400] mb-[16px]">
+                  <h3 class="text-deep-beauty text-[22px] lg:text-[28px] font-[400] mb-[16px] font-fraunces">
                     {post?.title?.rendered}
                   </h3>
                   <div
-                    class="text-[14px]"
+                    class="text-[14px] line-clamp-3"
                     dangerouslySetInnerHTML={{
                       __html: (post?.content?.rendered).slice(0, 120),
                     }}

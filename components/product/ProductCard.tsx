@@ -189,21 +189,31 @@ function ProductCard({
             href={url && relative(url)}
             aria-label="view product"
           >
-          <Image
-            src={front.url!}
-            alt={front.alternateName}
-            width={WIDTH}
-            height={HEIGHT}
-            class={`h-[320px] bg-base-100 col-span-full row-span-full rounded-[15px] object-cover ${l?.onMouseOver?.image == "Zoom image"
-                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                : ""
-              }`}
-            sizes="(max-width: 640px) 50vw, 20vw"
-            preload={preload}
-            loading={preload ? "eager" : "lazy"}
-            decoding="async"
-          />
-        </a>
+            <Image
+              src={front.url!}
+              alt={front.alternateName}
+              width={WIDTH}
+              height={HEIGHT}
+              class={`h-[320px] bg-base-100 col-span-full row-span-full rounded-[15px] object-cover ${l?.onMouseOver?.image == "Zoom image"
+                  ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+                  : ""
+                }`}
+              sizes="(max-width: 640px) 50vw, 20vw"
+              preload={preload}
+              loading={preload ? "eager" : "lazy"}
+              decoding="async"
+            />
+          </a>
+          <div
+            class={`absolute bottom-5 right-5`}
+          >
+            <Button
+              class={`bg-white-lily rounded-full border-none text-deep-beauty`}
+              onClick={openModal}
+            >
+              +
+            </Button>
+          </div>
         </div>
 
         <figcaption
@@ -381,7 +391,7 @@ function ProductCard({
             aria-label="view product"
           >
             {/* Category */}
-            <p class="text-sm xl:text-base leading-[13px] font-semibold text-[#101820]">
+            <p class="text-sm leading-[13px] font-semibold text-[#101820]">
               {description.category}
             </p>
 
@@ -390,7 +400,7 @@ function ProductCard({
               ""
             ) : (
               <h3
-                class=" break-words text-lg lg:text-sm xl:text-base 2xl:text-xl leading-[130%] uppercase font-semibold text-[#101820]"
+                class=" break-words text-lg lg:text-sm leading-[130%] uppercase font-semibold text-[#101820]"
                 dangerouslySetInnerHTML={{
                   __html: isVariantOf?.name ?? name ?? "",
                 }}
@@ -437,7 +447,7 @@ function ProductCard({
           ""
         ) : (
           <div
-            class="mt-4 lg:mt-2.5 2xl:mt-4 text-sm xl:text-base font-light leading-[150%] text-[#101820]"
+            class="mt-4 lg:mt-2.5 2xl:mt-4 text-xs font-light leading-[150%] text-[#101820]"
             dangerouslySetInnerHTML={{ __html: description.description ?? "" }}
           />
         )}

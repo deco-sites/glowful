@@ -233,7 +233,7 @@ function Footer({
 
                 <div class="mt-[40px] mb-[64px] lg:flex lg:m-0 lg:h-full lg:items-end">
                   {details && (
-                    <p class="text-[14px] leading-[150%] text-[#E4E4E4]">
+                    <p class="text-[14px] leading-[150%] text-[#878787]">
                       {details}
                     </p>
                   )}

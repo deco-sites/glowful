@@ -31,35 +31,35 @@ const applySort = (e: JSX.TargetedEvent<HTMLSelectElement, Event>) => {
 export type Props = Pick<ProductListingPage, "sortOptions">;
 
 const portugueseMappings = {
+  "relevance:desc": "Relevância",
+  "release:desc": "Lançamento",
   "best:asc": "Melhor avaliado",
   "news:desc": "Mais novos",
-  "name:asc": "Nome:Asc",
-  "name:desc": "Nome:Desc",
-  "price:asc": "Preço:Asc",
-  "price:desc": "Preço:Desc",
-  "relevance:desc": "Relevância:Desc",
-  "release:desc": "Lançamento:Desc",
-  "orders:desc": "Pedidos:Desc"
+  "name:asc": "Nome: A-Z",
+  "name:desc": "Nome: Z-A",
+  "price:asc": "Preço: menor",
+  "price:desc": "Preço: maior"
 };
 
 function Sort({ sortOptions }: Props) {
   const sort = useSort();
-  const [isAscending, setIsAscending] = useState(sort.includes("ascending"));
+  // const [isAscending, setIsAscending] = useState(sort.includes("ascending"));
 
-  const invertSort = () => {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const currentSort = urlSearchParams.get(SORT_QUERY_PARAM);
+  // const invertSort = () => {
+  //   const urlSearchParams = new URLSearchParams(window.location.search);
+  //   const currentSort = urlSearchParams.get(SORT_QUERY_PARAM);
 
-    if (currentSort) {
-      const isAscending = currentSort.includes("ascending");
-      const newSort = isAscending
-        ? currentSort.replace("ascending", "descending")
-        : currentSort.replace("descending", "ascending");
-      urlSearchParams.set(SORT_QUERY_PARAM, newSort);
-      window.location.search = urlSearchParams.toString();
-      setIsAscending(!isAscending);
-    }
-  };
+  //   if (currentSort) {
+  //     const isAscending = currentSort.includes("ascending");
+  //     const newSort = isAscending
+  //       ? currentSort.replace("ascending", "descending")
+  //       : currentSort.replace("descending", "ascending");
+  //     urlSearchParams.set(SORT_QUERY_PARAM, newSort);
+  //     window.location.search = urlSearchParams.toString();
+  //     setIsAscending(!isAscending);
+  //   }
+  // };
+  const sortFilter = sortOptions
 
   return (
     <>
@@ -76,7 +76,7 @@ function Sort({ sortOptions }: Props) {
               portugueseMappings[label as keyof typeof portugueseMappings] ??
               label,
           }))
-          .filter(({ label }) => label)
+          .filter(({ label }) => label !== "orders:desc")
           .map(({ value, label }) => (
             <option key={value} value={value} selected={value === sort}>
               <span class="text-sm">{label}</span>
@@ -84,7 +84,7 @@ function Sort({ sortOptions }: Props) {
           ))}
       </select>
 
-      <button class="ml-[24px]" onClick={invertSort}>
+      {/* <button class="ml-[24px]" onClick={invertSort}>
         <img
           loading="lazy"
           width="24"
@@ -97,7 +97,7 @@ function Sort({ sortOptions }: Props) {
             isAscending ? "" : "rotate-180"
           } transition-all duration-300 `}
         />
-      </button>
+      </button> */}
     </>
   );
 }

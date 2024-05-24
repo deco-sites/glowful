@@ -179,31 +179,31 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               <a
                 href="/"
                 aria-label="Store logoBranco && logoPreto"
-                class="block px-4 py-3 w-[160px]"
+                class="block px-4 py-3 w-48"
               >
                 <Image
                   src={logoBranco.src}
                   alt={logoBranco.alt}
-                  width={126}
-                  height={16}
-                  class={
+                  width={192}
+                  height={28}
+                  class={                    
                     displayTop.value === true &&
                     displayHover.value === false &&
                     pathname === "/"
-                      ? ""
+                      ? "w-48"
                       : "hidden"
                   }
                 />
                 <Image
                   src={logoPreto.src}
                   alt={logoPreto.alt}
-                  width={126}
-                  height={16}
+                  width={192}
+                  height={28}
                   class={
                     displayTop.value === false ||
                     displayHover.value === true ||
                     pathname !== "/"
-                      ? ""
+                      ? "w-48"
                       : "hidden"
                   }
                 />

@@ -54,7 +54,7 @@ const DEFAULT_PROPS = {
 function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
   const imageAndIcons = props;
 
-  if (!imageAndIcons) {
+  if (!imageAndIcons.imageAndIcon) {
     return null;
   }
 

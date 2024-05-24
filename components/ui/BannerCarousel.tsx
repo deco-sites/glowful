@@ -16,15 +16,12 @@ export interface Banner {
   mobile: ImageWidget;
   /** @description Image's alt text */
   alt: string;
+  contentAlignment?: "Left" | "Center" | "Right";
+  /** @format html */
+  bannerContent: string;
   action?: {
     /** @description when user clicks on the image, go to this link */
     href: string;
-    /** @description Image text title */
-    title: string;
-    /** @description Text highlight */
-    highlight: string;
-    /** @description Image text subtitle */
-    subTitle: string;
     /** @description Button label */
     label: string;
   };
@@ -89,7 +86,7 @@ const DEFAULT_PROPS = {
 };
 
 function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
-  const { alt, mobile, desktop, action } = image;
+  const { alt, mobile, desktop, action, contentAlignment, bannerContent } = image;
 
   return (
     <a
@@ -120,16 +117,12 @@ function BannerItem({ image, lcp }: { image: Banner; lcp?: boolean }) {
         />
       </Picture>
       {action && (
-        <div class="absolute h-min top-0 bottom-0 m-auto left-0 sm:right-auto sm:left-[12%] max-h-min w-screen max-w-[284px] flex flex-col p-6">
-          <h1 class="text-[#FFF] text-[32px] lg:text-[44px] 2xl:text-[60px] font-normal leading-[100%]">
-            {action.title}
-          </h1>
-          <p class="text-[#FFF] font-bold font-fraunces italic text-[32px] lg:text-[44px] 2xl:text-[60px] leading-[100%]">
-            {action.highlight}
-          </p>
-          <p class="text-[#FFF] text-[20px] lg:text-[26px] 2xl:text-[32px] sm:leading-[130%] leading-6 font-normal my-[30px] 2xl:mb-[60px]">
-            {action.subTitle}
-          </p>
+        <div class={`absolute h-min top-0 bottom-0 m-auto left-0 max-h-min w-screen max-w-[284px] flex flex-col p-6
+          ${contentAlignment === "Left" ? "sm:right-auto sm:left-[12%]" : ""}
+          ${contentAlignment === "Center" ? "sm:right-[12%] sm:left-[12%]" : ""}
+          ${contentAlignment === "Right" ? "sm:right-[10%] sm:left-auto" : ""}
+        `}>
+          <div class="text-[#FFF] text-[32px] lg:text-[44px] 2xl:text-[60px] leading-[100%] banner-text" dangerouslySetInnerHTML={{ __html: bannerContent }}/>
           <Button class="bg-white-lily rounded-full border-none text-deep-beauty text-sm uppercase font-bold tracking-[1px] hover:bg-cherry-pop  hover:text-white-lily hover:border-none">
             {action.label}
           </Button>

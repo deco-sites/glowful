@@ -35,7 +35,7 @@ export default function ImageAndText(props: Props) {
   };
 
   return (
-    <div class="container ">
+    <div class="container xl:max-w-7xl">
       <div
         class={`lg:py-[90px] lg:card lg:card-side lg:rounded-none rounded flex justify-between flex-col ${
           styles?.invertImage ? "lg:flex-row-reverse" : "lg:flex-row"

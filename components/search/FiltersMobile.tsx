@@ -118,12 +118,12 @@ function FiltersMobile({ filters }: Props) {
                     aria-checked={item.selected ? true : false}
                     class="checkbox !rounded-full h-[20px] w-[20px]"
                   />
-                  <span class="text-[18px] text-[#666]">{item.label}</span>
-                  {item.quantity > 0 && (
+                  <span class="text-[16px] text-[#666]">{item.label}</span>
+                  {/* {item.quantity > 0 && (
                     <span class="text-[18px] text-[#666]">
                       ({item.quantity})
                     </span>
-                  )}
+                  )} */}
                 </button>
               ))}
             </div>
