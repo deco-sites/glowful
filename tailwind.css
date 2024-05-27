@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base { 
+  /* .checkbox-primary:checked {
+    background-color: #f0f; 
+    border-color: #f0f;
+  }
+  .checkbox-primary {
+    border-radius: 50%; 
+  } */
+
   .textArea h2 {
     font-size: 18px;
     margin-bottom: 24px;

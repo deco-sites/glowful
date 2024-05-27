@@ -16,6 +16,7 @@ const displayPopup = signal(false);
 const quantityProduct = signal(1);
 const quantityInstallments = signal(5);
 const productId = signal({});
+const purchaseAvailable = signal(false);
 
 const state = {
   displayCart,
@@ -29,6 +30,7 @@ const state = {
   quantityProduct,
   productId,
   quantityInstallments,
+  purchaseAvailable,
 };
 
 // Keyboard event listeners

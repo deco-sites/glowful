@@ -4,8 +4,9 @@
 
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
-import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
-import * as $$$1 from "./loaders/List/Sections.tsx";
+import * as $$$0 from "./loaders/Discounts/Discounts.ts";
+import * as $$$1 from "./loaders/Layouts/ProductCard.tsx";
+import * as $$$2 from "./loaders/List/Sections.tsx";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Contact/Contact.tsx";
@@ -69,8 +70,9 @@ import * as $$$$$$59 from "./sections/VideoWise/VideoWise.tsx";
 
 const manifest = {
   "loaders": {
-    "deco-sites/glowful/loaders/Layouts/ProductCard.tsx": $$$0,
-    "deco-sites/glowful/loaders/List/Sections.tsx": $$$1,
+    "deco-sites/glowful/loaders/Discounts/Discounts.ts": $$$0,
+    "deco-sites/glowful/loaders/Layouts/ProductCard.tsx": $$$1,
+    "deco-sites/glowful/loaders/List/Sections.tsx": $$$2,
   },
   "sections": {
     "deco-sites/glowful/sections/Category/CategoryBanner.tsx": $$$$$$0,
