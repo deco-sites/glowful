@@ -2,6 +2,7 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import DescriptionAboutCategory from "$store/islands/DescriptionAboutCategory.tsx";
 import type { SectionProps } from "deco/types.ts";
+import { h } from "preact";
 
 export interface AboutCategory {
   /** @description RegExp to enable this banner on the current URL. Use /feminino/* to display this banner on feminino category  */
@@ -52,11 +53,15 @@ function AboutCategory(props: SectionProps<ReturnType<typeof loader>>) {
     return null;
   }
 
+  if (aboutCategorys.isFiltered.toString() !== "") {
+    return null;
+  }
+
   const { aboutCategory } = aboutCategorys;
   const { title, descriptionOne, descriptionTwo, image } = aboutCategory;
 
   return (
-    <div class="container max-w-[1240px] bg-[#F4f4f4] rounded flex flex-col lg:gap-[20px] xl:gap-[30px] pb-[40px] lg:pb-[40px] xl:pb-[60px] xl:pt-[30px]  xl:px-[60px] lg:my-[80px]">
+    <div class="container max-w-full xl:max-w-[1240px] bg-[#F4f4f4] rounded flex flex-col lg:gap-[20px] xl:gap-[30px] pb-[40px] lg:pb-[40px] xl:pb-[60px] xl:pt-[30px]  xl:px-[60px] lg:my-[80px]">
       {title && (
         <div
           class="hidden lg:block pt-[32px] pb-[24px] textHighlightBannerCategory text-[24px] lg:text-[36px] text-center lg:text-start leading-[140%] font-fraunces tracking-[1.8px] font-semibold text-deep-beauty "
@@ -86,7 +91,7 @@ function AboutCategory(props: SectionProps<ReturnType<typeof loader>>) {
         )}
         {title && (
           <div
-            class="block lg:hidden pt-[32px] pb-[24px] textHighlightBannerCategory text-[24px] lg:text-[36px] text-center lg:text-start leading-[140%] font-fraunces tracking-[1.8px] font-semibold text-deep-beauty "
+            class="block lg:hidden pt-[32px] pb-[24px] px-[24px] lg:px-0 textHighlightBannerCategory text-[24px] lg:text-[36px] text-center lg:text-start leading-[140%] font-fraunces lg:tracking-[1.8px] font-semibold text-deep-beauty "
             dangerouslySetInnerHTML={{ __html: title }}
           />
         )}
@@ -110,8 +115,10 @@ export const loader = (props: Props, req: Request) => {
   const aboutCategory = aboutCategorys.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
+  const url = new URL(req.url);
+  const isFiltered = new URLSearchParams(url.search);
 
-  return { aboutCategory };
+  return { aboutCategory, isFiltered };
 };
 
 export default AboutCategory;

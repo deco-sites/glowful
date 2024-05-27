@@ -53,7 +53,7 @@ function PurchaseOptions({ product }: Props) {
   }, []);
 
   return (
-    <div class="mt-[32px] sm:mt-[40px] px-[20px] w-full lg:px-0">
+    <div class="mt-[32px] sm:mt-[40px] w-full lg:px-0">
       <ProductSelector product={product} />
 
       <div

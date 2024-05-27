@@ -50,7 +50,7 @@ function VariantSelector({ product }: Props) {
       <li className="flex items-center gap-2">
         {/* Renderizar sabor */}
         {possibilities["Sabor"] && (
-          <div className="flex items-center pl-[16px] lg:pl-0">
+          <div className="flex items-center lg:pl-0">
             <span className="text-[14px] mr-3 lg:mr-[50px]">Sabor:</span>
             <select
               className="py-[10px] px-[16px] pr-[40px] bg-[#F4F4F4] leading-[1] rounded-[50px] border border-[#CCC] font-bold outline-none text-[#111] select min-w-[160px] h-[42px] min-h-[42px]"
@@ -74,7 +74,7 @@ function VariantSelector({ product }: Props) {
       </li>
 
       {/* Renderizar tamanho */}
-      <li className="flex items-center gap-2 pl-[16px] lg:pl-0 w-fit">
+      <li className="flex items-center gap-2 lg:pl-0 w-fit">
         {possibilities["Tamanho"] && (
           <div className="flex flex-col lg:flex-row gap-[16px] lg:gap-[14px]">
             <span className="text-[14px] lg:text-[16px] mr-2">Tamanho:</span>

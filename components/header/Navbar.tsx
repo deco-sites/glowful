@@ -7,6 +7,7 @@ import CartButtonVDNA from "$store/islands/Header/Cart/vnda.tsx";
 import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import CartButtonWake from "$store/islands/Header/Cart/wake.tsx";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
+import SearchBar from "$store/components/search/Searchbar.tsx"
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
@@ -46,7 +47,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
     const updateScrollDirection = () => {
       const scrollY = window.scrollY;
-      if (scrollY > lastScrollY) {
+      if (scrollY > lastScrollY+5) {
         scrollDirection.value = "down";
         setDisplayNavbar("invisible");
       } else if (scrollY < lastScrollY) {
@@ -82,7 +83,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
   let colorIcon = logoBranco.textColor ?? "#FFF";
   let backgroundColor;
 
-  if (displayTop.value) {
+  if (displayTop.value && !displayHover.value) {
     logo = logoBranco;
     colorIcon = logoBranco.textColor ?? "#FFF";
     backgroundColor = "";
@@ -164,12 +165,10 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
       {/* Desktop Version */}
       <div
-        class={`hidden lg:flex 2xl:min-h-[86px] lg:min-h-[60px] ${displayNavbar} bg-[${backgroundColor}] hover:bg-white-lily hover:visible group/hover`}
+        class={`lg:flex 2xl:min-h-[86px] lg:min-h-[60px] ${displayNavbar} ${displayHover.value ? "visible" : "hidden"} bg-[${backgroundColor}] hover:visible nav-bar`}
         onMouseEnter={() => {
-          displayHover.value = true;
           setDisplayNavbar("visible");
         }}
-        onMouseLeave={() => (displayHover.value = false)}
       >
         <div
           class={`container 2xl:min-h-[86px] w-[95%] px-2 xl:px-9 mx-auto xl:max-w-[1408px] lg:min-h-[60px] inis flex flex-row justify-between items-center z-[999] h-full`}
@@ -215,9 +214,8 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               <NavItem item={item} colorIcon={colorIcon} />
             ))}
           </ul>
-          <div class="flex-none w-fit flex items-center justify-end gap-2">
-            <SearchButton colorIcon={colorIcon} />
-            <Searchbar searchbar={searchbar} />
+          <div class="flex-none w-fit flex items-center justify-end gap-2">            
+            <SearchBar props={searchbar} colorIcon={colorIcon}/>
             {platform === "vtex" && <CartButtonVTEX />}
             {platform === "vnda" && <CartButtonVDNA />}
             {platform === "wake" && <CartButtonWake />}
@@ -232,7 +230,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
                 id="User"
                 size={24}
                 strokeWidth={0.4}
-                class={`text-[${colorIcon}] group-hover/hover:text-[#101820]`}
+                class={`${displayHover.value !== false ? "text-[#101820]" : `text-[${colorIcon}]`}`}
               />
             </a>
           </div>

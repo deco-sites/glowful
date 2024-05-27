@@ -18,7 +18,7 @@ function CartButton({ loading, currency, total, items, colorIcon }: {
   items: AnalyticsItem[];
   colorIcon: string;
 }) {
-  const { displayCart, displayTop } = useUI();
+  const { displayCart, displayTop, displayHover } = useUI();
   const totalItems = items.length;
 
   const onClick = () => {
@@ -51,7 +51,7 @@ function CartButton({ loading, currency, total, items, colorIcon }: {
           id="ShoppingCart"
           size={24}
           strokeWidth={2}
-          class={`text-[${colorIcon}] group-hover/hover:text-[#101820]`}
+          class={`${displayHover.value !== false ? "text-[#101820]" : `text-[${colorIcon}]`}`}
         />
       </Button>
     </div>

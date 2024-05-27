@@ -234,3 +234,21 @@
   font-weight: bold;
   font-style: italic;
 }
+
+.checkmark {
+  transform: rotate(45deg);
+  height: 12px;
+  width: 6px;
+  margin: 1px auto 0 auto;
+  border-bottom: 3px solid #fff;
+  border-right: 3px solid #fff;
+}
+
+.nav-bar:has(.nav-item:hover) {
+  background-color: #fff;
+}
+
+/* .nav-bar:has(.nav-element:hover) {
+  color: black;
+  background-color: black;
+} */

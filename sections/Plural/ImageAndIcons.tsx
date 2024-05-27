@@ -58,6 +58,10 @@ function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
     return null;
   }
 
+  if (!imageAndIcons.isFiltered) {
+    return null;
+  }
+
   const { imageAndIcon } = imageAndIcons;
   const { subTitle, title, image, benefits } = imageAndIcon;
 
@@ -136,7 +140,9 @@ export const loader = (props: Props, req: Request) => {
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
-  return { imageAndIcon };
+  const isFiltered = new URLPattern({ pathname: "/*?filter" }).test(req.url)
+
+  return { imageAndIcon, isFiltered };
 };
 
 export default ImageAndIcons;
