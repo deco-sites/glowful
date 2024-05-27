@@ -44,16 +44,16 @@ export interface Props {
 }
 
 function Searchbar({
-  placeholder = "O que você está procurando?",
-  action = "/s",
-  name = "q",
-  popularSearch,
-}: Props) {
+  props,
+  colorIcon = "#FFF"
+}: {props: Props , colorIcon: string}) {
+  const {placeholder = "Buscar", action = "/s", name = "q", popularSearch} = props
   const id = useId();
-  const { displaySearchPopup, displaySearchDrawer, quantityInstallments } =
+  const { displaySearchPopup, displaySearchDrawer, quantityInstallments, displayHover } =
     useUI();
-
+  
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchResultsRef = useRef<HTMLInputElement>(null);
   const [dataSuggestions, setDataSuggestions] = useState([]);
   const [dataProducts, setDataProducts] = useState({
     categories: [],
@@ -137,10 +137,34 @@ function Searchbar({
     }
   }
 
+  function hideResults(ref) {
+    useEffect(() => {
+      function handleOutsideClick(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          ref.current.style.display="none"
+        }
+      }
+      document.addEventListener("click", handleOutsideClick);
+      return () => {
+        document.removeEventListener("click", handleOutsideClick);
+      };
+    }, []);
+    return ref;
+  }
+
+  hideResults(searchResultsRef);
+
+  function showDisplay() {
+    displayHover.value = true
+    if(searchResultsRef.current) {
+      searchResultsRef.current.style.display="block"
+    }
+  }
+
   return (
-    <div class="w-full grid gap-8 px-4 lg:p-10 lg:rounded-b-[8px] py-6 overflow-y-hidden lg:h-fit lg:max-w-[1130px]">
+    <div class="w-full grid gap-8 px-4 py-6 lg:p-0 lg:rounded-b-[8px] overflow-y-hidden lg:h-fit">
       <div class="flex">
-        <form id={id} action={action} class="join border w-full">
+        <form id={id} action={action} class={`join border w-full ${displayHover.value !== false ? "border-deep-beauty" : `border-[${colorIcon}]`}`}>
           <Button
             type="submit"
             class="join-item btn-square bg-transparent border-none"
@@ -148,13 +172,14 @@ function Searchbar({
             for={id}
             tabIndex={-1}
           >
-            <Icon id="MagnifyingGlass" size={24} strokeWidth={0.01} />
+            <Icon id="MagnifyingGlass" size={24} strokeWidth={0.01} class={`${displayHover.value !== false ? "text-[#101820]" : `text-[${colorIcon}]`}`} />
           </Button>
           <input
             ref={searchInputRef}
             id="search-input"
-            class="input join-item flex-grow pl-0"
+            class={`input join-item flex-grow pl-0 bg-transparent ${displayHover.value !== false ? "placeholder:text-deep-beauty" : `placeholder:text-[${colorIcon}]`}`}
             name={name}
+            onFocus={showDisplay}
             onChange={(e) => handleSearch(e.currentTarget.value)}
             onInput={(e) => {
               const value = e.currentTarget.value;
@@ -189,7 +214,10 @@ function Searchbar({
       {dataSuggestions.length > 0 ||
       dataProducts.items?.length > 0 ||
       dataProducts.categories?.length > 0 ? (
-        <div class="overflow-x-scroll lg:overflow-hidden h-[calc(100vh-130px)] md:h-fit">
+        <div 
+          class="overflow-x-scroll lg:overflow-hidden h-[calc(100vh-130px)] lg:right-0 lg:top-[94px] 2xl:top-[120px] lg:absolute lg:bg-white-lily md:h-fit lg:p-5"
+          ref={searchResultsRef}
+        >
           <div class="flex gap-[30px] md:gap-[30px] xl:gap-[60px] lg:justify-between">
             <div class="flex flex-col gap-[30px] md:gap-[40px] w-full md:max-w-[240px]">
               {dataSuggestions.length > 0 && (

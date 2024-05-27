@@ -10,15 +10,20 @@ function NavItem({
   item: SiteNavigationElement;
   colorIcon: string;
 }) {
-  const { displayTop } = useUI();
+  const { displayTop, displayHover } = useUI();
   const { url, name, children } = item;
   const image = item?.image;
 
   return (
-    <li class="group flex items-center">
+    <li class="group flex items-center nav-item group/hover"
+      onMouseEnter={() => {
+        displayHover.value = true;
+      }}
+      onMouseLeave={() => (displayHover.value = false)}
+    >
       <a href={url} class="px-4 py-3">
         <span
-          class={`text-[14px] font-bold tracking-[2px] text-[${colorIcon}] group-hover/hover:text-[#101820] group-hover:text-[#D62C79]`}
+          class={`text-[14px] font-bold tracking-[2px] ${displayHover.value !== false ? "text-[#101820]" : `text-[${colorIcon}]`} group-hover:text-[#D62C79]`}
         >
           {name}
         </span>

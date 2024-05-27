@@ -54,7 +54,7 @@ const Aside = ({
       </Suspense>
     </div>
   ) : (
-    <div class="bg-base-100 grid grid-rows-[auto_1fr] max-h-full divide-y max-w-[100vw] z-[60]">
+    <div class="bg-base-100 grid grid-rows-[auto_1fr] max-h-full lg:h-full divide-y max-w-[100vw] z-[60]">
       <Suspense
         fallback={
           <div class="w-screen flex items-center justify-center">
