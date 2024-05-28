@@ -88,7 +88,7 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
           {displayMenu.value && <Menu {...menu} />}
           {searchbar && displaySearchDrawer.value && (
             <div class="w-screen overflow-hidden">
-              <Searchbar {...searchbar} />
+              <Searchbar props={searchbar} colorIcon={"#101820"}/>
             </div>
           )}
         </Aside>
