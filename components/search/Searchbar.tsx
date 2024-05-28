@@ -53,7 +53,6 @@ function Searchbar({
     useUI();
   
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const searchResultsRef = useRef<HTMLInputElement>(null);
   const [dataSuggestions, setDataSuggestions] = useState([]);
   const [dataProducts, setDataProducts] = useState({
     categories: [],
@@ -62,6 +61,7 @@ function Searchbar({
   const [notFound, setNotFound] = useState(false);
   const [searchEmpty, setSearchEmpty] = useState(false);
   const popularSearchFormated = popularSearch?.map((term) => term.search);
+  const [showResults, toggleShowResults] = useState(false)
 
   useEffect(() => {
     if (displaySearchPopup.value === true) {
@@ -103,6 +103,7 @@ function Searchbar({
             });
           }
         });
+        // toggleShowResults(!showResults)
       return;
     } else {
       setSearchEmpty(false);
@@ -134,31 +135,13 @@ function Searchbar({
             });
           }
         });
+      toggleShowResults(true)    
     }
   }
-
-  function hideResults(ref) {
-    useEffect(() => {
-      function handleOutsideClick(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          ref.current.style.display="none"
-        }
-      }
-      document.addEventListener("click", handleOutsideClick);
-      return () => {
-        document.removeEventListener("click", handleOutsideClick);
-      };
-    }, []);
-    return ref;
-  }
-
-  hideResults(searchResultsRef);
 
   function showDisplay() {
     displayHover.value = true
-    if(searchResultsRef.current) {
-      searchResultsRef.current.style.display="block"
-    }
+    toggleShowResults(!showResults)    
   }
 
   return (
@@ -211,173 +194,175 @@ function Searchbar({
         </Button>
       </div>
 
-      {dataSuggestions.length > 0 ||
+      {showResults && (dataSuggestions.length > 0 ||
       dataProducts.items?.length > 0 ||
-      dataProducts.categories?.length > 0 ? (
-        <div 
-          class="overflow-x-scroll lg:overflow-hidden h-[calc(100vh-130px)] lg:right-0 lg:top-[94px] 2xl:top-[120px] lg:absolute lg:bg-white-lily md:h-fit lg:p-5"
-          ref={searchResultsRef}
-        >
-          <div class="flex gap-[30px] md:gap-[30px] xl:gap-[60px] lg:justify-between">
-            <div class="flex flex-col gap-[30px] md:gap-[40px] w-full md:max-w-[240px]">
-              {dataSuggestions.length > 0 && (
-                <div class="flex flex-col gap-[24px] md:gap-[30px] w-full">
-                  <span
-                    class="font-medium text-[18px] md:text-[20px] leading-[24px]"
-                    role="heading"
-                    aria-level={3}
-                  >
-                    {searchEmpty ? "TERMOS POPULARES" : "TERMOS BUSCADOS"}
-                  </span>
-                  <ul
-                    id="search-suggestion"
-                    class="flex flex-col gap-[20px] md:gap-[30px]"
-                  >
-                    {dataSuggestions.map((term) => (
-                      <li>
-                        <a
-                          href={`/s?q=${term}`}
-                          class="flex gap-[20px] items-center"
-                        >
-                          <span>
-                            <Icon
-                              id="MagnifyingGlass"
-                              size={20}
-                              strokeWidth={0.02}
-                            />
-                          </span>
-                          <span>{term}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {dataProducts.items?.length > 0 && (
-                <div class="flex flex-col md:hidden gap-[24px]">
-                  <span
-                    class="font-medium text-[18px] leading-[24px]"
-                    role="heading"
-                    aria-level={3}
-                  >
-                    {searchEmpty ? "PRODUTOS POPULARES" : "PRODUTOS"}
-                  </span>
-                  {dataProducts.items.map((product: any) => (
-                    <a href={product.link} class="flex gap-[20px] items-center">
-                      <img
-                        class="object-cover w-full h-full rounded-[8px] max-w-[122px] max-h-[109px]"
-                        loading="lazy"
-                        src={product.image_link}
-                        alt={product.title}
-                      />
-                      <div class="flex flex-col justify-center gap-3">
-                        <div>
-                          <span class="text-[14px] leading-[17px]">
-                            {product.tags ?? product.tags[0]}
-                          </span>
-                          <p class="leading-[21px] font-semibold">
-                            {product.title}
-                          </p>
-                        </div>
-                        <div>
-                          <p class="text-[18px] text-[#CE0F69] leading-[21px] font-semibold">
-                            {formatPrice(product.price)}
-                          </p>
-                          <p class="text-[14px] leading-[17px]">
-                            {quantityInstallments.value +
-                              "x " +
-                              formatPrice(
-                                product.price / Number(quantityInstallments)
-                              )}
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              )}
-
-              {dataProducts.categories?.length > 0 &&
-                dataProducts.items?.length > 0 && (
+      dataProducts.categories?.length > 0) ? (
+        <div class={"fixed top-0 bottom-0 left-0 right-0 flex bg-transparent justify-center items-center z-10"} onClick={() => toggleShowResults(false)}>
+          <div 
+            class="overflow-x-scroll lg:overflow-hidden h-[calc(100vh-130px)] lg:right-0 lg:top-[94px] 2xl:top-[120px] lg:absolute lg:bg-white-lily md:h-fit lg:p-5"
+            onClick={e => e.stopPropagation()}            
+          >
+            <div class="flex gap-[30px] md:gap-[30px] xl:gap-[60px] lg:justify-between">
+              <div class="flex flex-col gap-[30px] md:gap-[40px] w-full md:max-w-[240px]">
+                {dataSuggestions.length > 0 && (
                   <div class="flex flex-col gap-[24px] md:gap-[30px] w-full">
                     <span
                       class="font-medium text-[18px] md:text-[20px] leading-[24px]"
                       role="heading"
                       aria-level={3}
                     >
-                      {searchEmpty ? "CATEGORIAS POPULARES" : "CATEGORIAS"}
+                      {searchEmpty ? "TERMOS POPULARES" : "TERMOS BUSCADOS"}
                     </span>
                     <ul
                       id="search-suggestion"
-                      class="flex gap-3 md:flex-wrap md:gap-x-[12px] md:gap-y-[20px] w-full overflow-y-scroll md:overflow-auto"
+                      class="flex flex-col gap-[20px] md:gap-[30px]"
                     >
-                      {dataProducts.categories.map((category: any) => (
+                      {dataSuggestions.map((term) => (
                         <li>
                           <a
-                            class="block rounded-[20px] px-5 py-3.5 md:px-[18px] md:py-[12px] bg-[#CE0F69] md:bg-[#E4E4E4] hover:bg-[#CE0F69] transition-colors font-bold text-[20px] md:text-[16px] leading-[26px] md:leading-[20px] text-white-lily md:text-[#000] hover:text-white-lily"
-                            href={`/${category.title.toLowerCase()}`}
+                            href={`/s?q=${term}`}
+                            class="flex gap-[20px] items-center"
                           >
-                            <span>{category.title}</span>
+                            <span>
+                              <Icon
+                                id="MagnifyingGlass"
+                                size={20}
+                                strokeWidth={0.02}
+                              />
+                            </span>
+                            <span>{term}</span>
                           </a>
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
-            </div>
-            {dataProducts.items?.length > 0 && (
-              <div class="hidden md:flex flex-col gap-[24px]">
-                <span
-                  class="font-medium text-[20px] leading-[24px]"
-                  role="heading"
-                  aria-level={3}
-                >
-                  {searchEmpty ? "PRODUTOS POPULARES" : "PRODUTOS"}
-                </span>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-[20px] xl:gap-y-[50px] gap-x-[30px] xl:gap-x-[50px]">
-                  {dataProducts.items.map((product: any) => (
-                    <a
-                      href={product.link}
-                      class="flex gap-[20px] items-start w-full"
+
+                {dataProducts.items?.length > 0 && (
+                  <div class="flex flex-col md:hidden gap-[24px]">
+                    <span
+                      class="font-medium text-[18px] leading-[24px]"
+                      role="heading"
+                      aria-level={3}
                     >
-                      <img
-                        class="object-cover w-full h-full rounded-[8px] max-w-[150px] max-h-[134px]"
-                        loading="lazy"
-                        src={product.image_link}
-                        alt={product.title}
-                      />
-                      <div class="flex flex-col justify-center gap-3">
-                        <div>
-                          <span class="text-[14px] leading-[17px]">
-                            {product.tags ?? product.tags[0]}
-                          </span>
-                          <p class="leading-[23px] font-semibold text-[16px]">
-                            {product.title}
-                          </p>
+                      {searchEmpty ? "PRODUTOS POPULARES" : "PRODUTOS"}
+                    </span>
+                    {dataProducts.items.map((product: any) => (
+                      <a href={product.link} class="flex gap-[20px] items-center">
+                        <img
+                          class="object-cover w-full h-full rounded-[8px] max-w-[122px] max-h-[109px]"
+                          loading="lazy"
+                          src={product.image_link}
+                          alt={product.title}
+                        />
+                        <div class="flex flex-col justify-center gap-3">
+                          <div>
+                            <span class="text-[14px] leading-[17px]">
+                              {product.tags ?? product.tags[0]}
+                            </span>
+                            <p class="leading-[21px] font-semibold">
+                              {product.title}
+                            </p>
+                          </div>
+                          <div>
+                            <p class="text-[18px] text-[#CE0F69] leading-[21px] font-semibold">
+                              {formatPrice(product.price)}
+                            </p>
+                            <p class="text-[14px] leading-[17px]">
+                              {quantityInstallments.value +
+                                "x " +
+                                formatPrice(
+                                  product.price / Number(quantityInstallments)
+                                )}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <p class="text-[18px] text-[#CE0F69] leading-[21px] font-semibold">
-                            {formatPrice(product.price)}
-                          </p>
-                          <p class="text-[14px] leading-[17px]">
-                            {quantityInstallments.value +
-                              "x " +
-                              formatPrice(
-                                product.price / Number(quantityInstallments)
-                              )}
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  ))}
-                </div>
+                      </a>
+                    ))}
+                  </div>
+                )}
+
+                {dataProducts.categories?.length > 0 &&
+                  dataProducts.items?.length > 0 && (
+                    <div class="flex flex-col gap-[24px] md:gap-[30px] w-full">
+                      <span
+                        class="font-medium text-[18px] md:text-[20px] leading-[24px]"
+                        role="heading"
+                        aria-level={3}
+                      >
+                        {searchEmpty ? "CATEGORIAS POPULARES" : "CATEGORIAS"}
+                      </span>
+                      <ul
+                        id="search-suggestion"
+                        class="flex gap-3 md:flex-wrap md:gap-x-[12px] md:gap-y-[20px] w-full overflow-y-scroll md:overflow-auto"
+                      >
+                        {dataProducts.categories.map((category: any) => (
+                          <li>
+                            <a
+                              class="block rounded-[20px] px-5 py-3.5 md:px-[18px] md:py-[12px] bg-[#CE0F69] md:bg-[#E4E4E4] hover:bg-[#CE0F69] transition-colors font-bold text-[20px] md:text-[16px] leading-[26px] md:leading-[20px] text-white-lily md:text-[#000] hover:text-white-lily"
+                              href={`/${category.title.toLowerCase()}`}
+                            >
+                              <span>{category.title}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
               </div>
-            )}
+              {dataProducts.items?.length > 0 && (
+                <div class="hidden md:flex flex-col gap-[24px]">
+                  <span
+                    class="font-medium text-[20px] leading-[24px]"
+                    role="heading"
+                    aria-level={3}
+                  >
+                    {searchEmpty ? "PRODUTOS POPULARES" : "PRODUTOS"}
+                  </span>
+                  <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-[20px] xl:gap-y-[50px] gap-x-[30px] xl:gap-x-[50px]">
+                    {dataProducts.items.map((product: any) => (
+                      <a
+                        href={product.link}
+                        class="flex gap-[20px] items-start w-full"
+                      >
+                        <img
+                          class="object-cover w-full h-full rounded-[8px] max-w-[150px] max-h-[134px]"
+                          loading="lazy"
+                          src={product.image_link}
+                          alt={product.title}
+                        />
+                        <div class="flex flex-col justify-center gap-3">
+                          <div>
+                            <span class="text-[14px] leading-[17px]">
+                              {product.tags ?? product.tags[0]}
+                            </span>
+                            <p class="leading-[23px] font-semibold text-[16px]">
+                              {product.title}
+                            </p>
+                          </div>
+                          <div>
+                            <p class="text-[18px] text-[#CE0F69] leading-[21px] font-semibold">
+                              {formatPrice(product.price)}
+                            </p>
+                            <p class="text-[14px] leading-[17px]">
+                              {quantityInstallments.value +
+                                "x " +
+                                formatPrice(
+                                  product.price / Number(quantityInstallments)
+                                )}
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       ) : notFound === true ? (
-        <p class="w-full text-center">Nenhum produto encontrado...</p>
+        <p class="w-full text-center lg:absolute lg:top-[94px] 2xl:top-[130px] lg:bg-white-lily lg:w-80">Nenhum produto encontrado...</p>
       ) : null}
     </div>
   );

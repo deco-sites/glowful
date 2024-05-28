@@ -171,7 +171,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
         }}
       >
         <div
-          class={`container 2xl:min-h-[86px] w-[95%] px-2 xl:px-9 mx-auto xl:max-w-[1408px] lg:min-h-[60px] inis flex flex-row justify-between items-center z-[999] h-full`}
+          class={`hidden container 2xl:min-h-[86px] w-[95%] px-2 xl:px-9 mx-auto xl:max-w-[1408px] lg:min-h-[60px] inis lg:flex flex-row justify-between items-center z-[999] h-full`}
         >
           <div class="flex-none w-44">
             {logo && (
