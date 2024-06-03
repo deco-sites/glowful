@@ -45,7 +45,7 @@ function Header(Props: SectionProps<ReturnType<typeof loader>>) {
         ? "mb-11 lg:mb-[34px] 2xl:mb-11"
         : "mb-[104px] lg:mb-[94px] 2xl:mb-[130px]"
     } >
-      <Drawers menu={{ items }} searchbar={searchbar} platform={platform}>
+      <Drawers menu={{ items }} searchbar={searchbar} platform={platform} logoPreto={logoPreto}>
         <div className="fixed w-full z-50">
           <Alert alerts={alerts} />
           <Navbar
