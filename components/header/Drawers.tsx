@@ -41,7 +41,10 @@ const Aside = ({
 }) =>
   title === "Menu"
     ? (
-      <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y divide-base-200 max-w-[100vw] px-4 w-[85%]">
+      <div
+        class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y divide-base-200 max-w-[100vw] px-4"
+        style={{ width: "85%" }}
+      >
         <div class="flex justify-between items-center py-2">
           {onClose && (
             <Button class="btn btn-ghost p-0" onClick={onClose}>
