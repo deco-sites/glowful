@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base { 
+  .collapse-arrow > .collapse-title:after {
+    box-shadow: 1px 1px;
+  }
   /* .checkbox-primary:checked {
     background-color: #f0f; 
     border-color: #f0f;
