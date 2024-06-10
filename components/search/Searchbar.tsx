@@ -147,7 +147,7 @@ function Searchbar({
   return (
     <div class="w-full grid gap-8 px-4 py-6 lg:p-0 lg:rounded-b-[8px] overflow-y-hidden lg:h-fit">
       <div class="flex">
-        <form id={id} action={action} class={`join border w-full ${displayHover.value !== false ? "border-deep-beauty" : `border-[${colorIcon}]`}`}>
+        <form id={id} action={action} style={`${displayHover.value !== false ? "border-color:#101820" : `border-color:${colorIcon}`}`} class={`join border w-full`}>
           <Button
             type="submit"
             class="join-item btn-square bg-transparent border-none"
@@ -160,7 +160,7 @@ function Searchbar({
           <input
             ref={searchInputRef}
             id="search-input"
-            class={`input join-item flex-grow pl-0 bg-transparent ${displayHover.value !== false ? "placeholder:text-deep-beauty" : `placeholder:text-[${colorIcon}]`}`}
+            class={`input join-item flex-grow pl-0 bg-transparent`}
             name={name}
             onFocus={showDisplay}
             onChange={(e) => handleSearch(e.currentTarget.value)}
@@ -197,7 +197,7 @@ function Searchbar({
       {showResults && (dataSuggestions.length > 0 ||
       dataProducts.items?.length > 0 ||
       dataProducts.categories?.length > 0) ? (
-        <div class={"fixed top-0 bottom-0 left-0 right-0 flex bg-transparent justify-center items-center z-10"} onClick={() => toggleShowResults(false)}>
+        <div class={"lg:fixed top-0 bottom-0 left-0 right-0 flex bg-transparent justify-center items-center z-10"} onClick={() => toggleShowResults(false)}>
           <div 
             class="overflow-x-scroll lg:overflow-hidden h-[calc(100vh-130px)] lg:right-0 lg:top-[94px] 2xl:top-[120px] lg:absolute lg:bg-white-lily md:h-fit lg:p-5"
             onClick={e => e.stopPropagation()}            

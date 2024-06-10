@@ -255,8 +255,3 @@
 .nav-bar:has(.nav-item:hover) {
   background-color: #fff;
 }
-
-/* .nav-bar:has(.nav-element:hover) {
-  color: black;
-  background-color: black;
-} */
