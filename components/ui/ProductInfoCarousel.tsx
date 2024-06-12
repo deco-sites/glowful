@@ -55,8 +55,7 @@ export default function ProductInfoCarousel({ product }: Props) {
         id={id}
         class="lg:hidden grid grid-flow-row sm:grid-flow-col relative w-full  self-center max-w-[320px]"
       >
-        <Slider class="carousel carousel-center col-span-full row-span-full gap-0 w-full relative overflow-hidden ">
-          {images?.length > 1 && currentImageIndex !== 0 && (
+        {images?.length > 1 && currentImageIndex !== 0 && (
             <Slider.PrevButton
               onClick={handlePrevImage}
               class="absolute top-1/2 transform -translate-y-1/2 left-2 z-10 bg-[#fff] rounded-full shadow-lg p-2 cursor-pointer"
@@ -72,6 +71,8 @@ export default function ProductInfoCarousel({ product }: Props) {
               <Icon size={24} id="ChevronRight" strokeWidth={2} />
             </Slider.NextButton>
           )}
+        <Slider class="carousel carousel-center col-span-full row-span-full gap-0 w-full relative overflow-hidden ">
+          
           {images?.map((image, index) => (
             <Slider.Item
               index={index}
@@ -84,7 +85,7 @@ export default function ProductInfoCarousel({ product }: Props) {
                 class="w-full"
                 sizes="(max-width: 640px) 100vw, 60vw"
                 src={image.url!}
-                alt={image.alt!}
+                alt={image.alternateName!}
                 width={350}
                 height={460}
                 // Preload LCP image for better web vitals

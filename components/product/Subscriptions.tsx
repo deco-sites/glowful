@@ -322,19 +322,19 @@ export default function Subscriptions({ product, discounts }: Props) {
 
         <div class="rounded-[20px] bg-[#F4F4F4] px-[8px] xl:px-[12px] grid grid-cols-3">
           <div class="flex flex-col items-center gap-[12px] p-[16px] xl:p-[20px] border-r-[1px] border-[#BFBFBF]">
-            <img src="/icons/hand.png" />
+            <img src="/icons/hand.png" alt=""/>
             <p class="text-[14px] text-deep-beauty text-center">
               Cancele quando quiser
             </p>
           </div>
           <div class="flex flex-col items-center gap-[12px] p-[16px] xl:p-[20px] border-r-[1px] border-[#BFBFBF]">
-            <img src="/icons/bus.png" />
+            <img src="/icons/bus.png" alt=""/>
             <p class="text-[14px] text-deep-beauty text-center max-w-[84px]">
               Entrega grátis
             </p>
           </div>
           <div class="flex flex-col items-center gap-[12px] p-[16px] xl:p-[20px]">
-            <img src="/icons/tag.png" />
+            <img src="/icons/tag.png" alt=""/>
             <p class="text-[14px] text-deep-beauty text-center">
               Melhor preço garantido
             </p>

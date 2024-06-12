@@ -17,6 +17,8 @@ function ChangeQuantityProduct({ inventoryLevel, price }: Props) {
             (quantityProduct.value =
               quantityProduct.value != 1 ? quantityProduct.value - 1 : 1)
           }
+          title="Subtrai um produto"
+          aria-label="Subtrai um produto"
         >
           <Icon id="Sub" size={20} strokeWidth={1} class="text-[#000]" />
         </button>
@@ -26,8 +28,10 @@ function ChangeQuantityProduct({ inventoryLevel, price }: Props) {
             (quantityProduct.value =
               inventoryLevel > quantityProduct.value
                 ? quantityProduct.value + 1
-                : inventoryLevel)
-          }
+              : inventoryLevel)
+              }
+          title="Adiciona um produto"
+          aria-label="Adiciona um produto"
         >
           <Icon id="Add" size={20} strokeWidth={1} class="text-[#000]" />
         </button>
