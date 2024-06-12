@@ -48,6 +48,13 @@ function Drawer(props: Props) {
         class="drawer-toggle"
         onChange={(e) => e.currentTarget.checked === false && onClose?.()}
       />
+      <label
+        htmlFor={id}
+        for={id}
+        class="absolute w-[1px] h-[1px] p-0 m-[-1px] hidden clip-[rect(0,0,0,0)] whitespace-nowrap border-0"
+      >
+        Alterna o menu lateral
+      </label>
 
       <div class="drawer-content">
         {children}
