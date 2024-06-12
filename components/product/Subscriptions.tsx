@@ -63,7 +63,15 @@ export default function Subscriptions({ product, discounts }: Props) {
             setToggleSubscription(false);
           }}
           checked={toggleSingle}
+          id="handleSinglePurchase"
         />
+        <label
+          htmlFor="handleSinglePurchase"
+          for="handleSinglePurchase"
+          class="absolute w-[1px] h-[1px] p-0 m-[-1px] hidden clip-[rect(0,0,0,0)] whitespace-nowrap border-0"
+        >
+          Alterar dropdown compra unica
+        </label>
         <div class="collapse-title flex justify-between rounded-full !px-[20px] !py-[10px] bg-[#F4F4F4] !h-[42px] !min-h-[42px]">
           <div class="flex gap-[4px] sm:gap-[10px] items-center">
             <input
@@ -71,6 +79,7 @@ export default function Subscriptions({ product, discounts }: Props) {
               checked={toggleSingle}
               name="radio-3"
               className="radio h-[18px] w-[18px] border-cherry-pop checked:bg-cherry-pop"
+              id="handleSinglePurchase"
             />
 
             <p class="text-[14px] sm:text-[16px]">Compra única</p>
@@ -177,18 +186,27 @@ export default function Subscriptions({ product, discounts }: Props) {
           type="radio"
           name="my-accordion-1"
           checked={toggleSubscription}
+          id="handleSubscription"
           onClick={() => {
             purchaseAvailable.value = !toggleSubscription;
             setToggleSubscription(!toggleSubscription);
             setToggleSingle(false);
           }}
         />
+        <label
+        htmlFor="handleSubscription"
+        for="handleSubscription"
+        class="absolute w-[1px] h-[1px] p-0 m-[-1px] hidden clip-[rect(0,0,0,0)] whitespace-nowrap border-0"
+      >
+        Alterna o menu lateral
+      </label>
         <div class="collapse-title flex justify-between rounded-full !px-[20px] !py-[10px] bg-[#F4F4F4] !h-[42px] !min-h-[42px]">
           <div class="flex gap-[4px] sm:gap-[10px] items-center">
             <input
               type="radio"
               checked={toggleSubscription}
               name="radio-3"
+              id="handleSubscription"
               className="radio h-[18px] w-[18px] border-cherry-pop checked:bg-cherry-pop cursor-pointer"
             />
 
@@ -322,19 +340,19 @@ export default function Subscriptions({ product, discounts }: Props) {
 
         <div class="rounded-[20px] bg-[#F4F4F4] px-[8px] xl:px-[12px] grid grid-cols-3">
           <div class="flex flex-col items-center gap-[12px] p-[16px] xl:p-[20px] border-r-[1px] border-[#BFBFBF]">
-            <img src="/icons/hand.png" alt=""/>
+            <img src="/icons/hand.png" alt="" />
             <p class="text-[14px] text-deep-beauty text-center">
               Cancele quando quiser
             </p>
           </div>
           <div class="flex flex-col items-center gap-[12px] p-[16px] xl:p-[20px] border-r-[1px] border-[#BFBFBF]">
-            <img src="/icons/bus.png" alt=""/>
+            <img src="/icons/bus.png" alt="" />
             <p class="text-[14px] text-deep-beauty text-center max-w-[84px]">
               Entrega grátis
             </p>
           </div>
           <div class="flex flex-col items-center gap-[12px] p-[16px] xl:p-[20px]">
-            <img src="/icons/tag.png" alt=""/>
+            <img src="/icons/tag.png" alt="" />
             <p class="text-[14px] text-deep-beauty text-center">
               Melhor preço garantido
             </p>
