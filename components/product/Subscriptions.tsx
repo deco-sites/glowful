@@ -79,8 +79,16 @@ export default function Subscriptions({ product, discounts }: Props) {
               checked={toggleSingle}
               name="radio-3"
               className="radio h-[18px] w-[18px] border-cherry-pop checked:bg-cherry-pop"
-              id="handleSinglePurchase"
+              id="handleSinglePurchase2"
             />
+
+            <label
+              htmlFor="handleSinglePurchase2"
+              for="handleSinglePurchase"
+              class="absolute w-[1px] h-[1px] p-0 m-[-1px] hidden clip-[rect(0,0,0,0)] whitespace-nowrap border-0"
+            >
+              Alterar dropdown compra unica
+            </label>
 
             <p class="text-[14px] sm:text-[16px]">Compra única</p>
           </div>
@@ -194,21 +202,28 @@ export default function Subscriptions({ product, discounts }: Props) {
           }}
         />
         <label
-        htmlFor="handleSubscription"
-        for="handleSubscription"
-        class="absolute w-[1px] h-[1px] p-0 m-[-1px] hidden clip-[rect(0,0,0,0)] whitespace-nowrap border-0"
-      >
-        Alterna o menu lateral
-      </label>
+          htmlFor="handleSubscription"
+          for="handleSubscription"
+          class="absolute w-[1px] h-[1px] p-0 m-[-1px] hidden clip-[rect(0,0,0,0)] whitespace-nowrap border-0"
+        >
+          Alterna o menu lateral
+        </label>
         <div class="collapse-title flex justify-between rounded-full !px-[20px] !py-[10px] bg-[#F4F4F4] !h-[42px] !min-h-[42px]">
           <div class="flex gap-[4px] sm:gap-[10px] items-center">
             <input
               type="radio"
               checked={toggleSubscription}
               name="radio-3"
-              id="handleSubscription"
+              id="handleSubscription2"
               className="radio h-[18px] w-[18px] border-cherry-pop checked:bg-cherry-pop cursor-pointer"
             />
+            <label
+              htmlFor="handleSubscription2"
+              for="handleSubscription"
+              class="absolute w-[1px] h-[1px] p-0 m-[-1px] hidden clip-[rect(0,0,0,0)] whitespace-nowrap border-0"
+            >
+              Alterna o menu lateral
+            </label>
 
             <p class="text-[14px] sm:text-[16px]">Assine e economize até 20%</p>
           </div>
