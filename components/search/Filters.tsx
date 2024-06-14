@@ -25,18 +25,22 @@ const isRange = (filter: Filter): filter is FilterRange =>
 
 function ValueItem({ url, selected, label, quantity }: FilterToggleValue) {
   return (
-    <a href={url} class="flex items-center gap-2">
-      <div
-        aria-checked={selected}        
-        class="border-[#3333] border aria-checked:bg-cherry-pop !rounded-full h-[20px] w-[20px]"
-      >
-        {selected && <div class={"checkmark"}/>}
-      </div>
-      <span class="text-[16px] text-[#666]">{label}</span>
-      {/* {quantity > 0 && (
-        <span class="text-[18px] text-[#666]">({quantity})</span>
-      )} */}
-    </a>
+    <li>
+      <a href={url} class="flex items-center gap-2">
+        <div
+          aria-checked={selected}        
+          role="checkbox"
+          aria-labelledby="checkbox-label"
+          class="border-[#3333] border aria-checked:bg-cherry-pop !rounded-full h-[20px] w-[20px]"
+        >
+          {selected && <div class={"checkmark"}/>}
+        </div>
+        <span id="checkbox-label" class="text-[16px] text-[#666]">{label}</span>
+        {/* {quantity > 0 && (
+          <span class="text-[18px] text-[#666]">({quantity})</span>
+        )} */}
+      </a>
+    </li>
   );
 }
 

@@ -67,6 +67,7 @@ function Sort({ sortOptions }: Props) {
         id="sort"
         name="sort"
         onInput={applySort}
+        aria-labelledby="sort-label"
         class="w-[166px] h-[36px] px-[20px] rounded-full text-[16px] text-[#878787] cursor-pointer select select-bordered"
       >
         {sortOptions
@@ -79,7 +80,7 @@ function Sort({ sortOptions }: Props) {
           .filter(({ label }) => label !== "orders:desc")
           .map(({ value, label }) => (
             <option key={value} value={value} selected={value === sort}>
-              <span class="text-sm">{label}</span>
+              <span id={"sort-label"} class="text-sm">{label}</span>
             </option>
           ))}
       </select>

@@ -160,6 +160,7 @@ function Searchbar({
           <input
             ref={searchInputRef}
             id="search-input"
+            aria-expanded="false"
             class={`input join-item flex-grow pl-0 bg-transparent`}
             name={name}
             onFocus={showDisplay}
