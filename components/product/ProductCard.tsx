@@ -289,6 +289,7 @@ function ProductCard({
             sizes="(max-width: 640px) 50vw, 20vw"
             preload={preload}
             loading={preload ? "eager" : "lazy"}
+            fetchPriority={preload ? "high" : "auto"}
             decoding="async"
           />
           {(!l?.onMouseOver?.image ||
