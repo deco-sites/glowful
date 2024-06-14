@@ -7,6 +7,7 @@ export interface Props {
     mobile: ImageWidget;
     desktop?: ImageWidget;
     altText: string;
+    preload?: boolean; 
   };
 
   text?: string;
@@ -42,16 +43,18 @@ export default function ImageAndText(props: Props) {
         }`}
       >
         <figure class={`relative w-full lg:w-fit block h-fit`}>
-          <Picture>
+          <Picture preload={image?.preload}>
             <Source
               media="(max-width: 767px)"
               src={image?.mobile}
+              fetchPriority={image?.preload ? "high" : "auto"}
               width={360}
               height={360}
             />
             <Source
               media="(min-width: 768px)"
               src={image?.desktop ? image?.desktop : image?.mobile}
+              fetchPriority={image?.preload ? "high" : "auto"}
               width={630}
               height={450}
             />
@@ -61,7 +64,7 @@ export default function ImageAndText(props: Props) {
               src={image?.mobile}
               alt={image?.altText}
               decoding="async"
-              loading="lazy"
+              loading={image?.preload ? "eager" : "lazy"}
             />
           </Picture>
         </figure>

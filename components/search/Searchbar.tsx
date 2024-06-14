@@ -49,7 +49,7 @@ function Searchbar({
 }: {props: Props , colorIcon: string}) {
   const {placeholder = "Buscar", action = "/s", name = "q", popularSearch} = props
   const id = useId();
-  const { displaySearchPopup, displaySearchDrawer, quantityInstallments, displayHover } =
+  const { displaySearchPopup, displaySearchDrawer, quantityInstallments, displayHover, displayTop } =
     useUI();
   
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -103,7 +103,6 @@ function Searchbar({
             });
           }
         });
-        // toggleShowResults(!showResults)
       return;
     } else {
       setSearchEmpty(false);
@@ -139,6 +138,7 @@ function Searchbar({
     }
   }
 
+  // Show Search Results + change navbar
   function showDisplay() {
     displayHover.value = true
     toggleShowResults(!showResults)    
@@ -147,7 +147,7 @@ function Searchbar({
   return (
     <div class="w-full grid gap-8 px-4 py-6 lg:p-0 lg:rounded-b-[8px] overflow-y-hidden lg:h-fit">
       <div class="flex">
-        <form id={id} action={action} style={`${displayHover.value !== false ? "border-color:#101820" : `border-color:${colorIcon}`}`} class={`join border w-full`}>
+        <form id={id} action={action} style={`${displayHover.value !== false ? "border-color:#101820" : `border-color:${colorIcon}`}`} class={`join rounded-lg border w-full`}>
           <Button
             type="submit"
             class="join-item btn-square bg-transparent border-none"
@@ -199,7 +199,7 @@ function Searchbar({
       dataProducts.categories?.length > 0) ? (
         <div class={"lg:fixed top-0 bottom-0 left-0 right-0 flex bg-transparent justify-center items-center z-10"} onClick={() => toggleShowResults(false)}>
           <div 
-            class="overflow-x-scroll lg:overflow-hidden h-[calc(100vh-130px)] lg:right-0 lg:top-[94px] 2xl:top-[120px] lg:absolute lg:bg-white-lily md:h-fit lg:p-5"
+            class={`overflow-x-scroll lg:overflow-hidden h-[calc(100vh-130px)] lg:right-0 ${!displayTop.value ? "lg:top-[60px] 2xl:top-[84px]" : "lg:top-[94px] 2xl:top-[120px]"} lg:absolute lg:bg-white-lily md:h-fit lg:p-5`}
             onClick={e => e.stopPropagation()}            
           >
             <div class="flex gap-[30px] md:gap-[30px] xl:gap-[60px] lg:justify-between">
@@ -362,7 +362,7 @@ function Searchbar({
           </div>
         </div>
       ) : notFound === true ? (
-        <p class="w-full text-center lg:absolute lg:top-[94px] 2xl:top-[130px] lg:bg-white-lily lg:w-80">Nenhum produto encontrado...</p>
+        <p class={`w-full text-center lg:absolute ${!displayTop.value ? "lg:top-[58px] 2xl:top-[84px]" : "lg:top-[94px] 2xl:top-[130px]"} lg:bg-white-lily lg:w-80`}>Nenhum produto encontrado...</p>
       ) : null}
     </div>
   );
