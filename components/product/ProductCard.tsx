@@ -400,7 +400,7 @@ function ProductCard({
             {l?.hide?.productName ? (
               ""
             ) : (
-              <h3
+              <h2
                 class=" break-words text-lg lg:text-sm leading-[130%] uppercase font-semibold text-[#101820]"
                 dangerouslySetInnerHTML={{
                   __html: isVariantOf?.name ?? name ?? "",
