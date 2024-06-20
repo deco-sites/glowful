@@ -181,6 +181,8 @@ function Searchbar({
             role="combobox"
             aria-controls="search-suggestion"
             autocomplete="off"
+            aria-haspopup="listbox"
+            aria-expanded="false"
           />
         </form>
         <Button
