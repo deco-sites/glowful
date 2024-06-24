@@ -21,7 +21,6 @@ function Review({ AllReviews, reviewStyle }: Props) {
     <>
       <script
         defer
-        defer
         src="//loox.io/widget/loox.js?shop=20c805-5.myshopify.com"
       />
 

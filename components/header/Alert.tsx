@@ -44,7 +44,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
     <div id={id} class={displayTop.value ? "" : "hidden"}>
       {alerts.map((alert, index) => (
         <Slider
-          class="carousel carousel-center w-full bg-deep-beauty gap-6 text-center p-[13px] lg:p-2 2xl:p-[13px]"
+          class="carousel carousel-center w-full bg-deep-beauty gap-6 text-center p-[14px]"
           style={{ "background-color": alert.background }}
         >
           <Slider.Item index={index} class="carousel-item w-full">

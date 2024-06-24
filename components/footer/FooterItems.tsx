@@ -51,7 +51,7 @@ export default function FooterItems({
           </ul>
 
           {/* Mobile view */}
-          <ul class="flex flex-col md:hidden !gap-[30px]">
+          <ul class="flex flex-col md:hidden !gap-[30px">
             {sections.map((section) =>
               section.dropdown ? (
                 <li>
@@ -81,7 +81,7 @@ export default function FooterItems({
                   <div class="min-h-[0] w-fit !p-0 !pr-[35px] flex gap-2 font-bold text-lg text-white-lily">
                     <span class={`tracking-widest`}>{section.label}</span>
                   </div>
-                  <ul class={`flex flex-col gap-[16px] pt-6`}>
+                  <ul class={`flex flex-col gap-4 pt-6`}>
                     {section.items?.map((item) => (
                       <li>
                         <a

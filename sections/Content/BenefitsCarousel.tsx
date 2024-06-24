@@ -41,18 +41,18 @@ export default function BenefitsCarousel({
       {/* Mobile Carousel */}
       <div id={id}>
         <Slider
-          class={`lg:hidden carousel carousel-center w-screen gap-6 text-center py-[16px] px-[8px]`}
+          class={`lg:hidden carousel carousel-center w-screen gap-6 text-center py-4 px-2`}
           style={{ "background-color": background }}
         >
           {benifits.map((benifit, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item flex justify-center items-center gap-[16px] w-screen"
+              class="carousel-item flex justify-center items-center gap-4 w-screen"
             >
               <img
                 src={benifit.icon}
                 alt={benifit.icon || ""}
-                className="object-cover max-w-[40px] max-h-[40px] lg:max-w-[30px] lg:max-h-[30px] 2xl:max-w-[40px] 2xl:max-h-[40px]"
+                className="object-cover max-w-10 w- max-h-10 lg:max-w-[30px] lg:max-h-[30px] 2xl:max-w-10 2xl:max-h-10"
                 loading="lazy"
               />
               <div class="flex flex-col items-start">
@@ -78,13 +78,13 @@ export default function BenefitsCarousel({
 
       {/* Desktop Flex */}
       <div class={`hidden lg:flex `} style={{ "background-color": background }}>
-        <div class="lg:w-[95%] lg:px-[51px] lg:mx-auto xl:max-w-[1408px] justify-between carousel carousel-center w-full text-center px-[20px] py-[32px] ml-[10%] lg:ml-auto">
+        <div class="lg:w-[95%] lg:px-[51px] lg:mx-auto xl:max-w-[1408px] justify-between carousel carousel-center w-full text-center px-5 py-8 ml-[10%] lg:ml-auto">
           {benifits.map((benifit) => (
-            <div class="carousel-item flex justify-center items-center gap-[16px] w-fit">
+            <div class="carousel-item flex justify-center items-center gap-4 w-fit">
               <img
                 src={benifit.icon}
                 alt={benifit.icon || ""}
-                className="object-cover max-w-[40px] max-h-[40px]"
+                className="object-cover max-w-10 max-h-10"
                 loading="lazy"
               />
               <div class="flex flex-col items-start">
