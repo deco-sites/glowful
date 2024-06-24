@@ -5,6 +5,7 @@ import { useId } from "$store/sdk/useId.ts";
 import Image from "apps/website/components/Image.tsx";
 import type { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
 
 export interface Category {
   label: string;
@@ -51,8 +52,9 @@ function CardText({
 }) {
   return (
     <div
-      class={`flex flex-col ${alignment === "center" ? "text-center" : "text-left"
-        }`}
+      class={`flex flex-col ${
+        alignment === "center" ? "text-center" : "text-left"
+      }`}
     >
       {tag && <div class="text-sm text-primary">{tag}</div>}
       {label && (
@@ -132,24 +134,28 @@ function CategoryList(props: Props) {
                   class="flex flex-col gap-4 w-[210px] lg:w-full lg:h-auto"
                 >
                   {imageDesktop && imageMobile && (
-                    <figure>
-                      <Image
-                        class="card w-full h-full lg:block hidden"
-                        src={imageDesktop}
-                        alt={label || ""}
-                        width={350}
-                        height={350}
-                        loading="lazy"
-                      />
-                      <Image
-                        class="card w-[210px] lg:w-full h-full lg:hidden block"
+                    <Picture>
+                      <Source
+                        media="(max-width: 767px)"
+                        fetchPriority={"auto"}
                         src={imageMobile}
-                        alt={label || ""}
                         width={210}
                         height={270}
-                        loading="lazy"
                       />
-                    </figure>
+                      <Source
+                        media="(min-width: 768px)"
+                        fetchPriority={"auto"}
+                        src={imageDesktop}
+                        width={350}
+                        height={350}
+                      />
+                      <img
+                        class="object-cover w-full h-full rounded-[20px]"
+                        loading={"lazy"}
+                        src={imageDesktop}
+                        alt={label || ""}
+                      />
+                    </Picture>
                   )}
                 </a>
 
