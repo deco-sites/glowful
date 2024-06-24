@@ -91,8 +91,8 @@ function ListPosts({
       id={id}
       class="py-[60px] lg:py-12 2xl:py-[90px] lg:ml-[5%] flex lg:items-start flex-col gap-8 2xl:gap-[75px] text-base-content"
     >
-      <div class="flex flex-col lg:flex-row items-baseline gap-[4px] pl-6 lg:pl-8 lg:gap-[24px]">
-        <h2 class="text-deep-beauty text-[24px] lg:text-[28px] 2xl:text-[36px] uppercase tracking-[1.2px] font-bold text-left">
+      <div class="flex flex-col lg:flex-row items-baseline gap-1 pl-6 lg:pl-8 lg:gap-6">
+        <h2 class="text-deep-beauty text-2xl lg:text-[28px] 2xl:text-4xl uppercase tracking-[1.2px] font-bold text-left">
           {title}
         </h2>
         <a
@@ -105,9 +105,9 @@ function ListPosts({
       </div>
       <div
         id={id}
-        class="grid grid-cols-[48px_1fr_48px] px-[0] pl-[24px] relative"
+        class="grid grid-cols-[48px_1fr_48px] px-[0] pl-6 relative"
       >
-        <Slider.PrevButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-[20px] lg:left-0 transform -translate-y-1/2 z-[3]">
+        <Slider.PrevButton class="w-8 h-8 lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 left-5 lg:left-0 transform -translate-y-1/2 z-[3]">
           <Icon
             size={24}
             id="ChevronLeft"
@@ -115,12 +115,12 @@ function ListPosts({
             class="text-white-lily"
           />
         </Slider.PrevButton>
-        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-end gap-[20px] lg:gap-[18px] 2xl:gap-[32px] col-span-full row-start-1 row-end-1">
+        <Slider class="lg:overflow-hidden flex justify-between carousel carousel-end gap-5 lg:gap-[18px] 2xl:gap-8 col-span-full row-start-1 row-end-1">
           {data.map((post, index) => (
             <Slider.Item
               index={index}
               key={index}
-              class="bg-[#f4f4f4] m-[8px] max-w-[274px] lg:max-w-[330px] 2xl:max-w-[380px] max-h-[500px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
+              class="bg-[#f4f4f4] m-2 max-w-[274px] lg:max-w-[330px] 2xl:max-w-[380px] max-h-[500px] flex flex-col carousel-item relative group rounded-[20px] hover:shadow-md lg:hover:scale-[1.022] transition-all duration-300"
             >
               <a
                 aria-label={`Link para a página do post ${post?.title?.rendered}`}
@@ -148,8 +148,8 @@ function ListPosts({
                   />
                 </figure>
               </a>
-              <div class="w-full flex flex-col py-[24px] px-[16px] lg:p-5 2xl:p-[32px] gap-[10px]">
-                <span class="text-deep-beauty text-[16px] tracking-[1.2px] font-bold">
+              <div class="w-full flex flex-col py-6 px-4 lg:p-5 2xl:p-8 gap-2.5">
+                <span class="text-deep-beauty text-base tracking-[1.2px] font-bold">
                   Categoria
                 </span>
                 <a
@@ -157,16 +157,16 @@ function ListPosts({
                   class="gap-[10px]"
                   target="_blank"
                 >
-                  <h3 class="text-deep-beauty text-[22px] lg:text-[28px] font-[400] mb-[16px] font-fraunces line-clamp-2">
+                  <h3 class="text-deep-beauty text-[22px] lg:text-[28px] font-[400] mb-4 font-fraunces line-clamp-2">
                     {post?.title?.rendered}
                   </h3>
                   <div
-                    class="text-[14px] line-clamp-3"
+                    class="text-sm line-clamp-3"
                     dangerouslySetInnerHTML={{
                       __html: (post?.content?.rendered).slice(0, 120),
                     }}
                   />
-                  <button class="mt-[24px] lg:mt-[40px] px-[32px] py-[10px] bg-deep-beauty text-white-lily rounded-[40px] lg:bg-white-lily lg:text-deep-beauty text-[14px] font-bold uppercase lg:group-hover:bg-deep-beauty lg:group-hover:text-white-lily transition-all duration-300">
+                  <button class="mt-6 lg:mt-10 px-8 py-2.5 bg-deep-beauty text-white-lily rounded-[40px] lg:bg-white-lily lg:text-deep-beauty text-sm font-bold uppercase lg:group-hover:bg-deep-beauty lg:group-hover:text-white-lily transition-all duration-300">
                     {buttonText}
                   </button>
                 </a>
@@ -174,7 +174,7 @@ function ListPosts({
             </Slider.Item>
           ))}
         </Slider>
-        <Slider.NextButton class="w-[32px] h-[32px] lg:w-[50px] lg:h-[50px] min-h-[30px] btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-[20px] lg:right-[10%] 2xl:right-[4%] transform -translate-y-1/2 z-[1]">
+        <Slider.NextButton class="w-8 h-8 lg:w-[50px] lg:h-[50px] min-h-8 btn btn-circle btn-outline bg-cherry-pop border-0 absolute top-1/2 right-5 lg:right-[10%] 2xl:right-[4%] transform -translate-y-1/2 z-[1]">
           <Icon
             size={24}
             id="ChevronRight"

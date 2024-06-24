@@ -36,7 +36,7 @@ export default function Newsletter(props: Props) {
   };
 
   const headerLayout = (
-    <div class="flex flex-col gap-[24px] lg:gap-[32px] w-full">
+    <div class="flex flex-col gap-6 lg:gap-8 w-full">
       <h3
         class="text-[26px]  lg:text-[38px] xl:text-[40px] font-fraunces font-normal leading-[50%] text-deep-beauty"
         style={{ color: color ? color : "#101820" }}
@@ -53,9 +53,9 @@ export default function Newsletter(props: Props) {
   );
 
   const formLayout = form && (
-    <form action="/" class="flex gap-[8px] w-full">
+    <form action="/" class="flex gap-2 w-full">
       <input
-        class={`w-full border-b bg-transparent border-deep-beauty pl-[8px] placeholder:text-[#101820] text-[16px] text-deep-beauty`}
+        class={`w-full border-b bg-transparent border-deep-beauty pl-2 placeholder:text-[#101820] text-base text-deep-beauty`}
         type="text"
         placeholder={form.placeholder}
         style={{
@@ -64,7 +64,7 @@ export default function Newsletter(props: Props) {
         }}
       />
       <button
-        class={`btn px-[24px] py-[14px] rounded-full border-0 text-white-lily uppercase text-[14px] tracking-[0.7px] font-semibold bg-deep-beauty hover:bg-white-lily hover:text-deep-beauty`}
+        class={`btn px-6 py-3.5 rounded-full border-0 text-white-lily uppercase text-sm tracking-[0.7px] font-semibold bg-deep-beauty hover:bg-white-lily hover:text-deep-beauty`}
         style={{ backgroundColor: color ? color : "#101820" }}
         type="submit"
       >
@@ -80,7 +80,7 @@ export default function Newsletter(props: Props) {
         class={`hidden lg:block p-0 bg-peach-skin`}
       >
         <div
-          class={`container max-w-[1200px] flex flex-col rounded justify-between lg:items-end lg:flex-row px-[24px] py-[60px] gap-[40px] lg:py-[90px] lg:gap-[70px]`}
+          class={`container max-w-[1200px] flex flex-col rounded justify-between lg:items-end lg:flex-row px-6 py-[60px] gap-10 lg:py-[90px] lg:gap-[70px]`}
         >
           {headerLayout}
           {formLayout}
@@ -92,7 +92,7 @@ export default function Newsletter(props: Props) {
         class={`block lg:hidden p-0 bg-peach-skin`}
       >
         <div
-          class={`container max-w-[1200px] flex flex-col rounded justify-between lg:items-end lg:flex-row px-[24px] py-[60px] gap-[40px] lg:py-[90px] lg:gap-[70px]`}
+          class={`container max-w-[1200px] flex flex-col rounded justify-between lg:items-end lg:flex-row px-6 py-[60px] gap-10 lg:py-[90px] lg:gap-[70px]`}
         >
           {headerLayout}
           {formLayout}

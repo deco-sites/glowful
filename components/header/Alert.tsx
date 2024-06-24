@@ -44,12 +44,12 @@ function Alert({ alerts = [], interval = 5 }: Props) {
     <div id={id} class={displayTop.value ? "" : "hidden"}>
       {alerts.map((alert, index) => (
         <Slider
-          class="carousel carousel-center w-full bg-deep-beauty gap-6 text-center p-[13px] lg:p-2 2xl:p-[13px]"
+          class="carousel carousel-center w-full bg-deep-beauty gap-6 text-center p-3.5 lg:p-2 2xl:p-3.5"
           style={{ "background-color": alert.background }}
         >
           <Slider.Item index={index} class="carousel-item w-full">
             <span
-              class={`text-[12px] text-[${alert.color}] flex justify-center items-center w-full`}
+              class={`text-xs text-[${alert.color}] flex justify-center items-center w-full`}
             >
               {alert.alert}
             </span>

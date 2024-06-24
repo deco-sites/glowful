@@ -231,9 +231,9 @@ function Footer({
                   {_social}
                 </div>
 
-                <div class="mt-[40px] mb-[64px] lg:flex lg:m-0 lg:h-full lg:items-end">
+                <div class="mt-10 mb-[64px] lg:flex lg:m-0 lg:h-full lg:items-end">
                   {details && (
-                    <p class="text-[14px] leading-[150%] text-[#878787]">
+                    <p class="text-sm leading-[150%] text-[#878787]">
                       {details}
                     </p>
                   )}
@@ -250,7 +250,7 @@ function Footer({
               </div>
             </div>
             <Divider />
-            <div class="flex flex-col-reverse lg:flex-row lg:justify-between gap-10 mb-[32px]">
+            <div class="flex flex-col-reverse lg:flex-row lg:justify-between gap-10 mb-8">
               {_links}
             </div>
           </div>

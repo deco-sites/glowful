@@ -17,7 +17,7 @@ export default function ExtraLinks({ content, logo }: Props) {
       {content && content?.length > 0 && (
         <div class="flex flex-col lg:flex-row lg:justify-between gap-[64px] lg:gap-10 lg:w-full">
           <div class="flex flex-col lg:flex-row lg:order-2 lg:items-center lg:gap-1">
-            <p class="text-[#878787] mb-[8px] lg:mb-0 lg:text-[16px]">
+            <p class="text-[#878787] mb-2 lg:mb-0 lg:text-base">
               Todos os direitos reservados:
             </p>
             {content.map((item) => (
@@ -30,7 +30,7 @@ export default function ExtraLinks({ content, logo }: Props) {
             ))}
           </div>
 
-          <div class="flex flex-col items-start lg:items-center gap-[16px] lg:flex-row lg:gap-[24px]">
+          <div class="flex flex-col items-start lg:items-center gap-4 lg:flex-row lg:gap-6">
             <Logo logo={logo} />
 
             <p class="text-[#878787] lg:order-1 lg:text-[18px]">

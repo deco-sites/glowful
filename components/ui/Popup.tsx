@@ -57,7 +57,7 @@ export function PopupIcon({
   return (
     <button
       onClick={() => (displayPopup.value = true)}
-      class={`fixed flex items-center justify-center p-[12px] transition-all duration-300 ease-out rounded-[14px] lg:w-[70px] lg:h-[70px] w-[54px] h-[54px] hover:scale-[1.15] text-[16px] lg:text-[20px] font-bold uppercase text-center text-white-lily leading-[120%] tracking-[1px]  bg-red-500 bg-cherry-pop z-40 shadow-md ${
+      class={`fixed flex items-center justify-center p-3 transition-all duration-300 ease-out rounded-[14px] lg:w-[70px] lg:h-[70px] w-[54px] h-[54px] hover:scale-[1.15] text-base lg:text-xl font-bold uppercase text-center text-white-lily leading-[120%] tracking-[1px]  bg-red-500 bg-cherry-pop z-40 shadow-md ${
         position ? position : "right-0 bottom-0"
       }`}
     >
@@ -142,18 +142,18 @@ export default function Popup({
       >
         <div className={"w-full h-full flex justify-center items-center px-4"}>
           <div
-            className={`bg-white-lily flex flex-row justify-between w-full max-w-[312px] lg:max-w-[700px] 2xl:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-[24px] lg:p-0 ${
+            className={`bg-white-lily flex flex-row justify-between w-full max-w-[312px] lg:max-w-[700px] 2xl:max-w-[850px] box-content items-center rounded-lg gap-2 relative p-6 lg:p-0 ${
               animationPopup ? "animate-shake-in" : "animate-shake-out"
             }`}
           >
             <div
               onClick={closeModal}
-              className="rotate-45 w-[30px] h-[30px] rounded-full flex justify-center items-center absolute top-[16px] right-[16px] bg-white z-50 cursor-pointer"
+              className="rotate-45 w-8 h-8 rounded-full flex justify-center items-center absolute top-4 right-4 bg-white z-50 cursor-pointer"
             >
               <Icon id="Plus" size={32} strokeWidth={1} />
             </div>
 
-            <div class="pt-[30px] flex flex-col gap-[16px] lg:max-w-[315px] lg:m-[50px] 2xl:m-[90px] lg:pt-0">
+            <div class="pt-[30px] flex flex-col gap-4 lg:max-w-[315px] lg:m-[50px] 2xl:m-[90px] lg:pt-0">
               {title && (
                 <div
                   class="textHighlight popup text-center w-full pr-4"
@@ -172,12 +172,12 @@ export default function Popup({
                 <form action="/" class="flex flex-col gap-4 ">
                   <div class="flex flex-col gap-4">
                     <input
-                      class="input input-bordered lg:w-80 bg-transparent border-1 border-[#101820] placeholder:text-[#878787] text-[16px] font-redhat"
+                      class="input input-bordered lg:w-80 bg-transparent border-1 border-[#101820] placeholder:text-[#878787] text-base font-redhat"
                       type="text"
                       placeholder={form.firstInput}
                     />
                     <input
-                      class="input input-bordered lg:w-80 bg-transparent border-1 border-[#101820] placeholder:text-[#878787] text-[16px] font-redhat"
+                      class="input input-bordered lg:w-80 bg-transparent border-1 border-[#101820] placeholder:text-[#878787] text-base font-redhat"
                       type="text"
                       placeholder={form.secondInput}
                     />
@@ -185,11 +185,11 @@ export default function Popup({
                       <div class="flex items-center gap-[9px]">
                         <input
                           type="checkbox"
-                          class="checkbox border-[#101820] h-[16px] w-[16px]"
+                          class="checkbox border-[#101820] h-4 w-4"
                         />
 
                         <div
-                          class="text-[#101820] text-[12px] lg:text-[14px]"
+                          class="text-[#101820] text-xs lg:text-sm"
                           dangerouslySetInnerHTML={{ __html: form.textHelper }}
                         />
                       </div>
@@ -197,7 +197,7 @@ export default function Popup({
 
                     {form?.button?.text && (
                       <button
-                        class={`btn px-[40px] mt-[14px] rounded-full border-0 uppercase text-[16px] lg:text-[18px] tracking-[1px] font-bold`}
+                        class={`btn px-10 mt-3.5 rounded-full border-0 uppercase text-base lg:text-[18px] tracking-[1px] font-bold`}
                         style={{
                           background: form?.button?.backgroundColor
                             ? form?.button?.backgroundColor
