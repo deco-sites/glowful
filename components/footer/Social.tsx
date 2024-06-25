@@ -1,4 +1,5 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import Image from "apps/website/components/Image.tsx";
 
 interface Props {
   images?: {
@@ -24,10 +25,12 @@ export default function Social({ images }: Props) {
                     aria-label={`${item.alt} Logo`}
                     class="flex gap-2 items-center"
                   >
-                    <img
+                    <Image
                       loading="lazy"
                       src={item.image}
                       alt={item.alt}
+                      width={27}
+                      height={24}
                       class="object-contain w-full h-full max-w-[27px] max-h-[27px]"
                     />
                   </a>

@@ -50,7 +50,6 @@ function GlobalTags() {
       </script>
       <script
         defer
-        async
         src="https://assets.videowise.com/client.js.gz"
         id="videowise-client-js"
       >

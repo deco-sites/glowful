@@ -1,4 +1,5 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import Image from "apps/website/components/Image.tsx";
 
 export interface Props {
   logo?: {
@@ -11,7 +12,7 @@ export default function Logo({ logo }: Props) {
     <>
       {logo?.image && (
         <div class="w-[112px] max-h-[16px]">
-          <img
+          <Image
             loading="lazy"
             src={logo?.image}
             alt="Logo glowful"
