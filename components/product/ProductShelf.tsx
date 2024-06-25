@@ -201,7 +201,6 @@ function ProductShelf({
                 {allowBanner && (
                   <Slider.Item index={0} class="carousel-item">
                     <div class="relative rounded-[15px] lg:w-[265px] 2xl:w-[360px]">
-                      }
                       <Image
                         class="w-full lg:h-full h-[360px] relative lg:flex items-center justify-center object-cover rounded-2xl"
                         src={banner?.imageDesktop}
