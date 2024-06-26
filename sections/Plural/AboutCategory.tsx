@@ -72,7 +72,7 @@ function AboutCategory(props: SectionProps<ReturnType<typeof loader>>) {
       <div class="flex flex-col lg:flex-row  items-center justify-between lg:gap-[40px]">
         {image && (
           <figure class="relative w-fit max-h-[450px] ">
-            <Picture preload>
+            <Picture>
               <Source
                 src={image.mobile}
                 width={360}

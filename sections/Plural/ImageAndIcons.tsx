@@ -1,6 +1,7 @@
 import { Picture } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { SectionProps } from "deco/types.ts";
+import Image from "apps/website/components/Image.tsx";
 
 interface Benefits {
   image?: ImageWidget;
@@ -43,20 +44,15 @@ function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
   return (
     <div class="container max-w-[1240px]  py-[80px] lg:pb-[120px] lg:pt-[60px] lg:px-0 card lg:card-side rounded grid grid-cols-1 justify-between lg:grid-cols-[50%_45%] xl:grid-cols-[55%_40%] gap-[5%] z-[-1]">
       {image && (
-        <figure class="!hidden lg:!block relative max-h-[820px] max-w-[600px] ">
-          <Picture>
-            <img
-              class="object-cover"
-              sizes="(max-width: 640px) 100vw, 30vw"
-              src={image.desktop}
-              alt={image.altText}
-              decoding="async"
-              loading="lazy"
-            />
-          </Picture>
-        </figure>
+        <Image
+          class="object-cover !hidden lg:!block relative max-h-[820px] max-w-[600px]"
+          width={610}
+          height={980}
+          src={image.desktop}
+          alt={image.altText}
+          loading="lazy"
+        />
       )}
-
       <div class="px-[24px] lg:px-0 flex flex-col gap-[32px] sm:gap-[30px] lg:row-start-1 lg:col-start-2">
         <div class="flex flex-col gap-[16px] xl:gap-[20px]">
           {subTitle && (
@@ -78,7 +74,7 @@ function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
             benefits.map((benefit) => (
               <>
                 <div class="flex flex-row items-start gap-[16px] ">
-                  <img
+                  <Image
                     src={benefit.image}
                     width={24}
                     height={24}
