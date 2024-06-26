@@ -26,31 +26,6 @@ export interface ImageAndIcons {
   benefits?: Array<Benefits>;
 }
 
-const DEFAULT_PROPS = {
-  imagesAndIcons: [
-    {
-      matcher: "/*",
-
-      image: {
-        desktop:
-          "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ec597b6a-dcf1-48ca-a99d-95b3c6304f96",
-        altText: "a",
-      },
-      subTitle: "As",
-      title: "Woman",
-
-      benefits: [
-        {
-          image:
-            "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ec597b6a-dcf1-48ca-a99d-95b3c6304f96",
-          title: "Lorem",
-          description: "Ipsum",
-        },
-      ],
-    },
-  ],
-};
-
 function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
   const imageAndIcons = props;
 
@@ -58,9 +33,9 @@ function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
     return null;
   }
 
-  if (!imageAndIcons.isFiltered) {
-    return null;
-  }
+  // if (!imageAndIcons.isFiltered) {
+  //   return null;
+  // }
 
   const { imageAndIcon } = imageAndIcons;
   const { subTitle, title, image, benefits } = imageAndIcon;
@@ -134,15 +109,16 @@ export interface Props {
 }
 
 export const loader = (props: Props, req: Request) => {
-  const { imagesAndIcons } = { ...DEFAULT_PROPS, ...props };
+  const { imagesAndIcons } = { ...props };
 
-  const imageAndIcon = imagesAndIcons.find(({ matcher }) =>
+  const imageAndIcon = imagesAndIcons?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
-  const isFiltered = new URLPattern({ pathname: "/*?filter" }).test(req.url)
+  // const isFiltered = new URLPattern({ pathname: "/*?filter" }).test(req.url)
 
-  return { imageAndIcon, isFiltered };
+  // return { imageAndIcon, isFiltered };
+  return { imageAndIcon };
 };
 
 export default ImageAndIcons;

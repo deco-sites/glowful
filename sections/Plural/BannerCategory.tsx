@@ -126,7 +126,7 @@ export interface Props {
 export const loader = (props: Props, req: Request) => {
   const { bannerCategorys } = { ...props };
 
-  const bannerCategory = bannerCategorys.find(({ matcher }) =>
+  const bannerCategory = bannerCategorys?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 

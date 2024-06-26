@@ -36,6 +36,7 @@ function GlobalTags() {
       </script>
 
       <link
+        defer
         rel="stylesheet"
         as="style"
         onLoad="this.onload=null;this.rel='stylesheet'"
@@ -50,7 +51,6 @@ function GlobalTags() {
       </script>
       <script
         defer
-        async
         src="https://assets.videowise.com/client.js.gz"
         id="videowise-client-js"
       >
