@@ -59,21 +59,53 @@ export async function loader(
   }: Props,
   _req: Request,
 ) {
+  const controller = new AbortController();
+  const { signal } = controller;
+
   const url = `${urlBlog}/api/mostViewedPosts`;
 
-  const data = await fetch(url).then((r) => r.json()).catch((err) => {
-    console.error("error fetching posts from blog", err);
-    return { data: [] };
-  });
+  try {
+    const response = await fetch(url, { signal });
+    const data = await response.json();
 
-  return {
-    data: data.slice(0, numberOfPosts ?? 12),
-    urlBlog,
-    title,
-    blogText,
-    buttonText,
-    numberOfPosts,
-  };
+    if (Array.isArray(data)) {
+      return {
+        data: data.length > 1 ? data.slice(0, numberOfPosts ?? 12) : [],
+        urlBlog,
+        title,
+        blogText,
+        buttonText,
+        numberOfPosts,
+      };
+    } else {
+      console.error("Os dados recebidos do blog não são um array");
+      return { 
+        data: [],
+        urlBlog,
+        title,
+        blogText,
+        buttonText,
+        numberOfPosts,
+      };
+    }
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      console.error('A solicitação de busca foi abortada');
+      // Lidar com o sinal de aborto aqui
+    } else {
+      console.error("Erro ao buscar ou analisar os posts do blog", err);
+    }
+    return { 
+      data: [],
+      urlBlog,
+      title,
+      blogText,
+      buttonText,
+      numberOfPosts,
+    };
+  } finally {
+    controller.abort();
+  }
 }
 
 function ListPosts({

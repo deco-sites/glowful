@@ -49,11 +49,13 @@ export default function BenefitsCarousel({
               index={index}
               class="carousel-item flex justify-center items-center gap-4 w-screen"
             >
-              <img
+              <Image
                 src={benifit.icon}
                 alt={benifit.icon || ""}
                 className="object-cover max-w-10 w- max-h-10 lg:max-w-[30px] lg:max-h-[30px] 2xl:max-w-10 2xl:max-h-10"
                 loading="lazy"
+                width={40}
+                height={30}
               />
               <div class="flex flex-col items-start">
                 <strong
@@ -81,11 +83,13 @@ export default function BenefitsCarousel({
         <div class="lg:w-[95%] lg:px-[51px] lg:mx-auto xl:max-w-[1408px] justify-between carousel carousel-center w-full text-center px-5 py-8 ml-[10%] lg:ml-auto">
           {benifits.map((benifit) => (
             <div class="carousel-item flex justify-center items-center gap-4 w-fit">
-              <img
+              <Image
                 src={benifit.icon}
                 alt={benifit.icon || ""}
                 className="object-cover max-w-10 max-h-10"
                 loading="lazy"
+                width={40}
+                height={30}
               />
               <div class="flex flex-col items-start">
                 <strong
