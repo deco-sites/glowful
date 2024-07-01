@@ -38,28 +38,28 @@ const portugueseMappings = {
   "name:asc": "Nome: A-Z",
   "name:desc": "Nome: Z-A",
   "price:asc": "Preço: menor",
-  "price:desc": "Preço: maior"
+  "price:desc": "Preço: maior",
 };
 
 function Sort({ sortOptions }: Props) {
   const sort = useSort();
-  // const [isAscending, setIsAscending] = useState(sort.includes("ascending"));
+  const [isAscending, setIsAscending] = useState(sort.includes("ascending"));
 
-  // const invertSort = () => {
-  //   const urlSearchParams = new URLSearchParams(window.location.search);
-  //   const currentSort = urlSearchParams.get(SORT_QUERY_PARAM);
+  const invertSort = () => {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const currentSort = urlSearchParams.get(SORT_QUERY_PARAM);
 
-  //   if (currentSort) {
-  //     const isAscending = currentSort.includes("ascending");
-  //     const newSort = isAscending
-  //       ? currentSort.replace("ascending", "descending")
-  //       : currentSort.replace("descending", "ascending");
-  //     urlSearchParams.set(SORT_QUERY_PARAM, newSort);
-  //     window.location.search = urlSearchParams.toString();
-  //     setIsAscending(!isAscending);
-  //   }
-  // };
-  const sortFilter = sortOptions
+    if (currentSort) {
+      const isAscending = currentSort.includes("ascending");
+      const newSort = isAscending
+        ? currentSort.replace("ascending", "descending")
+        : currentSort.replace("descending", "ascending");
+      urlSearchParams.set(SORT_QUERY_PARAM, newSort);
+      window.location.search = urlSearchParams.toString();
+      setIsAscending(!isAscending);
+    }
+  };
+  const sortFilter = sortOptions;
 
   return (
     <>
@@ -75,7 +75,7 @@ function Sort({ sortOptions }: Props) {
             value,
             label:
               portugueseMappings[label as keyof typeof portugueseMappings] ??
-              label,
+                label,
           }))
           .filter(({ label }) => label !== "orders:desc")
           .map(({ value, label }) => (
@@ -85,7 +85,7 @@ function Sort({ sortOptions }: Props) {
           ))}
       </select>
 
-      {/* <button class="ml-[24px]" onClick={invertSort}>
+      <button class="ml-[24px]" onClick={invertSort}>
         <img
           loading="lazy"
           width="24"
@@ -98,7 +98,7 @@ function Sort({ sortOptions }: Props) {
             isAscending ? "" : "rotate-180"
           } transition-all duration-300 `}
         />
-      </button> */}
+      </button>
     </>
   );
 }

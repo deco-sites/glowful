@@ -59,7 +59,7 @@ function Result({
 
   return (
     <>
-      <div class="container md:max-w-full lg:px-14 sm:py-10 sm:pb-[80px]">
+      <div class="container md:max-w-full lg:px-14 pt-5 sm:py-10 sm:pb-[80px]">
         <div class="flex flex-col lg:flex-row gap-2 lg:gap-24">
           {layout?.variant === "aside" && filters.length > 0 && (
             <aside class="w-min min-w-[270px] self-center sm:self-auto">
