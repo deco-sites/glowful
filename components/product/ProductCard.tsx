@@ -392,7 +392,7 @@ function ProductCard({
             aria-label="view product"
           >
             {/* Category */}
-            <p class="text-sm leading-[13px] font-semibold text-[#101820]">
+            <p class="text-sm leading-[13px] text-[#101820]">
               {description.category}
             </p>
 
