@@ -85,21 +85,29 @@ export default function Contact({ props }: { props: Props }) {
         >
         </span>
         <form class="w-full flex flex-col gap-4 items-center px-2 lg:p-0">
+          <label for="name" class="sr-only">Nome:</label>
           <input
+            id="name"
             class="h-[56px] lg:h-12 input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
             type="text"
             placeholder={form.placeholderName}
             required
           >
           </input>
+
+          <label for="email" class="sr-only">Email:</label>
           <input
+            id="email"
             class="h-[56px] lg:h-12 input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
             type="email"
             placeholder={form.placeholderEmail}
             required
           >
           </input>
+
+          <label for="subject" class="sr-only">Assunto:</label>
           <select
+            id="subject"
             class="h-[56px] lg:h-12 select select-primary w-full focus:outline-none bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[#878787] text-[16px] font-redhat"
             style={{
               backgroundImage: `url(${asset("/icons/down_arrow.svg")})`,
@@ -115,7 +123,10 @@ export default function Contact({ props }: { props: Props }) {
               <option class="py-4" value={iten}>{iten}</option>
             ))}
           </select>
+
+          <label for="message" class="sr-only">Mensagem:</label>
           <textarea
+            id="message"
             required
             class="h-[126px] lg:h-20 py-2 leading-7 input input-bordered focus:outline-none w-full bg-transparent border-1 border-[#878787] placeholder:text-[#878787] text-[16px] font-redhat"
             placeholder={form.placeholderText}
