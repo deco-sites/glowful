@@ -27,7 +27,7 @@ function Alert({ alerts = [], interval = 5 }: Props) {
   useEffect(() => {
     const handleScroll = () => {
       const offset = self.scrollY;
-      if (offset > 35) {
+      if (offset > 50) {
         displayTop.value = false;
       } else {
         displayTop.value = true;
