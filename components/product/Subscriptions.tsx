@@ -282,12 +282,12 @@ export default function Subscriptions({ product, discounts }: Props) {
           }`}
         >
           <div>
-            <div class="px-6 lg:px-7 py-4 lg:py-9 flex flex-col lg:flex-row lg:gap-6 gap-5">
+            <div class="px-6 lg:px-0 py-4 lg:py-8 flex lg:justify-center flex-col lg:flex-row gap-5">
               <p class="lg:[writing-mode:vertical-lr] lg:rotate-180 border-b lg:border-b-0 lg:border-l border-[#707070] text-center lg:pb-0 lg:pl-2 pb-[5px]">
                 Frequência
               </p>
 
-              <div class="flex flex-col lg:gap-[30px] gap-5">
+              <div class="flex flex-col lg:gap-6 gap-5">
                 <div class="flex gap-2.5 items-center">
                   <input
                     type="radio"
@@ -311,7 +311,7 @@ export default function Subscriptions({ product, discounts }: Props) {
                       </span>
                     </label>
 
-                    <p class="text-[12px] block w-full">
+                    <p class="text-[12px] block w-full lg:max-w-[150px]">
                       Pague em 12x e receba o ano todo. Entregas mensais
                       Renovado anualmente.
                     </p>
@@ -343,7 +343,7 @@ export default function Subscriptions({ product, discounts }: Props) {
                     </span>
                   </label>
 
-                  <div class="relative w-fit">
+                  <div class="relative w-fit self-end">
                     <label class=" peer relative flex h-[26px] flex-row items-center justify-between bg-white-lily rounded-[50px] px-[14px] py-[8px] cursor-pointer">
                       <input
                         type="checkbox"
@@ -387,19 +387,19 @@ export default function Subscriptions({ product, discounts }: Props) {
 
         <div class="rounded-[20px] bg-[#F4F4F4] px-[8px] xl:px-[12px] grid grid-cols-3">
           <div class="flex flex-col items-center gap-[12px] p-[16px] xl:p-[20px] border-r-[1px] border-[#BFBFBF]">
-            <img src="/icons/hand.png" alt="" />
+            <img src="/icons/hand.png" alt="" height={18} width={18} />
             <p class="text-[14px] text-deep-beauty text-center">
               Cancele quando quiser
             </p>
           </div>
           <div class="flex flex-col items-center gap-[12px] p-[16px] xl:p-[20px] border-r-[1px] border-[#BFBFBF]">
-            <img src="/icons/bus.png" alt="" />
+            <img src="/icons/bus.png" alt="" height={18} width={18} />
             <p class="text-[14px] text-deep-beauty text-center max-w-[84px]">
               Entrega grátis
             </p>
           </div>
           <div class="flex flex-col items-center gap-[12px] p-[16px] xl:p-[20px]">
-            <img src="/icons/tag.png" alt="" />
+            <img src="/icons/tag.png" alt="" height={18} width={18} />
             <p class="text-[14px] text-deep-beauty text-center">
               Melhor preço garantido
             </p>

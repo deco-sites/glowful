@@ -36,6 +36,7 @@ function GlobalTags() {
       </script>
 
       <link
+        defer
         rel="stylesheet"
         as="style"
         onLoad="this.onload=null;this.rel='stylesheet'"

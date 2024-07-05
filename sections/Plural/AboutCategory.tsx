@@ -71,23 +71,26 @@ function AboutCategory(props: SectionProps<ReturnType<typeof loader>>) {
 
       <div class="flex flex-col lg:flex-row  items-center justify-between lg:gap-[40px]">
         {image && (
-          <figure class="relative w-fit max-h-[450px] ">
-            <Picture preload>
-              <Source
-                src={image.mobile}
-                width={360}
-                height={360}
-                media="(max-width: 767px)"
-              />
-              <Source
-                src={image.desktop}
-                width={350}
-                height={425}
-                media="(min-width: 767px)"
-              />
-              <img class="object-cover" src={image.desktop} alt={image?.alt} loading="lazy"/>
-            </Picture>
-          </figure>
+          <Picture>
+            <Source
+              src={image.mobile}
+              width={360}
+              height={360}
+              media="(max-width: 767px)"
+            />
+            <Source
+              src={image.desktop}
+              width={350}
+              height={425}
+              media="(min-width: 767px)"
+            />
+            <img
+              class="object-cover relative w-fit max-h-[450px] "
+              src={image.desktop}
+              alt={image?.alt}
+              loading="lazy"
+            />
+          </Picture>
         )}
         {title && (
           <div

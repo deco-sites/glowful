@@ -85,12 +85,14 @@ function PluralBanner({
             width={360}
             height={461}
             media="(max-width: 767px)"
+            loading="lazy"
           />
           <Source
             src={image.desktop}
             width={1440}
             height={382}
             media="(min-width: 767px)"
+            loading="lazy"
           />
           <img
             class="w-full h-full object-cover"
@@ -104,18 +106,20 @@ function PluralBanner({
     : (
       <div class="relative flex w-full h-screen max-h-[380px] lg:max-h-[450px]">
         <a href={link?.href}>
-          <Picture preload class="absolute w-full h-full right-0 top-0">
+          <Picture class="absolute w-full h-full right-0 top-0">
             <Source
               src={image.mobile}
               width={360}
               height={461}
               media="(max-width: 767px)"
-            />
+              loading="lazy"
+              />
             <Source
               src={image.desktop}
               width={1440}
               height={382}
               media="(min-width: 767px)"
+              loading="lazy"
             />
             <img
               class="w-full h-full object-cover"
