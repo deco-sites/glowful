@@ -7,7 +7,7 @@ import CartButtonVDNA from "$store/islands/Header/Cart/vnda.tsx";
 import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import CartButtonWake from "$store/islands/Header/Cart/wake.tsx";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
-import SearchBar from "$store/components/search/Searchbar.tsx"
+import SearchBar from "$store/components/search/Searchbar.tsx";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import NavItem from "./NavItem.tsx";
@@ -47,7 +47,7 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
     const updateScrollDirection = () => {
       const scrollY = window.scrollY;
-      if (scrollY > lastScrollY+5) {
+      if (scrollY > 50 && scrollY > lastScrollY) {
         scrollDirection.value = "down";
         setDisplayNavbar("invisible");
       } else if (scrollY < lastScrollY) {
@@ -121,22 +121,20 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
               alt={logoBranco.alt}
               width={126}
               height={16}
-              class={
-                displayTop.value === true &&
-                pathname === "/"
-                  ? ""
-                  : "hidden"}
+              class={displayTop.value === true &&
+                  pathname === "/"
+                ? ""
+                : "hidden"}
             />
             <Image
               src={logoPreto.src}
               alt={logoPreto.alt}
               width={126}
               height={16}
-              class={
-                displayTop.value === false ||
-                pathname !== "/"
-                  ? ""
-                  : "hidden"}
+              class={displayTop.value === false ||
+                  pathname !== "/"
+                ? ""
+                : "hidden"}
             />
           </a>
         )}
@@ -165,7 +163,9 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
 
       {/* Desktop Version */}
       <div
-        class={`lg:flex 2xl:min-h-[86px] lg:min-h-[60px] ${displayNavbar} ${displayHover.value ? "visible" : "hidden"} bg-[${backgroundColor}] hover:visible nav-bar`}
+        class={`lg:flex 2xl:min-h-[86px] lg:min-h-[60px] ${displayNavbar} ${
+          displayHover.value ? "visible" : "hidden"
+        } bg-[${backgroundColor}] hover:visible nav-bar`}
         onMouseEnter={() => {
           setDisplayNavbar("visible");
         }}
@@ -185,37 +185,31 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
                   alt={logoBranco.alt}
                   width={192}
                   height={28}
-                  class={                    
-                    displayTop.value === true &&
-                    displayHover.value === false &&
-                    pathname === "/"
-                      ? "w-48"
-                      : "hidden"
-                  }
+                  class={displayTop.value === true &&
+                      displayHover.value === false &&
+                      pathname === "/"
+                    ? "w-48"
+                    : "hidden"}
                 />
                 <Image
                   src={logoPreto.src}
                   alt={logoPreto.alt}
                   width={192}
                   height={28}
-                  class={
-                    displayTop.value === false ||
-                    displayHover.value === true ||
-                    pathname !== "/"
-                      ? "w-48"
-                      : "hidden"
-                  }
+                  class={displayTop.value === false ||
+                      displayHover.value === true ||
+                      pathname !== "/"
+                    ? "w-48"
+                    : "hidden"}
                 />
               </a>
             )}
           </div>
           <ul class="2xl:min-h-[86px] lg:min-h-[60px] flex-auto flex justify-center">
-            {items.map((item) => (
-              <NavItem item={item} colorIcon={colorIcon} />
-            ))}
+            {items.map((item) => <NavItem item={item} colorIcon={colorIcon} />)}
           </ul>
-          <div class="flex-none w-fit flex items-center justify-end gap-2">            
-            <SearchBar props={searchbar} colorIcon={colorIcon}/>
+          <div class="flex-none w-fit flex items-center justify-end gap-2">
+            <SearchBar props={searchbar} colorIcon={colorIcon} />
             {platform === "vtex" && <CartButtonVTEX />}
             {platform === "vnda" && <CartButtonVDNA />}
             {platform === "wake" && <CartButtonWake />}
@@ -230,7 +224,11 @@ function Navbar({ items, searchbar, logoPreto, logoBranco, platform }: Props) {
                 id="User"
                 size={24}
                 strokeWidth={0.4}
-                class={`${displayHover.value !== false ? "text-[#101820]" : `text-[${colorIcon}]`}`}
+                class={`${
+                  displayHover.value !== false
+                    ? "text-[#101820]"
+                    : `text-[${colorIcon}]`
+                }`}
               />
             </a>
           </div>

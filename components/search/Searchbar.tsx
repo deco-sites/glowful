@@ -150,7 +150,7 @@ function Searchbar({
         <form id={id} action={action} style={`${displayHover.value !== false ? "border-color:#101820" : `border-color:${colorIcon}`}`} class={`join rounded-lg border w-full`}>
           <Button
             type="submit"
-            class="join-item btn-square bg-transparent border-none"
+            class="join-item btn-square bg-transparent border-none h-10 min-h-10"
             aria-label="Search"
             for={id}
             tabIndex={-1}
@@ -161,7 +161,7 @@ function Searchbar({
             ref={searchInputRef}
             id="search-input"
             aria-expanded="false"
-            class={`input join-item flex-grow pl-0 bg-transparent`}
+            class={`input join-item flex-grow pl-0 bg-transparent h-10 min-h-10`}
             name={name}
             onFocus={showDisplay}
             onChange={(e) => handleSearch(e.currentTarget.value)}

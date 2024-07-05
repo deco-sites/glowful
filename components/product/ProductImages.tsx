@@ -9,7 +9,7 @@ export interface Props {
 
 function ProductImages({ images }: Props) {
   const [displayedImages, setDisplayedImages] = useState(
-    images?.slice(0, 4) ?? [] 
+    images?.slice(0, 4) ?? [],
   );
 
   const loadMoreImages = () => {
@@ -18,7 +18,7 @@ function ProductImages({ images }: Props) {
     setDisplayedImages([...displayedImages, ...newImages]);
     // Scroll to the newly added images
     const lastImageElement = document.getElementById(
-      "image-" + (displayedImages.length - 1)
+      "image-" + (displayedImages.length - 1),
     );
     if (lastImageElement) {
       lastImageElement.scrollIntoView({ behavior: "smooth" });
@@ -51,8 +51,8 @@ function ProductImages({ images }: Props) {
               width={360}
               height={450}
               // Preload LCP image for better web vitals
-              preload={index === 0}
-              loading={index === 0 ? "eager" : "lazy"}
+              preload={index <= 4}
+              loading={index <= 4 ? "eager" : "lazy"}
             />
           </div>
         ))}
@@ -63,19 +63,21 @@ function ProductImages({ images }: Props) {
             onClick={loadMoreImages}
             textHover="Carregar mais"
             type="more"
+            title="Carregar mais imagens"
           />
         </div>
       )}
       {displayedImages?.length > 4 &&
         displayedImages?.length === (images?.length ?? 0) && (
-          <div class="translate-y-[-20px]">
-            <ButtonMore
-              onClick={loadLessImages}
-              textHover="Carregar menos"
-              type="less"
-            />
-          </div>
-        )}
+        <div class="translate-y-[-20px]">
+          <ButtonMore
+            onClick={loadLessImages}
+            textHover="Carregar menos"
+            type="less"
+            title="Diminuir imagens"
+          />
+        </div>
+      )}
     </div>
   );
 }

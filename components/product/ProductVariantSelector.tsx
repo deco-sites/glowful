@@ -1,5 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
-import Avatar from "$store/components/ui/Avatar.tsx";
+import { useState } from "preact/hooks";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 // import { usePartialSection } from "deco/hooks/usePartialSection.ts";

@@ -1,6 +1,7 @@
 import { Picture } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import type { SectionProps } from "deco/types.ts";
+import Image from "apps/website/components/Image.tsx";
 
 interface Benefits {
   image?: ImageWidget;
@@ -26,31 +27,6 @@ export interface ImageAndIcons {
   benefits?: Array<Benefits>;
 }
 
-const DEFAULT_PROPS = {
-  imagesAndIcons: [
-    {
-      matcher: "/*",
-
-      image: {
-        desktop:
-          "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ec597b6a-dcf1-48ca-a99d-95b3c6304f96",
-        altText: "a",
-      },
-      subTitle: "As",
-      title: "Woman",
-
-      benefits: [
-        {
-          image:
-            "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ec597b6a-dcf1-48ca-a99d-95b3c6304f96",
-          title: "Lorem",
-          description: "Ipsum",
-        },
-      ],
-    },
-  ],
-};
-
 function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
   const imageAndIcons = props;
 
@@ -58,9 +34,9 @@ function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
     return null;
   }
 
-  if (!imageAndIcons.isFiltered) {
-    return null;
-  }
+  // if (!imageAndIcons.isFiltered) {
+  //   return null;
+  // }
 
   const { imageAndIcon } = imageAndIcons;
   const { subTitle, title, image, benefits } = imageAndIcon;
@@ -68,20 +44,15 @@ function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
   return (
     <div class="container max-w-[1240px]  py-[80px] lg:pb-[120px] lg:pt-[60px] lg:px-0 card lg:card-side rounded grid grid-cols-1 justify-between lg:grid-cols-[50%_45%] xl:grid-cols-[55%_40%] gap-[5%] z-[-1]">
       {image && (
-        <figure class="!hidden lg:!block relative max-h-[820px] max-w-[600px] ">
-          <Picture>
-            <img
-              class="object-cover"
-              sizes="(max-width: 640px) 100vw, 30vw"
-              src={image.desktop}
-              alt={image.altText}
-              decoding="async"
-              loading="lazy"
-            />
-          </Picture>
-        </figure>
+        <Image
+          class="object-cover !hidden lg:!block relative max-h-[820px] max-w-[600px]"
+          width={610}
+          height={980}
+          src={image.desktop}
+          alt={image.altText}
+          loading="lazy"
+        />
       )}
-
       <div class="px-[24px] lg:px-0 flex flex-col gap-[32px] sm:gap-[30px] lg:row-start-1 lg:col-start-2">
         <div class="flex flex-col gap-[16px] xl:gap-[20px]">
           {subTitle && (
@@ -103,7 +74,7 @@ function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
             benefits.map((benefit) => (
               <>
                 <div class="flex flex-row items-start gap-[16px] ">
-                  <img
+                  <Image
                     src={benefit.image}
                     width={24}
                     height={24}
@@ -134,15 +105,16 @@ export interface Props {
 }
 
 export const loader = (props: Props, req: Request) => {
-  const { imagesAndIcons } = { ...DEFAULT_PROPS, ...props };
+  const { imagesAndIcons } = { ...props };
 
-  const imageAndIcon = imagesAndIcons.find(({ matcher }) =>
+  const imageAndIcon = imagesAndIcons?.find(({ matcher }) =>
     new URLPattern({ pathname: matcher }).test(req.url)
   );
 
-  const isFiltered = new URLPattern({ pathname: "/*?filter" }).test(req.url)
+  // const isFiltered = new URLPattern({ pathname: "/*?filter" }).test(req.url)
 
-  return { imageAndIcon, isFiltered };
+  // return { imageAndIcon, isFiltered };
+  return { imageAndIcon };
 };
 
 export default ImageAndIcons;
