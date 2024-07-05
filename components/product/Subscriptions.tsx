@@ -159,34 +159,58 @@ export default function Subscriptions({ product, discounts }: Props) {
                     key={index}
                     class="carousel-item flex flex-col items-center gap-3 w-[120px] "
                   >
-                    {images
-                      ?.filter((img) =>
-                        img.alternateName
-                          ?.toLowerCase()
-                          .includes(discount.minimumRequirement)
-                      )
-                      .map((img) => (
-                        img.url && (
-                          <Image
-                            src={img.url}
-                            alt={img.alternateName}
-                            width={120}
-                            height={150}
-                          />
-                        )
-                      ))}
-                    <p class="text-[14px] text-center h-full">
-                      {discount.title}
-                    </p>
                     <button
-                      class="bg-white-lily rounded-[50px] px-[29px] py-1.5 text-cherry-pop text-[14px] hover:bg-cherry-pop hover:text-white-lily transition-all duration-200"
+                      class="bg-transparent"
                       onClick={() => (quantityProduct.value = Number(
                         discount.minimumRequirement,
                       ))}
                     >
-                      {discount.value * 100}% OFF
+                      {images
+                        ?.filter((img) =>
+                          img.alternateName
+                            ?.toLowerCase()
+                            .includes(discount.minimumRequirement)
+                        )
+                        .map((img) => (
+                          <Image
+                            src={img.url}
+                            alt={img.alternateName}
+                            height={150}
+                            width={120}
+                            loading="lazy"
+                          />
+                        ))}
+                      <p class="text-[14px] text-center mt-3">
+                        {discount.title}
+                      </p>
                     </button>
                   </Slider.Item>
+                  // <Slider.Item
+                  //   index={index}
+                  //   key={index}
+                  //   class="carousel-item flex flex-col items-center gap-3 w-[120px] "
+                  // >
+                  //   {images
+                  //     ?.filter((img) =>
+                  //       img.alternateName
+                  //         ?.toLowerCase()
+                  //         .includes(discount.minimumRequirement)
+                  //     )
+                  //     .map((img) => (
+                  //       <img src={img.url} alt={img.alternateName} />
+                  //     ))}
+                  //   <p class="text-[14px] text-center h-full">
+                  //     {discount.title}
+                  //   </p>
+                  //   <button
+                  //     class="bg-white-lily rounded-[50px] px-[29px] py-1.5 text-cherry-pop text-[14px] hover:bg-cherry-pop hover:text-white-lily transition-all duration-200"
+                  //     onClick={() => (quantityProduct.value = Number(
+                  //       discount.minimumRequirement,
+                  //     ))}
+                  //   >
+                  //     {discount.value * 100}% OFF
+                  //   </button>
+                  // </Slider.Item>
                 ))}
             </Slider>
 
@@ -260,7 +284,7 @@ export default function Subscriptions({ product, discounts }: Props) {
           <div>
             <div class="px-6 lg:px-0 py-4 lg:py-8 flex lg:justify-center flex-col lg:flex-row gap-5">
               <p class="lg:[writing-mode:vertical-lr] lg:rotate-180 border-b lg:border-b-0 lg:border-l border-[#707070] text-center lg:pb-0 lg:pl-2 pb-[5px]">
-                Frequencia
+                Frequência
               </p>
 
               <div class="flex flex-col lg:gap-6 gap-5">

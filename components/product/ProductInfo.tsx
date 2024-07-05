@@ -91,7 +91,7 @@ function ProductInfo({ page, layout, installments = 5, discounts }: Props) {
         <FaqProduct page={page} />
       </div>
 
-      <div class="block lg:hidden px-[24px] w-screen overflow-scroll">
+      <div class="block lg:hidden px-[24px] w-full overflow-scroll">
         <Breadcrumb itemListElement={breadcrumbList?.itemListElement} />
       </div>
 
