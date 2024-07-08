@@ -1,2 +1,5 @@
 User-agent: *
-Allow: *
+Allow: /
+Disallow: *
+Sitemap: https://glowful.deco.site/sitemap/sitemap-index.xml
+Host: https://glowful.deco.site

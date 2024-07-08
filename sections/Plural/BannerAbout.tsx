@@ -1,4 +1,4 @@
-import { Picture, Source } from "apps/website/components/Picture.tsx";
+  import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Props {

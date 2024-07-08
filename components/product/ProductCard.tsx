@@ -92,6 +92,8 @@ function ProductCard({
     product.description || isVariantOf?.description || "{}",
   );
 
+  console.log(front);
+
   const { quantityInstallments } = useUI();
   const priceInstallments = price ? (price / quantityInstallments.value) : null;
 
@@ -142,7 +144,7 @@ function ProductCard({
       `}
       data-deco="view-product"
     >
-      {modal.value === true  &&
+      {modal.value === true &&
         (
           <ModalProduct
             product={product}
@@ -169,9 +171,7 @@ function ProductCard({
       />
 
       {/* Image Mobile */}
-      <figure
-        class="!flex lg:!hidden relative overflow-hidden"
-      >
+      <figure class="!flex lg:!hidden relative overflow-hidden">
         <div class="grid grid-cols-1 grid-rows-1 w-full relative">
           <FlatDiscount
             listPrice={listPrice ?? 0}
@@ -194,10 +194,11 @@ function ProductCard({
               alt={front.alternateName}
               width={WIDTH}
               height={HEIGHT}
-              class={`h-[320px] bg-base-100 col-span-full row-span-full rounded-[15px] object-cover ${l?.onMouseOver?.image == "Zoom image"
+              class={`h-[320px] bg-base-100 col-span-full row-span-full rounded-[15px] object-cover ${
+                l?.onMouseOver?.image == "Zoom image"
                   ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
                   : ""
-                }`}
+              }`}
               sizes="(max-width: 640px) 50vw, 20vw"
               preload={preload}
               loading={preload ? "eager" : "lazy"}
@@ -397,16 +398,18 @@ function ProductCard({
             </p>
 
             {/* Product Name */}
-            {l?.hide?.productName ? (
-              ""
-            ) : (
-              <h2
-                class=" break-words text-lg lg:text-sm leading-[130%] uppercase font-semibold text-[#101820]"
-                dangerouslySetInnerHTML={{
-                  __html: isVariantOf?.name ?? name ?? "",
-                }}
-              />
-            )}
+            {l?.hide?.productName
+              ? (
+                ""
+              )
+              : (
+                <h2
+                  class=" break-words text-lg lg:text-sm leading-[130%] uppercase font-semibold text-[#101820]"
+                  dangerouslySetInnerHTML={{
+                    __html: isVariantOf?.name ?? name ?? "",
+                  }}
+                />
+              )}
           </a>
 
           {/* Prices */}
@@ -427,31 +430,36 @@ function ProductCard({
                     class={`text-sm leading-none font-normal lg:text-xs 2xl:text-sm uppercase line-through text-[#101820] ${
                       l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                     }`}
-                >
-                  {formatPrice(listPrice, offers?.priceCurrency)}
+                  >
+                    {formatPrice(listPrice, offers?.priceCurrency)}
+                  </div>
+                  <div class="2xl:text-xl text-lg lg:text-base leading-none uppercase font-bold text-[#CE0F69] ">
+                    {formatPrice(price, offers?.priceCurrency)}
+                  </div>
                 </div>
-                <div class="2xl:text-xl text-lg lg:text-base leading-none uppercase font-bold text-[#CE0F69] ">
-                  {formatPrice(price, offers?.priceCurrency)}
-                </div>
+                {l?.hide?.installments && priceInstallments && (
+                  <p class="text-sm lg:text-xs 2xl:text-sm text-[#101820] text-end font-medium w-max">
+                    {quantityInstallments.value + "x " +
+                      formatPrice(priceInstallments, offers?.priceCurrency)}
+                  </p>
+                )}
               </div>
-              {l?.hide?.installments && priceInstallments && (
-                <p class="text-sm lg:text-xs 2xl:text-sm text-[#101820] text-end font-medium w-max">
-                  {quantityInstallments.value + "x " + formatPrice(priceInstallments, offers?.priceCurrency)}
-                </p>
-              )}
-            </div>
-          )}
+            )}
         </div>
 
         {/* Description */}
-        {l?.hide?.productDescription ? (
-          ""
-        ) : (
-          <div
-            class="mt-4 lg:mt-2.5 2xl:mt-4 text-xs font-light leading-[150%] text-[#101820]"
-            dangerouslySetInnerHTML={{ __html: description.description ?? "" }}
-          />
-        )}
+        {l?.hide?.productDescription
+          ? (
+            ""
+          )
+          : (
+            <div
+              class="mt-4 lg:mt-2.5 2xl:mt-4 text-xs font-light leading-[150%] text-[#101820]"
+              dangerouslySetInnerHTML={{
+                __html: description.description ?? "",
+              }}
+            />
+          )}
 
         {/* SKU Selector */}
         {l?.elementsPositions?.skuSelector === "Bottom" && (

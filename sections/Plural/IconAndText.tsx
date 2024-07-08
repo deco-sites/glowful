@@ -1,6 +1,7 @@
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { SectionProps } from "deco/types.ts";
+import Image from "apps/website/components/Image.tsx";
 
 interface Benefits {
   image?: ImageWidget;
@@ -26,13 +27,16 @@ export interface Props {
 }
 
 export const loader = (props: Props, req: Request) => {
-
-  const isSubscribePage = new URLPattern({ pathname: "/assinatura" }).test(req.url)
+  const isSubscribePage = new URLPattern({ pathname: "/assinatura" }).test(
+    req.url,
+  );
 
   return { isSubscribePage, ...props };
 };
 
-export default function ImageAndText(props: SectionProps<ReturnType<typeof loader>>) {
+export default function ImageAndText(
+  props: SectionProps<ReturnType<typeof loader>>,
+) {
   const { title, image, benefits, href, buttonText, isSubscribePage } = {
     ...props,
   };
@@ -40,18 +44,15 @@ export default function ImageAndText(props: SectionProps<ReturnType<typeof loade
   return (
     <div class="lg:bg-[#F4F4F4] xl:overflow-hidden">
       <div class="lg:px-0 lg:ml-[2%] card lg:card-side rounded grid grid-cols-1 justify-betweenx lg:grid-cols-[50%_48%] xl:grid-cols-[58%_42%] justify-items-center gap-2">
-        <figure class=" relative items-center justify-centera justify-self-end max-h-[750px] ">
-          <Picture class="hidden lg:flex justify-center">
-            <img
-              class="w-full object-cover"
-              sizes="(max-width: 640px) 100vw, 30vw"
-              src={image.desktop}
-              alt={image.altText}
-              decoding="async"
-              loading="lazy"
-            />
-          </Picture>
-        </figure>
+        <Image
+          class="hidden lg:flex justify-center w-full object-cover  relative items-center justify-centera justify-self-end max-h-[750px] "
+          src={image.desktop}
+          alt={image.altText}
+          decoding="async"
+          loading="lazy"
+          width={620}
+          height={900}
+        />
 
         <div class="lg:py-10 2xl:py-20 px-6 lg:px-0 flex flex-col items-center gap-7 lg:gap-[80px] lg:row-start-1 lg:col-start-1 lg:max-w-[616px] 2xl:max-w-[716px]">
           <h2
@@ -66,7 +67,13 @@ export default function ImageAndText(props: SectionProps<ReturnType<typeof loade
                   {/* MOBILE */}
                   <div class="flex lg:hidden flex-col gap-3">
                     <h3 class="flex gap-5 items-center">
-                      <img src={benefit.image} width={32} height={32} alt={benefit.title} loading="lazy"/>
+                      <Image
+                        src={benefit.image}
+                        width={32}
+                        height={32}
+                        alt={benefit.title}
+                        loading="lazy"
+                      />
                       <span class="text-base font-semibold tracking-[0.8px] leading-[130%] text-deep-beauty">
                         {benefit.title}
                       </span>
@@ -77,8 +84,17 @@ export default function ImageAndText(props: SectionProps<ReturnType<typeof loade
                   </div>
 
                   {/* DESKTOP */}
-                  <div class="hidden lg:flex items-start gap-6 lg:max-w-[260px] 2xl:max-w-[335px]" style={{ width: "calc(50% - 1rem)" }}>
-                    <img src={benefit.image} width={32} height={32} alt={benefit.title} loading="lazy"/>
+                  <div
+                    class="hidden lg:flex items-start gap-6 lg:max-w-[260px] 2xl:max-w-[335px]"
+                    style={{ width: "calc(50% - 1rem)" }}
+                  >
+                    <Image
+                      src={benefit.image}
+                      width={32}
+                      height={32}
+                      alt={benefit.title}
+                      loading="lazy"
+                    />
                     <div class="flex flex-col gap-4">
                       <h3 class="xl:text-[20px] font-semibold tracking-[1.1px] leading-[130%] text-deep-beauty text-base">
                         {benefit.title}

@@ -42,21 +42,23 @@ function Logos(props: Props) {
   return (
     <div class="bg-[#E4E4E4]">
       <div class="container lg:gap-[100px] flex justify-center flex-col items-center gap-[50px] lg:flex-row w-full text-center  py-[50px] lg:py-10 px-8">
-        <img
+        <Image
           className="object-contain w-full h-full max-w-40 m-h-[82px] lg:max-w-[219px]"
           src={mainImage}
           alt={mainImageAltText || ""}
           data-test={list[0]}
-          height="56px"
+          width={120}
+          height={56}
           loading="lazy"
         />
         <div class="flex flex-row flex-wrap gap-[30px] lg:gap-[70px] lg:justify-evenly justify-center items-center lg:pl-6">
           {list.map((element) => (
-            <img
+            <Image
               className="object-contain max-w-fit max-h-[46px] lg:max-h-12"
               src={element.image}
               alt={element.altText || ""}
-              height="45px"
+              width={120}
+              height={45}
               loading="lazy"
             />
           ))}
