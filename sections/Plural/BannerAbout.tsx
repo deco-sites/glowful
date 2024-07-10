@@ -78,7 +78,7 @@ function BannerAbout({
             class="w-full h-full object-cover"
             src={image?.desktop}
             alt={image?.alt}
-            loading="lazy"
+            loading="eager"
           />
         </Picture>
       )}
@@ -103,7 +103,7 @@ function BannerAbout({
             class="w-full h-full object-cover"
             src={image?.desktop}
             alt={image?.alt}
-            loading="lazy"
+            loading="eager"
           />
         </Picture>
       </div>
