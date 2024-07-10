@@ -92,8 +92,6 @@ function ProductCard({
     product.description || isVariantOf?.description || "{}",
   );
 
-  console.log(front);
-
   const { quantityInstallments } = useUI();
   const priceInstallments = price ? (price / quantityInstallments.value) : null;
 

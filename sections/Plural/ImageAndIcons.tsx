@@ -45,7 +45,7 @@ function ImageAndIcons(props: SectionProps<ReturnType<typeof loader>>) {
     <div class="container max-w-[1240px]  py-[80px] lg:pb-[120px] lg:pt-[60px] lg:px-0 card lg:card-side rounded grid grid-cols-1 justify-between lg:grid-cols-[50%_45%] xl:grid-cols-[55%_40%] gap-[5%] z-[-1]">
       {image && (
         <Image
-          class="object-cover !hidden lg:!block relative max-h-[820px] max-w-[600px]"
+          class="object-cover !hidden lg:!block relative max-h-[820px] max-w-[600px] w-full"
           width={610}
           height={980}
           src={image.desktop}
