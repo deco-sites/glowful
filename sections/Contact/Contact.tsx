@@ -76,9 +76,9 @@ export default function Contact({ props }: { props: Props }) {
           LAYOUT_FORM[layout.positionImage]
         }`}
       >
-        <h2 class="text-[28px] lg:text-[40px] lg:leading-tight font-fraunces font-normal text-deep-beauty">
+        <h1 class="text-[28px] lg:text-[40px] lg:leading-tight font-fraunces font-normal text-deep-beauty">
           {title}
-        </h2>
+        </h1>
         <span
           class="bg-transparent text-[#101820] text-[16px] font-redhat"
           dangerouslySetInnerHTML={{ __html: content }}
