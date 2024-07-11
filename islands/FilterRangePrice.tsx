@@ -70,13 +70,13 @@ function FilterRangePrice() {
   return (
     <div class="flex flex-col gap-[24px]">
       <div class="flex flex-col gap-[8px]">
-        <a class="text-[16px] text-[#666]" href={urlStatic(0, 100)}>
+        <a class="text-[16px] text-[#666]" href={urlStatic(0, 100)} rel="nofollow">
           Até R$ 100
         </a>
-        <a class="text-[16px] text-[#666]" href={urlStatic(100, 200)}>
+        <a class="text-[16px] text-[#666]" href={urlStatic(100, 200)} rel="nofollow">
           R$ 100 a R$ 200
         </a>
-        <a class="text-[16px] text-[#666]" href={urlStatic(200, 300)}>
+        <a class="text-[16px] text-[#666]" href={urlStatic(200, 300)} rel="nofollow">
           R$ 200 a R$ 300
         </a>
       </div>

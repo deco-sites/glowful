@@ -26,7 +26,7 @@ const isRange = (filter: Filter): filter is FilterRange =>
 function ValueItem({ url, selected, label, quantity }: FilterToggleValue) {
   return (
     <li>
-      <a href={url} class="flex items-center gap-2">
+      <a href={url} class="flex items-center gap-2" rel="nofollow">
         <div
           aria-checked={selected}        
           role="checkbox"
