@@ -5,6 +5,7 @@ import Icon from "./Icon.tsx";
 export interface Props {
     title: string;
     /**
+     * @description Description
      * @format html
      */
     content: string;

@@ -6,6 +6,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Image from "apps/website/components/Image.tsx";
 
 export interface Props {
+  /** @titleBy title */
   benifits?: {
     icon: ImageWidget;
     title?: string;
@@ -52,10 +53,10 @@ export default function BenefitsCarousel({
               <Image
                 src={benifit.icon}
                 alt={benifit.icon || ""}
-                className="object-cover max-w-10 w- max-h-10 lg:max-w-[30px] lg:max-h-[30px] 2xl:max-w-10 2xl:max-h-10"
+                className="object-contain max-w-10 w- max-h-10 lg:max-w-[30px] lg:max-h-[30px] 2xl:max-w-10 2xl:max-h-10"
                 loading="lazy"
                 width={40}
-                height={30}
+                height={30} 
               />
               <div class="flex flex-col items-start">
                 <strong

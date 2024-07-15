@@ -25,6 +25,7 @@ interface Banner {
 }
 
 export interface Props {
+  /** @description Ativa o banner no inicio dos produtos */
   allowBanner: boolean;
   banner?: Banner;
   products: Product[] | null;

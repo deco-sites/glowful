@@ -15,6 +15,7 @@ export interface Props {
    * @format color
    */
   color: string;
+  /** @descirption Centraliza o conteúdo textual no centro */
   layoutCenter?: boolean;
   image: {
     /** @description Image for big screens */
