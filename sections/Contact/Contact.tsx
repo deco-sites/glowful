@@ -5,6 +5,7 @@ import { asset } from "$fresh/runtime.ts";
 export interface Props {
   title: string;
   /**
+   * @title Description
    * @format html
    */
   content: string;
@@ -12,6 +13,7 @@ export interface Props {
     placeholderName: string;
     placeholderEmail: string;
     placeholderSubject: string;
+    /** @description Items que irão aparecer no select  */
     itensSubjects: string[];
     placeholderText: string;
     labelButton: string;

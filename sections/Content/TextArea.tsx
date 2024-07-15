@@ -5,6 +5,7 @@ import { SectionProps } from "deco/types.ts";
 export interface Props {
   title: string;
   /**
+   * @description Content
    * @format html
    */
   content: string;

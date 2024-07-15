@@ -5,6 +5,7 @@
 export interface Props {
     title: string;
     /**
+     * @description Description
      * @format html
      */
     content: string;
