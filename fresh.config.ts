@@ -9,4 +9,7 @@ export default defineConfig({
     // deno-lint-ignore no-explicit-any
     tailwind: tailwind as any,
   }),
+  build: {
+    target: ["safari11"],
+  },
 });
